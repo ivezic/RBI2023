@@ -1,0 +1,2946 @@
+WEBVTT
+
+1
+00:09:25.840 --> 00:09:26.480
+Damjan: Yeah.
+
+2
+00:09:27.000 --> 00:09:27.570
+Cool.
+
+3
+00:10:35.850 --> 00:10:39.410
+Zeljko Ivezic: Oh, it's muted.
+
+4
+00:10:41.970 --> 00:10:45.840
+Zeljko Ivezic: Sorry. Zoom attendees. We just 3 of highest levels on mute.
+
+5
+00:10:46.550 --> 00:10:49.610
+Zeljko Ivezic: I don't know. How did you hear anything? Did they hear anything?
+
+6
+00:10:50.920 --> 00:10:53.180
+Zeljko Ivezic: Yeah. Yeah, okay.
+
+7
+00:10:56.140 --> 00:10:58.540
+Zeljko Ivezic: let me just quickly check. Who do we have?
+
+8
+00:10:59.990 --> 00:11:03.340
+Zeljko Ivezic: Look up here, Atlanta. Okay.
+
+9
+00:11:06.450 --> 00:11:15.030
+Zeljko Ivezic: Okay. So for those on zoom what I said in summary, is that the only way to benefit from this class is
+
+10
+00:11:15.450 --> 00:11:17.300
+Zeljko Ivezic: is to
+
+11
+00:11:17.970 --> 00:11:24.450
+Zeljko Ivezic: do work at home. So, after like each lecture, you should go again through it and identify.
+
+12
+00:11:26.520 --> 00:11:31.890
+Zeljko Ivezic: identify what you didn't understand, so you can ask questions next time.
+
+13
+00:11:32.690 --> 00:11:38.680
+Zeljko Ivezic: and the other thing to do is to prepare yourself for the next lecture by downloading it
+
+14
+00:11:38.730 --> 00:11:43.960
+Zeljko Ivezic: from the github and then trying to run the forward in these lectures, how do I get a single
+
+15
+00:11:48.550 --> 00:11:50.200
+Zeljko Ivezic: Yeah, yeah.
+
+16
+00:11:50.330 --> 00:11:52.770
+Zeljko Ivezic: is it? It's not.
+
+17
+00:12:03.060 --> 00:12:04.280
+Zeljko Ivezic: Oh, thank you.
+
+18
+00:12:09.870 --> 00:12:15.180
+Zeljko Ivezic: Usually you can drag it every I don't know why it's not morning.
+
+19
+00:12:16.830 --> 00:12:18.720
+Zeljko Ivezic: Maybe because my screen is coming.
+
+20
+00:12:48.100 --> 00:12:50.160
+Zeljko Ivezic: What is going on. It is
+
+21
+00:12:56.390 --> 00:13:00.010
+Zeljko Ivezic: I don't know how to get rid of this black screen. Maybe it will go away by itself.
+
+22
+00:13:01.160 --> 00:13:04.920
+Zeljko Ivezic: So the idea of the class is that we have these, like I for numbers.
+
+23
+00:13:05.090 --> 00:13:11.510
+Zeljko Ivezic: You download it prior to this class. But you don't need Internet and this class, because it's not
+
+24
+00:13:11.690 --> 00:13:17.530
+Zeljko Ivezic: very good. And then, as we go through the pieces of the
+
+25
+00:13:17.530 --> 00:13:38.550
+Zeljko Ivezic: you can execute them on your computer and see that from your and then you'll be able to sometimes modify the quote, Just change something to see that you can actually do it on your own. And as we go deeper in this class, you will find more and more examples that will be relevant to your own research. Hopefully.
+
+26
+00:13:39.660 --> 00:13:46.830
+Zeljko Ivezic: So today I will start by just providing a brief roadmap for
+
+27
+00:13:47.020 --> 00:13:52.150
+Zeljko Ivezic: the class. I will briefly describe each of these 6 lectures for the first
+
+28
+00:13:52.790 --> 00:13:56.730
+Zeljko Ivezic: part of the course, and then we will go
+
+29
+00:13:56.900 --> 00:14:02.760
+Zeljko Ivezic: to the rest of the lecture one. Let me see if this works. So this class is basically
+
+30
+00:14:03.880 --> 00:14:20.580
+Zeljko Ivezic: shortened compressed version of this book. I'm not saying you should buy this book. It's expensive. Most of money doesn't go to me, unfortunately. But nevertheless, if you have this book, you will be able to find a longer version of the stuff that i'm going to talk about in these lectures.
+
+31
+00:14:27.050 --> 00:14:29.220
+Zeljko Ivezic: Oh, I hate Zoom.
+
+32
+00:14:42.590 --> 00:14:45.400
+Zeljko Ivezic: No, this is safari. It's unrelated to zoom.
+
+33
+00:14:58.690 --> 00:15:01.420
+Zeljko Ivezic: Okay. except for this one.
+
+34
+00:15:05.880 --> 00:15:14.320
+Zeljko Ivezic: This is better. All right. So just quickly. How many of you managed to reproduce this plot on your own computer?
+
+35
+00:15:15.790 --> 00:15:30.250
+Zeljko Ivezic: Whoa, you? Good! Good, All right. So we'll at some point. We'll talk about this Pl: it's basically visualization of 3 dimensional distribution. You measure 3 quantities for large number of
+
+36
+00:15:30.520 --> 00:15:40.200
+Zeljko Ivezic: samples, and then you try to visualize it, and we'll get back to it later. Excellent! So you can run all of that on your on your computer.
+
+37
+00:15:40.570 --> 00:15:50.890
+Zeljko Ivezic: So again, the point of the class is to show you some of the main benefits, and how we use them to show our our example. It's like you. Go to
+
+38
+00:15:51.090 --> 00:16:01.900
+Zeljko Ivezic: it's like you go to a
+
+39
+00:16:02.790 --> 00:16:08.160
+Zeljko Ivezic: bucket of face and brush, and show you all this drug which is used with pay from the wall.
+
+40
+00:16:08.490 --> 00:16:19.390
+Zeljko Ivezic: So this is what it is for that doesn't make you immediately an expert in painting walls. You cannot go on the market and make money by taking People's house takes some practice.
+
+41
+00:16:19.730 --> 00:16:27.510
+Zeljko Ivezic: even though you know how to use the brush. It takes some practice. So the same with this and that's based on the experience from any other
+
+42
+00:16:27.930 --> 00:16:35.410
+Zeljko Ivezic: extra serious like this in summer schools, unless you try it yourself. You will forget in one month which you did in this class.
+
+43
+00:16:35.490 --> 00:16:43.680
+Zeljko Ivezic: and especially since most of you or all of you are already doing some kind of research. Whenever we talk about
+
+44
+00:16:43.760 --> 00:16:46.780
+Zeljko Ivezic: some methodology, try to think about.
+
+45
+00:16:46.950 --> 00:16:49.280
+Zeljko Ivezic: How does that relate to my research?
+
+46
+00:16:49.300 --> 00:16:58.430
+Zeljko Ivezic: I think it's almost impossible that there will be no part of this class that is not related to your own research, no matter what you do. If you're working with data.
+
+47
+00:16:58.900 --> 00:17:01.250
+Zeljko Ivezic: so there will be some overlap.
+
+48
+00:17:02.550 --> 00:17:09.339
+Zeljko Ivezic: So let me now quickly go through what will be covered. So today will be the most important lecture of all
+
+49
+00:17:11.099 --> 00:17:15.670
+Zeljko Ivezic: all other lectures will be more interesting, because today we need to put
+
+50
+00:17:15.910 --> 00:17:22.150
+Zeljko Ivezic: foundations and introduced language that will be using in other ways that just the
+
+51
+00:17:22.240 --> 00:17:31.100
+Zeljko Ivezic: The fundamental part of this first series is to teach you to show you what is biased and statistics about. Why is it important in science
+
+52
+00:17:31.300 --> 00:17:33.090
+Zeljko Ivezic: and some methods like
+
+53
+00:17:36.380 --> 00:17:48.750
+Zeljko Ivezic: a client to so many complicated problems. But to introduce, to explain what, by using a statistics is about, you need to know what is the likelihood method, what is maximum likelihood approach.
+
+54
+00:17:48.910 --> 00:17:53.230
+Zeljko Ivezic: and that will be part of the second lecture. But to start talking about
+
+55
+00:17:53.340 --> 00:18:00.030
+Zeljko Ivezic: maximum likelihood and things like, and probabilities and goodness of fit
+
+56
+00:18:00.120 --> 00:18:02.270
+Zeljko Ivezic: we need to.
+
+57
+00:18:03.220 --> 00:18:20.920
+Zeljko Ivezic: And so this first lecture today, which will be the most boring one, is about that foundation about the common language about nomenclature that we'll be using throughout the class. So we start the tree we will go through today. We will be powered, then to go to discussion of
+
+58
+00:18:21.050 --> 00:18:23.960
+Zeljko Ivezic: maximum likelihood when we meet next week.
+
+59
+00:18:25.600 --> 00:18:39.320
+Zeljko Ivezic: So then, once we are done with maximum likelihood, then we need to produce concept of bias and statistics, which is basically maximum likelihood combined with the concept of prior probabilities.
+
+60
+00:18:39.680 --> 00:18:50.750
+Zeljko Ivezic: And once we introduce this concept. then it will show some applications that will be moderately complicated or simple. There will be some
+
+61
+00:18:51.360 --> 00:19:01.730
+Zeljko Ivezic: derivations of things, you know, from your introductory laboratory, or like, how do you do weighted some? How do you fit a line to points that have error bars on them.
+
+62
+00:19:02.050 --> 00:19:15.060
+Zeljko Ivezic: That's usually we take as of like box, and never think out about how we're going to be right. but with by statistics it's trivial to show what is going on. and then, once we go through this basics.
+
+63
+00:19:15.230 --> 00:19:29.860
+Zeljko Ivezic: then we will get to the 2 most important likes in the end one is Markov chain. So this is a method numerical method for solving complicated problems, nonlinear problems
+
+64
+00:19:29.950 --> 00:19:31.980
+Zeljko Ivezic: they are hard to solve.
+
+65
+00:19:32.620 --> 00:19:42.010
+Zeljko Ivezic: And then, finally, we will address the most important tool that bias and statistics gives us, and that is model selection.
+
+66
+00:19:42.310 --> 00:19:47.230
+Zeljko Ivezic: So you have some data. And now you have different ways of explaining.
+
+67
+00:19:47.820 --> 00:20:05.900
+Zeljko Ivezic: Where is the data coming from? And so, when you have these different possibilities, the question is which one is the most possible or most probable, and that goes across the sciences, and we will learn how to do that, and we'll end up with probably the most useful
+
+68
+00:20:05.910 --> 00:20:06.980
+Zeljko Ivezic: methods
+
+69
+00:20:07.020 --> 00:20:13.970
+Zeljko Ivezic: in this first part of class called by using what algorithm it is essentially histogram maker.
+
+70
+00:20:14.420 --> 00:20:18.310
+Zeljko Ivezic: where it is intelligent enough to decide on its own
+
+71
+00:20:18.510 --> 00:20:30.050
+Zeljko Ivezic: how many pins you need, and how wide they have to be. So you don't have to specify in advance. I want 10 pins, or I might want my bill which to be this much. Just give it to the
+
+72
+00:20:30.060 --> 00:20:38.230
+Zeljko Ivezic: and magically it's not, Major, if you learn how it does it, and you get your histogram. That is statistically optimal meaning. You can't do better than that.
+
+73
+00:20:38.810 --> 00:20:43.600
+Zeljko Ivezic: So it is like the best method to know in the context of science and showing
+
+74
+00:20:43.810 --> 00:20:45.900
+Zeljko Ivezic: and showing your results.
+
+75
+00:20:47.780 --> 00:20:55.920
+Zeljko Ivezic: So at the zoom, since you all installed that space installation file and ran it. You know how to handle notebooks. Right?
+
+76
+00:20:56.780 --> 00:20:57.780
+Zeljko Ivezic: Okay, Good.
+
+77
+00:20:59.500 --> 00:21:00.840
+Zeljko Ivezic: So let's keep that
+
+78
+00:21:05.020 --> 00:21:06.290
+Zeljko Ivezic: So
+
+79
+00:21:06.420 --> 00:21:09.810
+Zeljko Ivezic: How many of you took statistics before?
+
+80
+00:21:12.220 --> 00:21:13.490
+Zeljko Ivezic: Okay, cool?
+
+81
+00:21:13.850 --> 00:21:21.540
+Zeljko Ivezic: How many of you would be able to explain? I square what the skyscraper? Why is it useful.
+
+82
+00:21:23.390 --> 00:21:25.930
+Zeljko Ivezic: I'm not going to
+
+83
+00:21:25.960 --> 00:21:27.470
+Zeljko Ivezic: all right.
+
+84
+00:21:27.990 --> 00:21:31.490
+Zeljko Ivezic: so we'll we'll go through some nomenclature, and we'll learn
+
+85
+00:21:31.570 --> 00:21:36.390
+Zeljko Ivezic: about 5 square next time. But today just some gentle introduction.
+
+86
+00:21:36.920 --> 00:21:38.640
+Zeljko Ivezic: So you know.
+
+87
+00:21:38.680 --> 00:21:41.080
+Zeljko Ivezic: we measured that. That's the
+
+88
+00:21:41.120 --> 00:21:42.230
+Zeljko Ivezic: that's the
+
+89
+00:21:42.310 --> 00:21:45.990
+Zeljko Ivezic: just of science. Once you take the science, so let's assume
+
+90
+00:21:46.810 --> 00:21:48.830
+Zeljko Ivezic: we have some scale. I want to
+
+91
+00:21:49.200 --> 00:21:53.640
+Zeljko Ivezic: like. For example, we are going to measure temperature in this room.
+
+92
+00:21:54.070 --> 00:21:56.110
+Zeljko Ivezic: We are interested in
+
+93
+00:21:56.370 --> 00:22:04.280
+Zeljko Ivezic: how the presence of humans in a lecture rope increases the temperature in the room, and how it involves its time.
+
+94
+00:22:04.290 --> 00:22:06.260
+Zeljko Ivezic: And so we are measuring the temperature.
+
+95
+00:22:07.180 --> 00:22:14.650
+Zeljko Ivezic: And so now this is not a vector it's just a number we have, and single measurements, so we will call this
+
+96
+00:22:15.230 --> 00:22:23.330
+Zeljko Ivezic: X. I. Each individual number, let's say, in this room every 5 min for this hour we will measure temperature.
+
+97
+00:22:24.000 --> 00:22:28.140
+Zeljko Ivezic: so there will be series of numbers. and that's what we call
+
+98
+00:22:28.840 --> 00:22:33.530
+Zeljko Ivezic: X. I. In those curly brackets. This is all these measurements together.
+
+99
+00:22:33.800 --> 00:22:44.010
+Zeljko Ivezic: and now in practice. Sometimes you just paid these numbers with more than measurements. You also have some estimate of their uncertainty.
+
+100
+00:22:44.550 --> 00:22:56.870
+Zeljko Ivezic: Indeed, we will learn later if you just have that number. and you have absolutely no idea about the certainty of that number. You may as well throw that number to garbage.
+
+101
+00:22:57.030 --> 00:23:09.590
+Zeljko Ivezic: You can't do anything with it. People do, because people always make underlying assumptions. But if you don't know anything, you can't do anything with it in practice this is basically
+
+102
+00:23:09.730 --> 00:23:18.920
+Zeljko Ivezic: hidden application of Bayesian statistics where you say, Well, I don't have errors on my temperature, but I will still plot it in a diagram. I'll still
+
+103
+00:23:19.410 --> 00:23:26.640
+Zeljko Ivezic: fit a line through it, because subconsciously, you are thinking Well, I know that my errors can't be
+
+104
+00:23:26.770 --> 00:23:31.180
+Zeljko Ivezic: 100. It means, I know that it's maybe plus minus one degree
+
+105
+00:23:31.720 --> 00:23:37.880
+Zeljko Ivezic: from experience, and then I have a range of 20 degree. So this finding errors are not
+
+106
+00:23:38.220 --> 00:23:48.340
+Zeljko Ivezic: influencing a lot by measurement. But that's something that often we don't explicitly say, but it's hidden in the analysis. so we will see examples later.
+
+107
+00:23:49.270 --> 00:24:05.080
+Zeljko Ivezic: So now there is another thing we could also be saying, Well, just at a given moment in this room when I measure temperature, I'm. Concerned about the distribution of the temperature in this room. So instead of one thermometer, I'll put like 100 of them.
+
+108
+00:24:05.080 --> 00:24:10.930
+Zeljko Ivezic: Every each of you will have one little thermometer that we mentioned temperature that your position.
+
+109
+00:24:11.060 --> 00:24:17.860
+Zeljko Ivezic: and then I will have set of this measurement, and I will be asking what distribution it was drawn from.
+
+110
+00:24:17.950 --> 00:24:30.280
+Zeljko Ivezic: One possibility is that temperature is the same everywhere in this room, and all of you should be getting the same answer to within the piston on certain things, and they learn what that means
+
+111
+00:24:30.320 --> 00:24:31.900
+Zeljko Ivezic: mathematical form.
+
+112
+00:24:32.290 --> 00:24:48.900
+Zeljko Ivezic: And so what we are asking is, what is the underlying distribution. So in some of the lectures we'll call this distribution Age of X. It would be some Gaussian distribution. It would be box function. It would be delta function doesn't matter. That's some true distribution
+
+113
+00:24:49.480 --> 00:24:54.220
+Zeljko Ivezic: from which we draw this data. and that's known only
+
+114
+00:24:54.360 --> 00:25:03.060
+Zeljko Ivezic: to supreme links. We will never know this, because we can never measure without so. But fundamentally, that's what we are trying to do.
+
+115
+00:25:03.150 --> 00:25:05.410
+Zeljko Ivezic: So we'll call this age effects.
+
+116
+00:25:05.500 --> 00:25:11.040
+Zeljko Ivezic: and there's basically probability that your measurement will be in some interval
+
+117
+00:25:11.160 --> 00:25:15.990
+Zeljko Ivezic: given by the value plus something to this amount. The Dx.
+
+118
+00:25:16.500 --> 00:25:31.500
+Zeljko Ivezic: When we try to estimate age of X. We will call it F. Of X. That's a data based estimate. So you assume that you are measuring a Gauss that your underlying distribution is Gaussian, or, you know, for some reason.
+
+119
+00:25:31.570 --> 00:25:45.640
+Zeljko Ivezic: And then basically for Gaussian distribution, we'll see numerical example later. You need to know 2 numbers. You need to know location, and you need to know how wide it is. And now, with your data set, you're trying to estimate those full numbers.
+
+120
+00:25:45.700 --> 00:25:53.880
+Zeljko Ivezic: and unless your data set is infinitely large. You cannot perfectly well estimate these 2 numbers.
+
+121
+00:25:54.360 --> 00:26:08.820
+Zeljko Ivezic: So whatever you do, since you don't have infinite data set. Whatever you do with it, there will be some uncertainties, and that's what we want to learn. How do we treat these uncertainties and what once i'm given this data Set X. I. In curly brackets.
+
+122
+00:26:09.050 --> 00:26:11.630
+Zeljko Ivezic: and they do some magic to get Gaussian
+
+123
+00:26:12.240 --> 00:26:23.370
+Zeljko Ivezic: best fit parameters. What is my uncertainty for those parameters like? If you had to make a bet, if your life depended on it like. If it was reliability of a parish.
+
+124
+00:26:24.050 --> 00:26:36.510
+Zeljko Ivezic: you would be concerned very well about what is your confidence? Limit? What is probability, etc. Or if you want to make bets in economics, you would want to understand what is the probability that you are right.
+
+125
+00:26:37.030 --> 00:26:50.780
+Zeljko Ivezic: So to shorten this introduction. So basically most of this class will be about estimating the distribution function. In the beginning we will be handling one dimension of this.
+
+126
+00:26:51.140 --> 00:27:00.810
+Zeljko Ivezic: but by the end of class we will learn how to handle 10,000 dimensional distribution function and what to do. How do we do that in practice.
+
+127
+00:27:01.420 --> 00:27:08.260
+Zeljko Ivezic: like, for example, when Netflix is fine, to predict what kind of movie you would like.
+
+128
+00:27:08.320 --> 00:27:15.710
+Zeljko Ivezic: They are operating with few 1,000 variables. and they are doing predictions, using methods that we learn at the end of this class.
+
+129
+00:27:17.260 --> 00:27:20.710
+Zeljko Ivezic: Are we good, so far anyone to make
+
+130
+00:27:21.740 --> 00:27:22.670
+Zeljko Ivezic: all right.
+
+131
+00:27:24.000 --> 00:27:29.100
+Zeljko Ivezic: So this is brief introduction to probability.
+
+132
+00:27:29.390 --> 00:27:39.930
+Zeljko Ivezic: because we need these rules to understand the and the commission of the that we will be talking about next time.
+
+133
+00:27:40.440 --> 00:27:47.540
+Zeljko Ivezic: We will go quickly through today. This is all basic stuff, you probably know before, but just to remind you.
+
+134
+00:27:48.060 --> 00:27:55.130
+Zeljko Ivezic: So if we have 2 events, we call event a something by probability, that's tomorrow correctly.
+
+135
+00:27:55.920 --> 00:27:58.510
+Zeljko Ivezic: and that's some probability between 0 and one.
+
+136
+00:27:58.860 --> 00:28:03.490
+Zeljko Ivezic: And let's event it can be. Am I going to come
+
+137
+00:28:03.500 --> 00:28:13.510
+Zeljko Ivezic: to my office tomorrow and this probability? And now, if i'm dedicated researcher, and I can't do my work. You respect your brain.
+
+138
+00:28:13.820 --> 00:28:16.600
+Zeljko Ivezic: Then there is no overlap between 2
+
+139
+00:28:16.870 --> 00:28:23.700
+Zeljko Ivezic: and the
+
+140
+00:28:23.810 --> 00:28:35.240
+Zeljko Ivezic: and does not depend on what about the. On the other hand, if I do not come to office where it's ready.
+
+141
+00:28:37.110 --> 00:28:42.380
+Zeljko Ivezic: then these 2 will be power. So in general. So these are 2 extreme cases
+
+142
+00:28:42.450 --> 00:28:48.610
+Zeljko Ivezic: in general probability, that both of these events will happen. If this you stand for union.
+
+143
+00:28:48.870 --> 00:28:52.150
+Zeljko Ivezic: it's probability of each of them.
+
+144
+00:28:52.530 --> 00:29:01.680
+Zeljko Ivezic: But you can see from this geometric representation that in the middle, when we add these 2 circles, we are counting that region twice.
+
+145
+00:29:02.560 --> 00:29:05.860
+Zeljko Ivezic: so probability of the outer edge.
+
+146
+00:29:07.140 --> 00:29:12.740
+Zeljko Ivezic: Is there some of the circles, but I need to subtract one of those 2 on double account.
+
+147
+00:29:13.180 --> 00:29:16.360
+Zeljko Ivezic: So probability of the union of 2 events
+
+148
+00:29:16.480 --> 00:29:22.860
+Zeljko Ivezic: is the sum of their probabilities, minus the probability that both will happen.
+
+149
+00:29:23.270 --> 00:29:37.430
+Zeljko Ivezic: and each of these probabilities is limited to 0 and one, and it can prove. But if these 2 are limited to 0 to one, and this one is guaranteed to be 0 to one. So that's basic of probability that comes directly from geometry.
+
+150
+00:29:40.230 --> 00:29:42.450
+Zeljko Ivezic: So this is now
+
+151
+00:29:44.420 --> 00:29:46.320
+Zeljko Ivezic: one important thing on top.
+
+152
+00:29:46.380 --> 00:29:50.320
+Zeljko Ivezic: and then there is concept of conditional probability.
+
+153
+00:29:50.790 --> 00:29:57.640
+Zeljko Ivezic: What is the probability that both of these will happen? So this is now. So let's say again.
+
+154
+00:29:58.210 --> 00:30:02.950
+Zeljko Ivezic: A is probability that I will come to office.
+
+155
+00:30:04.130 --> 00:30:08.340
+Zeljko Ivezic: and B is the probability that it will write it tomorrow.
+
+156
+00:30:09.430 --> 00:30:18.700
+Zeljko Ivezic: And so now you can say probability that both will happen is the probability that one will happen, like probability, that it will rain tomorrow.
+
+157
+00:30:18.720 --> 00:30:28.960
+Zeljko Ivezic: Times the probability of the other invent condition on this one. so it is not just probability I will be in the office, but it is probability that I will come to office.
+
+158
+00:30:28.970 --> 00:30:32.150
+Zeljko Ivezic: Given that I already know it's rainy.
+
+159
+00:30:32.260 --> 00:30:35.800
+Zeljko Ivezic: so I condition that probability on the other one.
+
+160
+00:30:36.020 --> 00:30:43.300
+Zeljko Ivezic: So that's called conditional probability. It's symmetric in these 2 events. If you replace a and B. Then you get the same expression.
+
+161
+00:30:45.320 --> 00:30:52.800
+Zeljko Ivezic: and by generalizing this we come to this law of total probability. That is
+
+162
+00:30:52.860 --> 00:30:59.760
+Zeljko Ivezic: also later very important, because we will be using it to expand the space of possibilities.
+
+163
+00:31:00.080 --> 00:31:01.880
+Zeljko Ivezic: So let's say, now
+
+164
+00:31:02.750 --> 00:31:09.470
+Zeljko Ivezic: I think I saw this one from my colleague, because it's talking about both people. It's like.
+
+165
+00:31:09.710 --> 00:31:12.370
+Zeljko Ivezic: So he expanded this. And
+
+166
+00:31:12.640 --> 00:31:19.200
+Zeljko Ivezic: what is the probability that when you enter the classroom you will see your head on the door.
+
+167
+00:31:20.250 --> 00:31:24.150
+Zeljko Ivezic: So he expanded this into 3.
+
+168
+00:31:24.280 --> 00:31:29.510
+Zeljko Ivezic: Of course you could do for me, at least, that that 3 categories of people
+
+169
+00:31:29.660 --> 00:31:31.600
+Zeljko Ivezic: that's all like Mario.
+
+170
+00:31:31.760 --> 00:31:41.210
+Zeljko Ivezic: Then there are hours. People like this, and then and now, what is the probability? You will hit your head
+
+171
+00:31:41.250 --> 00:31:47.630
+Zeljko Ivezic: is probability you don't hit your head if you are tall probability to hit you that if your average
+
+172
+00:31:47.720 --> 00:31:50.720
+Zeljko Ivezic: and probability to hit you, and if you are short
+
+173
+00:31:50.900 --> 00:31:54.720
+Zeljko Ivezic: now, let's assume you can be stupid, and you can start jumping.
+
+174
+00:31:55.590 --> 00:32:02.990
+Zeljko Ivezic: Now let's assume if you are short, you can't jump. Test 5 to hit your head. So this probability it becomes 0.
+
+175
+00:32:04.730 --> 00:32:15.170
+Zeljko Ivezic: Let's say, if your coverage fight, you have probability of 10. You can jump high enough to beat your head. So we set this one to point 1
+
+176
+00:32:15.250 --> 00:32:19.850
+Zeljko Ivezic: and probability that you hit your pad if you are tall.
+
+177
+00:32:20.460 --> 00:32:25.140
+Zeljko Ivezic: and the Toller and the Lord let's say they put it to one or 90.9,
+
+178
+00:32:25.210 --> 00:32:29.520
+Zeljko Ivezic: because if you have a response, you can bend over and get it.
+
+179
+00:32:29.650 --> 00:32:33.840
+Zeljko Ivezic: So basically that this
+
+180
+00:32:34.140 --> 00:32:41.520
+Zeljko Ivezic: and if you want to compute the final probability, that's the magic, you're just summing all the conditional probabilities
+
+181
+00:32:41.800 --> 00:32:48.760
+Zeljko Ivezic: so like what will happen tomorrow if you're talking about who will be in the office?
+
+182
+00:32:48.950 --> 00:33:03.840
+Zeljko Ivezic: You can say probability for this person to come off. This is that much, and then go over all the people that are in that office? If your question is, will anyone be tomorrow in that office. So basically we expand possibilities and sum it up.
+
+183
+00:33:07.390 --> 00:33:15.420
+Zeljko Ivezic: And so here. one other thing to emphasize is that sometimes the notation is confusing.
+
+184
+00:33:15.540 --> 00:33:21.330
+Zeljko Ivezic: and we will use common. But all these 4 you can find in the Internet recording textbook.
+
+185
+00:33:21.410 --> 00:33:31.590
+Zeljko Ivezic: So when you find some constant. it can be very confusing because people are not standardizing their notation.
+
+186
+00:33:32.840 --> 00:33:34.700
+Zeljko Ivezic: And so, finally.
+
+187
+00:33:41.000 --> 00:33:43.610
+Zeljko Ivezic: so, if we have 2 events
+
+188
+00:33:45.240 --> 00:33:50.770
+Zeljko Ivezic: not dependent on each other than the probability of the Board
+
+189
+00:33:50.900 --> 00:33:56.010
+Zeljko Ivezic: is only the product of their probabilities. And so here is example
+
+190
+00:33:56.310 --> 00:34:00.050
+Zeljko Ivezic: on this.
+
+191
+00:34:00.140 --> 00:34:07.330
+Zeljko Ivezic: and I like ready. Do this to add anything to do with each other. Okay.
+
+192
+00:34:07.700 --> 00:34:12.120
+Zeljko Ivezic: unless I was little the they need to use it, but they did not.
+
+193
+00:34:12.560 --> 00:34:17.130
+Zeljko Ivezic: So that's the idea. So when you have totally uncorrelated
+
+194
+00:34:17.310 --> 00:34:20.360
+Zeljko Ivezic: events. and just
+
+195
+00:34:20.540 --> 00:34:23.760
+Zeljko Ivezic: but in that condition that you cannot do that.
+
+196
+00:34:23.770 --> 00:34:27.070
+Zeljko Ivezic: And so this simple example was designed
+
+197
+00:34:27.090 --> 00:34:35.090
+Zeljko Ivezic: to give you the both possibilities in the same exam. So say you have a back with 5 models.
+
+198
+00:34:35.340 --> 00:34:39.840
+Zeljko Ivezic: 5 ball and 3.
+
+199
+00:34:41.639 --> 00:34:47.310
+Zeljko Ivezic: And now you put your hand here. You draw one. Then you put your P in the in the 0 s.
+
+200
+00:34:47.489 --> 00:34:53.110
+Zeljko Ivezic: and what is the probability that you build it to yellow marble?
+
+201
+00:34:53.170 --> 00:34:54.699
+Zeljko Ivezic: 1, 55.
+
+202
+00:34:55.760 --> 00:34:58.480
+Zeljko Ivezic: So the
+
+203
+00:34:58.590 --> 00:35:06.790
+Zeljko Ivezic: that probability of these 2 events, what happening the first time I'll be able to go, and then second time I will get here. All again
+
+204
+00:35:07.020 --> 00:35:10.920
+Zeljko Ivezic: is the probability that they will get you over.
+
+205
+00:35:12.140 --> 00:35:13.310
+Zeljko Ivezic: and then
+
+206
+00:35:14.010 --> 00:35:25.150
+Zeljko Ivezic: probability that I will get yellow for second time. Given that I've already not hoped that the first time You' the first of all
+
+207
+00:35:25.710 --> 00:35:37.480
+Zeljko Ivezic: and number of times together, you have so called, send it without the so I just. or it's always the same back
+
+208
+00:35:38.220 --> 00:35:43.880
+Zeljko Ivezic: now.
+
+209
+00:35:44.130 --> 00:35:51.510
+Zeljko Ivezic: Well, it's just an example. In reality
+
+210
+00:36:01.600 --> 00:36:07.010
+Zeljko Ivezic: you can.
+
+211
+00:36:07.550 --> 00:36:10.050
+Zeljko Ivezic: So now let me. Be. One
+
+212
+00:36:10.230 --> 00:36:15.740
+Zeljko Ivezic: probability is three-fifth, because they are to evolve with the that's easy.
+
+213
+00:36:16.680 --> 00:36:21.590
+Zeljko Ivezic: but the difference comes from the second step. So if I put it back
+
+214
+00:36:22.190 --> 00:36:26.030
+Zeljko Ivezic: if I did not put it back
+
+215
+00:36:31.050 --> 00:36:37.980
+Zeljko Ivezic: so because I did not put the ball back. So I get one result.
+
+216
+00:36:38.240 --> 00:36:44.830
+Zeljko Ivezic: But now I assume that I actually replace the ball and try it again. Now the probability
+
+217
+00:36:45.050 --> 00:36:59.600
+Zeljko Ivezic: it's 3. Fifth, because I and it's exactly the same, because I have accepted the same call, and there is obviously. And so, when we applied to the actual measurement more involved models, we need to understand
+
+218
+00:36:59.620 --> 00:37:04.400
+Zeljko Ivezic: this relationship. We will have repeated statistical sampling.
+
+219
+00:37:05.030 --> 00:37:07.710
+Zeljko Ivezic: We'll measure something with some uncertainties.
+
+220
+00:37:07.790 --> 00:37:14.720
+Zeljko Ivezic: and we need to know if my second measurement it depends on what I did in the first measure.
+
+221
+00:37:14.990 --> 00:37:26.690
+Zeljko Ivezic: or if my end measurement depends on N minus one measure. this is crucial piece of information. When we develop statistical model and conceptual is not more
+
+222
+00:37:27.170 --> 00:37:30.600
+Zeljko Ivezic: complicated, then then this exam.
+
+223
+00:37:34.440 --> 00:37:36.270
+Zeljko Ivezic: And here is another
+
+224
+00:37:36.540 --> 00:37:42.170
+Zeljko Ivezic: visual example from Joe Bobby's class is a strong number at University of Toronto.
+
+225
+00:37:42.380 --> 00:37:54.200
+Zeljko Ivezic: We have also has very, very nice class, which is more a in statistics than these lectures. But if you're interested in the refreshing your knowledge of statistics, then i'd highly recommend to you.
+
+226
+00:37:56.810 --> 00:37:59.550
+Zeljko Ivezic: It's a link. When you download Github, you can go there.
+
+227
+00:38:00.670 --> 00:38:02.090
+Zeljko Ivezic: So let me see.
+
+228
+00:38:04.560 --> 00:38:06.580
+Zeljko Ivezic: Is this visible? Okay?
+
+229
+00:38:08.820 --> 00:38:16.120
+Zeljko Ivezic: So his example is, what is the probability? They both a and B. Those app. So each event
+
+230
+00:38:16.820 --> 00:38:26.590
+Zeljko Ivezic: it's called something a, B and C, and there is some overlap between them. And so these stars, the purple stars show
+
+231
+00:38:27.280 --> 00:38:41.710
+Zeljko Ivezic: the realization of something. and that sounds like some measurement. Okay, then. conditions to be in need to be set. So some stars are outside of everything but one is the lower right.
+
+232
+00:38:41.800 --> 00:38:44.120
+Zeljko Ivezic: Some start
+
+233
+00:38:44.330 --> 00:38:46.470
+Zeljko Ivezic: 2 or 3 conditions.
+
+234
+00:38:47.110 --> 00:38:53.790
+Zeljko Ivezic: And so, if you, what is probability that what a and B look at
+
+235
+00:38:54.020 --> 00:39:00.550
+Zeljko Ivezic: that means. What is the probability that the star is in all the left of a and B.
+
+236
+00:39:00.840 --> 00:39:02.520
+Zeljko Ivezic: You can see the 3 start
+
+237
+00:39:03.750 --> 00:39:06.240
+Zeljko Ivezic: conditioned on.
+
+238
+00:39:07.040 --> 00:39:13.570
+Zeljko Ivezic: and let's see on the fact that they start is already in the C.
+
+239
+00:39:14.860 --> 00:39:17.840
+Zeljko Ivezic: And so, if you will, by I, you see to be start.
+
+240
+00:39:18.780 --> 00:39:24.020
+Zeljko Ivezic: How many do we have? 3, 7, 1013, 56, and 70.
+
+241
+00:39:24.140 --> 00:39:35.520
+Zeljko Ivezic: That's 17. So probability to land in in in that in our portion it's 3, but you can also get it.
+
+242
+00:39:36.760 --> 00:39:42.110
+Zeljko Ivezic: If I come to start, you can also get it in a different way. You can expand. Now.
+
+243
+00:39:42.340 --> 00:39:54.370
+Zeljko Ivezic: This you can say: Remember that you said probability of a and B happening the first 2. What's one circle? What's the other circle?
+
+244
+00:39:56.730 --> 00:40:01.400
+Zeljko Ivezic: In this case it's exactly the same, except it's so.
+
+245
+00:40:02.110 --> 00:40:05.590
+Zeljko Ivezic: So if we know that stock we can see.
+
+246
+00:40:06.210 --> 00:40:19.660
+Zeljko Ivezic: Then you can expand it in probabilities that probability that you are in a, if you are on C, and so on, and that now takes care of this one and this one over there.
+
+247
+00:40:19.860 --> 00:40:27.540
+Zeljko Ivezic: So if you only look at stars in those 2 over there, so the 4 that are not in C, so we come down to 13.
+
+248
+00:40:27.830 --> 00:40:30.680
+Zeljko Ivezic: So if you know that you are in C,
+
+249
+00:40:30.900 --> 00:40:43.280
+Zeljko Ivezic: then probability of a given that you are in c. Is these 8 stars in a 8 out of 13, and the same for B. The 6, I believe. Now 8,
+
+250
+00:40:43.890 --> 00:40:55.240
+Zeljko Ivezic: 1234560, those 2 are not in C, so 6 over 13, and then minus this 3 overl, so that totally 2 different place to get to the same detail.
+
+251
+00:40:55.750 --> 00:40:56.930
+Zeljko Ivezic: We can test.
+
+252
+00:40:57.030 --> 00:41:06.390
+Zeljko Ivezic: Do that side, but then you can expand it in much simpler returns, and that's the key. Why are we bothering with this theoretical stuff.
+
+253
+00:41:06.530 --> 00:41:11.220
+Zeljko Ivezic: because when we get to making models of the real events we are measured.
+
+254
+00:41:12.270 --> 00:41:18.560
+Zeljko Ivezic: then things will get complicated. And if you know how to separate complicated problem
+
+255
+00:41:18.790 --> 00:41:26.310
+Zeljko Ivezic: that you don't know how to solve into many simple problems that you do know how to solve. That is the recipe
+
+256
+00:41:26.330 --> 00:41:35.320
+Zeljko Ivezic: in this context. So we? That's always what we want in science to separate, to split complex problems that are
+
+257
+00:41:35.620 --> 00:41:41.160
+Zeljko Ivezic: probably not soluble into a set of very simple problems that we have tools to solve.
+
+258
+00:41:47.710 --> 00:41:49.990
+Zeljko Ivezic: All right. So this is all of the same.
+
+259
+00:41:51.400 --> 00:41:53.260
+Zeljko Ivezic: And now we come to the
+
+260
+00:41:53.580 --> 00:42:06.940
+Zeljko Ivezic: continuous version of this, and this will be ingredient for talking about and statistics later. But at this point it has nothing to do with it by using the statistics directly it's basically probability.
+
+261
+00:42:07.590 --> 00:42:08.820
+Zeljko Ivezic: So
+
+262
+00:42:08.940 --> 00:42:21.570
+Zeljko Ivezic: this is now change of the patient. So, instead of playing with the set of discrete events, but the ABC. I speech, notation. And now we are thinking about continuous distribution.
+
+263
+00:42:22.400 --> 00:42:28.730
+Zeljko Ivezic: So we cannot say that the probability, if you up, maybe I should go first. For example.
+
+264
+00:42:29.330 --> 00:42:35.100
+Zeljko Ivezic: if you're thinking of probability as a two-dimensional function, let me start by. Explain the speaker.
+
+265
+00:42:35.850 --> 00:42:44.150
+Zeljko Ivezic: so you can see in the top, in the left panel, in the top right corner there is some great banana.
+
+266
+00:42:45.130 --> 00:42:58.270
+Zeljko Ivezic: so the banana is punishment of full coordinates X and Y, and where it start when you see the banana, that is the probability density
+
+267
+00:42:58.440 --> 00:43:10.680
+Zeljko Ivezic: and that probability density is coded on the right hand side in gray state. So if you now take all this pixel that that call it in great, you take these numbers, you add them up.
+
+268
+00:43:11.170 --> 00:43:12.530
+Zeljko Ivezic: you will get one.
+
+269
+00:43:12.670 --> 00:43:19.090
+Zeljko Ivezic: Multiply by the pixel. You'll get one. In other words, the integral of the
+
+270
+00:43:19.800 --> 00:43:23.440
+Zeljko Ivezic: that is
+
+271
+00:43:23.900 --> 00:43:34.660
+Zeljko Ivezic: properly normalized probability distribution. And this is now function of 2 coordinates X and Y. It is no dimension of probability distribution.
+
+272
+00:43:36.240 --> 00:43:43.060
+Zeljko Ivezic: Now imagine that I didn't know when I measured. That's that's cool, right
+
+273
+00:43:44.320 --> 00:43:55.510
+Zeljko Ivezic: Like, for example, this picture that we talked about. I didn't know that. Actually the value of the temperature also depends on the faster in this room.
+
+274
+00:43:55.730 --> 00:44:07.790
+Zeljko Ivezic: and maybe humidity another. I was just focusing on temperature. I didn't know anything about the other. and so, if that temperature was axe. this probability distribution
+
+275
+00:44:07.970 --> 00:44:11.520
+Zeljko Ivezic: to me it would look like this histogram in the bottom.
+
+276
+00:44:11.890 --> 00:44:15.500
+Zeljko Ivezic: It's roughly a lot more about distribution.
+
+277
+00:44:15.810 --> 00:44:17.660
+Zeljko Ivezic: So if you don't know
+
+278
+00:44:18.080 --> 00:44:31.030
+Zeljko Ivezic: anything about it, and you focus on this one while it's one dimensional distribution, and that is in this case what we call marching on. So we integrate over the other 1, 60,
+
+279
+00:44:31.500 --> 00:44:34.520
+Zeljko Ivezic: and we get marginalized distribution.
+
+280
+00:44:35.070 --> 00:44:37.220
+Zeljko Ivezic: So it is probability
+
+281
+00:44:38.590 --> 00:44:43.580
+Zeljko Ivezic: of X. Given that you know nothing about. Why.
+
+282
+00:44:43.900 --> 00:44:51.540
+Zeljko Ivezic: but what do you do if you know nothing about one, but we just integrate over all those situations. That's what the formula says.
+
+283
+00:44:52.090 --> 00:45:01.490
+Zeljko Ivezic: So given that we don't know anything about Why, we just say every possible value for a given X. We take every possible value in this diagram, add them up
+
+284
+00:45:02.010 --> 00:45:13.520
+Zeljko Ivezic: because we don't know anything about. We have to take all assumptions into account, all the sorry possibilities into the account, and that integration is called marginalization.
+
+285
+00:45:14.240 --> 00:45:19.380
+Zeljko Ivezic: And then also, now we can clearly see the concept of conditional capability.
+
+286
+00:45:19.770 --> 00:45:31.610
+Zeljko Ivezic: So what is the probability of X. What is this distribution in the bottom panel? We see this distribution, if we have no information about one.
+
+287
+00:45:32.860 --> 00:45:39.270
+Zeljko Ivezic: But let's say we did know that the results are dependent on why, and we measured it, or the unknown.
+
+288
+00:45:39.300 --> 00:45:41.780
+Zeljko Ivezic: It's no some other sources.
+
+289
+00:45:41.840 --> 00:45:47.900
+Zeljko Ivezic: If you now fixed why, and that 3 examples: blue ring and red.
+
+290
+00:45:48.370 --> 00:45:55.300
+Zeljko Ivezic: If you fix, why then the distribution changes. The 2 are correlated. They are not independent.
+
+291
+00:45:55.350 --> 00:46:06.060
+Zeljko Ivezic: So if y is blue, then it will be shifted to what right? If Y is in the right slice, it will be shifted to the left, and these histograms on the right
+
+292
+00:46:06.330 --> 00:46:08.890
+Zeljko Ivezic: so also.
+
+293
+00:46:09.750 --> 00:46:12.930
+Zeljko Ivezic: but now it's condition on Why?
+
+294
+00:46:13.950 --> 00:46:16.760
+Zeljko Ivezic: So? What is shown in the right.
+
+295
+00:46:17.020 --> 00:46:22.960
+Zeljko Ivezic: hey? Now are these probabilities? Probability of X given one?
+
+296
+00:46:23.520 --> 00:46:25.860
+Zeljko Ivezic: That's what is managed by this start.
+
+297
+00:46:26.050 --> 00:46:29.910
+Zeljko Ivezic: Take 2 dimensional distribution, fix Y,
+
+298
+00:46:31.240 --> 00:46:33.990
+Zeljko Ivezic: and then you will get your conditional distribution.
+
+299
+00:46:34.600 --> 00:46:45.610
+Zeljko Ivezic: Why is that important? It's important? Because if I now have these conditional distributions, then I can recover the black distribution of
+
+300
+00:46:45.990 --> 00:46:58.650
+Zeljko Ivezic: X irrespective of Why, if I just now integrate this so for each of these basically these all histograms you can imagine. Now, convenience distribution. I have to add them all up.
+
+301
+00:46:59.230 --> 00:47:03.260
+Zeljko Ivezic: But I need to wage them by the probability of why.
+
+302
+00:47:04.030 --> 00:47:06.070
+Zeljko Ivezic: and that probability of why
+
+303
+00:47:06.230 --> 00:47:17.380
+Zeljko Ivezic: changes along banana. It goes from low probability. You can see from the left side there is maximum with the banana is the darkest, and then it goes again to all.
+
+304
+00:47:17.840 --> 00:47:22.200
+Zeljko Ivezic: So in this 2 dimensional case this explains the concept of
+
+305
+00:47:22.660 --> 00:47:25.530
+Zeljko Ivezic: marginal and conditional probabilities.
+
+306
+00:47:31.600 --> 00:47:32.790
+Zeljko Ivezic: and then
+
+307
+00:47:34.360 --> 00:47:43.100
+Zeljko Ivezic: the useful thing that comes out of it is so. The
+
+308
+00:47:43.660 --> 00:47:59.380
+Zeljko Ivezic: And now we can say one term. one conditional probability, one side, and move the other one to the right. So if I pay. if I take the right hand side.
+
+309
+00:47:59.820 --> 00:48:07.180
+Zeljko Ivezic: I take probability of y given X on the left side. I can then simply move the effects on the other side, and I have the first, third.
+
+310
+00:48:08.220 --> 00:48:09.320
+Zeljko Ivezic: and then
+
+311
+00:48:10.710 --> 00:48:18.370
+Zeljko Ivezic: we know from the law of common probabilities. We talked about that I can write the effects as we actually in the ground of the top one.
+
+312
+00:48:19.990 --> 00:48:30.450
+Zeljko Ivezic: And so this single manipulation. this is the probably most important in all of the business today.
+
+313
+00:48:30.880 --> 00:48:33.690
+Zeljko Ivezic: This is basically giving you
+
+314
+00:48:33.880 --> 00:48:36.860
+Zeljko Ivezic: theoretical.
+
+315
+00:48:37.700 --> 00:48:44.760
+Zeljko Ivezic: And later we'll see that this is not just in the context of measurements it has to do with. For example
+
+316
+00:48:45.610 --> 00:48:57.070
+Zeljko Ivezic: in the they are using the same equation in law to assess probability, for example, that someone who is murder stuff that actually murdered someone if they had DNA.
+
+317
+00:48:57.550 --> 00:49:00.020
+Zeljko Ivezic: It comes also in
+
+318
+00:49:00.670 --> 00:49:11.080
+Zeljko Ivezic: in economics where you have some model, and you need to create what will happen in the future. This stuff, and it's all based on this
+
+319
+00:49:11.440 --> 00:49:15.220
+Zeljko Ivezic: inversion. So here X. You think of it as data.
+
+320
+00:49:16.120 --> 00:49:17.760
+Zeljko Ivezic: and why with model.
+
+321
+00:49:17.930 --> 00:49:21.600
+Zeljko Ivezic: And so, if I want to know what is the probability one month.
+
+322
+00:49:22.570 --> 00:49:24.480
+Zeljko Ivezic: You know that I had some data.
+
+323
+00:49:25.300 --> 00:49:32.490
+Zeljko Ivezic: Then this formula tells you it's given by the
+
+324
+00:49:33.350 --> 00:49:37.910
+Zeljko Ivezic: It's been more than that. You don't know it more than it.
+
+325
+00:49:38.420 --> 00:49:45.200
+Zeljko Ivezic: So there's the key there, that's what's called like you. and then deal why.
+
+326
+00:49:45.260 --> 00:49:49.180
+Zeljko Ivezic: probability of model. if you don't know anything.
+
+327
+00:49:50.370 --> 00:49:52.390
+Zeljko Ivezic: and that probability is all right.
+
+328
+00:49:52.810 --> 00:49:59.500
+Zeljko Ivezic: and we'll see same, for when you actually know something about the process, even if you not didn't do anything
+
+329
+00:50:00.250 --> 00:50:03.560
+Zeljko Ivezic: so like. If you ask me what is the
+
+330
+00:50:04.530 --> 00:50:06.980
+Zeljko Ivezic: yeah? Most surely
+
+331
+00:50:07.120 --> 00:50:10.690
+Zeljko Ivezic: it is not here, because the
+
+332
+00:50:10.760 --> 00:50:14.650
+Zeljko Ivezic: and it's less than 100, because it' before.
+
+333
+00:50:16.940 --> 00:50:19.440
+Zeljko Ivezic: So
+
+334
+00:50:30.910 --> 00:50:43.870
+Zeljko Ivezic: So at this point it is still, it is just a simple result from probability theory, based on nothing more complicated than those.
+
+335
+00:50:44.940 --> 00:50:52.750
+Zeljko Ivezic: But later, if we generalize it to this model, we Don't have extremely powerful tool in our tool.
+
+336
+00:50:53.820 --> 00:50:58.890
+Zeljko Ivezic: So if all this sounds like too much theory, and you got most along the way.
+
+337
+00:50:58.910 --> 00:51:10.000
+Zeljko Ivezic: it is super super important that for the next time go again through all these words, read them and take through it. Sometimes it may sound very trivial.
+
+338
+00:51:10.370 --> 00:51:20.950
+Zeljko Ivezic: but the team is at this moment. It is not video. It's complicated, and you have to.
+
+339
+00:51:20.960 --> 00:51:25.750
+Zeljko Ivezic: And at that point you have been ready to continue with it.
+
+340
+00:51:29.160 --> 00:51:35.780
+Zeljko Ivezic: Okay, few more details. We have about half. We have what it is like, 1115 to.
+
+341
+00:51:36.920 --> 00:51:48.540
+Zeljko Ivezic: So okay, we are just halfway through. Excellent. So here is another interesting. interesting example of so called contingency table
+
+342
+00:51:49.210 --> 00:51:51.710
+Zeljko Ivezic: that will be interesting to
+
+343
+00:51:52.180 --> 00:51:54.450
+Zeljko Ivezic: everyone, including
+
+344
+00:51:58.470 --> 00:52:01.020
+Zeljko Ivezic: biology and chemistry, etc.,
+
+345
+00:52:02.290 --> 00:52:04.630
+Zeljko Ivezic: astronomers. This applies to everyone.
+
+346
+00:52:05.840 --> 00:52:10.570
+Zeljko Ivezic: and this is now basically application of this formula Here.
+
+347
+00:52:11.060 --> 00:52:14.680
+Zeljko Ivezic: How do we invert data into
+
+348
+00:52:15.720 --> 00:52:17.360
+Zeljko Ivezic: assessment of model?
+
+349
+00:52:17.850 --> 00:52:25.070
+Zeljko Ivezic: And so let's say.
+
+350
+00:52:25.510 --> 00:52:27.520
+Zeljko Ivezic: and you
+
+351
+00:52:28.800 --> 00:52:31.570
+Zeljko Ivezic: or this is bad. You're pregnant.
+
+352
+00:52:31.770 --> 00:52:33.230
+Zeljko Ivezic: and you'll take privacy.
+
+353
+00:52:34.470 --> 00:52:37.040
+Zeljko Ivezic: or you will suspect
+
+354
+00:52:38.100 --> 00:52:39.340
+Zeljko Ivezic: you may not anything
+
+355
+00:52:43.050 --> 00:52:44.410
+Zeljko Ivezic: what that will be best
+
+356
+00:52:48.630 --> 00:52:54.240
+Zeljko Ivezic: i'm in.
+
+357
+00:52:55.270 --> 00:52:55.850
+Okay.
+
+358
+00:52:56.460 --> 00:53:03.440
+Zeljko Ivezic: these are all exactly the same.
+
+359
+00:53:04.630 --> 00:53:07.840
+Zeljko Ivezic: So you take this and the
+
+360
+00:53:08.310 --> 00:53:13.310
+Zeljko Ivezic: it's either. And this test is not.
+
+361
+00:53:13.340 --> 00:53:15.560
+Zeljko Ivezic: It can be one positive
+
+362
+00:53:16.300 --> 00:53:25.460
+Zeljko Ivezic: and there and then also. you can have a disease. Here we are talking about Covid. or
+
+363
+00:53:25.560 --> 00:53:33.850
+Zeljko Ivezic: you could be real murderer, or you would be pregnant. In that case it's not the cease. But this is data. And so the data is positive.
+
+364
+00:53:34.470 --> 00:53:40.050
+Zeljko Ivezic: If beta is true of something, we'll call it one, and if it's not, it's 0,
+
+365
+00:53:40.660 --> 00:53:43.530
+Zeljko Ivezic: and so now we have 4 possible.
+
+366
+00:53:44.000 --> 00:53:47.420
+Zeljko Ivezic: So if you take
+
+367
+00:53:47.660 --> 00:53:50.620
+Zeljko Ivezic: it doesn't necessarily mean that you have a phone.
+
+368
+00:53:51.040 --> 00:53:53.240
+Zeljko Ivezic: because no.
+
+369
+00:53:56.940 --> 00:53:58.970
+Zeljko Ivezic: and I think it's the most.
+
+370
+00:54:04.470 --> 00:54:07.900
+Zeljko Ivezic: And then
+
+371
+00:54:08.310 --> 00:54:15.680
+Zeljko Ivezic: or in time, it can be like 8 months. So we know.
+
+372
+00:54:16.180 --> 00:54:21.270
+Zeljko Ivezic: alright, and that's what we summarize with these 4,
+
+373
+00:54:21.880 --> 00:54:23.110
+Zeljko Ivezic: and then
+
+374
+00:54:24.940 --> 00:54:29.110
+Zeljko Ivezic: we will quantify them. We will introduce some things that we assume unknown.
+
+375
+00:54:29.640 --> 00:54:35.310
+Zeljko Ivezic: So we know all these conditional no numbers.
+
+376
+00:54:35.950 --> 00:54:41.380
+Zeljko Ivezic: So what is the probability that you have?
+
+377
+00:54:41.870 --> 00:54:46.390
+Zeljko Ivezic: But you are not.
+
+378
+00:54:46.660 --> 00:54:52.660
+Zeljko Ivezic: and that's measured on a number of known bases before they put it best for the market
+
+379
+00:54:54.170 --> 00:54:56.490
+Zeljko Ivezic: and your support to know this number
+
+380
+00:55:02.750 --> 00:55:04.570
+Zeljko Ivezic: that we are talking about here.
+
+381
+00:55:05.580 --> 00:55:11.340
+Zeljko Ivezic: So I right, i'm. So you know it's negative.
+
+382
+00:55:11.880 --> 00:55:18.780
+Zeljko Ivezic: and these are.
+
+383
+00:55:20.340 --> 00:55:26.420
+Zeljko Ivezic: And then, of course, obviously, these are your
+
+384
+00:55:26.550 --> 00:55:31.160
+Zeljko Ivezic: So these are my meetings. You get the call it test, and you tell me.
+
+385
+00:55:34.470 --> 00:55:36.930
+Zeljko Ivezic: and
+
+386
+00:55:37.610 --> 00:55:44.300
+Zeljko Ivezic: for the same, let's say.
+
+387
+00:55:44.640 --> 00:55:46.460
+Zeljko Ivezic: let's say you have the
+
+388
+00:55:51.260 --> 00:55:57.240
+Zeljko Ivezic: i'm certain, and the that person who's DNA too, actually
+
+389
+00:56:00.820 --> 00:56:10.090
+Zeljko Ivezic: you have the but now this is for even DNA just to make mistakes. So you don't get such 2 numbers. The mark will be exactly the same.
+
+390
+00:56:10.970 --> 00:56:15.050
+Zeljko Ivezic: And so we summarize this in this matrix
+
+391
+00:56:16.980 --> 00:56:20.480
+Zeljko Ivezic: that's input. And what we want to know is
+
+392
+00:56:22.590 --> 00:56:27.820
+Zeljko Ivezic: like If i'm testing positive on that test, what is the actual chance
+
+393
+00:56:32.710 --> 00:56:44.110
+Zeljko Ivezic: is the breast cancer. You don't do test. The test is lousy, and it has very fine, and you can do the same calculation to ask yourself
+
+394
+00:56:44.640 --> 00:56:53.270
+Zeljko Ivezic: if I know
+
+395
+00:56:53.470 --> 00:56:54.460
+I
+
+396
+00:56:54.830 --> 00:57:05.970
+Zeljko Ivezic: and the last number, of course, is the So let's say
+
+397
+00:57:06.200 --> 00:57:19.810
+Zeljko Ivezic: so. We not having any data with any tests. we still And now I take this other number 79. What
+
+398
+00:57:20.500 --> 00:57:25.750
+Zeljko Ivezic: So if I that positive I cannot seem to say the fourth
+
+399
+00:57:25.820 --> 00:57:34.550
+Zeljko Ivezic: both the rate 2%. So I have 98% of the ability. They can say that's incorrect calculation.
+
+400
+00:57:34.580 --> 00:57:39.390
+Zeljko Ivezic: So, using that conditional probability that we had before
+
+401
+00:57:40.330 --> 00:57:44.990
+Zeljko Ivezic: the one that had X and 1 one X from before just different names. Now
+
+402
+00:57:45.370 --> 00:57:47.650
+Zeljko Ivezic: probability that I have this
+
+403
+00:57:48.440 --> 00:57:54.000
+Zeljko Ivezic: given that my test is positive is given by this and bright expression, that 3 times.
+
+404
+00:57:54.070 --> 00:57:55.600
+Zeljko Ivezic: and this sounds combined.
+
+405
+00:57:56.050 --> 00:58:10.850
+Zeljko Ivezic: so there's nothing different than what we did before we those sets and probabilities in X and Y, and they exactly the same. It's just not. It's not picture, because the client gets to a very specific case.
+
+406
+00:58:11.330 --> 00:58:15.660
+Zeljko Ivezic: And so now for the the what, the
+
+407
+00:58:16.640 --> 00:58:31.610
+Zeljko Ivezic: the nuclear it's just more. I get this expression, we said. We know for test. For that it falls positive, and we know the probability of that condition of the disease without any data is given by X, one B,
+
+408
+00:58:31.970 --> 00:58:42.310
+Zeljko Ivezic: because tests usually have these numbers that are small, or they wouldn't be called best. We can do some approximations. When we multiply 2 small numbers.
+
+409
+00:58:42.520 --> 00:58:50.340
+Zeljko Ivezic: it neglect them. So you can simplify this expression to the last expression, and that's the key result.
+
+410
+00:58:50.870 --> 00:58:53.700
+Zeljko Ivezic: So probability that by next call it
+
+411
+00:58:57.670 --> 00:59:03.390
+Zeljko Ivezic: is not one minus 4 supposed to be right as you would.
+
+412
+00:59:03.460 --> 00:59:05.990
+Zeljko Ivezic: The correct result is the ratio
+
+413
+00:59:07.830 --> 00:59:16.720
+Zeljko Ivezic: it's the ratio of probability of divided by the sum of these 2.
+
+414
+00:59:17.690 --> 00:59:22.830
+Zeljko Ivezic: And now let's let's think little bit about this. So
+
+415
+00:59:24.480 --> 00:59:30.480
+Zeljko Ivezic: if all supposed to be great is 0,
+
+416
+00:59:32.220 --> 00:59:41.130
+Zeljko Ivezic: then this probability is one nominator. What? Because it's some need money, and it reduces with the other one.
+
+417
+00:59:41.490 --> 00:59:44.160
+Zeljko Ivezic: So if you have.
+
+418
+00:59:45.450 --> 00:59:48.390
+Zeljko Ivezic: then this probability on the left hand side
+
+419
+00:59:48.790 --> 00:59:53.820
+Zeljko Ivezic: it's just one. If your test said you had call it, and the test is perfect.
+
+420
+00:59:54.530 --> 00:59:55.740
+Zeljko Ivezic: You get a call.
+
+421
+00:59:55.770 --> 01:00:00.480
+Zeljko Ivezic: It doesn't matter. Okay, one.
+
+422
+01:00:08.270 --> 01:00:09.240
+Zeljko Ivezic: Oh.
+
+423
+01:00:17.380 --> 01:00:22.150
+Zeljko Ivezic: if the fourth positive rate he's much.
+
+424
+01:00:26.500 --> 01:00:32.790
+Zeljko Ivezic: and that's a number by the so much, much much smaller than one.
+
+425
+01:00:33.270 --> 01:00:36.580
+Zeljko Ivezic: So basically it tells you your
+
+426
+01:00:37.960 --> 01:00:40.520
+Zeljko Ivezic: So the
+
+427
+01:00:44.400 --> 01:00:47.630
+Zeljko Ivezic: compares to the
+
+428
+01:00:47.700 --> 01:00:48.870
+Zeljko Ivezic: very good.
+
+429
+01:00:49.920 --> 01:00:55.190
+Zeljko Ivezic: So yeah, this is a good question. But how do we
+
+430
+01:00:55.270 --> 01:01:08.490
+Zeljko Ivezic: people the?
+
+431
+01:01:19.930 --> 01:01:36.880
+Zeljko Ivezic: That's a nice, so that's not directly included in this model. We assume that these are uncorrelated, but you could change it and say, I'm only considered a certain type of people that you just described, and i'm giving you both. Possibly.
+
+432
+01:01:37.000 --> 01:01:45.340
+Zeljko Ivezic: So you can combine it in this numbers. But this model is much simpler than what we said, which is that we would really need to combine that this.
+
+433
+01:01:45.640 --> 01:01:48.420
+Zeljko Ivezic: this.
+
+434
+01:01:48.590 --> 01:01:59.740
+Zeljko Ivezic: or if I could just be out and say, let's think of a simple problems like, for example, if you are a murder, suspect, then you don't really what it is in that quote
+
+435
+01:01:59.940 --> 01:02:02.710
+Zeljko Ivezic: So it
+
+436
+01:02:05.300 --> 01:02:07.150
+Zeljko Ivezic: in reality
+
+437
+01:02:07.470 --> 01:02:08.140
+that
+
+438
+01:02:10.410 --> 01:02:11.300
+Okay.
+
+439
+01:02:14.930 --> 01:02:23.400
+Zeljko Ivezic: So this is the conclusion. And now, what is going on? Why is it so? So? Now we'll let's just do numerical example.
+
+440
+01:02:27.230 --> 01:02:30.540
+Zeljko Ivezic: So let's say that we have a
+
+441
+01:02:31.640 --> 01:02:37.760
+Zeljko Ivezic: and we assumed that the probability of the
+
+442
+01:02:38.660 --> 01:02:42.850
+Zeljko Ivezic: so we immediately know that in those 1,000 people
+
+443
+01:02:42.960 --> 01:02:46.090
+Zeljko Ivezic: we Don't have to tend to.
+
+444
+01:02:47.970 --> 01:02:50.680
+Zeljko Ivezic: but we also know that phone supposed to be great.
+
+445
+01:02:50.740 --> 01:02:52.930
+Zeljko Ivezic: It's not very.
+
+446
+01:02:53.660 --> 01:02:56.080
+Zeljko Ivezic: And so if I
+
+447
+01:02:56.450 --> 01:03:01.290
+Zeljko Ivezic: I will get 20,
+
+448
+01:03:01.310 --> 01:03:03.340
+Zeljko Ivezic: not because people are really safe.
+
+449
+01:03:07.020 --> 01:03:11.120
+Zeljko Ivezic: like 10,000 people. I get 30. It wasn't the best
+
+450
+01:03:11.550 --> 01:03:16.270
+Zeljko Ivezic: and only one. I get the
+
+451
+01:03:16.570 --> 01:03:20.010
+Zeljko Ivezic: one for 33.
+
+452
+01:03:21.310 --> 01:03:23.540
+Zeljko Ivezic: So this because
+
+453
+01:03:24.680 --> 01:03:27.690
+Zeljko Ivezic: So again, You' us to
+
+454
+01:03:29.080 --> 01:03:33.640
+Zeljko Ivezic: naively that it just both right. Now let's say
+
+455
+01:03:34.680 --> 01:03:37.130
+Zeljko Ivezic: you can.
+
+456
+01:03:37.540 --> 01:03:41.070
+Zeljko Ivezic: and unless the
+
+457
+01:03:44.060 --> 01:03:49.870
+Zeljko Ivezic: is smaller than the
+
+458
+01:03:50.250 --> 01:03:51.290
+Zeljko Ivezic: you don't have to.
+
+459
+01:03:51.460 --> 01:03:53.620
+Zeljko Ivezic: But if they, the kind of
+
+460
+01:03:57.610 --> 01:03:59.940
+Zeljko Ivezic: you, go out with it
+
+461
+01:04:08.190 --> 01:04:10.800
+Zeljko Ivezic: from the
+
+462
+01:04:18.570 --> 01:04:19.250
+Zeljko Ivezic: it.
+
+463
+01:04:23.370 --> 01:04:25.910
+Zeljko Ivezic: and it's not easy to have the animation.
+
+464
+01:04:27.430 --> 01:04:28.340
+Zeljko Ivezic: Yeah.
+
+465
+01:04:29.480 --> 01:04:35.080
+Zeljko Ivezic: So very often people especially
+
+466
+01:04:36.980 --> 01:04:42.500
+Zeljko Ivezic: use. They have literally. very often people are
+
+467
+01:04:49.100 --> 01:04:52.040
+Zeljko Ivezic: so even in this context, or to
+
+468
+01:04:52.510 --> 01:04:55.700
+Zeljko Ivezic: this
+
+469
+01:04:56.560 --> 01:04:57.670
+Zeljko Ivezic: judicial.
+
+470
+01:05:03.430 --> 01:05:09.010
+Zeljko Ivezic: And indeed, there was recently studied by the Us. National Academy of sciences
+
+471
+01:05:09.170 --> 01:05:16.840
+Zeljko Ivezic: that show that 4%, about 40% of people put to death in the United States.
+
+472
+01:05:17.010 --> 01:05:18.850
+Zeljko Ivezic: That's probably an email sign.
+
+473
+01:05:18.910 --> 01:05:25.830
+Zeljko Ivezic: and the result Why, the jury is convinced they were guilty, was the statistic of.
+
+474
+01:05:26.620 --> 01:05:29.500
+Zeljko Ivezic: And also, if you go, have a test
+
+475
+01:05:29.530 --> 01:05:32.520
+Zeljko Ivezic: for something serious like, for example.
+
+476
+01:05:32.570 --> 01:05:36.200
+Zeljko Ivezic: breast cancer, and to get positive tests. Don't panic
+
+477
+01:05:36.740 --> 01:05:39.860
+Zeljko Ivezic: find this number to calculation, and maybe it's all good.
+
+478
+01:05:40.830 --> 01:05:46.680
+Zeljko Ivezic: So i'll stop here before we go to the last
+
+479
+01:05:47.170 --> 01:05:50.370
+Zeljko Ivezic: again. When you see this stuff for the first time
+
+480
+01:05:50.400 --> 01:05:52.520
+Zeljko Ivezic: may sound very complicated.
+
+481
+01:05:52.610 --> 01:06:03.340
+Zeljko Ivezic: My! If you go little by little to this steps in piece of your own home you can play, and it's same part in this in the very simple, but very
+
+482
+01:06:05.070 --> 01:06:07.530
+Zeljko Ivezic: so by 2 continuous okay, please.
+
+483
+01:06:23.750 --> 01:06:27.690
+Zeljko Ivezic: you can imagine you have 2 dimensional.
+
+484
+01:06:27.780 --> 01:06:33.170
+Zeljko Ivezic: but it has to be a line X. In this case
+
+485
+01:06:33.180 --> 01:06:42.300
+Zeljko Ivezic: you get the same distribution. It's an organization, but it's always the
+
+486
+01:06:47.070 --> 01:06:49.020
+Zeljko Ivezic: Okay, let me continue.
+
+487
+01:06:50.050 --> 01:06:54.800
+Zeljko Ivezic: So. The most important distribution that we will use. He's Gaussian.
+
+488
+01:06:55.250 --> 01:07:00.320
+Zeljko Ivezic: It's everywhere, and large fraction of classical statistics is based
+
+489
+01:07:00.490 --> 01:07:03.650
+Zeljko Ivezic: on that distribution. I presume you all know what it is.
+
+490
+01:07:03.800 --> 01:07:11.450
+Zeljko Ivezic: This is formula. Everybody should know it in the middle of the night. So this is one thing. You'll center it on me. There's the location.
+
+491
+01:07:11.540 --> 01:07:23.210
+Zeljko Ivezic: The Sigma is the weight of the distribution, and this stuff in front comes from the requirements that it's integral over X must be one that's normalization constant.
+
+492
+01:07:23.400 --> 01:07:31.870
+Zeljko Ivezic: So it's normal or Gaussian distribution. Here is few values of Sigma shown on this diagram.
+
+493
+01:07:32.630 --> 01:07:51.170
+Zeljko Ivezic: One other thing to remember is that when you integrate this, and often we have to integrate these distributions to get overall probability. It's not analytic for Gaussian, and in dark ages we use tables where you would see what is the integral these days you just use sci-fi function
+
+494
+01:07:51.170 --> 01:08:07.620
+Zeljko Ivezic: in your python code, and it tells you the result of this integral for any for any value. So now we come to this part that will. I didn't know how many of you were familiar with python and notebook. So I put very simple example, and
+
+495
+01:08:08.240 --> 01:08:17.109
+Zeljko Ivezic: where we just show how to take in this case Gaussian distribution. But in general you can do anyone. So this norm
+
+496
+01:08:18.340 --> 01:08:23.210
+Zeljko Ivezic: so in sci-fi starts. We import normal distribution.
+
+497
+01:08:23.370 --> 01:08:28.090
+Zeljko Ivezic: Now, if you google it and you go to the web page for for stats from site 5
+
+498
+01:08:28.600 --> 01:08:35.080
+Zeljko Ivezic: side by stands for scientific python. If you go there and look at their documentation. You can see they are
+
+499
+01:08:35.120 --> 01:08:39.819
+Zeljko Ivezic: almost 100 different distributions you can call. So we just in
+
+500
+01:08:39.840 --> 01:08:45.270
+Zeljko Ivezic: basically this line says. give me the tools to handle Gaussian distribution.
+
+501
+01:08:46.020 --> 01:08:49.580
+Zeljko Ivezic: and so then we can call this norm.
+
+502
+01:08:49.680 --> 01:08:59.620
+Zeljko Ivezic: It's defined by 2 numbers by the location, by the central position of the Gaussian, and it's defined by Sigma, which is the bit of the Gaussian.
+
+503
+01:08:59.689 --> 01:09:07.950
+Zeljko Ivezic: And then I have dot, and now I have many different methods, many different functions I can call, and so Pdf. Gives me
+
+504
+01:09:08.779 --> 01:09:10.470
+Zeljko Ivezic: values of that
+
+505
+01:09:10.750 --> 01:09:15.120
+Zeljko Ivezic: distribution at an array of values called X
+
+506
+01:09:15.229 --> 01:09:21.870
+Zeljko Ivezic: and X. I just defined above. I go from 2 0 to 200 with 1,000 steps.
+
+507
+01:09:22.399 --> 01:09:32.010
+Zeljko Ivezic: and then I can make myself a little plot. and that's my little plot, and that's actually one of the 2 plots you reproduce in test installation. And so
+
+508
+01:09:32.100 --> 01:09:44.450
+Zeljko Ivezic: this is an example of a distribution. Now you can have any other distribution with these tools from side pi, you can generate a sample. You can dro from it in an easy way. You'll do that in a moment.
+
+509
+01:09:44.970 --> 01:09:50.370
+Zeljko Ivezic: or you can plot it on log scale. Look at the details of the distribution, etc., etc.
+
+510
+01:09:51.000 --> 01:09:58.380
+Zeljko Ivezic: So, in addition to the distribution itself, here is example: how you call cumulative distribution function.
+
+511
+01:09:59.060 --> 01:10:01.870
+Zeljko Ivezic: And so that gives you integral of that
+
+512
+01:10:03.230 --> 01:10:07.470
+Zeljko Ivezic: of this function. You go from minus infinity. So you go from left.
+
+513
+01:10:07.750 --> 01:10:17.570
+Zeljko Ivezic: and you give it X. Let's say 145. This is where my cursor is. It will give you integral under this curve from minus infinity to that point.
+
+514
+01:10:17.890 --> 01:10:22.510
+Zeljko Ivezic: Of course, if you go to far right to infinity, the results will be exactly one.
+
+515
+01:10:22.900 --> 01:10:28.470
+Zeljko Ivezic: But then, if you're in this region, you will get some small numbers that give you probability to be that large.
+
+516
+01:10:29.170 --> 01:10:34.600
+Zeljko Ivezic: And so here I just printed one minus that. So it's one in 1,000 probability.
+
+517
+01:10:35.000 --> 01:10:46.040
+Zeljko Ivezic: And so now why am I using this meal, and Sigma Mu and 100 that Sigma 15. Those of you who studied psychology know that this is distribution of IQ for people.
+
+518
+01:10:46.610 --> 01:10:55.090
+Zeljko Ivezic: By definition, it's normalized. You do your IQ test. They do it on a large number of people, and then they renormalized
+
+519
+01:10:55.440 --> 01:11:03.890
+Zeljko Ivezic: the renormalize this course, so that the center is 100, and the standard deviation is about 15.
+
+520
+01:11:04.270 --> 01:11:18.090
+Zeljko Ivezic: And so now, if you know how to handle Gaussian distribution, you can find out how many of your friends are geniuses you deals, or whatever you want to know. So that's what my few examples are shown.
+
+521
+01:11:19.670 --> 01:11:20.800
+Zeljko Ivezic: Now
+
+522
+01:11:21.340 --> 01:11:24.970
+Zeljko Ivezic: there are some words we are not supposed to use anymore. So
+
+523
+01:11:25.590 --> 01:11:41.700
+Zeljko Ivezic: things like Moran, you know, that was actually psychological term, which is now out of fashion. This is not politically correct anymore, but they do come from the cumulative, from the points in the cumulative distribution for Gaussian function.
+
+524
+01:11:41.870 --> 01:11:52.970
+Zeljko Ivezic: So here we say. Oh. that girl is one in a 1 million people Genius. I met 1 million girls, and she's the smartest.
+
+525
+01:11:53.100 --> 01:12:00.660
+Zeljko Ivezic: How would you calculate IQ. Of that person? Well, it's easy, because you know the probability is one in a 1 million.
+
+526
+01:12:00.670 --> 01:12:07.080
+Zeljko Ivezic: And then you you just solve this equation. How many sigmas you have to go away from the main
+
+527
+01:12:07.140 --> 01:12:14.550
+Zeljko Ivezic: to get to that probability. So if you have IQ of 100, 7,170,
+
+528
+01:12:15.120 --> 01:12:24.000
+Zeljko Ivezic: that makes you one in a 1 million. So we would think that someone with an IQ of 170 would show up once in Zagreb.
+
+529
+01:12:24.810 --> 01:12:27.890
+Zeljko Ivezic: Obviously they won't. Come to this lecture, so it's none of us.
+
+530
+01:12:29.300 --> 01:12:44.300
+Zeljko Ivezic: Now another thing in science. When we say well, especially in biology, people will say at 95% confidence level. I can tell you that there is a fact when I give this medicine to my right or something.
+
+531
+01:12:44.520 --> 01:12:49.550
+Zeljko Ivezic: So this 95% confidence level that's actually 2 sigma
+
+532
+01:12:49.580 --> 01:12:51.200
+Zeljko Ivezic: for gaussian distribution.
+
+533
+01:12:51.630 --> 01:13:03.060
+Zeljko Ivezic: Now you could say what is 3 sigma, what is 5 sigma. and so 3. Sigma is one in 1,000 approximately. and 5 sigma is approximately one in a 1 million.
+
+534
+01:13:04.080 --> 01:13:08.340
+Zeljko Ivezic: There is also in in context of physics and astronomy, there is saying that
+
+535
+01:13:09.090 --> 01:13:17.290
+Zeljko Ivezic: if you have a theorist with a theory to convince the that he is correct or she is correct, takes 2 sigma results.
+
+536
+01:13:17.730 --> 01:13:22.780
+Zeljko Ivezic: To convince observer or experimentalist that there is an effect. It takes 3 sigma results.
+
+537
+01:13:23.110 --> 01:13:28.640
+Zeljko Ivezic: but to convince theorists that his or her theory is wrong. It takes 5 signals.
+
+538
+01:13:29.330 --> 01:13:31.130
+Zeljko Ivezic: So these are the probabilities.
+
+539
+01:13:32.550 --> 01:13:43.670
+Zeljko Ivezic: So now we did it 2 ways here. So this is now that other parts how you can handle distributions. So I gave it sample size. Now, 1 million
+
+540
+01:13:44.250 --> 01:13:50.410
+Zeljko Ivezic: and this simple, innocent line will return 1 million data points to me
+
+541
+01:13:50.530 --> 01:13:53.710
+Zeljko Ivezic: an array of 1 million values. These rbs
+
+542
+01:13:53.720 --> 01:14:00.840
+Zeljko Ivezic: will generate randomly drawn sample of this size from that Gaussian distribution.
+
+543
+01:14:00.940 --> 01:14:04.640
+Zeljko Ivezic: So now I can play games. I can simulate my observations
+
+544
+01:14:04.780 --> 01:14:09.640
+Zeljko Ivezic: if I know that I can assume I measure IQ of everyone in Zagre.
+
+545
+01:14:10.250 --> 01:14:19.050
+Zeljko Ivezic: And now I can see how well I can actually make some statistical conclusions. And first of all, you actually find out that these numbers
+
+546
+01:14:19.060 --> 01:14:22.810
+Zeljko Ivezic: are not the same, Even though we asked exactly the same question.
+
+547
+01:14:22.890 --> 01:14:28.230
+Zeljko Ivezic: one was analytic result. The other one was based on a sample of 1 million people.
+
+548
+01:14:28.430 --> 01:14:30.290
+Zeljko Ivezic: They are not the same.
+
+549
+01:14:30.300 --> 01:14:34.710
+Zeljko Ivezic: because analytic results when available, they are exact.
+
+550
+01:14:34.840 --> 01:14:38.790
+Zeljko Ivezic: When you have a sample you can never have exact result
+
+551
+01:14:38.880 --> 01:14:49.770
+Zeljko Ivezic: except by luck; or if you have an infinitely large sample. and so in in practice, when we do when we do science. When we measure things
+
+552
+01:14:49.940 --> 01:14:53.780
+Zeljko Ivezic: we can never have perfect result. There will always be.
+
+553
+01:14:53.870 --> 01:15:03.410
+Zeljko Ivezic: and uncertainty associated with our quantitative result, and we need to understand how large it is, and what it means. So in this baby examples
+
+554
+01:15:03.470 --> 01:15:07.310
+Zeljko Ivezic: you can see immediately how the the results differ.
+
+555
+01:15:08.330 --> 01:15:12.810
+Zeljko Ivezic: and then you can also do sub samples. For example, I define here for fun
+
+556
+01:15:12.830 --> 01:15:18.820
+Zeljko Ivezic: smart ones They are the smart ones, those that are 3 Sigma about. So if it's one in a 1,000,
+
+557
+01:15:18.960 --> 01:15:25.550
+Zeljko Ivezic: if you have IQ, over 145, you are one in a 1,000 and psychologist volume
+
+558
+01:15:26.950 --> 01:15:32.920
+Zeljko Ivezic: the modern world is extra gifted or particularly highly gifted, highly gifted.
+
+559
+01:15:33.210 --> 01:15:36.340
+Zeljko Ivezic: That's what they do with kids in the Us. So you are highly gifted.
+
+560
+01:15:37.040 --> 01:15:40.560
+Zeljko Ivezic: and so now you can play this various games with your samples.
+
+561
+01:15:40.880 --> 01:15:50.610
+Zeljko Ivezic: And now this is now this politically incorrect thing. So I removed the words. But IQ between 50 and 71.
+
+562
+01:15:51.680 --> 01:15:52.620
+Zeljko Ivezic: That's
+
+563
+01:15:54.080 --> 01:16:04.150
+Zeljko Ivezic: that's more on yeah, and below 51. That's it yet in according to the old nomenclature, this is back bad at that, don't use that. But this is where the numbers come from.
+
+564
+01:16:04.460 --> 01:16:14.980
+Zeljko Ivezic: They are more than names for that. And now you can find out the probabilities of people who unfortunately have these like use. Of course it's symmetric with the other side. So
+
+565
+01:16:16.010 --> 01:16:20.590
+Zeljko Ivezic: 3 Sigma deviation goes both ways. And so this
+
+566
+01:16:20.890 --> 01:16:24.750
+Zeljko Ivezic: analysis of this extreme probabilities that's
+
+567
+01:16:24.850 --> 01:16:29.510
+Zeljko Ivezic: other main for Gaussian confidence levels. So you have some distribution.
+
+568
+01:16:29.930 --> 01:16:43.130
+Zeljko Ivezic: and so you can think of it as the result of some analysis, some measurement, we say, Well, I measured temperature in this room to be 30 degrees, and then my uncertainty is 5 degrees.
+
+569
+01:16:43.820 --> 01:16:55.280
+Zeljko Ivezic: What does it mean? Well, it means that it's 2 segment level. So 10 degrees i'm 95% confident that that temperature is below 40.
+
+570
+01:16:56.000 --> 01:16:58.240
+Zeljko Ivezic: And so in classical statistics.
+
+571
+01:16:58.500 --> 01:17:03.500
+Zeljko Ivezic: what it means is that if I measured the same experiment 20 times.
+
+572
+01:17:03.960 --> 01:17:09.680
+Zeljko Ivezic: only once I would get this out outside of this of this limit.
+
+573
+01:17:09.830 --> 01:17:15.230
+Zeljko Ivezic: Now we will learn in 2 lectures that that's actually not the question you are asking in science
+
+574
+01:17:15.820 --> 01:17:20.130
+Zeljko Ivezic: the question we are asking in science is given my measurement.
+
+575
+01:17:20.310 --> 01:17:34.670
+Zeljko Ivezic: What is the probability of this data set of of this in code context of this data set? What is the probability that temperature is is in this Inter. I'm not going to measure 20 times the temperature. This this this is hypothetical.
+
+576
+01:17:34.920 --> 01:17:47.170
+Zeljko Ivezic: I will just measure it once, and I know I want to know probability that the truth is in some given specified intel. Sometimes you can't do many measurements. Let's say we measure the mass of subtle.
+
+577
+01:17:47.560 --> 01:17:54.810
+Zeljko Ivezic: That's actually the original question that that Laplace asked when he introduced this concept to his own statistics.
+
+578
+01:17:55.050 --> 01:17:57.420
+Zeljko Ivezic: With it's atom, we cannot measure.
+
+579
+01:17:57.450 --> 01:18:07.910
+Zeljko Ivezic: It's mass 100 times, because there is only one certain given our measurement. We want to know what is the confidence interrupt for that measurement, so we'll get back to that later.
+
+580
+01:18:08.440 --> 01:18:19.010
+Zeljko Ivezic: For now let's ignore this little problem of different questions, and just ask if I have a sample like the one they just generated with 1 million points.
+
+581
+01:18:19.250 --> 01:18:27.920
+Zeljko Ivezic: If we have that sample, how do I, from that sample estimate what was Mu and Sigma in the underlying distribution?
+
+582
+01:18:28.300 --> 01:18:30.660
+Zeljko Ivezic: And of course you know that from kindergarten.
+
+583
+01:18:30.870 --> 01:18:39.130
+Zeljko Ivezic: when we take a sample and calculate mean value, that's what gives you that mu for the Gaussian distribution.
+
+584
+01:18:39.830 --> 01:18:44.610
+Zeljko Ivezic: Now they are some tricky things about it. We'll try to address some of them next time.
+
+585
+01:18:44.930 --> 01:18:54.980
+Zeljko Ivezic: If you have no Gaussian outliers in your real life measurements, then that will screw up this this formula badly.
+
+586
+01:18:55.880 --> 01:19:04.420
+Zeljko Ivezic: or if you have different distributions, if you assume this Gaussian, but it's actually distribution, then it's all over the place, and that's actually the last example today.
+
+587
+01:19:05.440 --> 01:19:08.240
+Zeljko Ivezic: So what this last part of the lecture is.
+
+588
+01:19:08.730 --> 01:19:10.850
+Zeljko Ivezic: it's if we have now
+
+589
+01:19:11.030 --> 01:19:28.510
+Zeljko Ivezic: measurements a sample like the one that is generated from Gaussian distribution. How do we estimate the properties of the Gaussian, New and Sigma? And, more importantly, what is the uncertainty on those properties? So basically your introductory physics lab, or any other file Science lab.
+
+590
+01:19:29.330 --> 01:19:45.890
+Zeljko Ivezic: So you can derive this formula easily. That different base, like, for example, maximum likelihood, which we will learn to next time, but for now I can just assume that my underlying distribution is just delta function centered on the values that I have in my sample.
+
+591
+01:19:45.940 --> 01:19:51.910
+Zeljko Ivezic: and then you can easily plug this into this formula for expectation, value, and variance.
+
+592
+01:19:52.910 --> 01:19:54.790
+Zeljko Ivezic: and you can derive
+
+593
+01:19:55.220 --> 01:20:00.800
+Zeljko Ivezic: that Mu is estimated by taking the mean value of your data points.
+
+594
+01:20:01.140 --> 01:20:06.720
+Zeljko Ivezic: and the sample variance is estimated as the mean value of
+
+595
+01:20:06.810 --> 01:20:09.240
+Zeljko Ivezic: of deviations from the mean square.
+
+596
+01:20:09.310 --> 01:20:12.480
+Zeljko Ivezic: You know that formula. I'm sure from your labs.
+
+597
+01:20:12.820 --> 01:20:17.060
+Zeljko Ivezic: Now there is this little bit of detail. Why is it n minus one and N.
+
+598
+01:20:17.150 --> 01:20:34.690
+Zeljko Ivezic: When n is large, you don't care when any small. There was a little bit of difference. We will learn in in third lecture or fourth lecture. Why is it so? It's called basal correction in classical statistics. It's a lot of handwriting to derive it by using statistics that comes like this. So we'll we'll get back to that.
+
+599
+01:20:35.780 --> 01:20:49.010
+Zeljko Ivezic: And then another thing is okay, I mentioned what biased in here. So it is a good points to introduce what is bias. So on the left hand side we have one dimensional example.
+
+600
+01:20:49.240 --> 01:21:01.620
+Zeljko Ivezic: there is reference value. This is underlying truth, like temperature in this room. and then i'm measuring this with some apparatus, and I get distribution of measurements that are given by this Gaussian on the right.
+
+601
+01:21:02.180 --> 01:21:12.530
+Zeljko Ivezic: So now there is. You can see immediately that it's offset, and that offset from the true value. It's called bias, so imagine I have to remove the thermometer in here.
+
+602
+01:21:12.850 --> 01:21:21.700
+Zeljko Ivezic: and for some reason it wasn't calibrated properly. It always gives 5 degrees to high. Whatever is the temperature. Why, you remember this
+
+603
+01:21:21.890 --> 01:21:31.150
+Zeljko Ivezic: mercury thermometers a metal scale in front. Let's say someone glued it incorrectly on the front, and it's offset by 5 degrees. There's the bias.
+
+604
+01:21:32.000 --> 01:21:39.630
+Zeljko Ivezic: and the precision is deviations about the biased value. So this is precision.
+
+605
+01:21:40.930 --> 01:21:42.320
+Zeljko Ivezic: This is bias.
+
+606
+01:21:42.360 --> 01:21:49.550
+Zeljko Ivezic: and then I square them. I get what statisticians call means per error, and in science we call it accuracy.
+
+607
+01:21:50.120 --> 01:21:52.710
+Zeljko Ivezic: So to have high accuracy
+
+608
+01:21:53.110 --> 01:22:00.040
+Zeljko Ivezic: you need to have small bias and high precision. And so Here is example that grows from
+
+609
+01:22:00.430 --> 01:22:01.420
+Zeljko Ivezic: from
+
+610
+01:22:01.650 --> 01:22:13.570
+Zeljko Ivezic: shooting. Maybe it's not the best example given what happened yesterday in Belgrade, but it's easy to understand it. So if you have very accurate sharp shooter that you get all your
+
+611
+01:22:13.840 --> 01:22:18.970
+Zeljko Ivezic: bullets, all your bullet holes in the center of your target with small dispersion.
+
+612
+01:22:20.770 --> 01:22:24.410
+Zeljko Ivezic: This guy here doesn't have bias, but it's bad shooter.
+
+613
+01:22:24.950 --> 01:22:30.760
+Zeljko Ivezic: and so they're scattered all around, but not biased. and this example here is
+
+614
+01:22:30.890 --> 01:22:34.560
+Zeljko Ivezic: very precise shooter. But there is a bias.
+
+615
+01:22:34.980 --> 01:22:47.830
+Zeljko Ivezic: and so it's offset from the center. And of course, these 2, this one is both biased and and low precision. So again, that 3 terms to remember bias, precision, accuracy.
+
+616
+01:22:47.870 --> 01:22:56.620
+Zeljko Ivezic: accuracy, something in absolute sense, very good. and contribution to accuracy or decrease of accuracy, can be either
+
+617
+01:22:56.840 --> 01:23:02.180
+Zeljko Ivezic: low precision, which means scattered. Or it can be high bias which means offset.
+
+618
+01:23:02.460 --> 01:23:04.220
+Zeljko Ivezic: So these are the concepts we have.
+
+619
+01:23:05.450 --> 01:23:08.860
+Zeljko Ivezic: And so now, going back to this estimators.
+
+620
+01:23:08.930 --> 01:23:14.930
+Zeljko Ivezic: Every baby knows how to do this. So that's what you get from your measurements. But the question is now.
+
+621
+01:23:15.220 --> 01:23:19.630
+Zeljko Ivezic: how far will be that Estimator X.
+
+622
+01:23:20.130 --> 01:23:23.970
+Zeljko Ivezic: And as from the true values statistically.
+
+623
+01:23:24.580 --> 01:23:28.610
+Zeljko Ivezic: and that's where the concept of the standard error of the mean
+
+624
+01:23:28.720 --> 01:23:32.950
+Zeljko Ivezic: and error of the standard deviation comes in. This tells you
+
+625
+01:23:34.340 --> 01:23:44.400
+Zeljko Ivezic: how far, on average, you will be from the truth. So, whatever you do, you will have uncertainties in your measurement, and your measurements will not have
+
+626
+01:23:44.490 --> 01:23:45.840
+Zeljko Ivezic: infinite size.
+
+627
+01:23:46.090 --> 01:23:57.610
+Zeljko Ivezic: And so, when you estimate in the simplest possible case for Gaussian, those 2 parameters. you should expect that they will be on average, scattered around the truth. And these 2 formula. Tell you.
+
+628
+01:23:57.730 --> 01:24:08.420
+Zeljko Ivezic: what is that? And that can be derived in many different ways. and we will show how to derive it easily when we get to Bayesian statistics.
+
+629
+01:24:08.670 --> 01:24:20.380
+Zeljko Ivezic: But in this context of basic statistics these 4 expressions are the most important formula in introductory undergrad lab in physics or chemistry or biology.
+
+630
+01:24:20.570 --> 01:24:26.690
+Zeljko Ivezic: So this is how you estimate. given some one-dimensional set of measurements and measurements.
+
+631
+01:24:26.890 --> 01:24:32.990
+Zeljko Ivezic: This is how you estimate the best properties of Gaussian. Its position, and it's wet
+
+632
+01:24:33.460 --> 01:24:38.060
+Zeljko Ivezic: so you that's basically fitting a Gaussian indirectly to your data.
+
+633
+01:24:38.100 --> 01:24:44.610
+Zeljko Ivezic: But you don't have to do any fitting program. You just calculate what is X Bar and S.
+
+634
+01:24:46.800 --> 01:24:50.880
+Zeljko Ivezic: And so now there is one more topic to conclude it.
+
+635
+01:24:52.210 --> 01:24:59.040
+Zeljko Ivezic: So These are the standard low, so-called low order statistics, or moments of the physical distribution
+
+636
+01:24:59.270 --> 01:25:03.940
+Zeljko Ivezic: you can. You can calculate them for any sample.
+
+637
+01:25:04.360 --> 01:25:16.250
+Zeljko Ivezic: Sometimes you will get to be of things like this or a Lorentzian distribution. You'll get back to it one warning. When you calculate this low order, statistics like mean value and standard deviation.
+
+638
+01:25:16.570 --> 01:25:18.060
+Zeljko Ivezic: you can often
+
+639
+01:25:18.370 --> 01:25:24.980
+Zeljko Ivezic: make yourself believe that you know what's going on. But actually you can have many different distributions. These are called.
+
+640
+01:25:25.340 --> 01:25:36.700
+Zeljko Ivezic: and scones for that. All these 4 distributions have the same mean value of x mean value of y dispersion in x dispersion, and y the same correlation efficient.
+
+641
+01:25:37.290 --> 01:25:49.910
+Zeljko Ivezic: identical, and yet they are very different sub samples. And so here is stable with summary of that. So? The last thing is robust statistics. I promise to you that
+
+642
+01:25:49.990 --> 01:25:56.570
+Zeljko Ivezic: your mean value will be scattered around this value with this standard variation.
+
+643
+01:25:57.360 --> 01:26:00.700
+Zeljko Ivezic: But I did not emphasize that this is
+
+644
+01:26:00.730 --> 01:26:03.100
+Zeljko Ivezic: coming from the central limit, Crm.
+
+645
+01:26:03.220 --> 01:26:09.310
+Zeljko Ivezic: which nobody cares because it has word theorem in it. But it tells you that if you have
+
+646
+01:26:09.570 --> 01:26:10.960
+Zeljko Ivezic: arbitrary
+
+647
+01:26:11.060 --> 01:26:18.770
+Zeljko Ivezic: distribution which has finite standard deviation, then it guarantees that if you have an measurement.
+
+648
+01:26:18.870 --> 01:26:23.710
+Zeljko Ivezic: the mean value will be centered on location through location with the schedule.
+
+649
+01:26:24.780 --> 01:26:25.960
+Zeljko Ivezic: And of course
+
+650
+01:26:26.380 --> 01:26:30.990
+Zeljko Ivezic: most people ignore that if you have finite standard deviation.
+
+651
+01:26:31.220 --> 01:26:36.710
+Zeljko Ivezic: and sometimes they work with real data, and they just show that it doesn't work
+
+652
+01:26:37.020 --> 01:26:39.350
+Zeljko Ivezic: some central limit to you.
+
+653
+01:26:39.590 --> 01:26:46.000
+Zeljko Ivezic: But what happens is the Trm. Didn't like to you, because to your and clearly said, if you have finite standard deviation.
+
+654
+01:26:46.040 --> 01:26:49.530
+Zeljko Ivezic: and they are distribution where they they run away like what she
+
+655
+01:26:50.280 --> 01:26:53.180
+Zeljko Ivezic: Here, If you look at this formula on the right.
+
+656
+01:26:53.730 --> 01:27:03.500
+Zeljko Ivezic: it's because she distribution. It looks very similar to Gaussian. It's centrally peaked, but then it has tails that fall off much slower than Gaussian. The Gaussian.
+
+657
+01:27:03.610 --> 01:27:13.440
+Zeljko Ivezic: It drops down exponentially here. If you assume now that X is very large. you can immediately see that this formula says one over X pair.
+
+658
+01:27:14.060 --> 01:27:23.000
+Zeljko Ivezic: But if you calculate standard deviation for variance. There is this X squared in here and now you plug one over X for the largest.
+
+659
+01:27:23.090 --> 01:27:24.300
+Zeljko Ivezic: so they cancel.
+
+660
+01:27:24.420 --> 01:27:28.060
+Zeljko Ivezic: And now you have constant, which you integrate to infinity.
+
+661
+01:27:28.500 --> 01:27:35.770
+Zeljko Ivezic: And what is the result of integrating a constant to infinity? If that constant is not 0, it's infinity.
+
+662
+01:27:35.900 --> 01:27:40.250
+Zeljko Ivezic: So the basic premise of central limit theorem
+
+663
+01:27:40.350 --> 01:27:46.300
+Zeljko Ivezic: that you have finite standard deviation is wrong. and this promise that the mean value
+
+664
+01:27:46.850 --> 01:27:53.460
+Zeljko Ivezic: there you go. The mean value will be scheduled around the truth with this. scatter it doesn't work
+
+665
+01:27:54.480 --> 01:28:04.330
+Zeljko Ivezic: if you have distributions with fat tails like distribution. So the last piece of this lecture is the Lorentz distribution.
+
+666
+01:28:05.340 --> 01:28:12.670
+Zeljko Ivezic: and we generated Here we import Kashi. It's sci-fi. It's called K. She that's how it looks like
+
+667
+01:28:13.150 --> 01:28:18.790
+Zeljko Ivezic: similar to Gaussian. But these sales do not fall off as fast in a Gaussian.
+
+668
+01:28:19.680 --> 01:28:25.280
+Zeljko Ivezic: And then we ask, what do we do with real data if we have
+
+669
+01:28:25.420 --> 01:28:28.410
+Zeljko Ivezic: data coming from some distribution with fat tails?
+
+670
+01:28:28.810 --> 01:28:32.610
+Zeljko Ivezic: And so that's the question of robust statistic.
+
+671
+01:28:33.310 --> 01:28:36.410
+Zeljko Ivezic: So with me. Imagine
+
+672
+01:28:36.440 --> 01:28:47.850
+Zeljko Ivezic: you want to find out which salary and say, Seattle. you take 1 million people. You add up their salaries you divide by 1 million. You get mean salary.
+
+673
+01:28:48.150 --> 01:28:57.840
+Zeljko Ivezic: and you look at the distribution of sellers. But then you can also have Bill Gates in your business who live in Seattle. Each of them has about 100 billiondollars.
+
+674
+01:28:57.920 --> 01:29:00.720
+Zeljko Ivezic: so one of them contributes under it
+
+675
+01:29:01.360 --> 01:29:06.330
+Zeljko Ivezic: 1 billiondollars to the sum you divide by that 1 million number of people.
+
+676
+01:29:06.360 --> 01:29:08.380
+Zeljko Ivezic: and you get 100,000.
+
+677
+01:29:08.720 --> 01:29:17.620
+Zeljko Ivezic: So your entire distribution is biased by 100,000 because of one of them, and second, one of them biases for it.
+
+678
+01:29:18.110 --> 01:29:26.110
+Zeljko Ivezic: So they represent huge outliers that that make that assumption of the wrong.
+
+679
+01:29:26.200 --> 01:29:35.940
+Zeljko Ivezic: So in practice, when you have measurements that the lousy and you suspect they do not follow Gaussian distribution, then it's much better to take Median.
+
+680
+01:29:36.040 --> 01:29:37.170
+Zeljko Ivezic: Then me
+
+681
+01:29:38.330 --> 01:29:46.810
+Zeljko Ivezic: so in Croatia I mean it's prostate, not weirdness. And Median is the sample in half.
+
+682
+01:29:47.220 --> 01:29:49.570
+Zeljko Ivezic: And now, when you have this middle point.
+
+683
+01:29:49.640 --> 01:29:54.330
+Zeljko Ivezic: those 2 points that the Jeff business and Bill Gates, they can have infinite salary.
+
+684
+01:29:54.600 --> 01:29:57.640
+Zeljko Ivezic: and they will have no impact on the median value
+
+685
+01:29:57.670 --> 01:30:15.390
+Zeljko Ivezic: because they're simply just pushing the but I already split the distribution in half. So for distributions that have or unknown distributions. When you do real work, measurements or something, it is much better first to say what is the median of this example.
+
+686
+01:30:15.510 --> 01:30:20.900
+Zeljko Ivezic: and If that medium is very different than me, then you should think hard about what's going on.
+
+687
+01:30:21.160 --> 01:30:22.840
+Zeljko Ivezic: So that's the first rule of them.
+
+688
+01:30:23.870 --> 01:30:29.710
+Zeljko Ivezic: also with the with the standard deviation. It's also very, very sensitive
+
+689
+01:30:29.940 --> 01:30:37.090
+Zeljko Ivezic: to outliers, and if you try to get standard deviation with an outlier, it will go to infinity. But theoretically
+
+690
+01:30:37.270 --> 01:30:43.200
+Zeljko Ivezic: so they are 2. You can define points in the cumulative distribution. So Median is 50% point.
+
+691
+01:30:43.330 --> 01:30:57.300
+Zeljko Ivezic: You can define 25 and 75% points in human on the distribution or order your measured sample ranked order, and then take first for time plus portile, and whatever you get with your inter portal range.
+
+692
+01:30:57.300 --> 01:31:07.160
+Zeljko Ivezic: there is some magic constant that brings it on the same scale as Gaussian, and that's much more robust. Then this basic formula that we learn in kindergarten
+
+693
+01:31:07.190 --> 01:31:14.290
+Zeljko Ivezic: these 2 they are they now. So this is what we learn in standard, at least here in standard physics lab.
+
+694
+01:31:14.480 --> 01:31:21.740
+Zeljko Ivezic: But this doesn't work well in real life. and what you want to do is media and interportal range.
+
+695
+01:31:22.140 --> 01:31:25.350
+Zeljko Ivezic: and how to do that is described here
+
+696
+01:31:25.530 --> 01:31:32.080
+Zeljko Ivezic: and visually. This little experiment is summarized in this figure. So what does it show?
+
+697
+01:31:33.140 --> 01:31:34.550
+Zeljko Ivezic: We drove
+
+698
+01:31:34.610 --> 01:31:38.700
+Zeljko Ivezic: I sample from the sheet distribution. The bottom 10
+
+699
+01:31:39.050 --> 01:31:52.910
+Zeljko Ivezic: shows 100 points. X X. It doesn't mean much. It's order of the and the Y. We draw it from a sheet distribution center, the 0
+
+700
+01:31:53.100 --> 01:31:58.170
+Zeljko Ivezic: and and and let me remind myself what was the standard deviation?
+
+701
+01:31:58.780 --> 01:32:05.800
+Zeljko Ivezic: So standard deviation is about 2, and so we have 100 points.
+
+702
+01:32:05.840 --> 01:32:07.080
+Zeljko Ivezic: So
+
+703
+01:32:07.700 --> 01:32:11.090
+Zeljko Ivezic: one in 1,000 is 3 Sigma deviation.
+
+704
+01:32:11.110 --> 01:32:19.970
+Zeljko Ivezic: So if it was. you will never be part from the central line, if the 6 of them.
+
+705
+01:32:20.240 --> 01:32:27.580
+Zeljko Ivezic: But you can clearly see that that a number of points in that sample, that of 10 or more.
+
+706
+01:32:28.930 --> 01:32:30.760
+Zeljko Ivezic: This because it's
+
+707
+01:32:33.740 --> 01:32:39.620
+Zeljko Ivezic: there's one probability to be far away from from the central location.
+
+708
+01:32:40.230 --> 01:32:41.610
+Zeljko Ivezic: And so now
+
+709
+01:32:41.780 --> 01:32:48.430
+Zeljko Ivezic: you assume this is middle example, and now we measure the mean value in the top 10.
+
+710
+01:32:49.360 --> 01:32:58.980
+Zeljko Ivezic: So you just say, this is a function of number of points, 3.4, point 4, and so on up to 100 points, and you plot me.
+
+711
+01:32:59.280 --> 01:33:08.250
+Zeljko Ivezic: The blue line is the so you can see how it just jumps around as soon as we have one of those
+
+712
+01:33:08.700 --> 01:33:15.300
+Zeljko Ivezic: points that the far out mean goes far away and comes back down. And then again it goes away.
+
+713
+01:33:15.540 --> 01:33:24.970
+Zeljko Ivezic: Okay, so that's because of this point that if you're so, it's out of contribution. They will be outliers in distribution. They are not downloaded by their regular bodies.
+
+714
+01:33:25.010 --> 01:33:27.110
+Zeljko Ivezic: but there is no
+
+715
+01:33:39.460 --> 01:33:44.670
+Zeljko Ivezic: So that's something to remember. And now we practice what we do.
+
+716
+01:34:02.850 --> 01:34:09.130
+Zeljko Ivezic: What's much better to do is we use robot statistics like media, and
+
+717
+01:34:09.500 --> 01:34:18.910
+Zeljko Ivezic: because in this case you know what you can estimate. Well, it's so from me to Media.
+
+718
+01:34:19.300 --> 01:34:28.610
+Zeljko Ivezic: You can show that the scheduler number so.
+
+719
+01:34:29.020 --> 01:34:34.800
+Zeljko Ivezic: But in
+
+720
+01:34:34.840 --> 01:34:35.890
+Zeljko Ivezic: this you
+
+721
+01:34:35.920 --> 01:34:36.760
+okay
+
+722
+01:34:43.570 --> 01:34:52.350
+Zeljko Ivezic: your media.
+
+723
+01:34:53.740 --> 01:34:55.980
+Zeljko Ivezic: And you look at the talk.
+
+724
+01:34:56.090 --> 01:35:00.760
+Zeljko Ivezic: the
+
+725
+01:35:00.770 --> 01:35:03.740
+Zeljko Ivezic: and you can see how quickly it
+
+726
+01:35:06.130 --> 01:35:23.420
+Zeljko Ivezic: and it's not working much around all of these like points in the bottom of the far out. They don't do much that sample many 2 millions just like.
+
+727
+01:35:24.340 --> 01:35:27.610
+Zeljko Ivezic: But there is a point. This is
+
+728
+01:35:29.330 --> 01:35:34.840
+Zeljko Ivezic: so. This is the last thing today. I know we covered a lot. If you feel like
+
+729
+01:35:34.980 --> 01:35:42.980
+Zeljko Ivezic: It's all over the place, and you feel like the around you. Don't worry. It's regular feeling. I put way too much in that one lecture.
+
+730
+01:35:43.080 --> 01:35:45.910
+Zeljko Ivezic: But please do go over it when you go home.
+
+731
+01:35:46.090 --> 01:35:55.010
+Zeljko Ivezic: and then try to look at the lecture number 2 before the next time, and then next time it will become more interesting.
+
+732
+01:35:55.750 --> 01:36:02.630
+Zeljko Ivezic: Then today it will be more useful methods, and then we really
+
+733
+01:36:03.660 --> 01:36:11.740
+Zeljko Ivezic: so Thank you again and thank you all on Zoom for coming in.
+
+734
+01:36:14.190 --> 01:36:16.870
+Zeljko Ivezic: That's still 11 young people.
+
+735
+01:36:20.890 --> 01:36:22.560
+Zeljko Ivezic: Thank you. Thank you. Thank you.
+
+736
+01:36:23.840 --> 01:36:28.260
+Zeljko Ivezic: I will stop recording now. Thank you all for coming. See you on Monday.
+
