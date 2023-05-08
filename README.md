@@ -26,6 +26,8 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Non-gaussian likelihood: binomial distribution (coin flip problem)
 - Conceptual difficulties with the MLE (example: "waiting for a bus" problem)
 - What if we cannot write down the likelihood function?
+
+[Zoom recording for Lecture 2](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture2/Lecture2_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 3, May 11, 2023: "Introduction to Bayesian statistics and inference"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture3.ipynb)  
 - Bayes Rule extended to Bayesian Inference
