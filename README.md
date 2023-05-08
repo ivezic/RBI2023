@@ -15,7 +15,7 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Distributions and Random samples
 - Robust statistics
 
-[Zoom recording](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture1/Lecture1_zoom.mp4)
+##[Zoom recording for Lecture 1](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture1/Lecture1_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 2, May 8, 2023: "Introduction to the Maximum Likelihood Estimation method"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture2.ipynb)  
 - Introduction: what likelihood is and what it is good for?
