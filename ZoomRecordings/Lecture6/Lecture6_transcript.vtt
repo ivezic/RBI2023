@@ -1,0 +1,1474 @@
+WEBVTT
+
+1
+00:00:35.700 --> 00:00:37.570
+Zeljko Ivezic: Good morning, everyone.
+
+2
+00:00:38.950 --> 00:00:44.120
+Zeljko Ivezic: Can. You confirm you can hear me. I'm having difficulties here.
+
+3
+00:00:57.860 --> 00:00:59.840
+Zeljko Ivezic: Oh, okay, thanks.
+
+4
+00:01:10.030 --> 00:01:15.459
+Zeljko Ivezic: So congratulations to the last lecture of the first serious.
+
+5
+00:01:15.570 --> 00:01:27.799
+Zeljko Ivezic: So before I forget the second part of this series, the next 6 lectures will be starting, probably in mid January of the next year.
+
+6
+00:01:28.010 --> 00:01:33.819
+Zeljko Ivezic: Now. I don't know yet when exactly, but I will know by October.
+
+7
+00:01:34.050 --> 00:01:44.930
+Zeljko Ivezic: and then I will send email again to everyone who was signed up for the first serious. I will send an email about exact timing of those 6 lectures.
+
+8
+00:01:47.630 --> 00:01:48.470
+Zeljko Ivezic: Much
+
+9
+00:01:48.700 --> 00:01:50.320
+Zeljko Ivezic: good.
+
+10
+00:02:05.940 --> 00:02:08.130
+Zeljko Ivezic: Sorry about disruptions.
+
+11
+00:02:10.180 --> 00:02:13.830
+Zeljko Ivezic: I presume everyone is okay with being recorded.
+
+12
+00:02:13.910 --> 00:02:22.330
+Zeljko Ivezic: It will eventually be a documentary movie about. So you might see yourself one day
+
+13
+00:02:22.660 --> 00:02:23.880
+Zeljko Ivezic: in a movie.
+
+14
+00:02:24.460 --> 00:02:36.850
+Zeljko Ivezic: So if you recall, last lecture was about using Markov chain, Monte Carlo rentals to do Bayesian statistics, and by that we mean.
+
+15
+00:02:37.050 --> 00:03:05.620
+Zeljko Ivezic: do regression get the best with model parameters, and also, if you have multiple models, you can compare them against each other. They are easy way to do it easy ways. One of them is so with polynomials, when we simply calculated guys square, and we calculated penalty and computed by Asia and information criterion, and that told us which order of the polynomial was the most justified statistically.
+
+16
+00:03:06.130 --> 00:03:13.069
+Zeljko Ivezic: Now, in that case it was easy, and we could compute price. We are because we assume Gaussian errors, but in general
+
+17
+00:03:14.130 --> 00:03:34.009
+Zeljko Ivezic: you will have sometimes known Gaussian errors. Sometimes you do not have enough data to approach Gaussian approximation at the end for the free parameters. So often when you do real research, when you have your real data set. Often you cannot get away with approximations and analytic methods.
+
+18
+00:03:34.090 --> 00:03:40.470
+Zeljko Ivezic: Often you do need to have a real workforce, real M. Cmc code to do that.
+
+19
+00:03:40.640 --> 00:03:44.549
+Zeljko Ivezic: So last time we used Pi and C 3
+
+20
+00:03:46.090 --> 00:03:54.079
+Zeljko Ivezic: code to do regression. And today we are going to focus little bit more on model selection.
+
+21
+00:03:54.450 --> 00:04:02.630
+Zeljko Ivezic: And also we will use a different tool, just so that you have at least 2 different ways of doing it. So Pi and C 3
+
+22
+00:04:02.670 --> 00:04:03.830
+Zeljko Ivezic: is
+
+23
+00:04:03.930 --> 00:04:18.729
+Zeljko Ivezic: more powerful than Emc. But Emc is much easier to install and much easier to use. It's much simpler. So in particular, in astronomy, almost every man uses Cmc. Because it was developed by an astronomer, then Forum and Mickey
+
+24
+00:04:19.230 --> 00:04:22.470
+Zeljko Ivezic: it's called M. Cmc. Hammer. Have you ever heard for a
+
+25
+00:04:22.650 --> 00:04:25.010
+Zeljko Ivezic: Mc. Hammer, the rapper?
+
+26
+00:04:26.600 --> 00:04:27.460
+Zeljko Ivezic: No.
+
+27
+00:04:28.610 --> 00:04:29.320
+Okay.
+
+28
+00:04:45.440 --> 00:04:49.510
+Zeljko Ivezic: So then, for him on my key. Name the code after this guy.
+
+29
+00:04:50.320 --> 00:04:57.070
+Zeljko Ivezic: It's very easy to install it pure python, so you can simply say, Keep install, and see, and you have it on your computer.
+
+30
+00:04:57.540 --> 00:05:03.539
+Zeljko Ivezic: I hope you tried before the lecture, if not right later, and try to run the full lecture.
+
+31
+00:05:04.000 --> 00:05:13.860
+Zeljko Ivezic: So this is what we want to do. This is just recap. You saw this in Lecture 4. We can compare the 2 models by evaluating
+
+32
+00:05:14.190 --> 00:05:26.590
+Zeljko Ivezic: the ratio of their global likelihoods. And the bottom line, does it say, yes. B, 2 to one. That's the ratio of the global likelihood for 2 models that we will consider later. This is a general statement.
+
+33
+00:05:26.930 --> 00:05:37.999
+Zeljko Ivezic: So again, what is global likelihood, it's an integral over the allowed parameter space products of the likelihood. And prior for your model parameters.
+
+34
+00:05:38.670 --> 00:05:44.990
+Zeljko Ivezic: So we can do that analytically, like we did for Gaussian and for she distributions
+
+35
+00:05:45.090 --> 00:05:48.220
+Zeljko Ivezic: in lecture that we get 5 or 4
+
+36
+00:05:48.380 --> 00:05:52.039
+Zeljko Ivezic: today, we are going to do a slightly more complicated problem
+
+37
+00:05:52.270 --> 00:05:57.919
+Zeljko Ivezic: that is similar to say what physicists did when they were discovering picks.
+
+38
+00:05:58.390 --> 00:06:05.459
+Zeljko Ivezic: Let me first show you a picture. So this is motivation. It's simulated data so that we can see what we have.
+
+39
+00:06:05.550 --> 00:06:11.220
+Zeljko Ivezic: So these data points are generated from that great line.
+
+40
+00:06:11.830 --> 00:06:18.859
+Zeljko Ivezic: and the red line has 2 peaks in the background. So in this particular case.
+
+41
+00:06:18.900 --> 00:06:32.299
+Zeljko Ivezic: these 2 peaks are exponential functions because it was motivated by astronomy by explosions and stars that Mdk. Exponentially. But it could be more symmetric like a Gaussian. If you're working with elementary particle physics.
+
+42
+00:06:32.480 --> 00:06:43.480
+Zeljko Ivezic: it could be Gaussian. If you are working in chemistry, biology, biochemistry. Then we have samples, and then you have signal for something. So it could be anything. Basically, there is
+
+43
+00:06:44.340 --> 00:06:51.579
+Zeljko Ivezic: some structure in your data. And in but this particular case we assume that we know the model shape.
+
+44
+00:06:51.690 --> 00:07:01.040
+Zeljko Ivezic: but we don't know where this speaks are, how wide they are, and we'll see here. We'll assume that we don't even know how many we have.
+
+45
+00:07:01.440 --> 00:07:08.339
+Zeljko Ivezic: So you are given this data, this data points again, that generated from this red line. And then noise is added.
+
+46
+00:07:08.380 --> 00:07:19.980
+Zeljko Ivezic: and those are error parts. So now I assume there is no red line. You don't know what is red line. You only have data points, and you want to ask question, do I have one or 2 Ps. Or more?
+
+47
+00:07:20.140 --> 00:07:23.409
+Zeljko Ivezic: So now we'll go slowly through this example.
+
+48
+00:07:23.990 --> 00:07:38.090
+Zeljko Ivezic: So there's the formula that describes why there's this X in this particular example, X is T. It's time. And why is flux from some star? But again, it's just mountains general example.
+
+49
+00:07:38.960 --> 00:07:48.339
+Zeljko Ivezic: And so we want to find out how many bursts of that form we have. So you can see that 2 free parameters there is a which measures amplitude.
+
+50
+00:07:48.360 --> 00:07:59.150
+Zeljko Ivezic: and there is out which measures how fast it the case. And so then we will assume that we have either one or 2.
+
+51
+00:07:59.200 --> 00:08:16.379
+Zeljko Ivezic: We could totally generalize this, we could even do vector vector implementation, like we did with polynomials for it, just say, number of firsts. But just for pedagogical reasons. These 2 are explicitly coded out, so that you can see difference between one and 2 first.
+
+52
+00:08:17.040 --> 00:08:20.110
+Zeljko Ivezic: And so you can see that in these 2 functions
+
+53
+00:08:20.380 --> 00:08:42.230
+Zeljko Ivezic: we are calling Np. Exponential function. Now, if you had Gaussian, it would just be place it here with some other Gaussian, and you're good to go with any other, for so these 2 functions now can calculate that red line in particular, if they are 2 peaks like in the picture I showed you, then you are using 2 bursts. You just call it on some grid of T, and you give it 3 parameters.
+
+54
+00:08:42.240 --> 00:08:47.369
+Zeljko Ivezic: So in one, in one case we have 3 free parameters plus background is 4.
+
+55
+00:08:47.650 --> 00:08:59.240
+Zeljko Ivezic: If we have 2 births, we end up with 7, 3 parameters, and it's a nonlinear function, meaning that if I take derivative of that function. With respect to Alpha.
+
+56
+00:08:59.450 --> 00:09:05.839
+Zeljko Ivezic: then Alpha does not vanish. It's nonlinear function. And it's very hard then to solve it
+
+57
+00:09:06.800 --> 00:09:13.530
+Zeljko Ivezic: analytically. And we need to use numerics. Okay? So now we choose some parameters in this block.
+
+58
+00:09:14.640 --> 00:09:20.919
+Zeljko Ivezic: Hopefully, later, you'll play with this and you'll change these numbers and then try to break the code, etc.
+
+59
+00:09:21.320 --> 00:09:29.999
+Zeljko Ivezic: The best way to learn about the code is to break it and then fix it. So then we generate the let's have 200 data points.
+
+60
+00:09:30.100 --> 00:09:44.759
+Zeljko Ivezic: And beyond well, we tend a bit. T up to 120. You generate randomly. It's not a great, it's random. It's selected 200 points. And then why, true is what I'm putting in the model. That's that red line.
+
+61
+00:09:45.750 --> 00:09:54.290
+Zeljko Ivezic: And then I also record myself the free parameters for later that the truth when I compare to what I get from.
+
+62
+00:09:54.610 --> 00:10:13.619
+Zeljko Ivezic: And now I have some beard function for errors. I could have said point 4, and every data point would have the same error. I wanted little bit of variation, so that it's so called heeteros fantastic problem where each data point has different uncertainty. So it's square root of y 2.
+
+63
+00:10:13.620 --> 00:10:24.720
+Zeljko Ivezic: That's again motivated by astronomy, where our flux measurement error depends on the brightness of the star. And it goes this. These are mathematical details that are not fundamental.
+
+64
+00:10:25.210 --> 00:10:35.149
+Zeljko Ivezic: And then we add, see this call, Y data equals Np random, normally normal through. And why error? I simply add.
+
+65
+00:10:35.510 --> 00:10:38.060
+Zeljko Ivezic: not at sorry. I simply
+
+66
+00:10:38.210 --> 00:10:48.400
+Zeljko Ivezic: generate something from a Gaussian with Sigma Y error. And then I added to to data, that's my data, and that's what's plotted in here now, we already saw this picture.
+
+67
+00:10:48.980 --> 00:10:50.810
+Zeljko Ivezic: So it's
+
+68
+00:10:52.010 --> 00:11:02.560
+Zeljko Ivezic: just There is no calculation in here. This is just to illustrate what we generated. You always want to make sure that what you generated with your simulations that actually looks like what you expect.
+
+69
+00:11:02.850 --> 00:11:07.930
+Zeljko Ivezic: So it looks like a problem in one to hand. And so now we assume
+
+70
+00:11:08.280 --> 00:11:17.629
+Zeljko Ivezic: we have data points, those black points. Let's find out where those peaks are, and let's find out if they have one or 2.
+
+71
+00:11:19.930 --> 00:11:26.170
+Zeljko Ivezic: And so this is now where we define some function by a Z and context.
+
+72
+00:11:26.680 --> 00:11:28.280
+Zeljko Ivezic: So now
+
+73
+00:11:29.350 --> 00:11:34.890
+Zeljko Ivezic: we have 2 models. I call them single and double that 2 functions.
+
+74
+00:11:35.190 --> 00:11:41.689
+Zeljko Ivezic: They take 3 parameters, and I'm calling them I'm calling. One burst into bursts.
+
+75
+00:11:41.870 --> 00:11:50.399
+Zeljko Ivezic: and that's the only place we are. I'm telling you anything about my functions. So if you want it now to change this code
+
+76
+00:11:50.470 --> 00:12:04.469
+Zeljko Ivezic: and use Gauss, for example, you would go to one person 2. First, you would change the exponential function for Gaussian there, and you're good to go. Actually, when I teach this in a regular class, that's homework. After this lecture to do this code, but with Gaussian
+
+77
+00:12:04.720 --> 00:12:13.740
+Zeljko Ivezic: the I was seeing Peaks. and so now I define my true model as my model, and I decided to have
+
+78
+00:12:13.990 --> 00:12:15.910
+Zeljko Ivezic: 22 pigs.
+
+79
+00:12:16.890 --> 00:12:21.950
+Zeljko Ivezic: And now the following is just for essentially for
+
+80
+00:12:22.370 --> 00:12:39.260
+Zeljko Ivezic: avoiding overflow on some unix machines, and also for making pre tier figures with some tools. So this is not fundamental either. It's a nice thing that in python you can have infinity like in Fourth run, you cannot have infinity because it's computer. But Icon is intelligent enough to
+
+81
+00:12:39.370 --> 00:12:40.820
+Zeljko Ivezic: to decod it.
+
+82
+00:12:41.210 --> 00:12:47.399
+Zeljko Ivezic: And this is now the key. So this is where we now apply by Asian statistics this few months.
+
+83
+00:12:47.780 --> 00:12:53.839
+Zeljko Ivezic: So we need to. So let's go from the bottom to the top. So log posterior.
+
+84
+00:12:54.090 --> 00:12:59.800
+Zeljko Ivezic: That is a function that we will give to. And Cmc. And ask
+
+85
+00:13:00.190 --> 00:13:03.020
+Zeljko Ivezic: to get back chains of numbers
+
+86
+00:13:03.300 --> 00:13:10.990
+Zeljko Ivezic: whose distribution, probability, distribution, and that multi-parameter space follows this function.
+
+87
+00:13:11.270 --> 00:13:16.020
+Zeljko Ivezic: That's the key of M Cmc. I give you a multi-dimensional function.
+
+88
+00:13:16.040 --> 00:13:24.460
+Zeljko Ivezic: and M. Cmc. Returns a long chain of numbers that are drawn from that distribution. That's all. What time. Cmc does.
+
+89
+00:13:24.570 --> 00:13:29.219
+Zeljko Ivezic: Again, the recall that we mentioned Leveinberg market method.
+
+90
+00:13:29.460 --> 00:13:41.029
+Zeljko Ivezic: That is the most popular method for finding maximum of some function. That's, for example, super famous because it's in numerical recipes. That's amazing book with all the code.
+
+91
+00:13:41.720 --> 00:13:53.130
+Zeljko Ivezic: Now, when you run 11 back, Markcard, you'll do find where is the optimal point. But you don't know how you got there again. That's a knowledge without an admin, and it's a
+
+92
+00:13:53.790 --> 00:14:00.609
+Zeljko Ivezic: lemon. But Markcart will tell you very slamming. It's a location, but we'll tell you nothing of the shape of magic itself.
+
+93
+00:14:01.130 --> 00:14:12.890
+Zeljko Ivezic: while M. Cmc. They'll give you the full outline of the whole mountain, and then you can look at distribution in one calling and the other one correlations for variances, etc. That's the key of.
+
+94
+00:14:13.290 --> 00:14:27.819
+Zeljko Ivezic: So this little block now tells you how to implement it in so log posterior. So it's easier to work with what happens when you work with computers, because those numbers are huge. So automatically they switch to logarithms.
+
+95
+00:14:27.830 --> 00:14:34.559
+Zeljko Ivezic: And then, of course, the product of prior and likelihood becomes the son of 2 log
+
+96
+00:14:34.770 --> 00:14:43.220
+Zeljko Ivezic: lots of prior and log of likelihood. And that's exactly what happens in here. I define 2 functions like likelihood, and what prior
+
+97
+00:14:43.330 --> 00:14:50.540
+Zeljko Ivezic: I multiply them, we are doing Bayesian statistics, and they return their product or some of logs as possible.
+
+98
+00:14:50.730 --> 00:14:55.420
+Zeljko Ivezic: That is the recipe for M. Cmc. Code to evaluate the stereo.
+
+99
+00:14:55.960 --> 00:14:58.919
+Zeljko Ivezic: Now, what do we put for likelihood
+
+100
+00:14:59.310 --> 00:15:02.190
+Zeljko Ivezic: here? Load likelihood? Has this
+
+101
+00:15:02.670 --> 00:15:06.940
+Zeljko Ivezic: beta minus model divided by error, squared expression.
+
+102
+00:15:06.950 --> 00:15:21.149
+Zeljko Ivezic: And again, remember, this expression by itself assumes that your uncertainties in measurement are following Gaussian distribution. That's why this formula comes in. It's law or Gaussian, but it will be something else
+
+103
+00:15:21.400 --> 00:15:34.680
+Zeljko Ivezic: would be maybe exponential distribution. I think I mentioned to you that actually solving exponential distribution is older than solving for Gaussian errors, and that was first done by Richard Bosh for it many centuries ago.
+
+104
+00:15:34.830 --> 00:15:43.269
+Zeljko Ivezic: So this is where we put this assumption about Gaussian errors, and the last thing we need to specify is prior for those model parameters.
+
+105
+00:15:43.470 --> 00:15:47.550
+Zeljko Ivezic: And so here for simplicity, we just take flat prior.
+
+106
+00:15:47.660 --> 00:15:57.050
+Zeljko Ivezic: So I give it some range from Ted. I mean to. And we say, this range, you can have any type of people probability outside, it's forbidden.
+
+107
+00:15:57.300 --> 00:16:01.000
+Zeljko Ivezic: And that's my recipe. Now that defines my problem.
+
+108
+00:16:01.920 --> 00:16:06.610
+Zeljko Ivezic: And now we are moving to call of.
+
+109
+00:16:06.910 --> 00:16:20.969
+Zeljko Ivezic: So I specify some drivers in practice. You would have to think little bit about your function your day time. What are plausible values? If you are not certain you make it wider, it will take longer to run. But these days
+
+110
+00:16:21.170 --> 00:16:28.500
+Zeljko Ivezic: does it take 1 min or 10 min. It's not big deal. So if you are uncertain, you just by then the space of
+
+111
+00:16:29.030 --> 00:16:37.969
+Zeljko Ivezic: then we have to specify dimensionality of the problem, how many free parameters are we looking for? And that's 7 in our case with 2 Ps.
+
+112
+00:16:38.740 --> 00:16:53.799
+Zeljko Ivezic: And then we will do many things in parallel, and Cmc. Hammer does simultaneously many sets of numbers that later they will average statistically. So that's called Walker, and we'll have 10 100 workers.
+
+113
+00:16:54.800 --> 00:17:10.759
+Zeljko Ivezic: And then when you are developing, so it's always good habits to say to set random seed. So when you generate random numbers, when you run the same code. Later you'll get exactly the same results. So it is pseudo random number that you control.
+
+114
+00:17:11.230 --> 00:17:21.490
+Zeljko Ivezic: and then you have to set some starting guesses for your 3 parameters. So what did I do in here? I said. Set everything to point 1
+
+115
+00:17:22.369 --> 00:17:28.459
+Zeljko Ivezic: oh, actually between 0 and point one generates some random values that's not critical.
+
+116
+00:17:29.220 --> 00:17:30.930
+Zeljko Ivezic: And then I take
+
+117
+00:17:32.990 --> 00:17:46.300
+Zeljko Ivezic: I take no. What did I do in here? I don't know what it. Oh, no! I just generated something of the correct dimensionality in a stupid way that there is cleaner way to do it. And then I go through this loo of free parameters.
+
+118
+00:17:46.530 --> 00:17:58.269
+Zeljko Ivezic: and I, my starting guess is exactly half of the allowed internal. So that's all. Now, pre setup. And now they call the workforce. So we import them. See.
+
+119
+00:17:59.560 --> 00:18:05.930
+Zeljko Ivezic: we tell it. You remember we talked about burn in for those chains. Once you start walking around the mountain.
+
+120
+00:18:06.280 --> 00:18:24.729
+Zeljko Ivezic: the initial steps will depend on where we started. It won't be the same if we started in. But you're starting going to meditation. So you you don't want to depend on starting point you want at the end to your number for your numbers to truly
+
+121
+00:18:24.890 --> 00:18:40.999
+Zeljko Ivezic: describe the shape without any memory of the initial steps, without any impact of where you started when you start declining. And so this first part of the chain is from away. It's called burning. It's basically number of steps to get to steady state.
+
+122
+00:18:41.340 --> 00:18:47.319
+Zeljko Ivezic: And so in practice the methods where you can estimate how many of these
+
+123
+00:18:47.420 --> 00:18:52.819
+Zeljko Ivezic: these burning steps you need. But in practice everybody takes a few 1,000, and you have done it.
+
+124
+00:18:53.020 --> 00:19:03.570
+Zeljko Ivezic: If you had computer from 20 years ago, then you would think hard about, do I really need 5,000? Maybe I can get away with 2,000, because the whole run will take a week.
+
+125
+00:19:04.130 --> 00:19:16.879
+Zeljko Ivezic: But today computers are so fast that in most practical problems you just don't care. You just go conservatively put bigger number same with number of steps. So now I'm asking for 20,000 numbers.
+
+126
+00:19:17.350 --> 00:19:19.970
+Zeljko Ivezic: and 5,000 of them will be thrown away.
+
+127
+00:19:20.450 --> 00:19:29.720
+Zeljko Ivezic: And this is the magic. This is where the magic happens. So this line. I will not execute it here, because it takes about 5 min to generate that
+
+128
+00:19:29.860 --> 00:19:35.479
+Zeljko Ivezic: this is the call to Mc. That returns that matrix of numbers.
+
+129
+00:19:36.420 --> 00:19:46.379
+Zeljko Ivezic: So if you run it at home, then this time what it say, okay, on my computer, it went in 1 min and 25 s. Okay, so I may. I probably put
+
+130
+00:19:47.110 --> 00:19:54.570
+Zeljko Ivezic: lower number of steps in the originally I recall it was fairly long. 10 min or so. Maybe it was a hundred 1,000 steps. So you call this.
+
+131
+00:19:54.990 --> 00:19:59.930
+Zeljko Ivezic: And your sampler is now a structure data structure
+
+132
+00:20:00.300 --> 00:20:05.939
+Zeljko Ivezic: where you can now access the numbers. And so this trace
+
+133
+00:20:06.800 --> 00:20:18.279
+Zeljko Ivezic: is set is this set of numbers that we get from that sampler. This is the the magic incantation. and once we have these numbers, these traces
+
+134
+00:20:18.640 --> 00:20:22.299
+Zeljko Ivezic: in 7 dimensions. Now we can do any statistics we want.
+
+135
+00:20:22.890 --> 00:20:25.910
+Zeljko Ivezic: And so in particular, this loop says.
+
+136
+00:20:27.350 --> 00:20:35.359
+Zeljko Ivezic: get my estimate of the best fit parameter is Median. See you, I'm calling Median in here.
+
+137
+00:20:36.130 --> 00:20:48.199
+Zeljko Ivezic: I define. I'll show actually, first go to picture. This is picture of chains. It looks ugly because the visualization code is not perfect. But basically just look at these contours.
+
+138
+00:20:48.470 --> 00:20:56.209
+Zeljko Ivezic: That is where most of the values are. And this fluff around that is just numerical noise. You can ignore it.
+
+139
+00:20:56.440 --> 00:21:01.209
+Zeljko Ivezic: You can see that, for example, when you project. So this is your
+
+140
+00:21:02.190 --> 00:21:11.599
+Zeljko Ivezic: value. And so now I'm saying, if I look at this coordinated this free parameter, I will define my best fit as Median.
+
+141
+00:21:12.090 --> 00:21:16.220
+Zeljko Ivezic: and that's what I'm calling in here. But you can do any other
+
+142
+00:21:16.290 --> 00:21:24.639
+Zeljko Ivezic: statistics. Maybe you are interested in expectation value. Maybe you're interested in standard deviation. For example, here I'm calling standard deviation of that.
+
+143
+00:21:24.830 --> 00:21:26.869
+Zeljko Ivezic: So then I go through.
+
+144
+00:21:27.900 --> 00:21:38.860
+Zeljko Ivezic: I go through all 7 here, and the first value is true. Second, one is Median, so you can see that they are quite similar. I did find
+
+145
+00:21:40.230 --> 00:21:48.809
+Zeljko Ivezic: correct values. I won't get exactly the input, because there is numerical noise, and that's what's plotted in here. Let me see if I can make this bigger. There we go.
+
+146
+00:21:49.690 --> 00:21:52.659
+Zeljko Ivezic: So this is one of these parameters, this background.
+
+147
+00:21:52.890 --> 00:21:58.590
+Zeljko Ivezic: And so one, this is median. And then these 2 are determined, as some
+
+148
+00:21:58.610 --> 00:22:13.440
+Zeljko Ivezic: percentage side. is it in? Yeah, probably 68. So if you had Gaussian distribution, this would be mean plus minus sigma, these ones. But it's asymmetric. Last time someone asked after class. Excellent question.
+
+149
+00:22:13.490 --> 00:22:16.340
+Zeljko Ivezic: how do you? Numerically, now summarize this?
+
+150
+00:22:16.560 --> 00:22:26.719
+Zeljko Ivezic: And that's basically what's written on top. And in most science favors, you will find that some results say, X equals 10 plus minus 0 point 5.
+
+151
+00:22:27.200 --> 00:22:43.789
+Zeljko Ivezic: But here we have 2 numbers for plus minus, because we are not naive anymore in using just symmetric Gaussian posterior. Now we are getting the true distribution from Mcmc chain. So this is not a Gaussian. But this is what we can tell with our data.
+
+152
+00:22:47.580 --> 00:22:55.600
+Zeljko Ivezic: This is what we can tell with this given data set about about this free parameter. If we had a much larger dataset.
+
+153
+00:22:55.860 --> 00:22:59.540
+Zeljko Ivezic: then this distribution would more.
+
+154
+00:22:59.560 --> 00:23:17.980
+Zeljko Ivezic: we would asymptotically get to Gaussian distribution. And then we could use our analytic approximations. But with this size data set, we cannot. And that's why there are 2 error estimates. So B. Not if you now publish paper about this, you would say, our posterior probability. Distribution is shown in this figure
+
+155
+00:23:18.370 --> 00:23:45.430
+Zeljko Ivezic: and view report be not as 10.0 5, but with as symmetric error bars. So plus no point 11 minus point 0 6. That's the standard for the reporting these. So if you now take 10.0 5 minus 3, those 6, and go to 10.0 5 plus point 1160 of the area under the curve will be enclosed by these 2 numbers.
+
+156
+00:23:48.200 --> 00:23:50.019
+Zeljko Ivezic: All right. Where did this stuff?
+
+157
+00:23:52.360 --> 00:24:05.010
+Zeljko Ivezic: And now you can do other statistics. For example, I can ask what is not just my media, and I can ask, What's the minimum value of the one? What is maximum value, etc., etc. So you can play with this
+
+158
+00:24:05.410 --> 00:24:13.669
+Zeljko Ivezic: later corner I think we already use. That's a little piece of python that plots these multi-dimensional chains.
+
+159
+00:24:13.730 --> 00:24:15.990
+Zeljko Ivezic: So this plot below was
+
+160
+00:24:16.190 --> 00:24:20.259
+Zeljko Ivezic: plotted by giving it these values from Mc.
+
+161
+00:24:20.390 --> 00:24:31.919
+Zeljko Ivezic: He then then you tell it what is true. If you want to put through it. and then you tell it. Okay. So now I remember, this is where I defined what I want to plot. So it is
+
+162
+00:24:32.000 --> 00:24:43.640
+Zeljko Ivezic: 68. So point 16 missing on this side and point 16. This is cumulative distribution. So this is where I define these numbers. They truly correspond to, plus minus sigma.
+
+163
+00:24:44.390 --> 00:24:45.730
+Zeljko Ivezic: Let me see.
+
+164
+00:24:49.190 --> 00:24:57.999
+Zeljko Ivezic: and that's what you get out of corner plot. Now, there are some better implementations of corner plot where this fluff around is not so
+
+165
+00:24:58.460 --> 00:25:10.720
+Zeljko Ivezic: visible. But for for exercise. It's good enough. If I had to publish this figure in a paper I would work a little bit more on cleaning it up or running longer, or he
+
+166
+00:25:10.780 --> 00:25:16.390
+Zeljko Ivezic: something along those lines. Okay. So now we, we got our 7 parameters
+
+167
+00:25:16.690 --> 00:25:19.730
+Zeljko Ivezic: from the data set. So now we can see.
+
+168
+00:25:19.780 --> 00:25:23.269
+Zeljko Ivezic: do they describe what we put in.
+
+169
+00:25:23.770 --> 00:25:34.260
+Zeljko Ivezic: And so now the red line again is the truth. I believe. right through red. Yes, red line is true, and the blue line is our best fit.
+
+170
+00:25:34.980 --> 00:25:46.219
+Zeljko Ivezic: So, using Mcmc, we manage to get the properties of those 2 Ps. Their location and their speed of decay.
+
+171
+00:25:46.640 --> 00:25:51.830
+Zeljko Ivezic: But we said, we have to. What if we didn't know that there are 2?
+
+172
+00:25:52.400 --> 00:26:10.050
+Zeljko Ivezic: So if and also here, it's obvious to the I that there are 2, because there is a lot of signal to noise, but in practice one of those 2 could be almost with barely visible about the background. So you you want to have statistical tool that you'll go there and say, Is there one or 2?
+
+173
+00:26:10.230 --> 00:26:11.949
+Zeljko Ivezic: So that's what we want to do.
+
+174
+00:26:15.120 --> 00:26:19.710
+Zeljko Ivezic: So we will here compute
+
+175
+00:26:20.360 --> 00:26:26.220
+Zeljko Ivezic: by using an information criterion by explicitly calculating guys square
+
+176
+00:26:26.410 --> 00:26:31.919
+Zeljko Ivezic: and by adding a penalty for complexity of the model.
+
+177
+00:26:32.040 --> 00:26:46.459
+Zeljko Ivezic: So this is the formula, so Chi Square is standard for your formula. As always, it's theta minus model, normalized by error, bars squared and some. And this is the Bayesian magic that tells you how exactly to penalize that model.
+
+178
+00:26:46.620 --> 00:26:56.700
+Zeljko Ivezic: So we are not just comparing Price square of 2 models, but we are also penalizing the more complex model proportionally to its number of 3 parameters.
+
+179
+00:26:56.720 --> 00:27:08.749
+Zeljko Ivezic: And again, if we have 2, first, we have 7, 3 parameters, and if we have one first, we have 4 and 3 parameters. So 2 births model will be penalized more heavily.
+
+180
+00:27:09.200 --> 00:27:16.499
+Zeljko Ivezic: And so it has to show much better description of the data in order to win, because it starts with a penalty.
+
+181
+00:27:17.780 --> 00:27:22.240
+Zeljko Ivezic: So we already did 2 first models. So now this is just a
+
+182
+00:27:23.540 --> 00:27:32.820
+Zeljko Ivezic: implementation of single bursts model. So the only thing we need to change is to change what is one model. So it's from one model double to one model single.
+
+183
+00:27:33.210 --> 00:27:40.440
+Zeljko Ivezic: And then your priors are now, for your free parameters are now 4 dimensional, not 7 dimensional.
+
+184
+00:27:41.640 --> 00:27:48.359
+Zeljko Ivezic: And so we will call it again. So this is the major client. So we are solving
+
+185
+00:27:48.580 --> 00:27:56.980
+Zeljko Ivezic: the same problem with the same data set. But we are assuming a different model that has only one birth.
+
+186
+00:27:57.920 --> 00:27:59.659
+Zeljko Ivezic: And so then
+
+187
+00:28:00.740 --> 00:28:04.619
+Zeljko Ivezic: we get some values out. Obviously we cannot have 2
+
+188
+00:28:05.220 --> 00:28:11.049
+Zeljko Ivezic: first. So the blue line now is different. The blue line.
+
+189
+00:28:11.090 --> 00:28:16.229
+Zeljko Ivezic: this fairly good description of one person. but the other person is missing.
+
+190
+00:28:17.930 --> 00:28:29.390
+Zeljko Ivezic: because this model cannot describe to burst. You can only describe one, and because there are more data points around the first first, then it converge to that one verse.
+
+191
+00:28:29.400 --> 00:28:34.390
+Zeljko Ivezic: So now in practice. You're looking at this data set. And you're asking yourself
+
+192
+00:28:35.270 --> 00:28:48.499
+Zeljko Ivezic: as soon as the second burst is slightly smaller. So it's not obvious from the airplane that it's there. So you're now thinking I might have discovered this boson. Or maybe it's just a noisy data. And if I claim there is a
+
+193
+00:28:48.800 --> 00:29:02.960
+Zeljko Ivezic: pick, and eventually with more data that pick disappears. Then I feel like an idiot. So you don't want to make arbitrary statements. You want to have statistical approach to it. And that's exactly what B. I, C tells us.
+
+194
+00:29:03.440 --> 00:29:05.229
+Zeljko Ivezic: So here are the results.
+
+195
+00:29:06.410 --> 00:29:09.510
+Zeljko Ivezic: So for the single first model.
+
+196
+00:29:10.530 --> 00:29:13.100
+Zeljko Ivezic: we have much higher price for you.
+
+197
+00:29:13.310 --> 00:29:15.030
+Zeljko Ivezic: then for double
+
+198
+00:29:15.480 --> 00:29:25.020
+Zeljko Ivezic: double first model is more entirely animals, because it has 7 parameters. But even with that penalty it's B. I, C is still over
+
+199
+00:29:25.740 --> 00:29:27.419
+Zeljko Ivezic: so double.
+
+200
+00:29:28.010 --> 00:29:39.260
+Zeljko Ivezic: Of course, in this case it's easy to tell by your but in general, when it's tricky, then this is the approach that that one should follow.
+
+201
+00:29:39.700 --> 00:29:42.040
+Zeljko Ivezic: So let me now stop here for a second.
+
+202
+00:29:44.220 --> 00:29:46.729
+Zeljko Ivezic: Does that make any sense? Did I miss something?
+
+203
+00:29:48.060 --> 00:29:50.719
+Zeljko Ivezic: You think you could do that for homework when you came home.
+
+204
+00:29:51.360 --> 00:29:57.219
+Zeljko Ivezic: If I said, Use Gaussians, generate your own simulation and try up to 5
+
+205
+00:29:57.690 --> 00:30:04.030
+Zeljko Ivezic: because of something you feel like. This code is simple enough that you to modify it for your needs.
+
+206
+00:30:07.490 --> 00:30:12.020
+Zeljko Ivezic: Okay. so now for completeness.
+
+207
+00:30:13.580 --> 00:30:21.290
+Zeljko Ivezic: let me mention another method that people often use, especially in computer science. So
+
+208
+00:30:22.500 --> 00:30:24.940
+Zeljko Ivezic: back to that polynomial problem.
+
+209
+00:30:25.570 --> 00:30:30.640
+Zeljko Ivezic: Is there another way to decide what is the optimal
+
+210
+00:30:31.110 --> 00:30:39.650
+Zeljko Ivezic: order of your polynomial for data? Of course it generalizes to to any problem. But because we already did polynomials. Let's go back to that example.
+
+211
+00:30:40.450 --> 00:30:51.669
+Zeljko Ivezic: Do you need to? You have to use the IC or or full by as a consultation or not. Actually, the answer is, you don't have to. There is a proximate method called cross-volidation
+
+212
+00:30:52.060 --> 00:30:54.660
+Zeljko Ivezic: that was developed by computer scientists.
+
+213
+00:30:54.870 --> 00:31:05.729
+Zeljko Ivezic: It makes sense. When you, when you look at it, but it's not as sound theoretically as full by Asian approach, but it works empirically. So what is this?
+
+214
+00:31:05.770 --> 00:31:11.979
+Zeljko Ivezic: So I take my polynomial, and I fit it. And here you can see that
+
+215
+00:31:13.970 --> 00:31:28.110
+Zeljko Ivezic: with the second order I'm not describing my data points it third order. I'm happy. But then, how do I know that I shouldn't go to any higher orders? And how should I automatically know that d equals 2 is not good enough without
+
+216
+00:31:28.170 --> 00:31:39.690
+Zeljko Ivezic: wanting things, or or in complicated. complicated cases. So there is very simple and ingenious method which says. Take a fraction of your data points
+
+217
+00:31:40.440 --> 00:31:42.459
+Zeljko Ivezic: and don't use them for fitting.
+
+218
+00:31:43.530 --> 00:31:50.879
+Zeljko Ivezic: So I like, if you have 100 data points, use 80 for fitting and take 20 or testing after you have best fit.
+
+219
+00:31:52.440 --> 00:32:02.089
+Zeljko Ivezic: That's called cross validation. So you have validation, sample, and then you evaluate your best fit. And then you ask, How well does it fit
+
+220
+00:32:02.500 --> 00:32:07.489
+Zeljko Ivezic: those 20 validation points? You look at model minus data, is it?
+
+221
+00:32:07.630 --> 00:32:10.239
+Zeljko Ivezic: If your model is too simple.
+
+222
+00:32:11.680 --> 00:32:25.180
+Zeljko Ivezic: then you will have large bias, meaning that distribution will be significant. The way from 0. So if you look at D equal. 2. If you now imagine that every other point is validation point.
+
+223
+00:32:25.400 --> 00:32:36.680
+Zeljko Ivezic: you can see that many of these points have model that is far away from them. So your bias in the sample would be large. Now, if you go to the 19, for example.
+
+224
+00:32:36.950 --> 00:32:42.740
+Zeljko Ivezic: that's such a high order that it goes literally through every data point.
+
+225
+00:32:42.970 --> 00:32:44.340
+Zeljko Ivezic: So
+
+226
+00:32:44.410 --> 00:33:01.680
+Zeljko Ivezic: here you will get large, scatter away. Although bias is small. When you take validation sample, you can get. You mentioned that there was data point where it is polynomial went far, far away. If there was validation point there you would see it as huge schedule.
+
+227
+00:33:02.060 --> 00:33:05.379
+Zeljko Ivezic: So the advantage of cross- validation method is
+
+228
+00:33:05.860 --> 00:33:13.200
+Zeljko Ivezic: that it's extremely easy to implement, even in the most complicated cases, in the most complex models.
+
+229
+00:33:14.330 --> 00:33:22.950
+Zeljko Ivezic: You just state fraction of the sample, typically 2030% of data points. And you use that for validation as you know how well you are doing.
+
+230
+00:33:23.170 --> 00:33:34.049
+Zeljko Ivezic: So you could get the same result from by Asian approach. But sometimes, when you have many variables, and it's complicated to do numerical integration that you need to do it
+
+231
+00:33:34.050 --> 00:33:56.579
+Zeljko Ivezic: with base approach, or when when it's expensive, to get M. Cmc. Chains. But just model evaluation is complicated. For example, if you're looking at galaxy distribution on the sky. You want to look at their statistics of their distribution, then you need to run a full simulation of galaxy, plus their formation, etcetera, things that can take months. And so the computers.
+
+232
+00:33:56.630 --> 00:34:01.459
+Zeljko Ivezic: not these simple functions that we have here for birth, but actually, each
+
+233
+00:34:01.560 --> 00:34:12.459
+Zeljko Ivezic: evaluation in your Mcmc chain takes months, then you cannot have chain of 10,000 points. So that's hard. In that case you can still get away by using cross- validation method.
+
+234
+00:34:12.639 --> 00:34:15.549
+Zeljko Ivezic: because it's so simple and
+
+235
+00:34:15.639 --> 00:34:20.240
+Zeljko Ivezic: easily implementable. So that's another way to test what you did.
+
+236
+00:34:20.830 --> 00:34:27.580
+Zeljko Ivezic: And this is basically what what I said in words.
+
+237
+00:34:27.600 --> 00:34:29.839
+Zeljko Ivezic: So the the top panel.
+
+238
+00:34:30.290 --> 00:34:33.280
+Zeljko Ivezic: So this example of F in the polynomial.
+
+239
+00:34:33.350 --> 00:34:42.340
+Zeljko Ivezic: and then on the y-axis, it shows rms, root, mean square error, or scatter of that model of given degree.
+
+240
+00:34:42.429 --> 00:34:47.599
+Zeljko Ivezic: And so at the beginning, the solid line goes down. It's our training sample.
+
+241
+00:34:47.639 --> 00:34:53.940
+Zeljko Ivezic: I think of it as 80% of all data points. And then I took away 20
+
+242
+00:34:54.290 --> 00:35:08.270
+Zeljko Ivezic: percent of data points. I use them for cross-colidation. And so now for both of them. Rms, goes down as I increase the order of the polynomial. and then at some point for the training sample.
+
+243
+00:35:08.350 --> 00:35:24.499
+Zeljko Ivezic: I am fitting it perfectly well, and any additional polynomial, or there will not too much good. I'm already fitting it as well as it can be done. But for cross-solidation, sample the dash line at some point, starts going up.
+
+244
+00:35:25.230 --> 00:35:41.510
+Zeljko Ivezic: and that's over fitting. That's the example that they had in here that this polynomial can go widely away from data points that you use to fit. So if you had validation point here you would immediately see huge schedule. And so that's what's happening in the top panel. So
+
+245
+00:35:41.820 --> 00:35:46.669
+Zeljko Ivezic: order of the polynomial. When my cross validation starts going crazy.
+
+246
+00:35:46.780 --> 00:35:54.199
+Zeljko Ivezic: 5. It was it? 6, 6. So they are. I know I shouldn't go to my owners. So from Trust Foundation, I would say
+
+247
+00:35:54.520 --> 00:36:00.500
+Zeljko Ivezic: third, fourth, fifth, maybe sixth order. Polynomial is the best. and the bottom.
+
+248
+00:36:00.760 --> 00:36:07.870
+Zeljko Ivezic: The bottom panel shows the same thing. But instead of Rms error, it shows why you see an information criterion
+
+249
+00:36:07.900 --> 00:36:16.789
+Zeljko Ivezic: they are. You don't need cross-colidation, you know already, from the training sample. What's the best polynomial order that you need order 3.
+
+250
+00:36:16.820 --> 00:36:21.099
+Zeljko Ivezic: But in it. That's similar. First, to go down until you reach
+
+251
+00:36:21.430 --> 00:36:37.310
+Zeljko Ivezic: the level of fitting. That is good. And then something needs to tell you. Stop, don't go there that's too complicated in Bayesian approach. You have the penalty that is proportional to the number of free parameters in cross- validation. It comes out like that
+
+252
+00:36:37.340 --> 00:36:46.290
+Zeljko Ivezic: just starts going up because you are over fitting your data set and your training sample tells you you are over fitting.
+
+253
+00:36:46.540 --> 00:36:49.710
+Zeljko Ivezic: So that's also a powerful method to to use.
+
+254
+00:36:52.440 --> 00:36:58.260
+Zeljko Ivezic: And the last topic I want to cover in this lecture is
+
+255
+00:36:58.500 --> 00:37:03.299
+Zeljko Ivezic: how to do histograms, how to do optimal instagram.
+
+256
+00:37:03.840 --> 00:37:08.530
+Zeljko Ivezic: So with histograms. we take our data
+
+257
+00:37:08.560 --> 00:37:20.399
+Zeljko Ivezic: is this visible, not perfect? But we take our data, which is shown here as good Instagram, and then we've done it. And then we calculate. This is very
+
+258
+00:37:20.670 --> 00:37:39.259
+Zeljko Ivezic: if we calculate heights in each bin, and then from the square root of the number of data points in that we calculate uncertainty. and then by saying, histogram, what we usually need is that we have actually distant in positions.
+
+259
+00:37:39.860 --> 00:37:46.129
+Zeljko Ivezic: Now, if your data set is not very large, they are exactly. You place your bins
+
+260
+00:37:46.240 --> 00:37:49.189
+Zeljko Ivezic: so you can shift them left and right by 1 min.
+
+261
+00:37:51.250 --> 00:37:57.669
+Zeljko Ivezic: Your result can depend on where exactly you put it. I won't go there. It happens only for very small data sets.
+
+262
+00:37:57.860 --> 00:38:02.529
+Zeljko Ivezic: but then you also need to know what's been with. You will choose.
+
+263
+00:38:02.920 --> 00:38:12.609
+Zeljko Ivezic: So how do you choose that then with is also a little bit of the application of by using a statistics in an optimal sense.
+
+264
+00:38:13.080 --> 00:38:25.040
+Zeljko Ivezic: So the stupidest thing you can do is it's just to say an equal standard. I want 10 min sounds funny, but that's how it works in excel spreadsheet. That's the default. But it itself
+
+265
+00:38:25.680 --> 00:38:30.699
+Zeljko Ivezic: in the reality. You want to have something that depends on your data
+
+266
+00:38:30.880 --> 00:38:43.290
+Zeljko Ivezic: set size, not if you have many, many, many data points, then of course, we can make smaller and smaller events to cover lots of structure. If you have only 10 data points, you can't have many bills.
+
+267
+00:38:43.550 --> 00:38:49.829
+Zeljko Ivezic: And so there are different ways of computing this, and from the Bayesian point of view
+
+268
+00:38:50.030 --> 00:38:56.580
+Zeljko Ivezic: the there is one answer, and then the answer is called, not histogram after not, or
+
+269
+00:38:57.790 --> 00:39:05.599
+Zeljko Ivezic: of what's his first name, I forget. he is a physicist from from New York. so you can call
+
+270
+00:39:06.100 --> 00:39:10.739
+Zeljko Ivezic: Astral Ml. To there, is it? Now here plot times if I'm hang on a second.
+
+271
+00:39:10.890 --> 00:39:14.339
+Zeljko Ivezic: There we go. So there is
+
+272
+00:39:14.380 --> 00:39:29.180
+Zeljko Ivezic: fancy histogram. That's what Jake Fender, plus Covid who who wrote the code in. So that's already implemented for you. The standard methods like this Friedman D upon his, and and not histogram, is there too, and it's easy to use it.
+
+273
+00:39:29.470 --> 00:39:36.469
+Zeljko Ivezic: So instead of calling histogram you call fancy histogram from astronaut, and then
+
+274
+00:39:38.450 --> 00:39:39.800
+Zeljko Ivezic: and then
+
+275
+00:39:41.150 --> 00:39:44.949
+Zeljko Ivezic: what? None name that the name disappear
+
+276
+00:39:49.370 --> 00:39:53.810
+Zeljko Ivezic:  Maybe I deleted an intention or something.
+
+277
+00:39:55.010 --> 00:39:59.929
+Zeljko Ivezic: This makes no sense. Fancy histogram needs to take a name of
+
+278
+00:40:00.740 --> 00:40:03.820
+Zeljko Ivezic: what? Oh, I'm being blind histogram time.
+
+279
+00:40:03.970 --> 00:40:08.049
+Zeljko Ivezic: That's where no hang on a second
+
+280
+00:40:09.910 --> 00:40:12.490
+Zeljko Ivezic: fancy histogram. Friedman
+
+281
+00:40:13.590 --> 00:40:18.410
+Zeljko Ivezic: style. Okay, then it is
+
+282
+00:40:19.820 --> 00:40:24.829
+Zeljko Ivezic: pins. Oh, here, Vince Econ style, this is where you define what kind of histogram you want.
+
+283
+00:40:25.020 --> 00:40:37.090
+Zeljko Ivezic: And so in particular, here we are calling standard computer science methods. Both. Friedman Jacon is just to demonstrate the method that method works. If you have unit model distributions.
+
+284
+00:40:37.190 --> 00:40:44.509
+Zeljko Ivezic: If you now have by model distribution, or even more complicated structure. That method sometimes can give you crazy results.
+
+285
+00:40:44.820 --> 00:40:48.920
+Zeljko Ivezic: So especially if you have no Gaussian distributions like here, too.
+
+286
+00:40:49.780 --> 00:40:59.570
+Zeljko Ivezic: So if you did standard method to get your bin with optimal been made for such distribution as shown in here, you would not get the optimal answer.
+
+287
+00:40:59.750 --> 00:41:07.400
+Zeljko Ivezic: Sometimes when you have huge data set, you just don't care if you have huge data sets, then you're not very sensitive to the statistical
+
+288
+00:41:07.710 --> 00:41:19.159
+Zeljko Ivezic: except systematics and so on. But if you don't, then you need to do what's optimal. And so in this case it's this, not histogram that you simply specify
+
+289
+00:41:19.280 --> 00:41:28.090
+Zeljko Ivezic: this keyboard, and it will do full Bayesian model optimization to give you the optimal bin size.
+
+290
+00:41:29.400 --> 00:41:41.749
+Zeljko Ivezic: So that's recommended method for histograms. Whenever you want to do histogram in the future. Remember that. Call offensive histogram from us to Ml, and you will get statistically optimal. Answer
+
+291
+00:41:42.010 --> 00:41:47.230
+Zeljko Ivezic: the answer you cannot beat statistically. That's the answer. Now.
+
+292
+00:41:47.680 --> 00:41:53.690
+Zeljko Ivezic: that will be the result. Under the assumption that you won't constant deal with.
+
+293
+00:41:54.750 --> 00:42:02.449
+Zeljko Ivezic: If you are willing to make that sacrifice and say all my bins have the same with, then this is your answer.
+
+294
+00:42:02.970 --> 00:42:10.480
+Zeljko Ivezic: but sometimes in practice we don't want. and you can ask why. And so let me first show you a plot.
+
+295
+00:42:11.910 --> 00:42:13.730
+Zeljko Ivezic: So in the top panel
+
+296
+00:42:14.420 --> 00:42:18.300
+Zeljko Ivezic: you can see this little mark on X-axis.
+
+297
+00:42:18.550 --> 00:42:22.120
+Zeljko Ivezic: These are data values. They might
+
+298
+00:42:22.250 --> 00:42:24.730
+Zeljko Ivezic: where we generated the sample.
+
+299
+00:42:24.920 --> 00:42:28.149
+Zeljko Ivezic: and there are more of them faster than this size
+
+300
+00:42:28.230 --> 00:42:38.680
+Zeljko Ivezic: side with on the other side. That's because they were generated from this like line I made artificial.
+
+301
+00:42:38.690 --> 00:42:43.790
+Zeljko Ivezic: That has 2
+
+302
+00:42:44.160 --> 00:42:47.059
+Zeljko Ivezic: that quickly. It's generated above.
+
+303
+00:42:49.040 --> 00:42:56.000
+Zeljko Ivezic: These are free parameters. It's some in no, it's all cushy distribution. So it's not even Gaussian.
+
+304
+00:42:57.170 --> 00:43:08.329
+Zeljko Ivezic: So this sum of 4 by plans for. And then I generate my data points. And of course, I have more data points from where the distributions are.
+
+305
+00:43:08.510 --> 00:43:14.290
+Zeljko Ivezic: and in particular, on the top panel that should be number 100, I believe. Yeah, 100 points.
+
+306
+00:43:17.480 --> 00:43:27.189
+Zeljko Ivezic: So I give you this 100 numbers, and they then ask you, what do you think is the best description of number one.
+
+307
+00:43:28.540 --> 00:43:36.760
+Zeljko Ivezic: And so with that many points you can say I, and
+
+308
+00:43:37.330 --> 00:43:39.430
+Zeljko Ivezic: just village, and what?
+
+309
+00:43:39.490 --> 00:43:47.100
+Zeljko Ivezic: And the question is, how many things you want. So sometimes you can be eager for structure. You can have 2 benefits.
+
+310
+00:43:47.310 --> 00:43:53.270
+Zeljko Ivezic: But as we just learned not his background is, he answered, and as the the brown.
+
+311
+00:43:53.310 --> 00:43:56.810
+Zeljko Ivezic: There's the open up statistical restriction
+
+312
+00:43:56.830 --> 00:44:02.280
+Zeljko Ivezic: of those points on X.
+
+313
+00:44:03.390 --> 00:44:11.430
+Zeljko Ivezic: But we are assuming constant bandwidth is not the best thing we can do. And the reason is that your data points are very clever.
+
+314
+00:44:12.940 --> 00:44:26.159
+Zeljko Ivezic: So if you go back to the beginning of Instagram discussion, I said, when you have a bin. You put data points, and then that's the height of histogram. And then the uncertainty is square root of end. It's for some statistics.
+
+315
+00:44:26.420 --> 00:44:33.389
+Zeljko Ivezic: For that reason. The fact that your uncertainty goes with square root of the number of points you want
+
+316
+00:44:33.650 --> 00:44:46.339
+Zeljko Ivezic: histogram with David to be dependent on the density of points, because when you have lots of data points, you have lots of statistical information, you can afford narrow evidence.
+
+317
+00:44:46.420 --> 00:44:51.099
+Zeljko Ivezic: And if you go to the details of the distribution where you don't add
+
+318
+00:44:51.140 --> 00:44:54.800
+Zeljko Ivezic: many data points, then you want a wider payment.
+
+319
+00:44:55.980 --> 00:45:14.259
+Zeljko Ivezic: And so now there is this method called by aes and blocks that that's almost identical thing model optimization like, not histogram. But now it the schools that you can have arbitrary invent. So basically what it says is, I will put bandwidth at some number of locations
+
+320
+00:45:15.280 --> 00:45:30.769
+Zeljko Ivezic: and some number, and then you solve for the best feature for those locations using by Asian model comparison. It is, if you look at the original paper, there are, you derive this formula. It's like 3 pages of long formula.
+
+321
+00:45:30.810 --> 00:45:47.040
+Zeljko Ivezic: And also you need to do some special tricks in in when solving it. But it's now all implemented, and this best possible method, from the Bayesian point of view, is now available to you for for use like in this example. What we did was simply to say.
+
+322
+00:45:48.480 --> 00:45:52.280
+Zeljko Ivezic: do the call histogram code instead of notes? Just say blocks
+
+323
+00:45:52.500 --> 00:45:56.290
+Zeljko Ivezic: as easy as that, and it's a powerful method.
+
+324
+00:45:56.740 --> 00:46:06.619
+Zeljko Ivezic: This is not just matter of do I hope my sister can come with you or not? That's again, how much information you can extract from your later set.
+
+325
+00:46:06.930 --> 00:46:16.729
+Zeljko Ivezic: and so now compare from there the bottom of the bottom panel and the middle panel. So here we have
+
+326
+00:46:17.060 --> 00:46:21.029
+Zeljko Ivezic: brown piece of the ground doesn't know, for the middle of
+
+327
+00:46:21.320 --> 00:46:29.739
+Zeljko Ivezic: round. Instagram did not recognize it up there. It's too wide here to brown. Histogram did not recognize this bill of.
+
+328
+00:46:30.140 --> 00:46:34.989
+Zeljko Ivezic: But when you do it, you know, statistically
+
+329
+00:46:35.880 --> 00:46:52.019
+Zeljko Ivezic: in the top panel by Asian blocks didn't do much better because it's more data sample. But now we larger data sample. There is a size of data sample where you will pick the middle pick with the red histogram with Bayesian blocks. You will discover it's 30,
+
+330
+00:46:52.630 --> 00:46:56.870
+Zeljko Ivezic: we standard classical.
+
+331
+00:46:57.530 --> 00:47:01.560
+Zeljko Ivezic: And why is that important? It's important, because this could be on local pricing
+
+332
+00:47:01.660 --> 00:47:10.620
+Zeljko Ivezic: physics or biology or chemistry, or whatever it is, discovery of some information in our data that we get by using optimal methods
+
+333
+00:47:10.950 --> 00:47:14.220
+Zeljko Ivezic: as opposed to non-optimal methods.
+
+334
+00:47:14.620 --> 00:47:16.929
+Zeljko Ivezic: So if your data set is small.
+
+335
+00:47:17.480 --> 00:47:20.590
+Zeljko Ivezic: whatever you do will not be powerful.
+
+336
+00:47:20.800 --> 00:47:30.520
+Zeljko Ivezic: If your data set is super large, then you can get away it simple methods. But between those 2 extremes, very often in practice there is a data set size
+
+337
+00:47:30.630 --> 00:47:39.440
+Zeljko Ivezic: where, with modern optic mount methods, you can discover more in your data than if you're using just classical standard methods.
+
+338
+00:47:40.160 --> 00:47:48.640
+Zeljko Ivezic: So from now on. Whenever you do histogram, remember our lectures and then run these 2 pieces of code and see what you get.
+
+339
+00:47:48.770 --> 00:47:51.930
+Zeljko Ivezic: That's easy to use, because you just need to install a.
+
+340
+00:47:57.490 --> 00:48:07.919
+Zeljko Ivezic: So I'm stopping earlier today because of some other obligations. But we still have a few minutes for discussion of lecture today
+
+341
+00:48:08.230 --> 00:48:21.829
+Zeljko Ivezic: and or discussion of the whole series of. and I would like to get feedback from you about, how can I improve lecture so that the next time when we go through the next 6 lectures.
+
+342
+00:48:22.160 --> 00:48:26.549
+Zeljko Ivezic: it fits your needs and style, etc. More.
+
+343
+00:48:27.150 --> 00:48:38.510
+Zeljko Ivezic: So we can discuss now what would be improved. Or you can send me private email and say, you know, the rolling class is that when you do this it could be approved, or
+
+344
+00:48:38.820 --> 00:48:43.060
+Zeljko Ivezic: what kind of. So I open more for discussion.
+
+345
+00:48:43.730 --> 00:48:47.279
+Zeljko Ivezic: questions about lecture, about all 6 lectures or
+
+346
+00:48:47.540 --> 00:48:49.349
+Zeljko Ivezic: so.
+
+347
+00:48:51.490 --> 00:48:56.750
+Zeljko Ivezic: See, I originally expected maybe 10 people, 15 people.
+
+348
+00:48:56.870 --> 00:49:04.269
+Zeljko Ivezic: that I would be able to work individually with everyone, and even give some little projects to people, and so on.
+
+349
+00:49:04.510 --> 00:49:13.210
+Zeljko Ivezic: And then there was Ceasefield, and that was impossible to too many people. But I'm hoping that you tried at home to run this code.
+
+350
+00:49:13.640 --> 00:49:26.130
+Zeljko Ivezic: It's okay to come to class and listen. But unless you do your hands with your brain, unless you install the code, try to break it. Try to apply to some research problem that you may have for homework or for your
+
+351
+00:49:26.460 --> 00:49:36.829
+Zeljko Ivezic: thesis of various types. Try to use the code. That's how you learn. Otherwise it will be. Yeah. I remember us. It was bubbling about something 2 years ago, but I don't remember it.
+
+352
+00:49:37.030 --> 00:49:40.679
+Zeljko Ivezic: To get the knowledge, you really need to try it.
+
+353
+00:49:44.100 --> 00:49:45.310
+Zeljko Ivezic: Questions.
+
+354
+00:49:48.040 --> 00:49:49.660
+Zeljko Ivezic: I'll show the dance again.
+
+355
+00:49:53.220 --> 00:50:09.670
+Zeljko Ivezic: Okay, you're sorry. American students. They you are safe questions, they start stopping immediately. They are not that actually sometimes borderline and on  well, if there are no questions.
+
+356
+00:50:10.080 --> 00:50:19.079
+Zeljko Ivezic: and then again, please do send me, if you have to, for how to improve lectures. how to make them more useful for you.
+
+357
+00:50:19.150 --> 00:50:29.330
+Zeljko Ivezic: just send me. I will send email to everyone on the list about new dates. Roughly. By the end of October
+
+358
+00:50:30.080 --> 00:50:40.420
+Zeljko Ivezic: there will be another call for other people to join. Who wants? But if there is space limitation, then you will get advantage. So whoever it was taking the first half of plus, it's the
+
+359
+00:50:45.000 --> 00:50:50.700
+Zeljko Ivezic: well. Then thank you again for coming to class for being excellent students and for showing interest.
+
+360
+00:50:50.940 --> 00:50:55.559
+Zeljko Ivezic: It was fun going through this lectures, and I hope to see you sooner.
+
+361
+00:50:55.920 --> 00:50:56.990
+Zeljko Ivezic: Thank you.
+
+362
+00:51:05.080 --> 00:51:15.690
+Akshay Kumar Remeshan: It's a I think there is a question in the chat. Thank you, guys. And zoom, I'm logging off. There is a question in the chat
+
+363
+00:51:17.630 --> 00:51:29.849
+Zeljko Ivezic: bill. Increasing points work for node past 10,000. Yeah, it did. In the bottom panel. You can see that even the the simpler method is picking up the middle, that middle peak.
+
+364
+00:51:30.190 --> 00:51:39.799
+Zeljko Ivezic: So, as we said. If you have small data set, then no statistics will help you. If you have huge data sets, then often you don't even need statistics.
+
+365
+00:51:39.890 --> 00:51:44.639
+Zeljko Ivezic: But in the middle of those 2 extremes, like the bottom, like the middle panel.
+
+366
+00:51:44.680 --> 00:51:50.940
+Zeljko Ivezic: If you use better method, you can find more stuff than me. Non-optimal methodology.
+
+367
+00:51:52.230 --> 00:51:54.020
+Zeljko Ivezic: Does that answer your question?
+
+368
+00:51:55.170 --> 00:52:06.780
+Zeljko Ivezic: It's hard for me to hear. Because, okay, thanks, Damian. it's hard to here because of people. So I'm logging off. Thank you for coming on, zoom, and take care.
+
