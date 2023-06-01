@@ -34,18 +34,26 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - The role of priors in Bayesian Inference
 - A simple parameter estimation example
 - Nuisance parameters and marginalization
+
+[Zoom recording for Lecture 3](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture3/Lecture3_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 4, May 15, 2023: "Applications of Bayesian statistics and inference"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture4.ipynb)  
 - Simple parameter estimation examples
 - Bayesian model selection
 - Simple model selection examples
 - For overachievers: ABC and Hierarchical Bayes
+
+[Zoom recording for Lecture 4](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture4/Lecture4_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 5, May 22, 2023: "Introduction to Markov Chain Monte Carlo"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture5.ipynb)  
 - Introduction to MCMC
 - Non-linear Regression with MCMC
+
+[Zoom recording for Lecture 5](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture5/Lecture5_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 6, June 1, 2023: "Bayesian model selection with MCMC"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture6.ipynb) 
 - Model selection example: finding bursts in time series
 - Bayesian Blocks Algorithm
+
+[Zoom recording for Lecture 6](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture6/Lecture6_zoom.mp4)
 -----------------------------------------------------------------------------
