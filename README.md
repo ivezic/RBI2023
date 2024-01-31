@@ -61,5 +61,4 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Searching for Structure in 1-D Point Data
 - Gaussian Mixture Models
 - Extreme Deconvolution
-- Density Estimation for the SDSS "Great Wall" of galaxies
 -----------------------------------------------------------------------------
