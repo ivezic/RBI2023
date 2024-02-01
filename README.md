@@ -62,3 +62,10 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Gaussian Mixture Models
 - Extreme Deconvolution
 -----------------------------------------------------------------------------
+[ Lecture 8, February 8, 2024: "Clustering (Unsupervised Classification)"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture8.ipynb) 
+- Introduction to Clustering 
+- K-means clustering algorithm
+- Clustering with Gaussian Mixture models (GMM)
+- Hierarchical clustering algorithm
+-----------------------------------------------------------------------------
+
