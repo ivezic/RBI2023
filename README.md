@@ -61,6 +61,8 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Searching for Structure in 1-D Point Data
 - Gaussian Mixture Models
 - Extreme Deconvolution
+
+[ Zoom recording for Lecture 7](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture7/Lecture7_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 8, February 8, 2024: "Clustering (Unsupervised Classification)"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture8.ipynb) 
 - Introduction to Clustering 
