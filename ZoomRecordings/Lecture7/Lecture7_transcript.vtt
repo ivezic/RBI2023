@@ -1,0 +1,2070 @@
+WEBVTT
+
+1
+00:00:04.880 --> 00:00:05.860
+Zeljko Ivezic: Okay.
+
+2
+00:00:06.930 --> 00:00:17.990
+Zeljko Ivezic: So all the lectures are at the same website that we use last time, and the the remaining 6 lectures will be at the same place.
+
+3
+00:00:18.280 --> 00:00:26.260
+Zeljko Ivezic: Here is the link at the bottom of the first paragraph, where you can get new lectures for this week and for the remainder of the course.
+
+4
+00:00:26.740 --> 00:00:31.030
+Zeljko Ivezic: So I'll start today by
+
+5
+00:00:31.320 --> 00:00:41.719
+Zeljko Ivezic: a quick summary of what we will cover in these 6 lectures. So if you find it interesting, you can continue, if you already know that or you're not interested.
+
+6
+00:00:42.210 --> 00:00:43.529
+Zeljko Ivezic: you can skip.
+
+7
+00:00:43.650 --> 00:01:01.280
+Zeljko Ivezic: So machine learning has many different definitions, and so almost everyone defines it in different way. There are broad definitions. They are narrow definitions. Sometimes people include AI that requires its own artificial intelligence, its own definitions.
+
+8
+00:01:01.290 --> 00:01:04.340
+Zeljko Ivezic: So I thought it would be more practical, just full list
+
+9
+00:01:04.569 --> 00:01:13.130
+Zeljko Ivezic: topics that we will cover in these 6 lectures, and they cover pretty much everything that we do in machine learning.
+
+10
+00:01:14.020 --> 00:01:21.940
+Zeljko Ivezic: So one very basic curriculum for introduction to machine learning would include these 6 topics here.
+
+11
+00:01:21.960 --> 00:01:26.839
+Zeljko Ivezic: So density estimation, we'll talk more about it today. It's basically
+
+12
+00:01:26.900 --> 00:01:39.910
+Zeljko Ivezic: taking a point process of a multi-dimensional space with lots of points, and you want to derive continuum density distribution of those points that is not consistent with the data that you have at hand
+
+13
+00:01:40.150 --> 00:01:46.480
+Zeljko Ivezic: regression. We did little bit of it in the first part of the class. We are not going to go much deeper with that
+
+14
+00:01:46.790 --> 00:01:57.820
+Zeljko Ivezic: time series. Analysis is important in engineering and in, for example, astronomy, sometimes even in physics. In general.
+
+15
+00:01:57.930 --> 00:02:05.009
+Zeljko Ivezic: we are not going to talk much about it. You'll focus on the last 3 topics. So one is dimensionality reduction.
+
+16
+00:02:05.180 --> 00:02:09.070
+Zeljko Ivezic: So often when we want to do some machine learning, we want to
+
+17
+00:02:10.030 --> 00:02:17.709
+Zeljko Ivezic: classify something, we want to cluster the data you, you can have thousands of dimensions, and then it becomes.
+
+18
+00:02:18.520 --> 00:02:26.350
+Zeljko Ivezic: it becomes complicated to to quantify structure. But there are methods where we can show that the information
+
+19
+00:02:26.420 --> 00:02:40.379
+Zeljko Ivezic: content of such data set can be summarized in a much smaller number of parameters. The most famous method is principal components analysis, and those CPU applications. So that's one big topic in machine learning.
+
+20
+00:02:40.790 --> 00:02:54.779
+Zeljko Ivezic: Then, as the derivative of density estimation, we can also do clustering, basically, you have set of points. And you ask yourself, are these points in that multi-dimensional space of measurements
+
+21
+00:02:55.350 --> 00:03:07.699
+Zeljko Ivezic: randomly distributed? Or do these points show structure like multiple clouds points? And you want to teach your computer to find these clouds and quantify them.
+
+22
+00:03:07.880 --> 00:03:32.649
+Zeljko Ivezic: and then, once you have the clustering, then often you can also use it for classification. If it turns out that your data are not randomly distributed, but in some parameter space the form clusters. Often you identify each cluster with something physical. For example, in astronomy we can observe stars, galaxies, quasars, you measure something, and you get 4 clusters.
+
+23
+00:03:32.830 --> 00:03:34.970
+Zeljko Ivezic: And now you have a new measurement.
+
+24
+00:03:35.060 --> 00:03:45.479
+Zeljko Ivezic: and if you know what each cluster means, then new measurements will fall into one of these clusters, and then you know immediately that you observe a star or a galaxy, or something.
+
+25
+00:03:45.710 --> 00:03:53.799
+Zeljko Ivezic: The other example would be outliers. You have a new measurement. And that measurement is not consistent with any of those clusters.
+
+26
+00:03:54.130 --> 00:04:06.890
+Zeljko Ivezic: And typically, it's either some problem with your measurement apparatus, or often it is super interesting source, especially in astrophysics, and something is very, very different. You can learn a lot about
+
+27
+00:04:07.180 --> 00:04:08.680
+Zeljko Ivezic: underlying physics.
+
+28
+00:04:10.110 --> 00:04:17.280
+Zeljko Ivezic: of course, clusters themselves also do teach you something that outliers are also interesting. I ask once my wife.
+
+29
+00:04:17.550 --> 00:04:32.689
+Zeljko Ivezic: she's American, I said. Did you learn more about Croatia coming to Croatia, meeting many people, and you know, than superficially, or did you learn more from about Croatia from me? Because you have your husband, and you know me much better than any other person.
+
+30
+00:04:33.170 --> 00:04:42.200
+Zeljko Ivezic: But she said, Well, I think both are useful. You see, when I go to Croatia I learn a lot from other people, but not farity. I could learn more from you.
+
+31
+00:04:42.340 --> 00:04:50.299
+Zeljko Ivezic: But who may be video? And then my impression of Croatia will be biased by how you'll be paid, said good point, good point.
+
+32
+00:04:51.300 --> 00:04:52.599
+Zeljko Ivezic: So you won't vote.
+
+33
+00:04:53.830 --> 00:04:58.870
+Zeljko Ivezic: And machine learning is becoming more and more important for 2 reasons.
+
+34
+00:04:59.190 --> 00:05:16.980
+Zeljko Ivezic: One is, and they are related to each other. One reason is that we can actually do it with computers. And computing technology is now developed sufficiently that you can apply many methods in practice that you couldn't if you had to do it on a piece of paper.
+
+35
+00:05:17.570 --> 00:05:22.369
+Zeljko Ivezic: So you can fit Gaussians. You can fit straight line. You can do this method
+
+36
+00:05:22.600 --> 00:05:35.219
+Zeljko Ivezic: on a piece of paper. But if you have a billion data points in 10,000 dimensional space, then you can't do it anymore. With piece of paper and a pencil you have to do. You have to use computers.
+
+37
+00:05:35.490 --> 00:05:49.550
+Zeljko Ivezic: And for the same reason, because of the rapid development of technology in general and computers in particular. We now also have datasets that we cannot handle anymore with with paper. And and so they are too large.
+
+38
+00:05:49.790 --> 00:05:53.419
+Zeljko Ivezic: And so one example that they put here on on this
+
+39
+00:05:53.920 --> 00:06:04.789
+Zeljko Ivezic: comes from project that I do for living. So this is fun being here. But I also have to do my day job. And so it's building a new telescope that you'll have
+
+40
+00:06:04.810 --> 00:06:11.760
+Zeljko Ivezic: a large camera of its 3 gigapixels. And so every night you'll get about 1,000 images with that camera.
+
+41
+00:06:11.910 --> 00:06:17.700
+Zeljko Ivezic: So after 10 years we'll collect the database of images that will be 100 petabytes.
+
+42
+00:06:17.820 --> 00:06:21.909
+Zeljko Ivezic: And we are now developing software that will go through those images.
+
+43
+00:06:21.930 --> 00:06:32.780
+Zeljko Ivezic: and it will automatically recognize sources, objects in those images like stars and galaxies, etcetera. And we estimate that we'll have about 40 billion
+
+44
+00:06:33.040 --> 00:06:38.929
+Zeljko Ivezic: such objects in our database, once we find them all. And so each of them will be
+
+45
+00:06:38.950 --> 00:06:43.789
+Zeljko Ivezic: observed about 1,000 times during that 10 year period.
+
+46
+00:06:43.990 --> 00:07:00.849
+Zeljko Ivezic: and so in each observation we'll measure many parameters. But just for the sake of argument, let's say we measure 10 parameters in one image for one object like, what is the position of that object? What is its flux? What are structural parameters? If it's resolved galaxy, etc.
+
+47
+00:07:00.890 --> 00:07:11.930
+Zeljko Ivezic: So you have 10,000 numbers, you measure them 1,000 times, and each time you measure 10 numbers. So it's 10,000 numbers. It's 10,000 dimensional space.
+
+48
+00:07:12.650 --> 00:07:15.980
+Zeljko Ivezic: And in that space you have 40 billion points.
+
+49
+00:07:16.380 --> 00:07:19.570
+Zeljko Ivezic: And now you want to do something with that data set.
+
+50
+00:07:19.770 --> 00:07:28.579
+Zeljko Ivezic: And so this bottom left 3 dimensional diagram is an attempt to visualize what we do with machine learning in this context.
+
+51
+00:07:28.630 --> 00:07:39.569
+Zeljko Ivezic: So there are only 3 coordinates here. V. One, v. 2, and v. 3. But in principle you could go up to 10,000 with this data set. Of course, it's hard to visualize 10,000 dimensional space.
+
+52
+00:07:39.810 --> 00:07:44.099
+Zeljko Ivezic: but for the sake of argument of what we do 3 dimensional Xenon.
+
+53
+00:07:44.180 --> 00:07:54.170
+Zeljko Ivezic: You see these different morphological structures in this diagram. So imagine that these are many, many, many points. And then we use those points, too.
+
+54
+00:07:54.200 --> 00:08:06.010
+Zeljko Ivezic: to measure the shape, the outline of their distribution of those clouds. Sometimes they look like clouds on this kind, sometimes they have more regular morphology like you can see this green torus.
+
+55
+00:08:06.270 --> 00:08:10.330
+Zeljko Ivezic: you can see this red thing that looks like Red bean.
+
+56
+00:08:10.720 --> 00:08:18.710
+Zeljko Ivezic: Something looks like a tooth on the right, or used bubble gum, or whatever different morphologies we want to teach computer to recognize them.
+
+57
+00:08:19.190 --> 00:08:25.600
+Zeljko Ivezic: And so that's called clustering or characterization of known populations.
+
+58
+00:08:30.590 --> 00:08:39.329
+Zeljko Ivezic: And then, once you have these clusters, then you want to characterize what they are. And this is typically done by taking a subset of sources
+
+59
+00:08:39.549 --> 00:08:57.040
+Zeljko Ivezic: and then obtaining additional observations that will tell you more about them. And then you conclude, for example, that this green torus is composed, say, of asterisk, and then every new observation that you get in that green torus, you know it's an asterisk.
+
+60
+00:08:57.570 --> 00:09:06.669
+Zeljko Ivezic: and then sometimes you will find objects like these few dots marked with question. Mark that. Do not fit any of those clusters.
+
+61
+00:09:06.700 --> 00:09:11.139
+Zeljko Ivezic: and those are outliers that I mentioned earlier.
+
+62
+00:09:11.570 --> 00:09:18.030
+Zeljko Ivezic: So the basic steps that we want to do with any large data set like this is first clustering
+
+63
+00:09:19.040 --> 00:09:33.559
+Zeljko Ivezic: and pre-rex equals 4. Clustering is often basic estimation that you've talked about today. And then you do classification. And then you search for outliers. So that's like high level summary of what we want to do.
+
+64
+00:09:34.220 --> 00:09:46.610
+Zeljko Ivezic: So let me now provide just little bit more illustration. What we think by that. So density, estimation will be the topic of today's lecture in this diagram below there are 3 panels.
+
+65
+00:09:47.380 --> 00:09:52.660
+Zeljko Ivezic: So on the first panel on the left. These are measurements of something.
+
+66
+00:09:53.480 --> 00:09:58.020
+Zeljko Ivezic: So we have 2 coordinates. This is 2 dimensional space. We measure X and Y.
+
+67
+00:09:58.130 --> 00:10:06.089
+Zeljko Ivezic: There are maybe few 1,000 points in this diagram, and you can even see by eye that they come in 2 clusters in 2 clumps.
+
+68
+00:10:07.190 --> 00:10:11.260
+Zeljko Ivezic: And so now we would like to develop a method that
+
+69
+00:10:11.290 --> 00:10:14.389
+Zeljko Ivezic: will give us continuous density distribution
+
+70
+00:10:14.420 --> 00:10:23.899
+Zeljko Ivezic: that any point in this diagram, any location in this diagram, will be associated with a continuous density function.
+
+71
+00:10:24.110 --> 00:10:32.149
+Zeljko Ivezic: And so here is one example that was based on Gaussian fits. In the middle panel we have the best fitting
+
+72
+00:10:33.220 --> 00:10:36.830
+Zeljko Ivezic: series of two-dimensional Gaussians.
+
+73
+00:10:37.170 --> 00:10:56.969
+Zeljko Ivezic: so you can see, the one in the bottom left is stronger than one in the upper right. Also it's not aligned with coordinate axis, so there is some covariance in the description of the Gaussian, and now we can use this model for anything we want, we could use it for classification. We could label those 2 clusters.
+
+74
+00:10:57.570 --> 00:11:00.180
+Zeljko Ivezic: We can also use it to generate
+
+75
+00:11:00.220 --> 00:11:05.319
+Zeljko Ivezic: larger samples, so we can clone that distribution. That's the right hand.
+
+76
+00:11:05.360 --> 00:11:07.019
+Zeljko Ivezic: So once we can
+
+77
+00:11:07.520 --> 00:11:17.049
+Zeljko Ivezic: the continuous description of density, then we can then draw randomly from the distribution and increase our sample size from 1,000 if we want to a million.
+
+78
+00:11:17.300 --> 00:11:29.680
+Zeljko Ivezic: And there are many methods where you need large sample to apply some algorithms. And so in such cases you would increase the size of your sample by doing this fit and then planning.
+
+79
+00:11:30.040 --> 00:11:36.939
+Zeljko Ivezic: So we'll cover later today. Then little bit of introduction Instagram, which is one dimensional density estimation.
+
+80
+00:11:37.090 --> 00:11:47.809
+Zeljko Ivezic: Then we'll talk about few main methods like kernel density estimation. We'll introduce Gaussian mixture. Model again. We did it, I think, in the first part of the course.
+
+81
+00:11:47.850 --> 00:11:56.149
+Zeljko Ivezic: and then we'll again revisit by a Z. And blocks in one dimensional distribution. So that's one topic, density, estimation.
+
+82
+00:11:56.290 --> 00:11:59.229
+Zeljko Ivezic: The regression is one of the most
+
+83
+00:11:59.680 --> 00:12:03.570
+Zeljko Ivezic: covered machine learning topics. We are not going to go back to it.
+
+84
+00:12:03.960 --> 00:12:17.840
+Zeljko Ivezic: We did little bit of least squares. If you recall last last part in the first part of the course, we did little bit of paezzy and nonlinear regression, and so, if you go back to those lectures, you can find code
+
+85
+00:12:17.980 --> 00:12:32.689
+Zeljko Ivezic: where you can apply it now to any regression problem that you have, that is nonlinear. If you recall, we introduced Markov Chain, Monte Carlo methods. And so in those lectures we can go back and and remind yourself
+
+86
+00:12:32.730 --> 00:12:36.679
+Zeljko Ivezic: we do that here. This plot shows some data.
+
+87
+00:12:36.910 --> 00:12:43.519
+Zeljko Ivezic: This is a supernova data from cosmology, but doesn't matter what it is. So there are a bunch of data points.
+
+88
+00:12:43.640 --> 00:12:50.559
+Zeljko Ivezic: And then there is some underlying function that we fit. It's parametric fit. There are some parameters.
+
+89
+00:12:50.640 --> 00:12:56.799
+Zeljko Ivezic: and so the right panel then shows for 2 of a number of model parameters. I believe, 6,
+
+90
+00:12:56.960 --> 00:13:00.380
+Zeljko Ivezic: 2 that are most interesting. Physically, these contours
+
+91
+00:13:00.470 --> 00:13:04.439
+Zeljko Ivezic: show their posterior probability distribution.
+
+92
+00:13:04.590 --> 00:13:06.920
+Zeljko Ivezic: So that's example of a regression
+
+93
+00:13:09.880 --> 00:13:14.499
+Zeljko Ivezic: time series. Analysis is also important. It's a huge topic.
+
+94
+00:13:14.710 --> 00:13:22.740
+Zeljko Ivezic: There are literally thousands of books written about time series. And that's because it's very important in engineering.
+
+95
+00:13:23.750 --> 00:13:34.359
+Zeljko Ivezic: And, for example, in astronomy. Most of these books are useless, because nearly useless, not completely useless, because in astronomy we don't have regular sampling
+
+96
+00:13:34.610 --> 00:13:54.100
+Zeljko Ivezic: in astronomy, or depend on day and night, even during night you can have bad weather, etc. So we have irregular sampling in astronomy, and on top of that, in astronomy error bars are important because they vary a lot with your source, the fainter the source, the larger the error bars.
+
+97
+00:13:54.100 --> 00:14:09.399
+Zeljko Ivezic: If you have some engineering measurement in some factory or in some machine, then error bars are sometimes negligible, and often they are so-called homo scheduling errors. They are all the same, but in astronomy they vary a lot.
+
+98
+00:14:09.910 --> 00:14:19.240
+Zeljko Ivezic: So in this example. They have bunch of data points, and they look like noise, random noise. But indeed they are just sinusoidal variation
+
+99
+00:14:19.600 --> 00:14:32.620
+Zeljko Ivezic: with a period of oscillation that is much shorter than the typical spacing between data points. So you can't see any sinusoidal variation in this data set because it happens too rapidly.
+
+100
+00:14:32.720 --> 00:14:44.629
+Zeljko Ivezic: But there are methods that you can use mathematical methods that will uncover what is the best period of the sinusoid. And so the bottom panel shows so-called periodogram.
+
+101
+00:14:44.670 --> 00:14:53.040
+Zeljko Ivezic: where essentially you. you try each period in some reasonable range of periods. And then basically, you ask.
+
+102
+00:14:53.330 --> 00:15:00.369
+Zeljko Ivezic: what is the Chi-square for that fit compared to a fit where I just assumed straight line.
+
+103
+00:15:00.460 --> 00:15:12.049
+Zeljko Ivezic: and you get if you get significant reduction of that Chi square. That means sinusoid is much better fit. And then this y-axis, both power goes to one.
+
+104
+00:15:12.320 --> 00:15:19.630
+Zeljko Ivezic: and if it's low number, that means that sinusoids, it's not much better fit than just straight line.
+
+105
+00:15:19.700 --> 00:15:29.469
+Zeljko Ivezic: And so in this particular case you can see that there is that one peak in the middle of the panel that is higher than any other
+
+106
+00:15:30.060 --> 00:15:38.140
+Zeljko Ivezic: points in the diagram, and that is your best fit period. And then you generate sinusoidal fit and show that it fits data. Well.
+
+107
+00:15:38.620 --> 00:15:46.760
+Zeljko Ivezic: so that's for deterministic power series. There is a whole range of interesting problems where variability is stochastic.
+
+108
+00:15:47.000 --> 00:16:03.709
+Zeljko Ivezic: where you cannot describe it with an analytic function, you cannot predict precisely what should be the answer. But you can describe statistical properties of such variability, and the methods go from auto correlation functions to
+
+109
+00:16:03.790 --> 00:16:11.990
+Zeljko Ivezic: to structure functions and other ways of describing stochastic variability. It's super important in astronomy, but because
+
+110
+00:16:12.010 --> 00:16:19.560
+Zeljko Ivezic: you don't come only from astronomy background. But general physics. Then we will not cover these in great detail.
+
+111
+00:16:20.350 --> 00:16:25.579
+Zeljko Ivezic: What we will cover in detail is dimensionality reduction. That will be this Thursday.
+
+112
+00:16:25.910 --> 00:16:29.270
+Zeljko Ivezic: where we will learn about
+
+113
+00:16:29.600 --> 00:16:41.880
+Zeljko Ivezic: few very important methods for reducing dimensionality. And so what this plot shows is so called principle components. I did not show plots with spectra of
+
+114
+00:16:42.030 --> 00:16:47.399
+Zeljko Ivezic: here of spectra of galaxies, so they look very similar to the top left panel.
+
+115
+00:16:47.610 --> 00:17:02.270
+Zeljko Ivezic: If you just look at that panel. Most galaxies have spectra that look like this. So y-axis is flux. How many photons you get from a galaxy, and the X-axis is way linked. This is an optical way in French, so there are many
+
+116
+00:17:02.460 --> 00:17:22.640
+Zeljko Ivezic: billions of stars in a galaxy. Each one is radiating differently, approximately, as like body function, not exactly the same, but approximately. And then there is a range of temperature, and so then, once you add them all up, then you get spectrum that looks like this, plus some lines that come from podcast and absorption from cold gas, etc.
+
+117
+00:17:23.050 --> 00:17:33.789
+Zeljko Ivezic: And so they are. This particular spectra from so called one digital Sky Survey, that 2,000 data points that 2,048 X values, and for each you get flux.
+
+118
+00:17:34.170 --> 00:17:46.449
+Zeljko Ivezic: But physics of galaxies is such that there are no 2,048 independent parameters. It is sufficient to know 4, 5 numbers to describe fully that spectrum in noise.
+
+119
+00:17:46.510 --> 00:18:05.349
+Zeljko Ivezic: And then you ask yourself, how would I then describe the spec? I don't have exact analytic description for each spectrum, but I can use data sets and run so-called principle component analysis that will try to minimize the remaining variance in the sample with each successive step.
+
+120
+00:18:05.550 --> 00:18:13.259
+Zeljko Ivezic: So this first panel top left is simply the mean spectrum of all the galaxies in that sample.
+
+121
+00:18:13.300 --> 00:18:27.089
+Zeljko Ivezic: So that's typical spectrum. And then it's a linear combination of smaller and smaller corrections to that main mean spectrum, and these are then the spectra in the vertical column.
+
+122
+00:18:27.140 --> 00:18:56.330
+Zeljko Ivezic: And so you add them, then, with some coefficients, and those coefficients are those reduced parameters. So instead of having 1,000 2,048 free parameters or pixels, you end up with 5 or 6 principal components, and all what you need to do for that bala galaxy are the values of those 5 or 6 coefficients that multiply this principle components. That's the idea. And then there are certain complications that we will cover when we get to that lecture.
+
+123
+00:18:57.790 --> 00:19:01.600
+Zeljko Ivezic: We'll also learn about supervised and
+
+124
+00:19:01.670 --> 00:19:13.779
+Zeljko Ivezic: unsupervised classification. So unsupervised classification is also called clustering. So you have data distribution. like the one in the top
+
+125
+00:19:14.140 --> 00:19:16.110
+Zeljko Ivezic: in the bottom left panel.
+
+126
+00:19:16.690 --> 00:19:20.410
+Zeljko Ivezic: And so you ask yourself, do I see any structure?
+
+127
+00:19:20.670 --> 00:19:26.680
+Zeljko Ivezic: And so in this image. what you see is simply 2 dimensional histogram.
+
+128
+00:19:26.720 --> 00:19:41.210
+Zeljko Ivezic: So you take I forget how many, maybe 100,000 points were used in the diagram. You pixelate your 2 dimensional diagram, and you simply count how many measurements fell in each pixel.
+
+129
+00:19:41.590 --> 00:19:50.080
+Zeljko Ivezic: And that's what this panel shows. So there is. You still don't have any knowledge of the details of the distribution. You just know that
+
+130
+00:19:50.730 --> 00:19:53.009
+Zeljko Ivezic: you have distribution of something.
+
+131
+00:19:53.070 --> 00:20:05.530
+Zeljko Ivezic: Then you ask yourself. can I take this density distribution and describe it analytically. And so what was done here was to say, let me assume that the basic components
+
+132
+00:20:05.640 --> 00:20:08.260
+Zeljko Ivezic: in that diagram are simply Gaussians.
+
+133
+00:20:08.650 --> 00:20:13.099
+Zeljko Ivezic: and you ask yourself how many Gaussians do. I need
+
+134
+00:20:13.190 --> 00:20:15.400
+Zeljko Ivezic: to describe this distribution?
+
+135
+00:20:15.620 --> 00:20:24.530
+Zeljko Ivezic: And we'll we'll work this example in in more detail later. But for now you learn that you need 4 Gaussians at least.
+
+136
+00:20:24.700 --> 00:20:39.730
+Zeljko Ivezic: and the middle panel is what you may recall from the first part of the class when we talked about Bayesian statistics, about Bayesian model selection, and we introduced so-called Vic. B. By Asian information criterion.
+
+137
+00:20:39.930 --> 00:20:48.200
+Zeljko Ivezic: which is in most cases just Chi-square, penalized by the number of free parameters in your model.
+
+138
+00:20:48.330 --> 00:20:57.690
+Zeljko Ivezic: And so this goes down up to 4, because the more Gaussians to add the better description you get of your left panel.
+
+139
+00:20:58.450 --> 00:21:04.050
+Zeljko Ivezic: but once you hit 4 you have fairly decent description, and then you start
+
+140
+00:21:04.650 --> 00:21:33.139
+Zeljko Ivezic: getting penalized for more free parameters. Each new Gaussian brings you. So in 2D. You have 4 new parameters no more. You have center. That's 2. You have 3 sigma, 5, normalization. 6. You have 6 parameters with each new component, and then you start getting penalized, then your conclusion is 4 is the simplest method, simplest model that is still consistent with my data.
+
+141
+00:21:33.370 --> 00:21:37.340
+Zeljko Ivezic: So that's example of such clustering. We learn more methods like that.
+
+142
+00:21:38.950 --> 00:21:46.979
+Zeljko Ivezic: Then another. Another big application of machine learning is supervised classification.
+
+143
+00:21:47.080 --> 00:21:53.359
+Zeljko Ivezic: which is very similar to unsupervised, except that we also have labels.
+
+144
+00:21:54.080 --> 00:21:57.030
+Zeljko Ivezic: So if I looked in this diagram above
+
+145
+00:21:57.350 --> 00:22:02.469
+Zeljko Ivezic: here on the in the left panel, all these points are the same to me.
+
+146
+00:22:02.700 --> 00:22:06.680
+Zeljko Ivezic: I simply count how many points fall in each pixel.
+
+147
+00:22:06.930 --> 00:22:10.040
+Zeljko Ivezic: But someone could have told me that
+
+148
+00:22:10.200 --> 00:22:22.890
+Zeljko Ivezic: some of these are stars and some are galaxies, and then I put color code by the majority count, and maybe one cluster would be one type, one label and the other cluster would be different label.
+
+149
+00:22:23.130 --> 00:22:31.849
+Zeljko Ivezic: Or maybe we would discover the direction for clusters, and we have 4 different labels. So that would be classification based on these labels.
+
+150
+00:22:31.910 --> 00:22:35.839
+Zeljko Ivezic: We don't have labels here. That's why it's called clustering.
+
+151
+00:22:35.920 --> 00:22:47.890
+Zeljko Ivezic: unsupervised classification. But this diagram in the bottom shows example of supervised classification, so that 2 types of points, like points and and grade points.
+
+152
+00:22:48.440 --> 00:22:57.580
+Zeljko Ivezic: And so these are 2 different labels. They could be vegetables, sand, fruit. In this example there are 2 different types of stars.
+
+153
+00:22:57.720 --> 00:23:04.520
+Zeljko Ivezic: You could do something in chemistry and get different chemical composition. So you have 2 coordinates that you measure.
+
+154
+00:23:04.770 --> 00:23:07.650
+Zeljko Ivezic: and in addition to these coordinates.
+
+155
+00:23:08.000 --> 00:23:18.110
+Zeljko Ivezic: you also have labeled, I tell you this measurement is blackpoint, and the other measurement is gray points for them in this diagram, and then you see that there are 2 clouds.
+
+156
+00:23:19.660 --> 00:23:26.350
+Zeljko Ivezic: and then I ask you to find the best separation between these 2 clouds in this diagram.
+
+157
+00:23:26.400 --> 00:23:39.300
+Zeljko Ivezic: That will give me, then, future classifications. If I have new data points when it falls in this diagram, I will know immediately which class it belongs to that supervised classification.
+
+158
+00:23:39.320 --> 00:23:46.180
+Zeljko Ivezic: And here, too, there are many methods. and we'll learn some of them, and that will be topic next week.
+
+159
+00:23:48.870 --> 00:23:55.320
+Zeljko Ivezic: So these are the basic parts of machine learning that we want to cover, or at least know that they exist.
+
+160
+00:23:55.760 --> 00:24:07.440
+Zeljko Ivezic: Now, many of these methods, if not all. are already implemented in public vote. So I suppose most of you learn heard about psychic learn.
+
+161
+00:24:08.160 --> 00:24:09.150
+Zeljko Ivezic: So it's
+
+162
+00:24:09.460 --> 00:24:23.690
+Zeljko Ivezic: professional grade code that is organized in these topics that I just covered. So you can now click on classification or regression, or what you are doing. And then you can find even many more methods that we can cover in this class.
+
+163
+00:24:24.250 --> 00:24:32.510
+Zeljko Ivezic: So the purpose of these lectures is not to teach you in very detail about every of these methods. We can't do that in 6 h.
+
+164
+00:24:32.680 --> 00:24:48.629
+Zeljko Ivezic: But what we can do is to make you aware of the existence of these methodologies. So when you face some numerical problem in your own analysis, in your own context, then you will remember and say, Oh, that sounds like classification.
+
+165
+00:24:48.890 --> 00:24:54.049
+Zeljko Ivezic: or I need to do clustering, or oh, that sounds like by Asian blocks. I remember that.
+
+166
+00:24:54.060 --> 00:25:03.479
+Zeljko Ivezic: And then you go back, and then you know where to start, and then you start digging, either in lecture. So you jump straight to psychic learn, etc. So there's the idea.
+
+167
+00:25:04.010 --> 00:25:09.259
+Zeljko Ivezic: And also, as we discussed it at the beginning of the whole series in April.
+
+168
+00:25:10.350 --> 00:25:36.360
+Zeljko Ivezic: If you really want to learn it, you have to try it yourself. So when you get home, take these notebooks. You can't break them. If you break them, you delete them and download them again. So try to change things, try to run it. Try. The best is, if you have your own research problem. And you take your own data that you understand, and then try to run some of these methods and see how it works on your data set. That's by far the best way to learn.
+
+169
+00:25:37.950 --> 00:25:44.650
+Zeljko Ivezic: So that's intro to class today. So let me now pause and see if there are questions.
+
+170
+00:25:49.450 --> 00:25:54.279
+Zeljko Ivezic: Okay. Now let's continue. So we'll start by
+
+171
+00:25:55.920 --> 00:26:02.970
+Zeljko Ivezic: search infrastructure in one dimensional data, and then we'll go to slightly more complicated example.
+
+172
+00:26:04.370 --> 00:26:12.030
+Zeljko Ivezic: And the last example will be 2 dimensional example of galaxies on the sky. So I just put this as
+
+173
+00:26:12.480 --> 00:26:19.770
+Zeljko Ivezic: motivation for what we want to do. So here we have 2 coordinates X and y. These are
+
+174
+00:26:20.010 --> 00:26:26.620
+Zeljko Ivezic: dial. That's 2 coordinates out of 3 dimensional space. So we observe galaxies on the sky.
+
+175
+00:26:26.670 --> 00:26:33.630
+Zeljko Ivezic: and we measure position on the sky. And then from their redshift from their spectra, you can tell how far they are.
+
+176
+00:26:33.770 --> 00:26:41.129
+Zeljko Ivezic: So now we have 2 dimensions on the sky, plus the radial direction for each galaxy. So basically, you can tap out the box
+
+177
+00:26:41.420 --> 00:26:47.310
+Zeljko Ivezic: and you have 3 dimensional distribution. And then it was found. And actually it was one
+
+178
+00:26:47.390 --> 00:26:59.649
+Zeljko Ivezic: kid from Zagreb called Mario Yurich. He's not kid anymore. But he was playing with this sample for his Ph. D. And realized that there is huge clustering of galaxies. In this one specific space of
+
+179
+00:26:59.860 --> 00:27:14.170
+Zeljko Ivezic: the location of volume probe by phone, digital sky Survey. Small digital Sky Survey was the first large spectroscopic survey of galaxies. So the sample jumped for a few 1,000 galaxies with spectra to a million
+
+180
+00:27:14.210 --> 00:27:18.939
+Zeljko Ivezic: sample of 1 million galaxies spectra, and in early 2,000.
+
+181
+00:27:19.060 --> 00:27:22.830
+Zeljko Ivezic: And so then everybody was looking at this distribution.
+
+182
+00:27:22.860 --> 00:27:28.079
+Zeljko Ivezic: and before that there was similar structure, but about 10 times smaller.
+
+183
+00:27:28.160 --> 00:27:41.160
+Zeljko Ivezic: discovered in so-called Harvard survey of galaxies with few 1,000 galaxies. But now that there's the assess sample came online, this was this is the largest structure in the universe, the largest, non random
+
+184
+00:27:41.180 --> 00:27:45.040
+Zeljko Ivezic: structure of galaxies that we know of. You can see that it's about
+
+185
+00:27:45.060 --> 00:27:50.269
+Zeljko Ivezic: 200 megapar 6 long. Now the question is, how big is megaparsec?
+
+186
+00:27:50.380 --> 00:28:05.100
+Zeljko Ivezic: So our galaxy is about point 3 megaparsecs large. and the nearest large galaxy and drama. That galaxy is one megaparsec far from us, and this is few 100 megapars.
+
+187
+00:28:05.160 --> 00:28:08.410
+Zeljko Ivezic: So there are about 10,000 dots in this structure.
+
+188
+00:28:08.910 --> 00:28:23.140
+Zeljko Ivezic: So let's ask the physics behind it. But this could be anything else. You can take a you could take a hand off so, or fan, throw on your table, make a picture with your iphone, and then ask, Is it random, or does it have structure?
+
+189
+00:28:23.250 --> 00:28:25.570
+Zeljko Ivezic: So we want to take this point.
+
+190
+00:28:25.610 --> 00:28:32.540
+Zeljko Ivezic: and we want to turn this point process into a continuous distribution of density in this diver.
+
+191
+00:28:32.630 --> 00:28:35.169
+Zeljko Ivezic: and do so later. Many methods how to do it.
+
+192
+00:28:35.520 --> 00:28:42.119
+Zeljko Ivezic: Before we go to 2D. We'll play a little bit with one dimensional data set.
+
+193
+00:28:43.150 --> 00:28:48.769
+Zeljko Ivezic: and often in one-dimensional data sets. It's pretty much what we call histogram.
+
+194
+00:28:48.840 --> 00:28:53.100
+Zeljko Ivezic: and everybody loves and does Instagram.
+
+195
+00:28:53.250 --> 00:29:05.319
+Zeljko Ivezic: But we often do not really think about what exactly we do. When we say I'll make a histogram. You can take your excel spreadsheet and excel spreadsheet will make your histogram.
+
+196
+00:29:05.730 --> 00:29:10.840
+Zeljko Ivezic: You can ask yourself, why do I have as many bins as excel proposed
+
+197
+00:29:11.320 --> 00:29:21.309
+Zeljko Ivezic: in early versions of Excel spreadsheet. The algorithm was that, independent of any data set, you may provide, the number of bins is 10.
+
+198
+00:29:22.380 --> 00:29:27.410
+Zeljko Ivezic: So that was a Microsoft programmer, who decided that the optimal number of these is 10 and that's it.
+
+199
+00:29:27.640 --> 00:29:35.969
+Zeljko Ivezic: But in reality we can do much better. We can actually compute optimal bandwidth for our dataset.
+
+200
+00:29:36.110 --> 00:29:46.219
+Zeljko Ivezic: and we can do also much better than classical histogram. Classical histogram is essentially modeling your data distribution by step function.
+
+201
+00:29:46.740 --> 00:30:07.200
+Zeljko Ivezic: So you have from this point to this point I have box. The next step is a box, and next step is a box box. Typically, you define the centers of these boxes, and you define the width of these boxes, and then you just throw your data into these boxes, and you count how many of your data points fell in each box.
+
+202
+00:30:07.780 --> 00:30:21.009
+Zeljko Ivezic: That's what histogram is, and then it takes fair root of that number. You assume voice sound statistics, and that gives you error bar on top of your account. And that's what 99% of people do when they do histograms.
+
+203
+00:30:21.860 --> 00:30:25.420
+Zeljko Ivezic: But you can show that
+
+204
+00:30:25.560 --> 00:30:39.790
+Zeljko Ivezic: you get different results. You take some random sample, you change slightly, bin position and morphology of your histogram change. You change slightly the width of the morphology of your data changes. Sometimes
+
+205
+00:30:40.030 --> 00:30:42.710
+Zeljko Ivezic: you get some peaks like the one in here.
+
+206
+00:30:42.810 --> 00:30:44.369
+Zeljko Ivezic: and you ask yourself.
+
+207
+00:30:44.520 --> 00:30:54.319
+Zeljko Ivezic: Is this for real, or is it just random situations? So how do you answer all these questions principally is what we want to cover next.
+
+208
+00:30:57.270 --> 00:31:06.240
+Zeljko Ivezic: So here is just example of what happens when you change placement of your base. So in these 2 panels.
+
+209
+00:31:06.670 --> 00:31:09.150
+Zeljko Ivezic: It's exactly the same data set.
+
+210
+00:31:09.340 --> 00:31:18.080
+Zeljko Ivezic: It's exactly the same bin web. But you just shift. It bends a little bit and you get totally different conclusion. You go from this to
+
+211
+00:31:18.320 --> 00:31:25.599
+Zeljko Ivezic: modes to something that maybe has a peak or not, etc. So this is just to convince you that one has to be careful.
+
+212
+00:31:26.640 --> 00:31:29.960
+Zeljko Ivezic: And so statisticians have been thinking about
+
+213
+00:31:30.090 --> 00:31:47.549
+Zeljko Ivezic: how to estimate what is the optimal bin with, given a data set. And so by optimal, it means the minimizing the difference between the resulting histogram and your true density distribution from which you draw your data.
+
+214
+00:31:47.800 --> 00:31:59.279
+Zeljko Ivezic: And so, most famous one, the oldest one, is so called Scott's rule after Guy. His last name is Scott. and it says, Take the standard deviation of your sample.
+
+215
+00:31:59.850 --> 00:32:05.279
+Zeljko Ivezic: So that's Sigma. and divide by N to the third one-third power.
+
+216
+00:32:05.440 --> 00:32:21.000
+Zeljko Ivezic: and that will give you the optimal width of your bill. It comes from statistics. It assumes Gaussian distribution, and that's the result now later, maybe 20 years ago, Friedman and Joconi said.
+
+217
+00:32:21.160 --> 00:32:27.009
+Zeljko Ivezic: but that doesn't work. If you have very non-gaussian distribution, if you have very thick tails.
+
+218
+00:32:27.140 --> 00:32:34.399
+Zeljko Ivezic: you know that one data point which is outlier can take standard deviation of your sample essentially to infinity.
+
+219
+00:32:34.640 --> 00:32:46.490
+Zeljko Ivezic: You can have beautiful Gaussian distribution. But take 1 point and bring it to infinity, and the whole Sigma, the standard deviation will become infinity. So that's not a robust statistic.
+
+220
+00:32:46.670 --> 00:32:51.059
+Zeljko Ivezic: Much better one is, if you look at the median and 2 quart files.
+
+221
+00:32:51.360 --> 00:33:03.100
+Zeljko Ivezic: They are not sensitive to our players. So if you fear that your data set as outliers, then you use this optimized formula. Now that is robust to outliers.
+
+222
+00:33:03.260 --> 00:33:07.159
+Zeljko Ivezic: And so these 2 are the most frequent
+
+223
+00:33:07.470 --> 00:33:12.299
+Zeljko Ivezic: approaches to histograms woke up.
+
+224
+00:33:12.610 --> 00:33:13.310
+and
+
+225
+00:33:17.000 --> 00:33:24.540
+Zeljko Ivezic: you are optimizing so-called loss function, which in this case they assume mean integrated square error.
+
+226
+00:33:24.700 --> 00:33:34.860
+Zeljko Ivezic: So you take some distribution. In first case, Gaussian, in the other case something more general. and then you say, for each bin given some bin width.
+
+227
+00:33:35.580 --> 00:33:46.699
+Zeljko Ivezic: I will calculate. What is the difference between the predicted count and the observed count. And you say I want to minimize that function, and then, by minimizing this
+
+228
+00:33:46.870 --> 00:33:51.179
+Zeljko Ivezic: mean loss, you derive condition on your template.
+
+229
+00:33:51.900 --> 00:34:01.070
+Zeljko Ivezic: If you have very. If you have very large binaries, like only few bins, you will never. You will not pick up the structure in your data set.
+
+230
+00:34:01.110 --> 00:34:04.939
+Zeljko Ivezic: but if you go and make it very, very narrow impact.
+
+231
+00:34:05.080 --> 00:34:21.030
+Zeljko Ivezic: Then you will have a lot of Poisson fluctuations, and that will increase the error. So there is Optimal bill which is not too large, which is not too small, that minimizes mean, integrated, spare error. And that's what gives you this formula. You derive it from that formula.
+
+232
+00:34:21.520 --> 00:34:29.169
+Zeljko Ivezic: Just take first derivative, objective. and there is a reference to original paper, if you want to see detailed derivation.
+
+233
+00:34:30.389 --> 00:34:34.420
+Zeljko Ivezic: and so then later, we generalize this further.
+
+234
+00:34:35.449 --> 00:34:39.369
+Zeljko Ivezic: So now another method for estimating density is
+
+235
+00:34:39.790 --> 00:34:47.980
+Zeljko Ivezic: so similar result at the end it looks somewhat similar to histogram, in a sense that for each position here
+
+236
+00:34:48.210 --> 00:35:07.829
+Zeljko Ivezic: I have some numbers for this position. I know the height for this position. I know the height for this position. I know the height, but in each case I only count points that fell in this bin and data points in this bin and data points in that bin have nothing to do with the middle points with the middle bin.
+
+237
+00:35:08.140 --> 00:35:24.379
+Zeljko Ivezic: The height of this bin is determined only by points in that bin, not by these points or these points. And that's not optimal, because sometimes the neighborhood also will give you some information about the local density variation.
+
+238
+00:35:24.390 --> 00:35:29.620
+Zeljko Ivezic: so it can be shown relatively easily that better.
+
+239
+00:35:29.720 --> 00:35:39.349
+Zeljko Ivezic: less noisy estimate of density is so-called kernel density estimation. And that's basically generalizing histogram, which is just a box
+
+240
+00:35:39.760 --> 00:35:41.899
+Zeljko Ivezic: to some more general function.
+
+241
+00:35:42.380 --> 00:35:52.170
+Zeljko Ivezic: When you do histogram. And you have this box PIN, basically you go through all your data points. And you say if it fell in that bin
+
+242
+00:35:52.250 --> 00:35:59.029
+Zeljko Ivezic: a data point, then it's weight is one. If it fell outside that bin. Its weight is 0.
+
+243
+00:35:59.500 --> 00:36:08.560
+Zeljko Ivezic: And you for basically just counting points. But that's equivalent to giving weight. That is either one or 0 depending whether it's been.
+
+244
+00:36:08.570 --> 00:36:19.940
+Zeljko Ivezic: but we can generalize and give a smooth waiting function that will extend beyond that single bin. and then you have a smooth fallout of these weights as you go out.
+
+245
+00:36:19.950 --> 00:36:24.639
+Zeljko Ivezic: and that will improve your estimate of that integrated square error.
+
+246
+00:36:25.440 --> 00:36:34.979
+Zeljko Ivezic: And so basically, this formula now maybe looks ugly. But it's nothing more than saying, go through all of your data points.
+
+247
+00:36:35.820 --> 00:36:38.470
+Zeljko Ivezic: Take some function that we call kernel
+
+248
+00:36:39.320 --> 00:36:43.170
+Zeljko Ivezic: and evaluate the value of that function.
+
+249
+00:36:43.600 --> 00:36:53.499
+Zeljko Ivezic: And that's your weight, basically assuming weights between 0 and one rather than weight, that are either 0 or one using Instagram.
+
+250
+00:36:54.230 --> 00:36:57.819
+Zeljko Ivezic: And then the question is, how do you define kernel?
+
+251
+00:36:58.110 --> 00:37:06.530
+Zeljko Ivezic: And then that kernel can be wide. It can be narrow, just like means can be narrow and wide. You need to optimize over it. And
+
+252
+00:37:08.820 --> 00:37:13.000
+Zeljko Ivezic: there are multiple choices for kernels. So these are some
+
+253
+00:37:14.290 --> 00:37:21.779
+Zeljko Ivezic: usually use practice kernels. All of them have common features. They're high in the middle and then fall off. I think I even have a plot
+
+254
+00:37:21.940 --> 00:37:26.200
+Zeljko Ivezic: here. So this is typical kernel. Here we have 3.
+
+255
+00:37:26.240 --> 00:37:33.030
+Zeljko Ivezic: So they're defined between minus one and one, because later you will scale it by some arbitrary width.
+
+256
+00:37:33.210 --> 00:37:47.469
+Zeljko Ivezic: and they are peaked in the center, and then they have tails that fall off. So most popular one are Gaussian and exponential, and top head corresponds to regular spinning in histograms. But it can be shown that there is optimal kernel.
+
+257
+00:37:47.880 --> 00:37:52.299
+Zeljko Ivezic: About 50 60 years ago Russian mathematician, Epaneknikov.
+
+258
+00:37:52.740 --> 00:38:04.610
+Zeljko Ivezic: showed that if you assume some kernel and then you go to a more involved optimization like with Instagram. But you still ask, what is the minimum? Spare error.
+
+259
+00:38:05.310 --> 00:38:16.910
+Zeljko Ivezic: then you get that result is this parabola. Second order parabola. Fortunately, I don't have it in this plot, but it looks like this thick line in the center, but drops to 0
+
+260
+00:38:16.960 --> 00:38:34.600
+Zeljko Ivezic: at minus one and one. So basically, it's hoots out this corner on the top tax. And because of this smoothing, it's much, let's send it to random shifting data points, and then you get minimum possible square error.
+
+261
+00:38:37.810 --> 00:38:46.559
+Zeljko Ivezic: And the one thing to take home from kernel discussion is that it's not super important. What's the shape of kernel?
+
+262
+00:38:46.780 --> 00:38:59.430
+Zeljko Ivezic: More important thing is to get the optimal width of kernel, which is the same as same for histogram you want optimal with. and that's done through various optimizations, usually cross validation.
+
+263
+00:38:59.820 --> 00:39:08.899
+Zeljko Ivezic: So now, to go from just talking to actual examples. we will return to example. I think we covered in lecture 5 or 6.
+
+264
+00:39:09.060 --> 00:39:22.180
+Zeljko Ivezic: This is a bunch of exponential distributions, I think, Dan or Gaussian. and through Pdf. here it is. Okay. Yeah, there are all Pushi distributions or
+
+265
+00:39:22.230 --> 00:39:24.180
+Zeljko Ivezic: exponential distributions.
+
+266
+00:39:24.320 --> 00:39:30.139
+Zeljko Ivezic: No, no, just for she. So it has very thick tails.
+
+267
+00:39:30.180 --> 00:39:35.309
+Zeljko Ivezic: And so there are 4 of them. And this is true. So this is some function
+
+268
+00:39:35.540 --> 00:39:40.889
+Zeljko Ivezic: that we cooked up. And now we will draw data points from that function
+
+269
+00:39:41.130 --> 00:39:47.359
+Zeljko Ivezic: randomly, and we'll ask ourselves how well, we can reproduce that function.
+
+270
+00:39:49.780 --> 00:39:51.430
+Zeljko Ivezic: And so we'll use
+
+271
+00:39:52.470 --> 00:40:05.470
+Zeljko Ivezic: Gaussian kernel. And if you look at the code, this is not rocket science. So it's the only specific line is this one which encapsulates in Astro, Ml.
+
+272
+00:40:06.990 --> 00:40:16.530
+Zeljko Ivezic: Integration over kernel. So it's just little numerical integration you give it. What's the bit? And you tell it which shape, and then it fills
+
+273
+00:40:16.660 --> 00:40:20.329
+Zeljko Ivezic: fit the the values on
+
+274
+00:40:21.370 --> 00:40:22.849
+Zeljko Ivezic: based on the data set.
+
+275
+00:40:23.210 --> 00:40:30.819
+Zeljko Ivezic: And so when we run this, this is what you get. So we look at 2 samples like before.
+
+276
+00:40:31.380 --> 00:40:35.040
+Zeljko Ivezic: Let me see if I can make this smaller. No.
+
+277
+00:40:36.750 --> 00:40:37.600
+Zeljko Ivezic: hmm.
+
+278
+00:40:43.870 --> 00:40:49.849
+Zeljko Ivezic: I don't know what's happening. Okay, this happened. You can see at the bottom of each panel
+
+279
+00:40:50.050 --> 00:40:53.140
+Zeljko Ivezic: these little black box. These are data points.
+
+280
+00:40:53.450 --> 00:41:02.500
+Zeljko Ivezic: You can see that you get most of them close to the peak of their function, because we are simply drawing random. So to just to show what we
+
+281
+00:41:02.580 --> 00:41:14.119
+Zeljko Ivezic: true from that from that distribution you have these little vertical marks at the bottom. And there are 2 data sets. First, one is 500 points, and the other one is 5,000 points.
+
+282
+00:41:14.690 --> 00:41:25.330
+Zeljko Ivezic: Just to show how results depend on your data size. And so in the top panel, the solid line shows the results of that kernel integration.
+
+283
+00:41:25.950 --> 00:41:29.650
+Zeljko Ivezic: So as you go from left to right, from left to right
+
+284
+00:41:29.660 --> 00:41:31.760
+Zeljko Ivezic: you have position of colonel.
+
+285
+00:41:31.850 --> 00:41:38.280
+Zeljko Ivezic: and then you give to each point you give. Wait! That corresponds to that position of kernel, and then you add it up.
+
+286
+00:41:38.410 --> 00:41:44.529
+Zeljko Ivezic: So instead of having box, you have something smoother, and the result follows pretty much
+
+287
+00:41:44.670 --> 00:41:50.790
+Zeljko Ivezic: the underlying function, the dotted line, but not perfectly, because we have only 500 points, of course.
+
+288
+00:41:51.390 --> 00:41:52.690
+Zeljko Ivezic: And then
+
+289
+00:41:53.070 --> 00:42:02.810
+Zeljko Ivezic: in this example you have 5,000 points. And now it's almost perfect. Now you clearly resolve the central part. etcetera. And then there are
+
+290
+00:42:02.920 --> 00:42:09.279
+Zeljko Ivezic: this. One is point one with you can later change the width of kernel and see what it does.
+
+291
+00:42:09.380 --> 00:42:14.230
+Zeljko Ivezic: As you increase the kernel with, you will be losing this central point.
+
+292
+00:42:14.480 --> 00:42:19.609
+Zeljko Ivezic: central Peak. But this will become less noisy. So it's always
+
+293
+00:42:19.730 --> 00:42:27.449
+Zeljko Ivezic: optimization between bias and between scatter. So again, you minimize the mean, spare error. To get optimal with
+
+294
+00:42:35.050 --> 00:42:42.370
+Zeljko Ivezic: the best thing to do would be to run by Asian blocks, and we'll get to that in like 5 min. Good question.
+
+295
+00:42:46.170 --> 00:42:52.639
+Zeljko Ivezic: So another, then method that you can use is nearest neighbor density distribution.
+
+296
+00:42:52.660 --> 00:43:01.600
+Zeljko Ivezic: so that works also in multi-dimensional cases. So I'm here, and I want to determine density
+
+297
+00:43:02.090 --> 00:43:03.889
+Zeljko Ivezic: of points around me.
+
+298
+00:43:03.960 --> 00:43:30.660
+Zeljko Ivezic: So one way is to say, I will count 10 meters around myself how many people are. So I would get bunch of you here first 3 people. There will be some density if I go to the center there, and then draw a circle. Then I'll get 20 people. So density there is higher than here, and then you'll just go through the entire grid, and you will count how many data points you have within given volume, boundary dimension.
+
+299
+00:43:30.920 --> 00:43:33.729
+Zeljko Ivezic: When you have hugely dimensional
+
+300
+00:43:34.100 --> 00:43:51.780
+Zeljko Ivezic: volume, then you start suffering from something called curse of dimensionality, where a sphere in multi dimensional case of a given size will have smaller and smaller and smaller volume enclosed in it. So this breaks down for highly multi-dimensional cases.
+
+301
+00:43:51.830 --> 00:43:58.110
+Zeljko Ivezic: But in all dimensional cases it's as simple and Si same in this volume. How many data points? Okay?
+
+302
+00:43:58.400 --> 00:44:13.139
+Zeljko Ivezic: And then there is a there is a improvement of that method. When you don't say I will count how many people I have within 10 meter radius. But you say I will take the 10 nearest people
+
+303
+00:44:13.230 --> 00:44:15.029
+Zeljko Ivezic: and look at their
+
+304
+00:44:15.080 --> 00:44:26.309
+Zeljko Ivezic: distances from me, and then I can do by Asian approach to possible statistics, and I can get the best mean local density. That's another improvement of that method here.
+
+305
+00:44:26.770 --> 00:44:32.780
+Zeljko Ivezic: These 2 panels show the result of of that nearest neighbor determination
+
+306
+00:44:32.840 --> 00:44:35.340
+Zeljko Ivezic: with 10 neighbors.
+
+307
+00:44:35.630 --> 00:44:36.700
+Zeljko Ivezic: and
+
+308
+00:44:36.710 --> 00:44:42.490
+Zeljko Ivezic: you can see that it's a bit noisier than than current kernel density estimator.
+
+309
+00:44:43.000 --> 00:44:46.029
+Zeljko Ivezic: And it it has to be that way because
+
+310
+00:44:46.070 --> 00:44:53.079
+Zeljko Ivezic: kernel density estimation is optimal from from the point of view of that mean, integrated, square error.
+
+311
+00:44:53.270 --> 00:44:56.589
+Zeljko Ivezic: Of course, when you have lots of data points, then
+
+312
+00:44:57.590 --> 00:45:02.470
+Zeljko Ivezic: any method that is that that is good will converge to the same result.
+
+313
+00:45:03.440 --> 00:45:08.449
+Zeljko Ivezic: And so then we'll come to the most powerful of these methods called Bayesian blocks.
+
+314
+00:45:08.890 --> 00:45:14.819
+Zeljko Ivezic: So that will come to your question, and we already talked about this in lecture 5 or 6 I forget.
+
+315
+00:45:15.180 --> 00:45:17.259
+Zeljko Ivezic: So here we say.
+
+316
+00:45:17.300 --> 00:45:29.879
+Zeljko Ivezic: we will have something like histogram. So step function will describe my model for underlying density distribution. But I'm not going to specify what's the width
+
+317
+00:45:30.200 --> 00:45:32.199
+Zeljko Ivezic: off these steps.
+
+318
+00:45:32.460 --> 00:45:33.939
+Zeljko Ivezic: And actually.
+
+319
+00:45:33.960 --> 00:45:38.700
+Zeljko Ivezic: in this method, you say, I'm not even going to force the same bit
+
+320
+00:45:38.950 --> 00:45:41.269
+Zeljko Ivezic: I will allow, variable with.
+
+321
+00:45:42.990 --> 00:45:47.330
+Zeljko Ivezic: and the simplest model that is still consistent with the data.
+
+322
+00:45:48.030 --> 00:45:53.120
+Zeljko Ivezic: And so that method is fully by Asian and given a dataset
+
+323
+00:45:53.500 --> 00:45:55.720
+Zeljko Ivezic: statistically, you can't beat it.
+
+324
+00:45:56.330 --> 00:46:04.389
+Zeljko Ivezic: The only downside of that method is that nobody has, as far as I know, generalized to multi-dimensional spaces.
+
+325
+00:46:04.650 --> 00:46:16.619
+Zeljko Ivezic: Even one dimensional case, when you look at derivation of the final equations is like 5 pages of of analytical derivation until it gets to the final loss function you optimize.
+
+326
+00:46:16.950 --> 00:46:22.990
+Zeljko Ivezic: So I don't. I don't know if there is multi-dimensional case, but for one dimensional data set you cannot beat it.
+
+327
+00:46:23.550 --> 00:46:41.930
+Zeljko Ivezic: And so here is example of it in action. So the gray histogram looking thing is not classical histogram. This is result of blocks, calculation, and the main difference compared to here you have body.
+
+328
+00:46:42.660 --> 00:46:47.340
+Zeljko Ivezic: So if you look at this middle. at this middle feature.
+
+329
+00:46:47.770 --> 00:46:58.929
+Zeljko Ivezic: it has a very narrow PIN that protrudes up and describes the day on the left side where you don't have that many data points. It's one very wide bin.
+
+330
+00:46:58.950 --> 00:47:02.460
+Zeljko Ivezic: So given these few data points in here.
+
+331
+00:47:02.820 --> 00:47:13.130
+Zeljko Ivezic: what blocks is telling you that there is no statistical evidence for any substructure in that part of the time.
+
+332
+00:47:13.490 --> 00:47:15.939
+Zeljko Ivezic: But here you have enough data points
+
+333
+00:47:16.210 --> 00:47:21.989
+Zeljko Ivezic: that there is strong statistical belief that there is feature in the middle.
+
+334
+00:47:22.500 --> 00:47:25.060
+Zeljko Ivezic: And that's why this method is so powerful.
+
+335
+00:47:25.310 --> 00:47:40.129
+Zeljko Ivezic: Because if you have a motor, it's data set. Other methods might not pick up this middle peak. Let's say you're doing some chemical analysis of some sample. You did spectrometer measurement. And you have data like this, and you're asking yourself.
+
+336
+00:47:40.220 --> 00:47:48.670
+Zeljko Ivezic: do I have? Is, for example, that correspond to goals, or whatever do I have statistical evidence in my measurement?
+
+337
+00:47:48.710 --> 00:47:52.710
+Zeljko Ivezic: And so by Asian blocks is the optimal statistical method.
+
+338
+00:47:53.720 --> 00:48:01.219
+Zeljko Ivezic: Again, if you have lots of data, then you don't need statistics than any method to work. If you have large sample.
+
+339
+00:48:01.420 --> 00:48:04.250
+Zeljko Ivezic: but for moderate size sam samples
+
+340
+00:48:06.500 --> 00:48:24.669
+Zeljko Ivezic: it. It, it's different. And so here now all 3 of them are shown together. So if you look at the bottom panel with 5,000 data points. All these methods tell you pretty much the same thing. But if your sample is small, then you can benefit greatly from using an optimal method.
+
+341
+00:48:25.290 --> 00:48:31.750
+Zeljko Ivezic: So if you just apply classical histogram analysis to the top panel, you would miss the middle panel.
+
+342
+00:48:32.170 --> 00:48:35.880
+Zeljko Ivezic: Maybe it's a new particle in Cern, and you miss your Nobel Prize.
+
+343
+00:48:36.900 --> 00:48:39.380
+Zeljko Ivezic: so Bayesian blocks is your friend
+
+344
+00:48:41.020 --> 00:48:53.989
+Zeljko Ivezic: again. Unfortunately, the Yesan blocs is only implemented in in oned. If you have multi dimensional data set. then you cannot use via Zoombox. But there are other methods we can use.
+
+345
+00:48:54.040 --> 00:49:01.410
+Zeljko Ivezic: and one is just to make an assumption about how is your underlying distribution
+
+346
+00:49:01.560 --> 00:49:06.440
+Zeljko Ivezic: looking. And then you can fit analytic functions to those data points.
+
+347
+00:49:06.530 --> 00:49:20.530
+Zeljko Ivezic: And so again, this is where Gaussian is used. If you can assume that your clumps can be described as linear combinations of multivariate multi-dimensional Gaussians. Then you can just use Gaussian mixture model.
+
+348
+00:49:20.990 --> 00:49:26.410
+Zeljko Ivezic: And that's basically what these equations. Show. So the first one says.
+
+349
+00:49:26.500 --> 00:49:32.519
+Zeljko Ivezic: there is this end of new and stands for normal distribution of.
+
+350
+00:49:32.900 --> 00:49:43.210
+Zeljko Ivezic: And
+
+351
+00:49:44.610 --> 00:49:47.139
+Zeljko Ivezic: and you say I will describe my
+
+352
+00:49:47.410 --> 00:49:57.160
+Zeljko Ivezic: distribution. So key of my data expand. Given some model parameters, Stepa stands for New and Sigma.
+
+353
+00:49:57.420 --> 00:50:06.439
+Zeljko Ivezic: I will describe that as being drawn from a multi dimensional, and then I will minimize.
+
+354
+00:50:07.100 --> 00:50:10.910
+Zeljko Ivezic: I will minimize the box function like
+
+355
+00:50:11.180 --> 00:50:15.729
+Zeljko Ivezic: to get my model of parameters. And so that's easy to do.
+
+356
+00:50:15.740 --> 00:50:23.340
+Zeljko Ivezic: But then you ask yourself, how do I know what this N. The capital? And how do I know how many?
+
+357
+00:50:25.010 --> 00:50:29.659
+Zeljko Ivezic: And the answer is, I don't, but I can try some reasonable range
+
+358
+00:50:29.680 --> 00:50:36.320
+Zeljko Ivezic: of M say, up to 100, for example, depending on data set. And then I can calculate
+
+359
+00:50:36.560 --> 00:50:47.569
+Zeljko Ivezic: by Asian information criterion or the full model probability for each of these choices. And then, wherever the thing is minimized, this is my statistically optimal choice.
+
+360
+00:50:48.370 --> 00:50:50.370
+Zeljko Ivezic: And so that's what next
+
+361
+00:50:50.420 --> 00:50:53.780
+Zeljko Ivezic: example is doing. So BIC,
+
+362
+00:50:55.050 --> 00:51:17.819
+Zeljko Ivezic: it's 2 times like the maximum likelihood. And that's essentially Chi square. So you can write. VI see, is defined 5 square in case of data, not generally. But when you have lots of data, Vsc is 5 square, we know, maybe.
+
+363
+00:51:18.110 --> 00:51:30.690
+Zeljko Ivezic: But the difference between Vic and Chi-square is this additional term, plus K. Times L and N, and is the size of your data sample. How many data points you have?
+
+364
+00:51:30.970 --> 00:51:34.750
+Zeljko Ivezic: And K is the number of free model parameters.
+
+365
+00:51:35.560 --> 00:51:53.710
+Zeljko Ivezic: So again we discussed it before. But to remind you, Vic, is numerical implementation of the so-called principle that you should use. You should choose the simplest model that is capable of explaining your data.
+
+366
+00:51:54.650 --> 00:52:07.959
+Zeljko Ivezic: So like you can make more complicated model, which may even have a little bit smaller price fair, because more model parameters. We have the better you should see the data, but eventually you'll start over 50
+
+367
+00:52:08.610 --> 00:52:16.100
+Zeljko Ivezic: and let's control by this penalty. K. And N. So you don't need to go with very complicated
+
+368
+00:52:16.480 --> 00:52:27.119
+Zeljko Ivezic: model, because it will punish you through bic like. For example, this morning in newspapers. Judge Turodic want to be selected.
+
+369
+00:52:27.350 --> 00:52:30.509
+Zeljko Ivezic: And now he says I didn't know
+
+370
+00:52:31.640 --> 00:52:41.430
+Zeljko Ivezic: Mrs. Rimat or I did, or we did talk, then we shouldn't, and so on. Who do you believe him, or
+
+371
+00:52:41.540 --> 00:52:51.210
+Zeljko Ivezic: 99% of Croatian guilty of doing improper things or not. That's one good example of where you can apply. BIC, and get to the answer.
+
+372
+00:52:54.420 --> 00:52:55.989
+Zeljko Ivezic: I'll leave that for home.
+
+373
+00:52:57.720 --> 00:53:01.280
+Zeljko Ivezic: So here there is a problem in us right now.
+
+374
+00:53:01.450 --> 00:53:06.019
+Zeljko Ivezic: I screwed up something on my computer, and I have this new
+
+375
+00:53:06.110 --> 00:53:19.559
+Zeljko Ivezic: and ask right now did not work the way it's supposed to. So I copied this from past premise distribution. It's literal copy. It's just growing and ellipse. You shouldn't even know about it. But since I broke it on my computer, I had to copy.
+
+376
+00:53:19.830 --> 00:53:24.090
+Zeljko Ivezic: So we will be looking now at this example.
+
+377
+00:53:24.130 --> 00:53:30.339
+Zeljko Ivezic: So again, details of movements are not important, but it's real. Time
+
+378
+00:53:30.550 --> 00:53:40.639
+Zeljko Ivezic: is measurements of the chemical composition of stars from spectra from small digital sky survey. So X-axis is something. Astronomers called metallicity.
+
+379
+00:53:40.700 --> 00:53:43.549
+Zeljko Ivezic: That's the ratio of the number of
+
+380
+00:53:43.680 --> 00:53:50.090
+Zeljko Ivezic: all the atoms that are not helium or hydrogen compared to the total number of atoms.
+
+381
+00:53:50.770 --> 00:53:55.070
+Zeljko Ivezic: and in in astronomy. Chemistry is very simple. There are only 3 elements
+
+382
+00:53:55.170 --> 00:53:59.690
+Zeljko Ivezic: there. There is hydrogen, there is helium, and there are metals.
+
+383
+00:54:00.200 --> 00:54:02.109
+Zeljko Ivezic: Now, of course, if you're a chemist.
+
+384
+00:54:02.270 --> 00:54:11.870
+Zeljko Ivezic: you know there's not anything else, but that's what you call it. And so everything but hydrogen and helium, divided by total is called metallicity.
+
+385
+00:54:11.980 --> 00:54:17.420
+Zeljko Ivezic: and alpha over Fe is alpha elements like silicon carbon and other
+
+386
+00:54:17.570 --> 00:54:29.129
+Zeljko Ivezic: elements that are produced in alpha reactions in nuclear reactions. And that's another interesting thing in astronomy, because it tells you how fast was star formation process.
+
+387
+00:54:29.330 --> 00:54:32.750
+Zeljko Ivezic: So basically. this is kind of
+
+388
+00:54:32.850 --> 00:54:38.949
+Zeljko Ivezic: how all this population and how quickly it was point. Not exactly. But that's why we plug this time.
+
+389
+00:54:38.960 --> 00:54:51.480
+Zeljko Ivezic: But in this context we don't even care what it is. It's a bunch of points, few tens of thousands of points. And I can see by my eyes that there is some structure in it. What that we want to do it is to quantify it.
+
+390
+00:54:51.810 --> 00:55:02.830
+Zeljko Ivezic: So we say, well, in that kind of round clusters. So maybe Gaussian distribution is not totally insane. Let's try to fit it with a bunch of Gaussians, and let's see how it looks like
+
+391
+00:55:03.610 --> 00:55:12.149
+Zeljko Ivezic: how many Gaussians? Well, we don't know. So let's do it for many options. And then see how Bic behaves. And that's what's done in here.
+
+392
+00:55:12.410 --> 00:55:19.410
+Zeljko Ivezic: So basically, you loop over actually, calculation was done earlier here. Now, where is it?
+
+393
+00:55:20.070 --> 00:55:26.279
+Zeljko Ivezic: Here? It's this is calculation. I'm not going to do it again, because it's slovish to take few minutes.
+
+394
+00:55:26.540 --> 00:55:28.510
+Zeljko Ivezic: You can try it later yourself.
+
+395
+00:55:28.720 --> 00:55:33.379
+Zeljko Ivezic: and this is results. So y. Axis is Vic
+
+396
+00:55:33.450 --> 00:55:44.010
+Zeljko Ivezic: and X-axis is the number of Gaussian components. We tried. It looks like we went to 13. Aic is added just for
+
+397
+00:55:44.410 --> 00:56:01.910
+Zeljko Ivezic: for completeness. Aic is an older quantity called Aikaki information criterion that was derived using different approach, not by Asia. It gives you very similar answer, but it's not as principle as by A/C. So I usually use Bic when I do these things.
+
+398
+00:56:01.970 --> 00:56:15.349
+Zeljko Ivezic: So we look at the solid line and we see that we kind of hit. It's not exactly local minimum. At what is it? 5, but event out. And assuming that this is now kind of noisy thing.
+
+399
+00:56:15.650 --> 00:56:19.049
+Zeljko Ivezic: it looks like 4 or 5 Gaussians should work.
+
+400
+00:56:19.340 --> 00:56:23.079
+Zeljko Ivezic: And so here in this one, it's 5.
+
+401
+00:56:23.370 --> 00:56:38.179
+Zeljko Ivezic: So now we just take that case for 5 Gaussians. And we say what these ellipses in this diagram and show me how it looks. The finalness of the distribution. And so this is what you get.
+
+402
+00:56:39.260 --> 00:56:41.100
+Zeljko Ivezic: and the next
+
+403
+00:56:41.410 --> 00:56:45.270
+Zeljko Ivezic: compares the 2. So links is
+
+404
+00:56:46.680 --> 00:56:48.090
+Zeljko Ivezic: real data.
+
+405
+00:56:48.350 --> 00:56:51.079
+Zeljko Ivezic: 2 dimensional. Just count.
+
+406
+00:56:51.540 --> 00:56:57.479
+Zeljko Ivezic: And then you see Gaussians, please. Then, you see, Gaussians, you don't actually use females don't have to stimulate.
+
+407
+00:56:57.680 --> 00:57:01.460
+Zeljko Ivezic: You simply give it X and y's for all the data points.
+
+408
+00:57:01.470 --> 00:57:03.240
+Zeljko Ivezic: And you conclude that
+
+409
+00:57:03.670 --> 00:57:13.340
+Zeljko Ivezic: so basically, given the size of the morphology, this diagram find
+
+410
+00:57:14.930 --> 00:57:24.590
+Zeljko Ivezic: and but I'm looking at it. I should have added another panel to see the residuals.
+
+411
+00:57:24.780 --> 00:57:33.009
+Zeljko Ivezic: So that would have been good plus, too. Now I I'll have to write a note for myself. Give me a second.
+
+412
+00:57:51.880 --> 00:58:03.780
+Zeljko Ivezic: Alright. So there is one more thing I want to do today. So this is powerful method. Before see many dynamics before the large data sets, you can.
+
+413
+00:58:04.110 --> 00:58:13.530
+Zeljko Ivezic: One thing that is not good to Gaussian, although, is that we assume that the measurements of X and Y axis
+
+414
+00:58:14.430 --> 00:58:20.720
+Zeljko Ivezic: has small uncertainties so small that they are negligible compared to the data spread.
+
+415
+00:58:20.830 --> 00:58:28.880
+Zeljko Ivezic: So here we have data going from minus one to 0. So let's say, we assume there is a point on one or smaller.
+
+416
+00:58:29.480 --> 00:58:35.289
+Zeljko Ivezic: We did not introduce any errors in this analysis only to the measured positions.
+
+417
+00:58:35.530 --> 00:58:43.259
+Zeljko Ivezic: Now, often in science we don't have perfect measurements. Often our errors can be substantial, especially
+
+418
+00:58:43.310 --> 00:58:45.889
+Zeljko Ivezic: very expensive to to get smoked.
+
+419
+00:58:46.230 --> 00:58:59.180
+Zeljko Ivezic: So we want a method. Now that would look at this distribution. But assuming that for each data point, we have error or uncertainty or measurement. We want to work it into our analysis.
+
+420
+00:58:59.450 --> 00:59:02.010
+Zeljko Ivezic: So if you just if you just look at this diagram.
+
+421
+00:59:02.200 --> 00:59:18.890
+Zeljko Ivezic: if we now edit errors X and Y, that would blur the whole distribution, it would move, points up and down, and as a result the final Gaussian would become set up bigger because they would be spread out.
+
+422
+00:59:19.340 --> 00:59:28.909
+Zeljko Ivezic: But if I tell everybody else far I should be, it should be possible to account for this in it effectively, we should be able to deep on Mobile
+
+423
+00:59:29.260 --> 00:59:34.410
+Zeljko Ivezic: like. If I have 2 Gaussian distributions. Let's say I have Gaussian with one.
+
+424
+00:59:34.570 --> 00:59:38.529
+Zeljko Ivezic: and my measurements have certain value. With 2,
+
+425
+00:59:38.560 --> 00:59:44.220
+Zeljko Ivezic: the result will be convolution of 2 gases. which is again a Gaussian.
+
+426
+00:59:44.260 --> 00:59:48.569
+Zeljko Ivezic: with the bit that is fair root of the sum of squares of the bit
+
+427
+00:59:49.000 --> 00:59:55.079
+Zeljko Ivezic: that's analytic result of Gauss. So at least in principle, I should be able. If I know
+
+428
+00:59:55.340 --> 01:00:06.810
+Zeljko Ivezic: errors, I should say, then it's square root of the top of it, minus square errors. That's intrinsically based in principle. And that's what happens with extreme data convolution.
+
+429
+01:00:08.350 --> 01:00:14.909
+Zeljko Ivezic: So what we are doing is very similar model. I don't even know if you can see.
+
+430
+01:00:15.140 --> 01:00:15.980
+Zeljko Ivezic: Okay.
+
+431
+01:00:16.250 --> 01:00:20.249
+Zeljko Ivezic: So we again assume that second line.
+
+432
+01:00:20.500 --> 01:00:26.179
+Zeljko Ivezic: First, the same measurements are coming from some distribution, and they have errors.
+
+433
+01:00:26.310 --> 01:00:37.210
+Zeljko Ivezic: Then my model looks exactly the same as before some of Gaussians, but the difference is that the weight of that Gaussian is now added in quadrature
+
+434
+01:00:37.530 --> 01:00:46.289
+Zeljko Ivezic: between errors and something intrinsic errors. We are given, and we are looking for the intrinsic bit. So we are looking at something that was
+
+435
+01:00:46.540 --> 01:00:50.949
+Zeljko Ivezic: blurred by X, and we are looking for the underlying distribution.
+
+436
+01:00:51.340 --> 01:00:53.250
+Zeljko Ivezic: And so this is slightly
+
+437
+01:00:54.260 --> 01:00:58.480
+Zeljko Ivezic: more involved to solve, but not fundamentally different.
+
+438
+01:00:59.130 --> 01:01:01.349
+Zeljko Ivezic: And so we will look at
+
+439
+01:01:03.350 --> 01:01:05.060
+Zeljko Ivezic: one example
+
+440
+01:01:05.360 --> 01:01:11.269
+Zeljko Ivezic: that was motivated by stellar photometry in astronomy. But again, it's X and y.
+
+441
+01:01:11.880 --> 01:01:16.220
+Zeljko Ivezic: and this is through this provision. So there is something very inevitable.
+
+442
+01:01:16.230 --> 01:01:32.880
+Zeljko Ivezic: and then there is a cloud, so there is very elegant. not quite Gaussian, but very narrow distribution along the line, and then there is a big clump. And so this is true. We drew that distribution from some analytic thingy.
+
+443
+01:01:32.930 --> 01:01:40.340
+Zeljko Ivezic: and now we'll add errors. So now you, if you compare the 2, you can see how narrow this one is.
+
+444
+01:01:40.430 --> 01:01:45.959
+Zeljko Ivezic: but now it becomes very wide, and the reason is that we introduce them.
+
+445
+01:01:46.390 --> 01:01:49.100
+Zeljko Ivezic: Be sad, let me say sad Arabs
+
+446
+01:01:59.450 --> 01:02:11.079
+Zeljko Ivezic: between point 2 and point 7, and then we drove from Gaussian random number. We add it to x 2.2, and we get pretend measurements
+
+447
+01:02:11.090 --> 01:02:15.419
+Zeljko Ivezic: that patron from some known distribution, but then they are blurred.
+
+448
+01:02:15.770 --> 01:02:19.950
+Zeljko Ivezic: And so the idea is that we take measurements like this.
+
+449
+01:02:20.180 --> 01:02:24.110
+Zeljko Ivezic: where we know measurement, uncertainties, and we derived
+
+450
+01:02:24.140 --> 01:02:35.579
+Zeljko Ivezic: back this underlying distribution. So in effect, we are deconvolving observed distribution, while at the same time we are also modeling the underlying distribution.
+
+451
+01:02:37.440 --> 01:02:58.959
+Zeljko Ivezic: And that's what's called in in astronomy that people who re this method was known in statistics for like half a century. But it became popular in astronomy. Maybe 20 years ago, when computers allowed you to model this huge data set. And so the guys who who wrote it called it extreme deconvolution
+
+452
+01:02:58.960 --> 01:03:11.360
+Zeljko Ivezic: because they like fancy names, but there is nothing very deep and philosophical in it. It's simply deconvolution. It's modeling your data by assuming Gaussians. Your Gaussians have intrinsic and known
+
+453
+01:03:11.390 --> 01:03:18.110
+Zeljko Ivezic: blurring, viewed uncertainties. So let me go straight to the results. So
+
+454
+01:03:19.300 --> 01:03:20.790
+Zeljko Ivezic: this is the result.
+
+455
+01:03:22.430 --> 01:03:26.179
+Zeljko Ivezic: The the top left panel is the distribution.
+
+456
+01:03:26.430 --> 01:03:31.010
+Zeljko Ivezic: So it was dropped with a beta before it measured.
+
+457
+01:03:31.380 --> 01:03:37.610
+Zeljko Ivezic: So what we want to recover is stop. But we are giving the top right
+
+458
+01:03:39.870 --> 01:03:47.060
+Zeljko Ivezic: and let's ignore bottom list. and the bottom ground is
+
+459
+01:03:47.300 --> 01:03:53.030
+Zeljko Ivezic: underlying density distribution express as the sound of galaxies.
+
+460
+01:03:53.180 --> 01:04:08.290
+Zeljko Ivezic: And so we had 5, 6, 7, 8, 9, 10, about 10 Gaussian funds to model the distribution in the top left. which is then involved with known errors to get distribution in the top right.
+
+461
+01:04:08.790 --> 01:04:12.200
+Zeljko Ivezic: And so now we learn
+
+462
+01:04:12.480 --> 01:04:18.519
+Zeljko Ivezic: better estimate of the undermine distribution, because errors are accounted for.
+
+463
+01:04:19.380 --> 01:04:27.790
+Zeljko Ivezic: And now another Sam example is with real data. And so in this example, we have
+
+464
+01:04:28.150 --> 01:04:37.179
+Zeljko Ivezic: one measurement diagram, and then you can repeat measurements many times, and you can.
+
+465
+01:04:37.360 --> 01:04:39.990
+Zeljko Ivezic: And so in this small part of the study
+
+466
+01:04:40.340 --> 01:04:51.769
+Zeljko Ivezic: panel are exactly the same. But in the next panel. They measure 50 times 7 months only.
+
+467
+01:04:51.900 --> 01:04:54.339
+Zeljko Ivezic: and in the right is
+
+468
+01:04:54.500 --> 01:05:09.999
+Zeljko Ivezic: measurement. Errors are negligible.
+
+469
+01:05:10.810 --> 01:05:15.259
+Zeljko Ivezic: And that's what I put in this example here. Later, you can
+
+470
+01:05:15.840 --> 01:05:18.930
+Zeljko Ivezic: try to run it on some other dataset
+
+471
+01:05:19.540 --> 01:05:20.790
+Zeljko Ivezic: if you have it.
+
+472
+01:05:20.820 --> 01:05:22.990
+Zeljko Ivezic: So we
+
+473
+01:05:23.450 --> 01:05:39.180
+Zeljko Ivezic: we start with the top right in this specific case, we know, was the right answer. It's top left. and then in front stream that convolution. And it tells us that the underlying distribution looks like bottom left. So it's much narrower.
+
+474
+01:05:39.230 --> 01:05:45.870
+Zeljko Ivezic: And now, if you look at the top, left most similar the net in the web and the model is shown
+
+475
+01:05:46.010 --> 01:05:47.710
+Zeljko Ivezic: in the autumn.
+
+476
+01:05:47.850 --> 01:06:09.709
+Zeljko Ivezic: And so, even though this this hockey stick shape does not look like. If you have a series to expand it into a linear sum of guys, you can then describe any distribution. And so we said, it looks narrow. And then here in particular, this plot shows how you different works.
+
+477
+01:06:09.840 --> 01:06:13.729
+Zeljko Ivezic: So the blue is just one measurement.
+
+478
+01:06:13.820 --> 01:06:21.160
+Zeljko Ivezic: And we want to convolve that measurement. W is the bit of the.
+
+479
+01:06:21.410 --> 01:06:26.019
+Zeljko Ivezic: So we are measuring how thick it is. So blue is the starting point.
+
+480
+01:06:26.200 --> 01:06:31.560
+Zeljko Ivezic: And then multiple measurements give me orange. So orange
+
+481
+01:06:32.020 --> 01:06:42.880
+Zeljko Ivezic: is maybe not the basic distribution. Maybe also has it to be prepared contribution. But we know that extremely convolution has to be a
+
+482
+01:06:43.040 --> 01:06:44.189
+Zeljko Ivezic: and maybe now.
+
+483
+01:06:44.670 --> 01:06:48.189
+Zeljko Ivezic: And indeed, the the Greek plot shows the result
+
+484
+01:06:48.210 --> 01:06:49.950
+Zeljko Ivezic: correctly, because
+
+485
+01:06:50.420 --> 01:06:58.880
+Zeljko Ivezic: even
+
+486
+01:06:59.030 --> 01:07:11.510
+Zeljko Ivezic: expected answer. So it's a very powerful if you can describe your data as a linear sum of Gaussians, and sometimes you can use 1,000 Gaussians if need be.
+
+487
+01:07:11.670 --> 01:07:13.920
+Zeljko Ivezic: Yeah, I think you'll do that on Thursday.
+
+488
+01:07:14.000 --> 01:07:30.839
+Zeljko Ivezic: and then you trust your measurement certainties. That's important. If you're lying about measurement certainties, you get wrong. Answer. If you don't estimate measurement uncertainties properly, then, when you do convolution, you can even get square root of negative number.
+
+489
+01:07:31.180 --> 01:07:39.640
+Zeljko Ivezic: which shouldn't happen. So you need to trust your uncertainties. And if this is true, then this is a fantastic method to use for density, estimation.
+
+490
+01:07:41.430 --> 01:07:56.139
+Zeljko Ivezic: and so, I believe, few minutes for questions. But let me just quickly go through this to show you what's in here. So we started lecture by showing this this 2 dimensional distribution of galaxies. Great wall. So I put together all the methods at the end.
+
+491
+01:07:56.360 --> 01:08:02.850
+Zeljko Ivezic: so you can compare their performance. So we are trying to model this. So then we try Gaussian thermal.
+
+492
+01:08:03.800 --> 01:08:13.779
+Zeljko Ivezic: Then we do top head kernel. Then we do exponential kernel, you can see that are very similar, and you can play with a bit if you want to make sure you can run the code.
+
+493
+01:08:15.020 --> 01:08:18.329
+Zeljko Ivezic: Then we also did nearest neighbor distribution.
+
+494
+01:08:19.109 --> 01:08:23.399
+Zeljko Ivezic: and then we did what? What's the last one?
+
+495
+01:08:25.260 --> 01:08:30.090
+Zeljko Ivezic: Oh, I'm blind like a bat nearest name, all right.
+
+496
+01:08:30.229 --> 01:08:35.340
+Zeljko Ivezic: And then at the end we compared all of them. So these are all kernel density estimators.
+
+497
+01:08:35.420 --> 01:08:40.029
+Zeljko Ivezic: The point is to show you how it depends on the shape and width of the kernel.
+
+498
+01:08:40.660 --> 01:08:48.950
+Zeljko Ivezic: And then finally, we took this distribution. That doesn't look like some of Gaussians at all, and we said, Let us run, Gaussian, make sure model and see what we get.
+
+499
+01:08:50.180 --> 01:09:03.750
+Zeljko Ivezic: And so this what it came with I forget what was the number. There was some number there. No, I didn't write it. So basically, we take this point process, and then we feed Gaussian. And so in this case it looks like
+
+500
+01:09:03.779 --> 01:09:12.269
+Zeljko Ivezic: I did not optimize on the width that these Gaussians are slightly too narrow, so they need to be slightly wider, and then it should work better.
+
+501
+01:09:12.600 --> 01:09:21.360
+Zeljko Ivezic: And here we did 300 Gaussians. We are using some of 300 Gaussians, and that's what describes this density distribution.
+
+502
+01:09:21.680 --> 01:09:32.340
+Zeljko Ivezic: So that was like bunch of examples at the end. If you want to play with it and compare. So we have few minutes left. I'll stop here and you'll stop for questions.
+
+503
+01:09:38.500 --> 01:09:40.550
+Zeljko Ivezic: Are there any questions on the zoom?
+
+504
+01:09:41.729 --> 01:09:47.600
+Zeljko Ivezic: Nothing here. Okay? So then, a little bit of feedback, maybe not question but feedback.
+
+505
+01:09:47.760 --> 01:09:51.810
+Zeljko Ivezic: If we cover too much today, was it too theoretically, count.
+
+506
+01:09:52.420 --> 01:09:54.369
+Zeljko Ivezic: or you're just sleepy after lunch.
+
+507
+01:10:00.160 --> 01:10:04.830
+Zeljko Ivezic: so try and try to run at least a little bit of that notebook
+
+508
+01:10:04.850 --> 01:10:14.700
+Zeljko Ivezic: when you have time, and then you will feel much better when you know that you have some code that you kind of understand, and you can definitely run off your company.
+
+509
+01:10:15.380 --> 01:10:20.400
+Zeljko Ivezic: And for extra bonus I offer box at the reality chocolates.
+
+510
+01:10:20.610 --> 01:10:36.269
+Zeljko Ivezic: If someone takes their own data from their own research, like your Phd. and you run one of these methods on your own data and explain to us in 5 to 10 min what you did and how it looks like
+
+511
+01:10:38.170 --> 01:10:39.320
+Zeljko Ivezic: reality.
+
+512
+01:10:39.460 --> 01:10:41.470
+Zeljko Ivezic: Full box.
+
+513
+01:10:42.440 --> 01:10:45.090
+Zeljko Ivezic: All right, then we'll finish for today. Thank you so much.
+
+514
+01:10:50.270 --> 01:10:52.350
+Lovro Palaversa: Thank you, Jake, and bye-bye.
+
+515
+01:10:52.530 --> 01:10:53.839
+Zeljko Ivezic: Thank you, Lavra.
+
+516
+01:10:55.620 --> 01:10:56.540
+Ina Galić (Germany): Bye.
+
+517
+01:10:57.000 --> 01:10:58.360
+Zeljko Ivezic: bye.
+
