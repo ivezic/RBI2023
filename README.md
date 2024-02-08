@@ -69,5 +69,7 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - K-means clustering algorithm
 - Clustering with Gaussian Mixture models (GMM)
 - Hierarchical clustering algorithm
+
+[ Zoom recording for Lecture 8](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture8/Lecture8_zoom.mp4)
 -----------------------------------------------------------------------------
 
