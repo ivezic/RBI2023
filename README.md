@@ -78,6 +78,7 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - An example of a generative classifier: star/galaxy separation using Gaussian Naive Bayes classifier
 - Comparison of many methods using ROC curves
  
+[ Zoom recording for Lecture 9](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture9/Lecture9_zoom.mp4)
 -----------------------------------------------------------------------------
 [ Lecture 10, February 15, 2024: "Clustering (Unsupervised Classification)"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture10.ipynb) 
 - The curse of dimensionality
