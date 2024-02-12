@@ -72,4 +72,17 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 
 [ Zoom recording for Lecture 8](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture8/Lecture8_zoom.mp4)
 -----------------------------------------------------------------------------
+[ Lecture 9, February 12, 2024: "Density Estimation"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture9.ipynb) 
+- Introduction to Supervised Classification
+- An example of a discriminative classifier: Support Vector Machine classifier
+- An example of a generative classifier: star/galaxy separation using Gaussian Naive Bayes classifier
+- Comparison of many methods using ROC curves
+ 
+-----------------------------------------------------------------------------
+[ Lecture 10, February 15, 2024: "Clustering (Unsupervised Classification)"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture10.ipynb) 
+- The curse of dimensionality
+- Principal Component Analysis
+- Comparing PCA, NMF and ICA
+
+-----------------------------------------------------------------------------
 
