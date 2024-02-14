@@ -80,7 +80,7 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
  
 [ Zoom recording for Lecture 9](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture9/Lecture9_zoom.mp4)
 -----------------------------------------------------------------------------
-[ Lecture 10, February 15, 2024: "Clustering (Unsupervised Classification)"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture10.ipynb) 
+[ Lecture 10, February 15, 2024: "Dimensionality Reduction"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture10.ipynb) 
 - The curse of dimensionality
 - Principal Component Analysis
 - Comparing PCA, NMF and ICA
