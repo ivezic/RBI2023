@@ -1,0 +1,2162 @@
+WEBVTT
+
+1
+00:00:10.360 --> 00:00:12.229
+Zeljko Ivezic: Okay, let's start
+
+2
+00:00:13.550 --> 00:00:19.659
+Zeljko Ivezic: before we continue with the topic. Are there any questions about what we covered? So far.
+
+3
+00:00:21.670 --> 00:00:34.150
+Zeljko Ivezic: density, information clustering? That's the basis for what we are going to cover today. So it's one of the indications of density estimations to the supervised classification.
+
+4
+00:00:34.870 --> 00:00:45.509
+Zeljko Ivezic: And then we'll also introduce a large number of classifiers. Some of them will discuss in more detail some of them justice, and why I, that you know they exist.
+
+5
+00:00:48.090 --> 00:00:56.520
+Zeljko Ivezic: And we'll start with a simple problem here. So this piece of code above it's trivial piece of code to generate some sample from
+
+6
+00:00:56.530 --> 00:00:59.519
+Gaussian distribution few 100 points.
+
+7
+00:00:59.820 --> 00:01:07.110
+Zeljko Ivezic: and it illustrates the simple possible example of of supervised classification. So.
+
+8
+00:01:07.560 --> 00:01:12.350
+Zeljko Ivezic: oh, we have 2 quantities that we measure for each object, and x and y.
+
+9
+00:01:12.960 --> 00:01:14.270
+Zeljko Ivezic: and
+
+10
+00:01:14.310 --> 00:01:21.730
+Zeljko Ivezic: we also have a label that tells us what kind of objects we are looking at in astronomy. It would be starring galaxy
+
+11
+00:01:21.760 --> 00:01:29.070
+Zeljko Ivezic: and chemistry. It could be acid and base or something. You can make up anything you want.
+
+12
+00:01:29.370 --> 00:01:39.269
+Zeljko Ivezic: And then you say, given these labels, I want to find optimal separation of those 2 classes in this diagram.
+
+13
+00:01:39.610 --> 00:01:53.939
+Zeljko Ivezic: and we'll learn in a moment. What does it mean? Optimal? And we'll also see how to generalize this to highly multi-dimensional spaces. Sometimes you can have thousands of coding. It's not just 2.
+
+14
+00:01:54.090 --> 00:02:07.440
+Zeljko Ivezic: Typically in practice, it's few dozen. And then if you go to hundreds and thousands of coordinates, then most methods become either too slow or unbuildly, or it's hard to tell what's going on. So then.
+
+15
+00:02:07.660 --> 00:02:20.750
+Zeljko Ivezic: the different methods called dimensionality reduction that will cover on Thursday. That will help us in cases when we need to classify highly multi dimensional cases today will will stay under 10.
+
+16
+00:02:21.250 --> 00:02:29.059
+Zeljko Ivezic: This is also trivial example, because there's no mixing of classes. See, all these black points are nicely climate.
+
+17
+00:02:29.140 --> 00:02:42.430
+Zeljko Ivezic: and these red points are nicely clamped, and so it is possible to draw a line that will separate them. And indeed, it doesn't have to be curved line. It can be straight line. And we'll see with
+
+18
+00:02:42.580 --> 00:02:47.040
+Zeljko Ivezic: support vector machines how to find an optimal straight line.
+
+19
+00:02:47.370 --> 00:02:59.130
+Zeljko Ivezic: In this case the model includes 2 Gaussian components, and the line means probability of 50 50 50 that you belong to one of these 2 classes.
+
+20
+00:02:59.370 --> 00:03:01.860
+Zeljko Ivezic: So that's an easy problem easy to solve.
+
+21
+00:03:03.560 --> 00:03:05.459
+Zeljko Ivezic: I have another example
+
+22
+00:03:05.810 --> 00:03:11.259
+Zeljko Ivezic: where we use 7 measured properties, and this one is not made up sample.
+
+23
+00:03:11.430 --> 00:03:19.270
+Zeljko Ivezic: This one is a real sample, measurements of variable stars, stars that all say.
+
+24
+00:03:19.610 --> 00:03:24.380
+and then you can measure their light curve, which is flux versus time.
+
+25
+00:03:24.770 --> 00:03:31.779
+Zeljko Ivezic: and then by measuring the amplitude of that variation, by measuring, if it's periodic period.
+
+26
+00:03:31.890 --> 00:03:48.270
+Zeljko Ivezic: by measuring some parameters that quantify shape of that light curve, typically you expand it into a small number of Fourier 48 terms, 3, 4, 5, depending on complexity of the light curve. And then you can use those Fourier coefficients for classification, too.
+
+27
+00:03:48.380 --> 00:04:07.369
+Zeljko Ivezic: and then there are few other parameters called colors. Ug, IKJK. These are different path bends in astronomy. So by measuring colors of stars you can tell what is their effective temperature, and few other astrophysical parameters like gravity on the surface or chemical composition.
+
+28
+00:04:07.800 --> 00:04:13.220
+Zeljko Ivezic: So the key is that we have 7 measured parameters.
+
+29
+00:04:13.320 --> 00:04:35.979
+Zeljko Ivezic: So it's hard to visualize that you can do 2 dimensional projections. You put color code symbols with another coordinate. You can even develop 2 dimensional collar coding. So up to about 4 parameters, or maybe 5 to symbol signs, you can handle it easily in visualization, but once you go beyond 5 it becomes part to to do it.
+
+30
+00:04:36.070 --> 00:04:40.359
+Zeljko Ivezic: And so basically here we reach data, a few 1,000 stars.
+
+31
+00:04:42.290 --> 00:04:46.689
+Zeljko Ivezic: and each star has a label, one to 5.
+
+32
+00:04:47.000 --> 00:05:01.289
+Zeljko Ivezic: There are different types of variable stars. In this context, it's not important what they mean. But there are 5 different discrete labels which in numerics you just go 1, 2, 3, 4, 5. You can give them strings, then you can translate, etcetera.
+
+33
+00:05:01.550 --> 00:05:05.050
+Zeljko Ivezic: And so this is now result of that classification
+
+34
+00:05:07.720 --> 00:05:09.450
+Zeljko Ivezic: where you have.
+
+35
+00:05:15.910 --> 00:05:19.999
+Zeljko Ivezic: where you have 2 dimensional projections, projections of that space.
+
+36
+00:05:20.100 --> 00:05:32.620
+Zeljko Ivezic: And so color scheme for some reason changed. I couldn't figure out why, because the original version had more beautiful colors, but th it's supposed to be 5 different colors. So in bottom left there is a clump
+
+37
+00:05:32.730 --> 00:05:33.880
+Zeljko Ivezic: fairly unique
+
+38
+00:05:33.920 --> 00:05:40.329
+Zeljko Ivezic: form. Then you have yellow and blue in the middle you have purple, and then some other kind of finish thing on top.
+
+39
+00:05:40.450 --> 00:05:48.840
+Zeljko Ivezic: So several things can be learned and learned from this example. So when you have multi-dimensional space, you have more power to classify.
+
+40
+00:05:49.120 --> 00:06:09.669
+Zeljko Ivezic: and so often it will look to you that the sample is mixed. But it's just 2 dimensional projection. So then, you have to try the other projection and the other projection with your coordinate taxes, or, as we will also learn next time and Thursday, you can run something like principal components analysis. And then you can have optimal
+
+41
+00:06:09.750 --> 00:06:14.010
+Zeljko Ivezic: orientation of this to project along minimum variance
+
+42
+00:06:14.440 --> 00:06:15.690
+Zeljko Ivezic: coordinate system.
+
+43
+00:06:16.520 --> 00:06:19.200
+So that's what we wanted to learn how to do this.
+
+44
+00:06:19.240 --> 00:06:25.400
+Zeljko Ivezic: And so, as you can tell, it's very similar to clustering problem that we talked about last time.
+
+45
+00:06:25.560 --> 00:06:38.689
+Zeljko Ivezic: and all of the difficulties with clustering methods. Translate to classification, too. So if you now want to model this clumps with some function, then it's easy to do it with Gaussian components.
+
+46
+00:06:38.700 --> 00:06:44.500
+Zeljko Ivezic: But if the clump doesn't look like Gaussian, then you will have suspicious results.
+
+47
+00:06:44.680 --> 00:06:57.149
+Zeljko Ivezic: Now with classification. It's little bit easier when you use Gaussian mixture model because you are not trying to find clusters independently. You are just trying to describe their shape.
+
+48
+00:06:57.560 --> 00:07:26.470
+Zeljko Ivezic: So when you have highly non Gaussian clusters, but they all have the same labels, all the points in that peculiar looking cluster at the same labels. Then you can use multiple Gaussians to describe them like, if you have some arbitrary one dimensional function, you can always describe it as linear sum of Gaussians. So the same applies here with classification, and indeed, I think this figure the original was produced with 50 Gaussians.
+
+49
+00:07:27.070 --> 00:07:42.469
+Zeljko Ivezic: and so you don't know that there are multiple Gaussians. But when you assign probabilities you get your your label that you classify. So that's the gist of it. So there are 2 ways to do it by modeling density, as we learned last time, and by drawing lines like this
+
+50
+00:07:42.600 --> 00:07:48.399
+Zeljko Ivezic: or surfaces in multi-dimensional spaces. There are 2 ways to approach this problem.
+
+51
+00:07:49.520 --> 00:07:50.670
+Zeljko Ivezic: So
+
+52
+00:07:51.710 --> 00:07:54.569
+Zeljko Ivezic: the first thing to learn is that
+
+53
+00:07:56.820 --> 00:08:04.530
+Zeljko Ivezic: it's called supervised because you have labels that's different than unsupervised, which is different thing for clustering. Often people confuse this too.
+
+54
+00:08:04.780 --> 00:08:26.179
+Zeljko Ivezic: Then there are 2 approaches to classification. So one is generative classification. That's this context of density estimation. Once you know how to fully quantify density distribution of these points, each of the clusters, then classification is straightforward, basically just compute probabilities
+
+55
+00:08:26.260 --> 00:08:32.900
+Zeljko Ivezic: for each of the clusters that the given point belongs to. So if a point is far away from a cluster.
+
+56
+00:08:33.090 --> 00:08:54.369
+Zeljko Ivezic: it will have small probability as you get closer to the cluster center, then probability for that particular cluster goes up, but for all of the other clusters goes down, and so there will be these surfaces where your probability will be equal, for other clusters goes with this one. As long as you get closer to this surface you are. You belong to that particular cluster.
+
+57
+00:08:54.630 --> 00:09:08.719
+Zeljko Ivezic: and it doesn't really matter how you describe this cluster just with one Gaussian or 10 Gauss, and as long as you come to this cluster, and you get high probability for one of those plus Gaussians. Then you know what is your classification.
+
+58
+00:09:08.990 --> 00:09:30.099
+Zeljko Ivezic: The other one is discriminative classification where you define surfaces. So you don't model density distribution. That was this first example. We found that line that optimally separates 2 clusters, but we don't know how to describe the cluster itself. We have extremely complicated morphology, but we don't care
+
+59
+00:09:30.390 --> 00:09:35.759
+Zeljko Ivezic: because we are just trying to draw boundary. and so in both cases, to
+
+60
+00:09:35.780 --> 00:09:38.210
+Zeljko Ivezic: optimize your model.
+
+61
+00:09:38.490 --> 00:09:46.839
+Zeljko Ivezic: you need to have some kind of a measure of success. And so here the measure of of success is how many times
+
+62
+00:09:46.970 --> 00:10:00.840
+Zeljko Ivezic: you guess. Well, you determined fast. Well, because you know what's the true answer. You have the model, and then you count all the instances where actually, you didn't get well, that's the loss function. So I'm minimizing the loss function.
+
+63
+00:10:01.120 --> 00:10:09.330
+Zeljko Ivezic: So in optimal case of classification, every single object in your model will have the same label
+
+64
+00:10:09.800 --> 00:10:15.280
+Zeljko Ivezic: as this true label that you know that you're given. So that's what that first program shows
+
+65
+00:10:15.400 --> 00:10:19.269
+Zeljko Ivezic: that most function of Y and Y
+
+66
+00:10:19.430 --> 00:10:33.610
+Zeljko Ivezic: is equal to one when they are not equal. Sorry, maybe slightly unusual notation. But it's as simple as that, count. How many times you made a mistake, and that's your host function. And then given the model.
+
+67
+00:10:33.820 --> 00:10:35.489
+Zeljko Ivezic: Then you minimize
+
+68
+00:10:35.800 --> 00:10:37.580
+Zeljko Ivezic: your loss function.
+
+69
+00:10:38.290 --> 00:10:40.060
+Zeljko Ivezic: the expectation.
+
+70
+00:10:40.490 --> 00:10:52.299
+Zeljko Ivezic: the loss function over all the elements of the sample, this goal classification and the risk. So that's measure of the performance. Your classifier.
+
+71
+00:10:52.980 --> 00:11:02.520
+Zeljko Ivezic: And, as you remember, from last time, we already introduced the 2 most important quantities that we use when we do classification, one is completeness.
+
+72
+00:11:03.020 --> 00:11:13.030
+Zeljko Ivezic: or in statistics, they would call it true positive rate and contamination, or false positive rate. So basically, once you classify something.
+
+73
+00:11:13.150 --> 00:11:20.809
+Zeljko Ivezic: then if you have 2 samples, there are 4 possibilities. It's 2 by 2 matrix. It's true, positive or false positives.
+
+74
+00:11:20.820 --> 00:11:24.240
+Zeljko Ivezic: positive or true, negative or false negative.
+
+75
+00:11:25.810 --> 00:11:27.590
+Zeljko Ivezic: So that's what we want to do.
+
+76
+00:11:28.060 --> 00:11:31.749
+Zeljko Ivezic: So if you think of generative classification.
+
+77
+00:11:32.470 --> 00:11:40.170
+Zeljko Ivezic: if you have models for your density, distribution, then classification is as simple as this formula.
+
+78
+00:11:40.690 --> 00:11:46.089
+Zeljko Ivezic: so you have on the left hand side. It says, what is the probability
+
+79
+00:11:46.390 --> 00:11:48.539
+Zeljko Ivezic: that my label is paid?
+
+80
+00:11:48.920 --> 00:11:53.589
+Zeljko Ivezic: 1 point is used everywhere for labels. So let's say, this is cluster one
+
+81
+00:11:53.870 --> 00:11:55.800
+probability that
+
+82
+00:11:55.950 --> 00:12:03.370
+Zeljko Ivezic: label is K or one given my data. Xi, it's A vector in multi-dimensional space.
+
+83
+00:12:04.390 --> 00:12:15.130
+Zeljko Ivezic: It's now just application of base theory. A few months ago, so it says, this is probability that I would get these data points if
+
+84
+00:12:15.600 --> 00:12:18.659
+Zeljko Ivezic: my point was drawn from that cluster.
+
+85
+00:12:18.930 --> 00:12:28.120
+Zeljko Ivezic: So if you have a Gaussian mixture model, then you take coordinates. XI plug in formula for Gaussian, and you calculate probability.
+
+86
+00:12:28.370 --> 00:12:33.740
+Zeljko Ivezic: and if you are close to the true cluster, then, of course, probability will be high.
+
+87
+00:12:34.030 --> 00:12:45.510
+Zeljko Ivezic: and if you are far away, that probability for this particular cluster will be low, but then, once you approach, some other cluster at that point really belongs to, then it will go up.
+
+88
+00:12:46.110 --> 00:12:52.109
+Zeljko Ivezic: and then P of YK. That is prior probability for that class.
+
+89
+00:12:52.430 --> 00:13:18.409
+Zeljko Ivezic: and they'll see an example later when we have highly in balance sample. That means that some classes have a small number of points in it, and some other clusters are huge. And so when you have one douse, yeah, and the other Gaussian here, if one is now normalized 10,000 times higher than this one. Then it sales will also widen, and then it will contaminate your other sample.
+
+90
+00:13:18.430 --> 00:13:35.190
+Zeljko Ivezic: And that's a hard classification problem, and you have highly in balance sentence. So that is controlled by the last Via Yk, so each class K will be normalized by its relative number of points in the full sample. So it's class probability.
+
+91
+00:13:36.250 --> 00:13:42.630
+Zeljko Ivezic: And then the bottom is simply the sum of the top over all classes that you have
+
+92
+00:13:42.840 --> 00:13:48.290
+Zeljko Ivezic: the summation guarantees that your probabilities are limited to 0 to one range.
+
+93
+00:13:50.570 --> 00:13:54.819
+Zeljko Ivezic: And so that's if you know your density distribution. If you
+
+94
+00:13:54.930 --> 00:13:59.529
+Zeljko Ivezic: convince yourself that you can model it. Well, then, classification becomes trivial.
+
+95
+00:14:01.250 --> 00:14:15.229
+Zeljko Ivezic: And with this example that we already generated here, you write equation of some line, and there are many ways to write equations of some line or of some surface in multi-dimensional space.
+
+96
+00:14:15.320 --> 00:14:19.120
+Zeljko Ivezic: And then you calculate your host function, and then you minimize.
+
+97
+00:14:19.560 --> 00:14:30.130
+Zeljko Ivezic: So your loss function depends on the 3 parameters of that surface align. And then you minimize your loss function, using usual methods for minimizing scalar functions
+
+98
+00:14:30.470 --> 00:14:32.709
+Zeljko Ivezic: over all the model parameters.
+
+99
+00:14:36.340 --> 00:14:38.759
+Zeljko Ivezic: And then you
+
+100
+00:14:39.020 --> 00:14:47.480
+Zeljko Ivezic: usually run many different classifiers in real life problems. It's very hard to say which one will perform the best.
+
+101
+00:14:47.540 --> 00:15:09.970
+Zeljko Ivezic: Sometimes you can guess if you look at your data distribution, if it's low dimension now, doesn't look anything like Gaussians, then, you know, maybe that's not the best we start. But sometimes we have so highly multi dimensional space that you can't even guess. And so what people do in practice is to run a decent number of classifiers, half a dozen
+
+102
+00:15:10.430 --> 00:15:11.989
+that are selected
+
+103
+00:15:12.930 --> 00:15:17.469
+Zeljko Ivezic: by asking that each classifier has a different logic to it.
+
+104
+00:15:17.630 --> 00:15:18.920
+different model.
+
+105
+00:15:19.310 --> 00:15:26.130
+Zeljko Ivezic: and then you compare their performances, and then you choose the one that works the best in a particular class.
+
+106
+00:15:26.310 --> 00:15:29.870
+Zeljko Ivezic: and these curves are called ROC. Curs.
+
+107
+00:15:30.200 --> 00:15:39.009
+Zeljko Ivezic: receiver operating characteristics curve, which makes no sense, and it comes from Second World War, from radar research.
+
+108
+00:15:39.690 --> 00:15:48.189
+Zeljko Ivezic: And so they introduced his name. They were measuring false positives for enemy aircraft. It was Rich who developed
+
+109
+00:15:48.940 --> 00:15:49.930
+Zeljko Ivezic: operator.
+
+110
+00:15:50.560 --> 00:16:00.139
+Zeljko Ivezic: Alright. And so then they are. They're asking is, jump on a plane, or is it the American plane? And then you can have false, positive, false, negative, and you guess wrongly, then the friend goes down.
+
+111
+00:16:00.580 --> 00:16:02.299
+So this is the curve.
+
+112
+00:16:02.710 --> 00:16:07.420
+Zeljko Ivezic: so it plots through positive rate versus false, positive rate.
+
+113
+00:16:07.880 --> 00:16:20.019
+Zeljko Ivezic: So ideally. You want to be in the top left corner. You wanted to have true positive rates of 100 and false positive rate of 0,
+
+114
+00:16:20.360 --> 00:16:22.330
+and that happens very rarely.
+
+115
+00:16:22.850 --> 00:16:30.130
+Zeljko Ivezic: So in this case there it happened here that we have perfect classification. So Roc curve, for this
+
+116
+00:16:30.510 --> 00:16:32.929
+Zeljko Ivezic: example is in the top left.
+
+117
+00:16:33.830 --> 00:16:40.909
+Zeljko Ivezic: but generally it's some curve that starts at 0 0 and then increases and then adds at 100.
+
+118
+00:16:42.070 --> 00:16:47.569
+Zeljko Ivezic: And the horizontal line that they called in this particular figure, not scale.
+
+119
+00:16:48.150 --> 00:16:53.530
+Zeljko Ivezic: is random classification. So you just assign random class.
+
+120
+00:16:53.560 --> 00:17:04.710
+Zeljko Ivezic: and that's where you would be. So you want to to go as close as possible to this top left corner. And that's essentially what people doing practices to integrate under this curve
+
+121
+00:17:05.470 --> 00:17:08.150
+Zeljko Ivezic: when they all think might classify.
+
+122
+00:17:09.940 --> 00:17:17.670
+Zeljko Ivezic: But you also need to remember from last time that when we talked about true positives and false positives, etc. That we said.
+
+123
+00:17:18.349 --> 00:17:22.620
+Zeljko Ivezic: there is no a priori answer where you want to be on that curve.
+
+124
+00:17:22.940 --> 00:17:31.499
+Zeljko Ivezic: so, depending on whether you're more sensitive to false positives or false negatives, then you choose your optimal point
+
+125
+00:17:31.790 --> 00:17:34.760
+Zeljko Ivezic: on that curve. So if
+
+126
+00:17:34.990 --> 00:17:36.430
+mistakes
+
+127
+00:17:36.530 --> 00:17:41.969
+Zeljko Ivezic: false negatives that you would make are very costly. Then you want to be
+
+128
+00:17:41.990 --> 00:17:43.819
+Zeljko Ivezic: somewhere around here.
+
+129
+00:17:44.040 --> 00:18:14.700
+Zeljko Ivezic: but if you want to make as complete sample as possible, then you would want to be around here. So it depends on your application. So if you just do integral under the curve, you will get general answer which classification works better in your case. But sometimes there is second step where you say, well, yes, we have nice integral under this classifier, but what we really want to find out is as high completeness as we can. So I pick some other classifier, and this will be easier to understand once we look at concrete example.
+
+130
+00:18:16.610 --> 00:18:19.910
+Zeljko Ivezic: And so we come to this point of what should I use?
+
+131
+00:18:20.780 --> 00:18:34.619
+Zeljko Ivezic: And there are many different classifiers. There are hundreds of them out there. And so here is a small list of most popular ones you already know about Gaussian mixture models.
+
+132
+00:18:35.060 --> 00:18:48.709
+Zeljko Ivezic: and this base means that we take prior into account. That was the formula that we just looked at. Then we'll also talk a little bit about nearest neighbors. Then you draw lines that you can choose to be linear or quadratic, etcetera.
+
+133
+00:18:48.830 --> 00:18:53.600
+Zeljko Ivezic: And next next week we'll talk about decision trees and neural networks.
+
+134
+00:18:53.860 --> 00:18:57.909
+Zeljko Ivezic: So here is again. here is again
+
+135
+00:18:58.320 --> 00:19:01.430
+Zeljko Ivezic: example based on many different classifiers.
+
+136
+00:19:01.800 --> 00:19:12.280
+Zeljko Ivezic: just like when we discuss clusters, we, we compared many of them. And there are 3 data examples. Each row is one data example.
+
+137
+00:19:12.480 --> 00:19:14.570
+and that's shown in the first call.
+
+138
+00:19:14.830 --> 00:19:28.160
+Zeljko Ivezic: So the bottom left is an easy one. because you can tell by eye that you can do very good classification by just by throwing vertical line, and you separate rather than move points.
+
+139
+00:19:28.320 --> 00:19:42.240
+Zeljko Ivezic: The middle one and the top one are now harder because they are embedded within each other. One is circle inanimate ring, and the top one is like 2 presses moves combined together.
+
+140
+00:19:42.560 --> 00:19:55.070
+Zeljko Ivezic: And so now let's look at GM. Are at the end. and so the background in other panels show you
+
+141
+00:19:56.300 --> 00:20:07.979
+Zeljko Ivezic: the predicted probabilities of your classifier. So where it's blue, it's supposed to be blue point. And so if you see red point in the blue area. That's a failure.
+
+142
+00:20:08.060 --> 00:20:15.920
+Zeljko Ivezic: Or if you see blue point in red area, that's a favor. And white issues kind of half and half. That's the transition boundary.
+
+143
+00:20:16.400 --> 00:20:19.529
+Zeljko Ivezic: So now, if you take Gaussian mixture model
+
+144
+00:20:20.290 --> 00:20:29.980
+Zeljko Ivezic: and you try to model the bottom line, then you will roughly get one Gaussian for blue points and one for red, and if you look at the bottom panel.
+
+145
+00:20:30.070 --> 00:20:36.400
+Zeljko Ivezic: it kind of behaves as you would want it to behave. Blue points are in blue region and red in the red.
+
+146
+00:20:37.080 --> 00:20:39.569
+Zeljko Ivezic: However, if you take it now.
+
+147
+00:20:40.010 --> 00:20:47.239
+Zeljko Ivezic: the middle one, where you have circle inside a ring, then Gaussian cannot do that.
+
+148
+00:20:47.690 --> 00:21:04.180
+Zeljko Ivezic: So basically, you have mixing. You got 2 Gaussians. That's another describe the thing, but because they are probably more blue points than red, that everything is designed to spread simply in this case you cannot face.
+
+149
+00:21:04.230 --> 00:21:19.789
+Zeljko Ivezic: because intrinsic. The assumption is that your clusters can be described as linear in some organisms, and similarly, in the top left example. If you look at the top right, it's still bad, but slightly better than the one below.
+
+150
+00:21:20.530 --> 00:21:21.700
+Zeljko Ivezic: Dan.
+
+151
+00:21:21.950 --> 00:21:24.870
+Zeljko Ivezic: we have. Let's see, it's hard to read.
+
+152
+00:21:26.640 --> 00:21:29.329
+Zeljko Ivezic: Okay, so the the third column
+
+153
+00:21:29.420 --> 00:21:32.459
+Zeljko Ivezic: is linear support vector machine
+
+154
+00:21:33.170 --> 00:21:40.929
+Zeljko Ivezic: support vector machine sounds very complicated. And it's full name. But it all normally means the front straight ones in your dial.
+
+155
+00:21:41.200 --> 00:21:49.729
+Zeljko Ivezic: And so now, if you look at the data itself. you can again separate the bottom one with a straight line quite easily.
+
+156
+00:21:50.390 --> 00:21:56.099
+but because the other 2 are mixed. there is nothing you can do about it.
+
+157
+00:21:57.410 --> 00:21:59.950
+Zeljko Ivezic: so that one fails too.
+
+158
+00:22:00.330 --> 00:22:04.869
+Now which one works. So look at the middle row
+
+159
+00:22:04.940 --> 00:22:07.589
+Zeljko Ivezic: and tell me which classifier you would pick.
+
+160
+00:22:18.510 --> 00:22:20.159
+Zeljko Ivezic: So we have
+
+161
+00:22:20.250 --> 00:22:24.619
+Zeljko Ivezic: data. And then we have 3, 6, 10 examples.
+
+162
+00:22:26.400 --> 00:22:29.420
+Zeljko Ivezic: This one cross doesn't look very promising.
+
+163
+00:22:30.190 --> 00:22:35.280
+Zeljko Ivezic: This one looks fairly nice. It's blue in the middle, red outside. That's neural net.
+
+164
+00:22:35.940 --> 00:22:37.700
+Zeljko Ivezic: Naive bays
+
+165
+00:22:39.620 --> 00:22:41.170
+Zeljko Ivezic: is here.
+
+166
+00:22:42.450 --> 00:22:49.550
+Zeljko Ivezic: Oh, okay. So I was wrong when I was talking about Gaussian mixture model. This is not Gaussian mixture model. That's
+
+167
+00:22:49.630 --> 00:22:57.800
+Zeljko Ivezic: quadratic, discriminant, discriminant analysis. This is like support vector machine. But that one draws parabolas.
+
+168
+00:22:58.250 --> 00:23:01.279
+Zeljko Ivezic: So it is failing. But naive base
+
+169
+00:23:01.340 --> 00:23:08.820
+Zeljko Ivezic: works well in the middle case, because naive base is simply using Gaussians that are aligned with coordinate axis.
+
+170
+00:23:09.880 --> 00:23:21.330
+Zeljko Ivezic: So I'm guessing that the blue Gaussian in the middle is very, very strong, and then the red Gaussian has very large sigma. so it is essentially a flat function.
+
+171
+00:23:21.460 --> 00:23:32.479
+Zeljko Ivezic: So if you are in the middle of the diagram, the blue Gaussian tells you you're blue, but as it drops off to 0, then the red background picks up, and it tells you your red point.
+
+172
+00:23:34.740 --> 00:23:38.649
+Zeljko Ivezic: Then, for the top example that has different morphology.
+
+173
+00:23:38.970 --> 00:23:45.000
+Zeljko Ivezic: we have here a Gaussian process classified, classified. It looks fairly good.
+
+174
+00:23:45.050 --> 00:23:53.740
+Zeljko Ivezic: And then neural network is kind of performing semi good. But because there is mixing, it cannot separate it.
+
+175
+00:23:54.270 --> 00:24:05.589
+Zeljko Ivezic: Linear support vector machine fails badly, because the only freedom it has is to draw a single line. So not to belabor this example.
+
+176
+00:24:05.610 --> 00:24:16.610
+Zeljko Ivezic: depending on morphology of your data set and dimensionality, just like in case of cluster cluster. Finding with classification, you have to be careful and
+
+177
+00:24:17.230 --> 00:24:27.260
+Zeljko Ivezic: ensure yourself that the underlying method and what it assumes. It's consistent with what your data shows to you. Or you know, from prior information.
+
+178
+00:24:27.700 --> 00:24:36.400
+Zeljko Ivezic: that's why we need to try many different ones. So let's go just as one example, let's look how support vector machines work.
+
+179
+00:24:39.010 --> 00:24:41.080
+Zeljko Ivezic: Okay? Yes.
+
+180
+00:24:41.610 --> 00:24:43.739
+Zeljko Ivezic: I did something stupid here.
+
+181
+00:24:45.200 --> 00:24:46.520
+Zeljko Ivezic: Yes.
+
+182
+00:24:47.340 --> 00:24:48.209
+How many would
+
+183
+00:24:56.900 --> 00:24:59.700
+Zeljko Ivezic: you mean? Are you talking about data or the method itself.
+
+184
+00:25:09.820 --> 00:25:15.220
+Zeljko Ivezic: So each. Each method has slightly different 3 parameters.
+
+185
+00:25:15.810 --> 00:25:30.670
+Zeljko Ivezic: So for these methods that are showed here, they all exist inside. You've learned there are other. Usually psychic learn gets methods that are 2 or 3 years old. So someone publishes a paper typically someone from computer science.
+
+186
+00:25:30.730 --> 00:25:39.589
+Zeljko Ivezic: And then it can do. If it can do things that the other methods cannot, then it becomes popular and someone decides. Let me write code for psychic learn.
+
+187
+00:25:40.390 --> 00:25:43.150
+Zeljko Ivezic: And then you go to psychiclearn
+
+188
+00:25:43.250 --> 00:25:54.230
+Zeljko Ivezic: web page for that method. And then it has little bit of theory like one to 2 pages of theory. It's not super deep. It doesn't prove any theorems typically, but it explains to you how it works.
+
+189
+00:25:54.370 --> 00:26:04.249
+Zeljko Ivezic: And then he also tells you what are the 3 parameters, and then often, when you implement method for the first time you have to fiddle with these parameters a little bit to see
+
+190
+00:26:04.620 --> 00:26:09.870
+Zeljko Ivezic: what range is supported by your data. and then, once you are roughly done
+
+191
+00:26:09.930 --> 00:26:18.030
+Zeljko Ivezic: neighborhood of of good performance, then you can just loop over them and maybe do some research on free parameters. But typically it's
+
+192
+00:26:18.070 --> 00:26:23.400
+Zeljko Ivezic: like 2 or 3 free parameters. So when you fit like, if you have 100
+
+193
+00:26:24.350 --> 00:26:46.330
+Zeljko Ivezic: 100 Gaussian mixtures in a model that's like 300 parameters, you are not putting these by hand you what you need to tell the method is stopping criteria like, I want to get to this level of probability, and then I'm happy, or you can look at something like Vic, and then you go down and say, This is where I stop. So each method has little bit of art to it.
+
+194
+00:26:46.700 --> 00:27:05.459
+Zeljko Ivezic: So it's not pure science. There is little bit of fiddling with data. Indeed, half your time goes on. On data massaging at the beginning to understand your data, to see how it behaves to see if it has outliers. You get new data set. Often you get names, and then everything breaks and you look at it like, why did it break so? There is.
+
+195
+00:27:05.550 --> 00:27:08.619
+Zeljko Ivezic: The running method by itself is perhaps
+
+196
+00:27:08.670 --> 00:27:17.859
+Zeljko Ivezic: the easier part of the problem usually is preparing your data and then learning for that particular case how to make the method work even approximate.
+
+197
+00:27:18.210 --> 00:27:26.620
+Zeljko Ivezic: Once you can get some meaningful answer, then it's up to you to develop optimization workflow, depending on your particular case.
+
+198
+00:27:31.120 --> 00:27:35.090
+Zeljko Ivezic: Right? You tell it. I want quadratic there.
+
+199
+00:27:35.340 --> 00:27:42.900
+Zeljko Ivezic: and you tell it. What is the stopping criterion, and then the method will find the parameters of the quadratic curve.
+
+200
+00:27:42.930 --> 00:27:48.659
+Zeljko Ivezic: So you're not trying by yourself. Let me move it a little bit. Here, let me move it little bit there. The method itself will do that.
+
+201
+00:27:55.930 --> 00:27:57.159
+Zeljko Ivezic: You mean this one
+
+202
+00:28:00.020 --> 00:28:06.010
+Zeljko Ivezic: in these 3 examples. It certainly looks fine in all 3. It's Gaussian process.
+
+203
+00:28:06.170 --> 00:28:09.159
+Zeljko Ivezic: So Gaussian here does not.
+
+204
+00:28:09.600 --> 00:28:15.839
+Zeljko Ivezic: Gaussian processes are a huge new method that became popular in science over the last 10 years or so.
+
+205
+00:28:15.870 --> 00:28:21.050
+Zeljko Ivezic: but it was discovered or or proposed, like in sixties.
+
+206
+00:28:21.230 --> 00:28:30.679
+Zeljko Ivezic: There was. It's called also Kriegie. There was Engineer called Kriega in South African Republic, looking for deposits of different ores, and then he had
+
+207
+00:28:30.820 --> 00:28:44.320
+Zeljko Ivezic: finite samples. So you mentioned this room? We want to find out what's underneath the floor. So you make one sample in here one sample. They are one sample. They are 10 samples. And then we want, based on these measurements, develop continues
+
+208
+00:28:44.880 --> 00:28:51.830
+Zeljko Ivezic: continuous function that describes what to expect at any arbitrary point in the room. And so he showed
+
+209
+00:28:52.480 --> 00:29:01.859
+Zeljko Ivezic: that in order to do optimal interpolation, you need to know so-called cross variance matrix that tells you how fast things are changing.
+
+210
+00:29:03.190 --> 00:29:15.089
+Zeljko Ivezic: And once you choose some shape, some functional form for the matrix, you can fit for the parameters of that matrix based on your data, and then you have interpolating methods that can tell you where you are
+
+211
+00:29:15.220 --> 00:29:17.070
+Zeljko Ivezic: in any point in this room.
+
+212
+00:29:17.370 --> 00:29:34.169
+Zeljko Ivezic: So in this case, I didn't look in at the code in detail, but I don't know which covariance matrix they assumed we could look together. So they do exactly that. They say we have red points in here, blue points in there. So this covariance metrics tells you how far you need to walk until
+
+213
+00:29:34.900 --> 00:29:43.819
+Zeljko Ivezic: you will go from blue points to red points. And so here, this boundary between these 2, it's like one-tenth of the panel.
+
+214
+00:29:44.360 --> 00:30:01.250
+Zeljko Ivezic: So I would guess you need some exponential covariance matrix that has the the scale, that is maybe one-tenth of the panel. And then in each point you then basically fit using this covariance matrix between different positions in that diagram, and that will then tell you
+
+215
+00:30:01.390 --> 00:30:15.809
+Zeljko Ivezic: which one is red, which one is blue. It's essentially like density estimation. But it's not analytic. It's basically just drawing from some probability distribution. And so when you assume that that probability distribution is Gaussian.
+
+216
+00:30:16.380 --> 00:30:17.590
+Zeljko Ivezic: then
+
+217
+00:30:18.250 --> 00:30:37.240
+Zeljko Ivezic: you get named Gaussian process. That's by these methods for Gaussian process, so you estimate, you say, if I have measurements in different parts of this room, and you are asking me what should be the measurement in here, I'm not going to tell you a number and say it has to be 3.5. I will tell you. Given all the other measurements.
+
+218
+00:30:37.280 --> 00:30:48.699
+Zeljko Ivezic: What I expect to have. Here is probability distribution. With this mu a Gaussian probability distribution. It is mu. And with this sigma, and that that gives you posterior range of what we expect.
+
+219
+00:30:48.960 --> 00:30:57.260
+Zeljko Ivezic: And then, if you have 2 of these, then you basically say, whichever probability is higher of this tool, that's what I'm going to adapt as classified
+
+220
+00:30:57.990 --> 00:30:58.930
+Zeljko Ivezic: the I.
+
+221
+00:30:59.340 --> 00:31:08.659
+Zeljko Ivezic: I had to throw out Gaussian processes from the lecture series, because takes at least 2 lectures, but it is one of the most exciting methods that came out last 10 years or so.
+
+222
+00:31:08.770 --> 00:31:11.279
+Zeljko Ivezic: but it's it's not trivial. It takes some time
+
+223
+00:31:11.390 --> 00:31:15.160
+to explain it. But good ice. Yes, this is indeed
+
+224
+00:31:15.350 --> 00:31:20.259
+Zeljko Ivezic: the best behaving. When you look at all 3 data sets. This is the best behaving.
+
+225
+00:31:21.650 --> 00:31:24.690
+Who? So in this case you would have to
+
+226
+00:31:24.990 --> 00:31:27.599
+Zeljko Ivezic: specify what kind of
+
+227
+00:31:27.770 --> 00:31:36.469
+Zeljko Ivezic: covariance matrix you want to fit for, and then it would give you results, and then you could try. Typical choices are exponential.
+
+228
+00:31:36.530 --> 00:31:38.770
+Zeljko Ivezic: Fall off, Gaussian, fall off
+
+229
+00:31:39.260 --> 00:31:40.480
+or
+
+230
+00:31:41.460 --> 00:31:51.640
+Zeljko Ivezic: forget the name. There is another one that combines the 2, and so you choose which one you want, and then you get your best fit classifiers, so in practice, what I will do is to try all 3 of them.
+
+231
+00:31:51.850 --> 00:31:55.579
+Zeljko Ivezic: and then just look at the Roc curve and see which one performs the best.
+
+232
+00:32:00.200 --> 00:32:06.830
+Zeljko Ivezic: If it's simple problem, then usually you want to go through simple methods. So for many cases
+
+233
+00:32:08.140 --> 00:32:19.409
+Zeljko Ivezic: support vector machine or Gaussian, make sure model works decently, and then, if it doesn't, then you go and ask yourself why doesn't work? And then you look for methods that would be
+
+234
+00:32:19.790 --> 00:32:29.750
+Zeljko Ivezic: consistent with, what is the problem in your data set like, yeah, cannot describe it with Gaussian clusters, or there is overlap between classes or something like this.
+
+235
+00:32:30.020 --> 00:32:32.909
+Zeljko Ivezic: If you need nice interpolation.
+
+236
+00:32:33.150 --> 00:32:35.410
+Zeljko Ivezic: So if you have between
+
+237
+00:32:35.620 --> 00:32:45.519
+Zeljko Ivezic: these data sets, if you have this complicated geometry, then Gaussian processes work well and also neural networks work. Well, we talk about the next week. So they have.
+
+238
+00:32:46.040 --> 00:32:52.719
+Zeljko Ivezic: They. They are essentially universal approximator, and they work in in arbitrary.
+
+239
+00:32:53.320 --> 00:32:55.170
+Zeljko Ivezic: arbitrarily dimension.
+
+240
+00:32:55.240 --> 00:33:01.860
+Zeljko Ivezic: So you tell it. Here is my data set, and you fit. Sometimes people familiar
+
+241
+00:33:02.380 --> 00:33:15.129
+Zeljko Ivezic: parameters with neural network. And so there is very little connection to physics, to science with it, and you cannot understand how exactly it came to values of 1 million parameters. But when you measure performance it works.
+
+242
+00:33:15.440 --> 00:33:30.280
+Zeljko Ivezic: and the usual theoretical explanation is that with so many parameters. If it's nonlinear change that you have essentially, you can fit any function you want, even if it's some pathological case. And that's why we're on networks work so well.
+
+243
+00:33:30.450 --> 00:33:31.859
+And I'll play with that. Thanks.
+
+244
+00:33:34.180 --> 00:33:38.750
+Zeljko Ivezic: All right. So here is example of. why does that
+
+245
+00:33:43.380 --> 00:33:44.750
+Zeljko Ivezic: the example of
+
+246
+00:33:51.080 --> 00:33:54.289
+Zeljko Ivezic: support vector machine? So it's a cool name.
+
+247
+00:33:55.000 --> 00:34:01.349
+Zeljko Ivezic: but it's painfully simple. So this is our example. We have 2 sets of points.
+
+248
+00:34:02.450 --> 00:34:11.460
+Zeljko Ivezic: and we say, let me assume that they can draw a straight line and separate them. And so in this case you would
+
+249
+00:34:11.510 --> 00:34:20.700
+Zeljko Ivezic: throw Red mine by eye, and you're done. It's as good as anything, because the example is simple, there is no mixing, and there is a way to drop this red line.
+
+250
+00:34:20.870 --> 00:34:24.189
+Zeljko Ivezic: But in in this you can have phone.
+
+251
+00:34:24.310 --> 00:34:40.999
+Zeljko Ivezic: There is also some mixing across the line, and morphology is sometimes more complicated, and you can also have many dimensions. But the principle is the same. You draw. You'll assume that you have some surface into these. Just the line.
+
+252
+00:34:41.130 --> 00:34:46.239
+Zeljko Ivezic: the the equation of that line is some slope and sex.
+
+253
+00:34:46.610 --> 00:34:49.249
+Zeljko Ivezic: And then you have the intercepted B.
+
+254
+00:34:49.630 --> 00:34:54.649
+Zeljko Ivezic: And so then you say, I have 2, 3 parameters that describe this line.
+
+255
+00:34:55.760 --> 00:35:05.270
+Zeljko Ivezic: and I will write my lost function. Once I draw a line for a given value of W and given value of BI draw a line, and I can't.
+
+256
+00:35:06.110 --> 00:35:07.230
+Zeljko Ivezic: How many?
+
+257
+00:35:08.200 --> 00:35:12.580
+Zeljko Ivezic: That's my last one, don't it be?
+
+258
+00:35:12.750 --> 00:35:24.319
+Zeljko Ivezic: And now, in simple cases like this one, that we have only 2 free parameters. We can just do it off the great search. you know roughly what it should be. And you just know you just calculate it like 10,000 times
+
+259
+00:35:24.850 --> 00:35:35.019
+Zeljko Ivezic: in multi-dimensional cases you need to do. You need to do more intelligent utilization. That looks fine, going from gradient descent all the way to market chain. Monte Carlo. It's it.
+
+260
+00:35:35.260 --> 00:35:43.039
+Zeljko Ivezic: But the idea is, you know, what is your host function? You assume some analytic function, and you find your best fit classified.
+
+261
+00:35:44.970 --> 00:35:47.729
+Zeljko Ivezic: And that's basically what's written in here.
+
+262
+00:35:49.690 --> 00:35:53.580
+Zeljko Ivezic: and some notes that I will not now read you back. But
+
+263
+00:35:53.810 --> 00:35:59.730
+Zeljko Ivezic: for one good thing about Svm. Is, if you have crazy outliers.
+
+264
+00:36:00.100 --> 00:36:26.740
+Zeljko Ivezic: you are not sensitive to them because you look at the boundary and you just count what's on this side? What's on that side? If you have, for example, Gaussian mixture model, and you won't fit a Gaussian, and you didn't realize that in your data set you have some growth outlier, like all the numbers are between one and 10, and then there is one number that is 1 million, because something was not right with your apparatus, or whatever. And then you run Gaussian mixture model
+
+265
+00:36:27.060 --> 00:36:32.160
+Zeljko Ivezic:  pulls, your fate
+
+266
+00:36:32.470 --> 00:36:36.200
+all the way away from the other day tires. But Svm is
+
+267
+00:36:37.510 --> 00:36:44.859
+Zeljko Ivezic: so let's now look at one again. One real example that is hard to classify.
+
+268
+00:36:44.920 --> 00:36:57.320
+Zeljko Ivezic: and then we'll try different methods. This is easier to read. Now let's so we'll we'll look at sample of our library variable stars
+
+269
+00:36:57.930 --> 00:37:01.499
+Zeljko Ivezic: where we know there are. Rlr, because they vary.
+
+270
+00:37:01.640 --> 00:37:07.520
+Zeljko Ivezic: We had multiple measurements. We established that they vary. So we have training samples.
+
+271
+00:37:08.260 --> 00:37:14.170
+Zeljko Ivezic: But what we want to do is now apply this to color measurements.
+
+272
+00:37:14.470 --> 00:37:21.009
+Zeljko Ivezic: Try to see if we can recognize our library on using colors. And that's MoD. That's that's from real
+
+273
+00:37:21.770 --> 00:37:24.080
+Zeljko Ivezic: publish paper.
+
+274
+00:37:24.120 --> 00:37:32.499
+Zeljko Ivezic: We're about 20 years ago there was a Sky survey called small Visual Sky Survey that obtained photometry for few 100 million stars
+
+275
+00:37:32.920 --> 00:37:35.249
+Zeljko Ivezic: across almost half the sky.
+
+276
+00:37:35.800 --> 00:37:49.740
+Zeljko Ivezic: But it didn't have multiple measurements. It was one measurement. So you didn't know what this variable star what is not. But then there was one tiny piece of sky where there were like 50 measurements, and so there you could measure light curves, and you could recognize our library.
+
+277
+00:37:49.980 --> 00:37:57.739
+Zeljko Ivezic: And then you could ask if I take sustainable about alarming? Can I isolate them just using polars in the rest of the sky.
+
+278
+00:37:58.130 --> 00:38:05.269
+Zeljko Ivezic: and the reason was that you wanted to quantify their distribution on the sky and to see if it's homogeneous or clumpy.
+
+279
+00:38:05.330 --> 00:38:21.810
+Zeljko Ivezic: and that was a way to look for merge galaxies for carnivalized galaxies. So that was the physics behind it. Here. What we have now is diagram like this. So it's 4 dimensional space. And I'm drawing only 2 dimensional projection of that 4 dimensional
+
+280
+00:38:22.150 --> 00:38:23.160
+Zeljko Ivezic: space.
+
+281
+00:38:23.270 --> 00:38:31.249
+Zeljko Ivezic: and the one chosen for plotting is the one that gives you most power to distinguish the 2.
+
+282
+00:38:31.650 --> 00:38:38.659
+Zeljko Ivezic: And what you see in this diagram, as brown points are our library
+
+283
+00:38:39.030 --> 00:38:44.720
+Zeljko Ivezic: and orange points are other stars that are not interesting to us at this moment.
+
+284
+00:38:45.130 --> 00:38:47.810
+Zeljko Ivezic: And it's heart problem for 2 reasons.
+
+285
+00:38:47.910 --> 00:38:57.420
+Zeljko Ivezic: One is you can't tell from the figure, but the orange points in the top have density of about 1,000, several 1,000 times higher.
+
+286
+00:38:58.260 --> 00:39:00.350
+Zeljko Ivezic: And so there is
+
+287
+00:39:00.600 --> 00:39:01.520
+Zeljko Ivezic: you all
+
+288
+00:39:02.660 --> 00:39:05.200
+Zeljko Ivezic:  really
+
+289
+00:39:07.730 --> 00:39:19.990
+Zeljko Ivezic: points in this region. The ground points. If you look carefully, I so in this case it will never be possible to have perfect performance. There is. There always will be contamination whatever you do
+
+290
+00:39:20.010 --> 00:39:28.530
+Zeljko Ivezic: because your round your orange points are embedded in brown. You could say, you could ask, Okay, it's just a twod projection.
+
+291
+00:39:28.580 --> 00:39:41.919
+Zeljko Ivezic: Maybe if you look at other colors, then they will separate, and this is like stars from the sky, where they look like constellations. But they're very far away. And so here, actually, the problem is real, you cannot separate it, even if you do that
+
+292
+00:39:42.210 --> 00:39:43.080
+Zeljko Ivezic: doubles.
+
+293
+00:39:43.790 --> 00:39:48.540
+So with this one, I think this would remind myself which method was this.
+
+294
+00:39:53.920 --> 00:39:55.520
+do.
+
+295
+00:40:04.390 --> 00:40:08.720
+Zeljko Ivezic: No, it's support vector machine. So it's a
+
+296
+00:40:08.750 --> 00:40:13.609
+Zeljko Ivezic: quadratic fit. So it can be around. So it's not straight lines.
+
+297
+00:40:13.630 --> 00:40:24.349
+Zeljko Ivezic: And so basically, the method is capable of drawing a line. and then you count what is your completeness, and what is your image?
+
+298
+00:40:24.560 --> 00:40:32.200
+Zeljko Ivezic: And then you can vary parameter. That will then go upon our C curve and give you
+
+299
+00:40:32.220 --> 00:40:36.710
+Zeljko Ivezic: different values of completeness and contamination. And so in the right hand side.
+
+300
+00:40:36.740 --> 00:40:44.010
+Zeljko Ivezic: you have floats of completeness in the top and contamination at the bottom as a function of any colors.
+
+301
+00:40:44.430 --> 00:40:46.510
+Zeljko Ivezic: And so the code above
+
+302
+00:40:46.860 --> 00:40:55.019
+Zeljko Ivezic: was run 4 times, using all 4 columns, and then only 3, then only 2 like in this example, and then only one.
+
+303
+00:40:55.300 --> 00:41:06.100
+Zeljko Ivezic: You can get some performance even with one color, like if you look at the Y axis in the last panel. So if you draw a horizontal line at roughly point 25,
+
+304
+00:41:06.440 --> 00:41:16.350
+Zeljko Ivezic: then you would have some kind of rudimentary classified. That's why it can work even with 1,000. Obviously, when you add second color, then now you can draw this
+
+305
+00:41:16.540 --> 00:41:29.449
+Zeljko Ivezic: whole line around. You can use information from other port, and so on. So in this particular case, completeness is very fine. Basically, the line encloses all the ground points.
+
+306
+00:41:30.130 --> 00:41:33.619
+Zeljko Ivezic: But then you can also see that contamination is very high.
+
+307
+00:41:33.780 --> 00:41:41.229
+Zeljko Ivezic: So there are only about 20% of brown coins in that line, and 80% are orange.
+
+308
+00:41:42.350 --> 00:41:52.049
+Zeljko Ivezic: And with this method you can't do better if you want high completeness. This data distribution is such that for every star you want, there are 4 other contaminants.
+
+309
+00:41:53.010 --> 00:41:56.689
+Zeljko Ivezic: So that support vector machine. Now, if we had different.
+
+310
+00:42:36.860 --> 00:42:39.089
+Zeljko Ivezic: Hang on a second. Laura, are you there?
+
+311
+00:42:43.380 --> 00:42:44.450
+Zeljko Ivezic: Load up?
+
+312
+00:42:59.580 --> 00:43:00.809
+Zeljko Ivezic: Can you hear me?
+
+313
+00:43:02.760 --> 00:43:04.229
+Paula Vulic: Yes, we can.
+
+314
+00:43:04.440 --> 00:43:18.369
+Zeljko Ivezic: Okay. I lost Internet for few seconds at least I don't know for how long. but it looks like it's fine now. Yeah, it's fine. It was only for about 30 s. So it's fine.
+
+315
+00:43:19.450 --> 00:43:21.050
+Zeljko Ivezic: So this
+
+316
+00:43:21.520 --> 00:43:31.409
+Zeljko Ivezic: method is essentially what we what we mentioned in introduction, you model each class as a cluster, and then you just write by a Zn
+
+317
+00:43:31.640 --> 00:43:37.429
+Zeljko Ivezic: for stereo probability, and that gives you probability for label for each point. The different
+
+318
+00:43:37.860 --> 00:43:50.479
+Zeljko Ivezic: between full Gaussian mixture model and this model is that you are simplifying Gaussians to be oriented with access, and because of that, because of the lack of covariance that becomes very fast method.
+
+319
+00:43:51.670 --> 00:44:04.239
+Zeljko Ivezic: If you have a huge data set, it is orders of magnitude faster than full Gaussian mixture model. And so here is an example where we use
+
+320
+00:44:04.760 --> 00:44:11.700
+Zeljko Ivezic: to classify this data set. That's also from from real life. So
+
+321
+00:44:12.250 --> 00:44:18.189
+Zeljko Ivezic: the X-axis is a signal to noise for measuring brightness of an object.
+
+322
+00:44:18.200 --> 00:44:19.900
+and the Y axis
+
+323
+00:44:20.550 --> 00:44:35.869
+Zeljko Ivezic: gives you probability that a source is resolved in images that it looks bigger than star. So stars those that are at the angular resolution limit of the images is this purple horizontal line.
+
+324
+00:44:36.960 --> 00:44:40.610
+Zeljko Ivezic: and then the yellow points are measured in images
+
+325
+00:44:41.300 --> 00:44:52.369
+Zeljko Ivezic: result. And now you want to find optimum boundary between yellow and purple, to separate it, to assign probability of classification.
+
+326
+00:44:52.600 --> 00:44:55.580
+Zeljko Ivezic: And so then you run
+
+327
+00:44:55.710 --> 00:45:17.810
+Zeljko Ivezic: naive classifier, which models these 2, and scouts and plums, and then the blue lines. So so probability of association, then, whether you are yellow or purple, so say, purple is 0 probability, and one is yellow, and then one minus. That is the other class. It's computed for every pixel in this diagram.
+
+328
+00:45:17.840 --> 00:45:29.080
+Zeljko Ivezic: But what's 40 is only pixels where that probability is exactly point 5. So the blue line marks the boundary between yellow points and the purple points.
+
+329
+00:45:29.300 --> 00:45:32.400
+Zeljko Ivezic: so you can see that it's not perfect at the end.
+
+330
+00:45:32.610 --> 00:45:39.279
+Zeljko Ivezic: At the same time the low signal to noise ratio. Yellow points now become mixed with purple.
+
+331
+00:45:39.320 --> 00:45:49.359
+Zeljko Ivezic: so they are not doing perfectly. But if you look at the bright end when your signal to noise is fairly fine, then the left side is almost perfectly separated.
+
+332
+00:45:49.460 --> 00:45:52.119
+Yeah, a few yellow points on top of purple.
+
+333
+00:45:52.180 --> 00:45:54.939
+Zeljko Ivezic: And so you ask yourself, Well, why did that happen?
+
+334
+00:45:55.000 --> 00:46:02.100
+Zeljko Ivezic: And then, when you go back to images. You realize that there are actually binary stars and not galaxies.
+
+335
+00:46:02.250 --> 00:46:18.199
+Zeljko Ivezic: because galaxies would be much larger. The talking about points that's typical size of a galaxy at this brightness. But these barely resolved yellow points. They're not even galaxies. They are actually binary on semi-resolved binary stars. So this is nice example, how
+
+336
+00:46:18.370 --> 00:46:20.389
+Zeljko Ivezic: good classification method
+
+337
+00:46:20.430 --> 00:46:26.270
+Zeljko Ivezic: teaches you something more about your data set than than what you taught originally. So that was
+
+338
+00:46:26.650 --> 00:46:32.270
+Zeljko Ivezic: like additional information that we use to go through the images. So that's example of naive base.
+
+339
+00:46:34.280 --> 00:46:38.769
+Zeljko Ivezic: and then we'll go and do full GM. Base, which is slower.
+
+340
+00:46:39.320 --> 00:46:46.709
+Zeljko Ivezic: Then we'll do many methods. So let me scroll down. Okay? So if you, if you look at the code.
+
+341
+00:46:46.870 --> 00:47:02.310
+Zeljko Ivezic: it's looping over a number of classifiers. So Gaussian, naive based. That's what we looked in this different example, linear and quadratic, discriminant analysis that is essentially support vector machines with straight lines and with for all of us
+
+342
+00:47:02.850 --> 00:47:06.610
+Zeljko Ivezic: nearest neighbor. We didn't talk about yet. I think it's a couple of
+
+343
+00:47:06.740 --> 00:47:08.200
+Zeljko Ivezic: lines below.
+
+344
+00:47:08.580 --> 00:47:12.320
+Zeljko Ivezic: and these 2 show you now
+
+345
+00:47:13.050 --> 00:47:28.579
+Zeljko Ivezic: our seekers. The one on the left is traditional one that flows through positive rate versus false positive rate. And in astronomy we often prefer to plot completeness versus efficiency. That's on the right. So efficiency is one minus
+
+346
+00:47:28.850 --> 00:47:36.680
+Zeljko Ivezic: one minus contamination. So let's just focus on the last one. So there are 7 classification methods.
+
+347
+00:47:37.090 --> 00:47:45.260
+Zeljko Ivezic: So that's the same form. So now, without looking at the
+
+348
+00:47:45.790 --> 00:47:48.810
+Zeljko Ivezic: cold. Not anymore. We're just comparing our secrets.
+
+349
+00:47:49.300 --> 00:48:00.180
+Zeljko Ivezic: So now, if you look at it, it looks like the is it pink? The pink one is the best. and the big one is Gaussian mixture model. But yes, and Gaussian mixture model.
+
+350
+00:48:00.280 --> 00:48:12.829
+Zeljko Ivezic: So we use, I think, about 20 Gaussians to model density with the origins and the brown points. And so the best you can do is about 90,
+
+351
+00:48:13.000 --> 00:48:14.550
+Zeljko Ivezic: 8%
+
+352
+00:48:14.910 --> 00:48:28.599
+Zeljko Ivezic: true positive rate. And the dead times I'm looking at the top right owner. This one beats everyone, and it does 98, and the price you have to pay is about 2.4 contamination.
+
+353
+00:48:29.610 --> 00:48:35.129
+Zeljko Ivezic: or if you want to reduce your contamination, say to half a percent.
+
+354
+00:48:35.320 --> 00:48:46.129
+Zeljko Ivezic: then it still does well, but not 98%. It's 83%. And now it's up to you as a user to choose whether you want high completes or low contamination.
+
+355
+00:48:46.320 --> 00:48:53.380
+Zeljko Ivezic: And then you can also compare methods. So this Dt, what was Vt
+
+356
+00:48:53.490 --> 00:49:05.890
+Zeljko Ivezic: decision tree. So in this 4 dimensional space decision really doesn't do really well. So it saturates at about 63%, because of the data mixing between 2 different
+
+357
+00:49:05.910 --> 00:49:07.199
+Zeljko Ivezic: lots of points.
+
+358
+00:49:07.300 --> 00:49:13.309
+Zeljko Ivezic: And so it doesn't do too well. And then there is for one method in the middle that performs similarly.
+
+359
+00:49:13.390 --> 00:49:17.119
+Zeljko Ivezic: So that's example of analysis you would do with real data.
+
+360
+00:49:17.710 --> 00:49:30.150
+Zeljko Ivezic: So you again, the the most important thing to remember is, there is no magic method. Every method is different. Mathematical assumptions and depending on your particular data set.
+
+361
+00:49:30.210 --> 00:49:35.259
+Zeljko Ivezic: you will have different optimal methods. And to find it, you need to run many, many methods.
+
+362
+00:49:37.520 --> 00:49:45.810
+ yeah.
+
+363
+00:49:52.030 --> 00:49:55.550
+Zeljko Ivezic: possible. But I'm not 100% sure
+
+364
+00:49:55.830 --> 00:50:00.510
+Zeljko Ivezic: work, because other possibilities is when you evaluate
+
+365
+00:50:00.600 --> 00:50:03.329
+that you have course spent.
+
+366
+00:50:04.220 --> 00:50:07.909
+Zeljko Ivezic: or maybe for that particular method. The sample is not large enough
+
+367
+00:50:07.940 --> 00:50:16.080
+Zeljko Ivezic: so that 3 possibilities, one that you said definitely. But then there are other ways to explain it. So I don't have to look again at it, and maybe
+
+368
+00:50:16.250 --> 00:50:19.369
+Zeljko Ivezic: have the same policy. The noise increases.
+
+369
+00:50:19.870 --> 00:50:28.139
+Zeljko Ivezic: If it's not, then possibly that particular method as sensitivity is to timely shift the boundary
+
+370
+00:50:28.810 --> 00:50:46.540
+Zeljko Ivezic: because it's a Gaussian mixture model. I'm guessing that it should be sent, because unless I forget, I think it was 20, Gauss, maybe there is something that happens with some of the Gaussians. Maybe one of the Gaussians became very narrow. And then it depends whether inclusive or not or something.
+
+371
+00:50:47.230 --> 00:50:48.630
+Zeljko Ivezic: Yeah, good ice.
+
+372
+00:50:50.990 --> 00:50:56.560
+Zeljko Ivezic: Okay. So I did this for completeness. If you are interested in in math of how it works.
+
+373
+00:50:56.730 --> 00:51:07.649
+Zeljko Ivezic: That's basically an example of information you would get from psychic learn. That's the level. They would explain it to you. But then, if you really like, if you are doing your dissertation. And now you
+
+374
+00:51:07.800 --> 00:51:24.609
+Zeljko Ivezic: basing half of your dissertation on one particular method, and it's performance. Then you would want to go to the original paper and really develop deep understanding of that method. Then you would want to do some simulated data sets to understand how it performs same site.
+
+375
+00:51:24.770 --> 00:51:33.009
+Zeljko Ivezic: This data set is yours, but you regenerate pretend measurements, simulated measurements, so that you know what's the right answer, etc., etc.
+
+376
+00:51:37.210 --> 00:51:50.330
+Zeljko Ivezic: So I also added bunch of code in here. That's now this individual. So all these methods that they looked at. I wanted to start a bit, Roc, just to compare them all together. Now we can
+
+377
+00:51:50.370 --> 00:51:52.189
+Zeljko Ivezic: see a little bit more about
+
+378
+00:51:52.940 --> 00:52:06.829
+Zeljko Ivezic: what they do. So we already saw one that did circle around here in the left panel. It's simple support vector machine in its straight line. So it's allowed to draw a straight line.
+
+379
+00:52:06.920 --> 00:52:15.990
+Zeljko Ivezic: The black line is that boundaries, so the dark gray behind is what you call brown, and above it is orange, and then you measure performance.
+
+380
+00:52:16.120 --> 00:52:26.209
+Zeljko Ivezic: So in this case that there's a lot of mixing. It's not well-performing methods slightly better. One is on the right, because now you have
+
+381
+00:52:26.610 --> 00:52:33.540
+Zeljko Ivezic: freedom to curve this line. I think it's just quadratic curve. So it's little bit better. But
+
+382
+00:52:33.910 --> 00:52:41.040
+Zeljko Ivezic: not much. as we learned. GM. Is the best. And then that is that example.
+
+383
+00:52:43.970 --> 00:52:51.069
+Zeljko Ivezic: So this was GM, actually, 2 versions. When you run around, run. Gmm, you can tell it how many components you want.
+
+384
+00:52:51.480 --> 00:53:10.880
+Zeljko Ivezic: And so here looks slightly non Gaussian, the Brown point distribution. So we try to 3 Gaussians. But then, just for comparison, there is also computation with one Gaussian and the symbols tell you which one is which. So if you have more ability to model morphology
+
+385
+00:53:11.180 --> 00:53:20.430
+Zeljko Ivezic: of your day density, distribution, then you will have better performance. So this one comes to contamination of 20% with 3 galaxies.
+
+386
+00:53:20.490 --> 00:53:22.509
+Zeljko Ivezic: So if you have ability to
+
+387
+00:53:22.530 --> 00:53:27.919
+Zeljko Ivezic: nicely outline various high probability, then you can improve performance.
+
+388
+00:53:29.530 --> 00:53:38.390
+Zeljko Ivezic: And then another method we haven't talked about yet. K. Nearest neighbors that can also be often used for efficient classification.
+
+389
+00:53:38.440 --> 00:53:43.440
+Zeljko Ivezic: So you are now sitting here. So you are all my data points.
+
+390
+00:53:43.570 --> 00:53:50.950
+Zeljko Ivezic: and each of you has a label, and then I'm sitting here and now. I don't know my lab based on you, what is my label?
+
+391
+00:53:51.620 --> 00:54:00.230
+Zeljko Ivezic: I look in a circle and pick 10 neighbors. or something like that. 20 neighbors, if I have huge sample, and I ask you to vote.
+
+392
+00:54:00.590 --> 00:54:03.959
+Zeljko Ivezic: So if I sit here and we say.
+
+393
+00:54:04.350 --> 00:54:07.780
+Zeljko Ivezic: labels are men and women. Am IA man or a woman?
+
+394
+00:54:08.130 --> 00:54:14.290
+Zeljko Ivezic: And I want to give 10 newest people to me. 12345678910.
+
+395
+00:54:14.920 --> 00:54:18.810
+Zeljko Ivezic: 3 are women, 7 are men, therefore I am a man.
+
+396
+00:54:20.170 --> 00:54:28.699
+Zeljko Ivezic: Of course. So in multidimensional samples you do similar, and up to some dimension it works well.
+
+397
+00:54:28.870 --> 00:54:36.769
+Zeljko Ivezic: We'll learn next time about the curse of dimensionality which tells you in high dimensions. It's very hard to get the investment.
+
+398
+00:54:36.930 --> 00:54:44.349
+Zeljko Ivezic: So this works great. If you have no knowledge about your data set, what kind of structures you would expect, etc.,
+
+399
+00:54:44.620 --> 00:54:50.429
+Zeljko Ivezic: but it's not highly dimension now. The nearest neighbor distribution works well in practice.
+
+400
+00:54:50.520 --> 00:54:58.789
+Zeljko Ivezic: and the number of neighbors should be about 10, not much less because then you start suffering from effects of Poisson statistic.
+
+401
+00:54:59.440 --> 00:55:08.800
+Zeljko Ivezic: The more neighbors you take. the better is your estimate in precision. But then resolution of your classifier goes down
+
+402
+00:55:09.490 --> 00:55:15.649
+Zeljko Ivezic: like that, say 20 of you in the room, and they choose 20 nearest neighbors.
+
+403
+00:55:15.890 --> 00:55:24.730
+Zeljko Ivezic: Then every single point in this room will have the same answer, because for every point in this room all of you will come into that nearest 90%.
+
+404
+00:55:24.890 --> 00:55:26.749
+So it's a trade-off in practice.
+
+405
+00:55:31.310 --> 00:55:39.119
+Zeljko Ivezic: This one was nearest neighbor. So again it it does get to with 10 neighbors. It gets to 20% completeness with 4 colors.
+
+406
+00:55:39.320 --> 00:55:48.319
+Zeljko Ivezic: I mean contamination. Sorry. That's one way of looking at the performance. But then, again, completeness is not 100 is definitely less.
+
+407
+00:55:48.380 --> 00:55:52.060
+Zeljko Ivezic: and this is roughly the boundary, I think, at point 5
+
+408
+00:55:52.510 --> 00:56:01.920
+Zeljko Ivezic: at point 5 probability. And lastly, I just added code for this example, that we looked at
+
+409
+00:56:01.960 --> 00:56:07.199
+Zeljko Ivezic: that runs support vector machine in 7 dimensions. And then as science.
+
+410
+00:56:07.400 --> 00:56:09.190
+Zeljko Ivezic: the the labels to it.
+
+411
+00:56:10.990 --> 00:56:17.430
+Zeljko Ivezic: So that's pretty much what I wanted to cover today. We have a few minutes now for discussion and questions
+
+412
+00:56:21.260 --> 00:56:22.120
+you ask.
+
+413
+00:56:23.030 --> 00:56:26.250
+Zeljko Ivezic: So can just be loaded. Cozy group.
+
+414
+00:56:30.800 --> 00:56:38.870
+Zeljko Ivezic: the the what are a seeker? The the one we calculated or this one
+
+415
+00:56:45.210 --> 00:56:46.210
+isn't Google.
+
+416
+00:56:59.760 --> 00:57:12.300
+Zeljko Ivezic: Yes, you could go below the Agona line. Diagonal line is the result of random assignment. Now you can, you can. I had a case with one student. He
+
+417
+00:57:12.830 --> 00:57:20.870
+Zeljko Ivezic: switch the labels. And then people symmetric picture of the real card. So things can happen. Yeah.
+
+418
+00:57:23.030 --> 00:57:29.159
+Zeljko Ivezic: exactly. Exactly. So. The question on Zoom. The question was, Can you ever have
+
+419
+00:57:29.290 --> 00:57:33.399
+Zeljko Ivezic: are a city curve that goes, you know, below that they are gonna line.
+
+420
+00:57:33.460 --> 00:57:42.269
+Zeljko Ivezic: And the answer is, Yes, but that means that you are deliberately misclassifying something, and random classification is this curve labeled No skill.
+
+421
+00:57:46.740 --> 00:57:58.649
+Zeljko Ivezic: and I had an interesting case with my student in Ranka. So he was running neural networks to to compare how fast you can do it with training samples based on Bayesian computation.
+
+422
+00:57:59.030 --> 00:58:00.670
+Zeljko Ivezic: And so
+
+423
+00:58:01.450 --> 00:58:07.840
+Zeljko Ivezic: the workflow is that I produce simulated sample and then give him to do it as a blind test.
+
+424
+00:58:08.120 --> 00:58:14.220
+Zeljko Ivezic: and then he sends me the the results, and then I compare it to the input. And so
+
+425
+00:58:14.280 --> 00:58:20.000
+Zeljko Ivezic: he was performing better than method, which is impossible.
+
+426
+00:58:20.330 --> 00:58:25.130
+Zeljko Ivezic: and it was a blind sample like, how can he cheat me? How can you do that?
+
+427
+00:58:25.220 --> 00:58:32.220
+Zeljko Ivezic: And so, after 2 weeks of going back and forth, making more simulated simulated samples and just pulling out there out.
+
+428
+00:58:32.310 --> 00:58:42.890
+Zeljko Ivezic: What happened was that when you generate simulated catalog, the Pascal of the photometry of stars. I also needed to simulate errors.
+
+429
+00:58:42.990 --> 00:58:50.760
+Zeljko Ivezic: and in astronomy errors are dependent on the brightness of the source. So I generated errors to that.
+
+430
+00:58:51.120 --> 00:58:56.950
+Zeljko Ivezic: But then, when I gave him. when I gave him simulated magnitudes, that I randomized
+
+431
+00:58:57.150 --> 00:58:59.519
+Zeljko Ivezic: greatly, and he shouldn't
+
+432
+00:58:59.580 --> 00:59:02.189
+Zeljko Ivezic: know what was the true value of that magnitude.
+
+433
+00:59:02.490 --> 00:59:08.500
+Zeljko Ivezic: Those errors in themselves had that information, because error is generally
+
+434
+00:59:08.630 --> 00:59:10.099
+Zeljko Ivezic: and neural networks
+
+435
+00:59:10.210 --> 00:59:19.019
+Zeljko Ivezic: smart enough to find that correlation and gets the right answer, even though magnetism that we use for estimate did not have any.
+
+436
+00:59:19.460 --> 00:59:24.970
+Zeljko Ivezic: And so it took 2 weeks headaches to figure out what is going on. There's always.
+
+437
+00:59:25.340 --> 00:59:31.060
+Zeljko Ivezic: as my teacher. One of my teachers is to say, face space for making bugs is infinite.
+
+438
+00:59:32.680 --> 00:59:34.590
+Zeljko Ivezic: You always have to be
+
+439
+00:59:34.850 --> 00:59:36.770
+worried about making mistakes.
+
+440
+00:59:39.470 --> 00:59:40.810
+more questions.
+
+441
+00:59:42.370 --> 00:59:44.349
+more candidates for reality.
+
+442
+00:59:46.070 --> 00:59:46.920
+Zeljko Ivezic: Booth.
+
+443
+00:59:49.920 --> 00:59:55.860
+Zeljko Ivezic: yeah, those 4 have to send to one. If it's probabilities or 200%.
+
+444
+00:59:56.280 --> 00:59:57.300
+Zeljko Ivezic: So you have.
+
+445
+00:59:57.530 --> 01:00:00.299
+Zeljko Ivezic: You have 4 choices. It's 2 by 2 matrix
+
+446
+01:00:02.640 --> 01:00:05.480
+super cool. See?
+
+447
+01:00:05.860 --> 01:00:11.439
+Zeljko Ivezic: It's the best. Exactly. Isn't that on point of the curve you get to
+
+448
+01:00:11.790 --> 01:00:14.310
+Zeljko Ivezic: all fourth grade is is unbelievable.
+
+449
+01:00:14.900 --> 01:00:16.030
+If we
+
+450
+01:00:16.550 --> 01:00:21.139
+Zeljko Ivezic: the best one is that shoots from 0 0
+
+451
+01:00:21.250 --> 01:00:26.650
+Zeljko Ivezic: straight to 0% and then goes horizontally
+
+452
+01:00:27.430 --> 01:00:30.770
+Zeljko Ivezic: 200. Well, it doesn't go basically, just
+
+453
+01:00:32.660 --> 01:00:34.820
+Zeljko Ivezic: okay. See this.
+
+454
+01:00:36.380 --> 01:00:38.280
+Zeljko Ivezic: So this is true, positive.
+
+455
+01:00:41.000 --> 01:00:44.069
+Zeljko Ivezic: You are right, it is a little bit confusing. If you have
+
+456
+01:00:44.740 --> 01:00:46.580
+Zeljko Ivezic: perfect performance.
+
+457
+01:00:47.010 --> 01:00:57.449
+Zeljko Ivezic: then false positive rate is never. Yeah. This is always simplified. So basically, the one that we computed is a better plot.
+
+458
+01:01:05.700 --> 01:01:06.820
+No, where is it?
+
+459
+01:01:09.240 --> 01:01:16.399
+Zeljko Ivezic: So if you look? Yes. So if you look at X-axis. It goes to some small number. It reaches that form.
+
+460
+01:01:16.790 --> 01:01:17.550
+That's it.
+
+461
+01:01:21.200 --> 01:01:27.340
+Zeljko Ivezic: Yeah, thank you. I stole the other one from Wikipedia. Justin. Show the color body version. Yes.
+
+462
+01:01:38.610 --> 01:01:39.670
+Zeljko Ivezic: what's best?
+
+463
+01:01:40.410 --> 01:01:49.870
+Zeljko Ivezic: Yeah, let me go to the first example. So the question is, what is really difference between supervised and unsupervised classification.
+
+464
+01:01:50.490 --> 01:01:53.529
+Zeljko Ivezic: So if you look at this data sample here
+
+465
+01:01:53.670 --> 01:01:56.040
+Zeljko Ivezic: we have 2 types of points.
+
+466
+01:01:56.170 --> 01:01:59.269
+Zeljko Ivezic: and one type is black and the other one is open circles.
+
+467
+01:01:59.940 --> 01:02:09.720
+Zeljko Ivezic: That's denotes those labels. So we have 2 different types of sources, whatever they are, and I tell them for each point, is it Blackpoint, or is it open source?
+
+468
+01:02:10.180 --> 01:02:11.919
+Zeljko Ivezic: And then, I ask you.
+
+469
+01:02:12.140 --> 01:02:19.800
+Zeljko Ivezic: separating somehow in some line that is supervised. Classification is supervised by the existence of ladies.
+
+470
+01:02:20.810 --> 01:02:28.150
+Zeljko Ivezic: and then, once you draw line, you can ask for each of these points. Did I guess correctly or not?
+
+471
+01:02:28.260 --> 01:02:36.830
+Zeljko Ivezic: Once you draw this line you can ask for each black point. Are you really on the right hand side of the line, and for the other points, are you really on the left hand side?
+
+472
+01:02:37.500 --> 01:02:42.580
+Zeljko Ivezic: And you count how many mistakes you made, and then you justify you adjust the line set
+
+473
+01:02:42.810 --> 01:02:45.299
+Zeljko Ivezic: that is supervised classification.
+
+474
+01:02:45.790 --> 01:02:48.630
+Zeljko Ivezic: Now, if I didn't tell me the labels.
+
+475
+01:02:48.910 --> 01:02:53.680
+Zeljko Ivezic: I just gave you these points, and they all the same color, they all would be blank. For example.
+
+476
+01:02:54.370 --> 01:02:56.109
+Zeljko Ivezic: then, I would ask you.
+
+477
+01:02:56.370 --> 01:03:05.650
+Zeljko Ivezic: is the structure in this diagram? At this point, randomly distributed, as if I tune them by hand, or is there deviation from mean density
+
+478
+01:03:05.930 --> 01:03:13.729
+Zeljko Ivezic: like? If there is no structure whatsoever, you would have some mean density, and then some Poisson fluctuations around it, but it would apply
+
+479
+01:03:13.820 --> 01:03:23.360
+Zeljko Ivezic: hand handful of salt or or or sand on the table. But here you look at it, and you say? Oh, no, but there is structure. I see 2 plants.
+
+480
+01:03:24.380 --> 01:03:37.989
+Zeljko Ivezic: and then you ask yourself, how could I now quantify these 2 plans? And in this case it's easy. You look at it, and you see there are 2 plants. But when you have a large data sample that is highly multi-dimensional.
+
+481
+01:03:38.110 --> 01:03:54.610
+Zeljko Ivezic: and then look at the 2 dimensional diagram. It's not obvious that there are plans. data set. That's what these methods do for you. They go through all the data. And they say, just say, assume that gals can come, and then you will run
+
+482
+01:03:55.310 --> 01:03:59.330
+Zeljko Ivezic: arbitrary number clusters like we did in the last lecture, and then the
+
+483
+01:04:00.390 --> 01:04:12.029
+Zeljko Ivezic: the Vic goes down. Okay, if you have 10 clusters in your sample, and you're trying to your Vic bill behind, and then it will drop down and
+
+484
+01:04:13.590 --> 01:04:14.860
+Zeljko Ivezic: with need.
+
+485
+01:04:14.980 --> 01:04:23.910
+Zeljko Ivezic: and you can do that, even if you have 100 dimensional space, your eyes will not tell you.
+
+486
+01:04:24.100 --> 01:04:48.530
+Zeljko Ivezic: But the key is that for each point you have coordinates in that multi-dimensional space. But you don't know anything else. Don't have a label, you don't know what as well. And in this example we had labels. And so in this case it's called supervise. In the other case it's called unsupervised classification, and it's better to go clustering. And then there is no confusion. Many people call it clustering and cluster.
+
+487
+01:04:50.800 --> 01:04:51.920
+That's that's it.
+
+488
+01:05:07.220 --> 01:05:18.410
+Zeljko Ivezic: right? You want to say you want to answer the question. If I give you now another data point. So now there is a new data point. And I ask you, is that point black or open circle?
+
+489
+01:05:19.030 --> 01:05:23.379
+Zeljko Ivezic: And then you throw it in the diagram and ask for this probability for each possible
+
+490
+01:05:30.290 --> 01:05:32.760
+there is question and share. There was one up there, too.
+
+491
+01:05:32.850 --> 01:05:42.470
+Zeljko Ivezic: Let's do chat first. Can you explain a bit more. The figure with Tpfptn and Tpp both is in the pink area. Okay, let's go back
+
+492
+01:05:57.600 --> 01:06:09.259
+Zeljko Ivezic: alright. So this now shows one dimensional classification problem. Where we have 2 populations, one is labeled Y Equals 0. That's on the left now.
+
+493
+01:06:09.440 --> 01:06:21.899
+Zeljko Ivezic: Sorry they have 2 labels. There is left Gaussian and Right Gaussian and Y is given to be 0 for the left. Gaussian and Y is one for the right.
+
+494
+01:06:21.980 --> 01:06:35.340
+Zeljko Ivezic: It could be big, random source. It could be starring, Alex. It could be, whatever. So it's binary class case. And so now we have to separate. We have to answer the question, if I give you measurement. X.
+
+495
+01:06:36.000 --> 01:06:40.709
+Zeljko Ivezic: That's that measurement belongs to the left, to the right.
+
+496
+01:06:41.390 --> 01:06:42.320
+Zeljko Ivezic: They don't
+
+497
+01:06:42.890 --> 01:06:52.669
+Zeljko Ivezic: and have to be so. Given this green value of the X. If it's to the
+
+498
+01:06:52.700 --> 01:06:58.570
+Zeljko Ivezic: then I would call it y estimate y hat 0, meaning, I
+
+499
+01:06:58.710 --> 01:07:08.040
+Zeljko Ivezic: say, it belongs to the left. Gaussian. If it's on the right, then I say estimate of why, it's one. I think it belongs to the right guys.
+
+500
+01:07:09.950 --> 01:07:14.870
+But I will be making mistakes. and sometimes I'll be correct.
+
+501
+01:07:15.460 --> 01:07:22.159
+Zeljko Ivezic: So Tp is true positive. That means that is correct. I assigned value
+
+502
+01:07:22.710 --> 01:07:29.200
+Zeljko Ivezic: one for the right Gaussian, and I really am in in in right, Gaussian. That's the right, David.
+
+503
+01:07:29.280 --> 01:07:31.759
+Now the question is, what is pink area
+
+504
+01:07:33.200 --> 01:07:39.080
+Zeljko Ivezic: and pink area? Is this other one not pink? Is it pink?
+
+505
+01:07:39.340 --> 01:07:43.229
+What to me? What is the color that has. Fp.
+
+506
+01:07:45.190 --> 01:07:49.320
+Zeljko Ivezic: hmm. orange. Let's go with orange
+
+507
+01:07:50.270 --> 01:08:00.060
+Zeljko Ivezic: so fp. Color and Tp, when they mix together, you get pink, but pink color belongs to red pink to abandon.
+
+508
+01:08:01.050 --> 01:08:08.620
+Zeljko Ivezic: Well, so this yeah, they overlap. So the plot is such. So everything that belongs to
+
+509
+01:08:08.750 --> 01:08:13.609
+tip to the right. Gaussian is true, positive, and it starts a brain.
+
+510
+01:08:14.620 --> 01:08:17.870
+Zeljko Ivezic: and then everything that belongs to the left Gaussian
+
+511
+01:08:18.010 --> 01:08:25.489
+Zeljko Ivezic: and goes to the right is false, positive, and that's covered together, and Pink has both of these contributions.
+
+512
+01:08:26.550 --> 01:08:27.810
+and then
+
+513
+01:08:28.450 --> 01:08:47.919
+Zeljko Ivezic: there is false, negative. And then there is true negative. And there is this, 2 by 2 matrix, you have 2 possibilities for classification, and you have 2 possibilities for your estimate of the 2 class. And so it's 4 possibilities. Each source has to belong to one of those 4 classes.
+
+514
+01:08:50.720 --> 01:08:52.529
+Did that help with the pink?
+
+515
+01:08:58.710 --> 01:09:03.640
+Zeljko Ivezic: Okay? Maybe people left. That's still few left. There was question there. Yes.
+
+516
+01:09:10.649 --> 01:09:12.569
+send it little bit.
+
+517
+01:09:14.979 --> 01:09:16.950
+Zeljko Ivezic: Yeah. So there are.
+
+518
+01:09:18.040 --> 01:09:30.059
+Zeljko Ivezic: Yeah. Sometimes you, you can handle it directly through the method. So Gaussian mixture model full by A/C and Gaussian mixture model is good, but handling
+
+519
+01:09:30.200 --> 01:09:31.810
+Zeljko Ivezic: in balanced cases.
+
+520
+01:09:31.840 --> 01:09:37.250
+Zeljko Ivezic: As long as the data distribution really reflects something else in mind.
+
+521
+01:09:37.399 --> 01:09:54.900
+Zeljko Ivezic: If it's not, then it might fail to. But because in Bayesian approach you have this price for classes that automatically handles your emails. And now, if you use some other methods like, for example, support vector machine or you use neural networks
+
+522
+01:09:54.960 --> 01:10:10.909
+Zeljko Ivezic: there, it will just take the sample training sample and try to find some boundary there. You can easily fail if you have grossly imbalance sample. And what people do is they first try to model underlying density distribution somehow.
+
+523
+01:10:11.070 --> 01:10:20.590
+Zeljko Ivezic: and then they do so-called sample imputation. So you generate simulated sample that is similar in properties
+
+524
+01:10:20.770 --> 01:10:22.180
+Zeljko Ivezic: to your
+
+525
+01:10:22.230 --> 01:10:29.149
+Zeljko Ivezic: unbalanced little sample, you throw it in the mix, and then you help neural network to write, find right boundary.
+
+526
+01:10:29.260 --> 01:10:38.270
+Zeljko Ivezic: This is little bit of packing. There is not theoretical strong justification, but in practice you can make
+
+527
+01:10:40.570 --> 01:10:41.639
+Zeljko Ivezic: believe music.
+
+528
+01:10:45.490 --> 01:10:52.079
+Zeljko Ivezic: Yeah, add more data that you yourself generated using the data properties of your
+
+529
+01:10:52.230 --> 01:10:53.739
+Zeljko Ivezic: on balance sample.
+
+530
+01:10:55.240 --> 01:10:56.180
+Zeljko Ivezic: totally
+
+531
+01:10:57.500 --> 01:10:59.060
+Zeljko Ivezic: using the dollars.
+
+532
+01:11:00.470 --> 01:11:09.800
+Zeljko Ivezic: Yeah, depends on case. Yeah, you can do it. You can do 12 and solve your problem. But you can also do very stupid things
+
+533
+01:11:09.890 --> 01:11:12.050
+Zeljko Ivezic: like I did like to think of it.
+
+534
+01:11:12.770 --> 01:11:21.829
+Zeljko Ivezic: If we didn't have an extra way of assessing how well we are doing, we would have thought, Wow, this is fantastic neural network, and it works well.
+
+535
+01:11:21.960 --> 01:11:24.830
+Zeljko Ivezic: But basically it was bogus results.
+
+536
+01:11:29.530 --> 01:11:36.850
+Zeljko Ivezic: I don't see any questions here. Oh, no, there is one more. Oh, yes, okay. So Petra said. Good.
+
+537
+01:11:37.940 --> 01:11:41.009
+Zeljko Ivezic: Well, if there are no more questions, then I'll see you on Thursday.
+
+538
+01:11:44.990 --> 01:11:46.370
+Zeljko Ivezic: Bye on zoom
+
+539
+01:11:47.290 --> 01:11:48.370
+Ina Galic: my name.
+
+540
+01:11:49.740 --> 01:11:50.440
+Lovro Palaversa: bye.
+
