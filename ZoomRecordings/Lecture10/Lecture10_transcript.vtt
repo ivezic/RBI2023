@@ -1,0 +1,1782 @@
+WEBVTT
+
+1
+00:00:39.430 --> 00:00:41.060
+Zeljko Ivezic: Can you hear me on Zoom?
+
+2
+00:00:42.600 --> 00:00:44.309
+lovro: Yes, we can hear you.
+
+3
+00:00:44.590 --> 00:00:45.750
+Zeljko Ivezic: Thank you.
+
+4
+00:00:48.730 --> 00:00:52.830
+Zeljko Ivezic: So today we'll talk little bit about dimensionality.
+
+5
+00:00:54.160 --> 00:01:00.550
+Zeljko Ivezic: This has to do with the methods that we already covered. So finding clusters, classification.
+
+6
+00:01:01.350 --> 00:01:10.299
+Zeljko Ivezic: And in previous lectures, we typically looked at small dimensionality examples. When we had 2, 3, 4, 5 dimensions.
+
+7
+00:01:10.540 --> 00:01:13.250
+Zeljko Ivezic: There is a mathematical effect
+
+8
+00:01:13.810 --> 00:01:27.949
+Zeljko Ivezic: that is detrimental to these methods when you go to high dimensions. So when you have many features, many dimensions in your data set. then many methods break apart, because
+
+9
+00:01:28.270 --> 00:01:31.370
+Zeljko Ivezic: off this mathematical
+
+10
+00:01:31.970 --> 00:01:36.939
+Zeljko Ivezic: feature that is named the Curse Procla
+
+11
+00:01:37.040 --> 00:01:44.560
+Zeljko Ivezic: of dimensionality. So if you think of a 3 dimensional cue.
+
+12
+00:01:45.150 --> 00:01:55.070
+Zeljko Ivezic: So imagine cube that goes in x from minus one to one in y, from minus one to one, and then Z from minus one to one.
+
+13
+00:01:55.560 --> 00:02:01.530
+Zeljko Ivezic: And now you put sphere inside that Q.
+
+14
+00:02:01.870 --> 00:02:06.479
+Zeljko Ivezic: Then inside the queue you generate uniform sample of points.
+
+15
+00:02:07.660 --> 00:02:11.509
+Zeljko Ivezic: and then you ask how many points are in that sphere.
+
+16
+00:02:12.160 --> 00:02:23.759
+Zeljko Ivezic: You know how to compute volume sphere. You know how to compute volume of the cube, and you find out that about half of your points will be enclosed
+
+17
+00:02:24.020 --> 00:02:32.599
+Zeljko Ivezic: in that sphere. and the other half are in the columns. If you look just in 2 dimensions, if you draw
+
+18
+00:02:32.690 --> 00:02:49.420
+Zeljko Ivezic: a square from minus one to one minus one to one. And you put a circle inside that square. Then you get about 80% of your uniform points will be in that circle? Why is that important, that number? How many, what fraction of points are inside
+
+19
+00:02:49.450 --> 00:02:57.480
+Zeljko Ivezic: circle or sphere? Whenever we do these methods that try to fluster, something to classify something.
+
+20
+00:02:57.490 --> 00:03:03.750
+Zeljko Ivezic: It always falls down to looking at your neighborhood, at finding your neighbors within some distance.
+
+21
+00:03:04.770 --> 00:03:16.009
+Zeljko Ivezic: and what happens is that in high dimensions. Now you cannot imagine, of course, 10 dimensional cube and 10 dimensional sphere, but we can write equations.
+
+22
+00:03:16.240 --> 00:03:30.109
+Zeljko Ivezic: It turns out that when you go to high dimensions. The number of points enclosed in that search volume, so it's called hyper sphere. Sphere in high dimension is smaller and smaller and smaller.
+
+23
+00:03:30.200 --> 00:03:35.210
+Zeljko Ivezic: and as you add more features, as dimension goes higher and higher.
+
+24
+00:03:35.860 --> 00:03:52.820
+Zeljko Ivezic: fewer and fewer points are inside the sphere. And so, if you have, for example, 50 features, and you look for the nearest neighbor within some distance. Even if it's as large as this whole sphere, you don't find any points. Basically, it goes to 0 for high dimensions.
+
+25
+00:03:52.890 --> 00:03:58.150
+Zeljko Ivezic: And so numerically. this first formula on the screen
+
+26
+00:03:59.990 --> 00:04:04.139
+Zeljko Ivezic: shows how to compute the volume of
+
+27
+00:04:04.330 --> 00:04:10.890
+Zeljko Ivezic: hypersphere. So volume of sphere in multi-dimensional space of D
+
+28
+00:04:11.130 --> 00:04:22.169
+Zeljko Ivezic: and below you can see results for few low dimensions. So it's all straightforward. Big gamma is the usual complete gamma function.
+
+29
+00:04:22.430 --> 00:04:25.450
+Zeljko Ivezic: And so if you're looking in one d.
+
+30
+00:04:25.910 --> 00:04:35.410
+Zeljko Ivezic: so that's just a line from minus one to one. Or here it's written in arbitrary form where it's not normalized to one. But it's going out to R.
+
+31
+00:04:36.040 --> 00:04:44.929
+Zeljko Ivezic: So then you have 100% of points are within that limit, because in oned line is line. But you go then to circle.
+
+32
+00:04:45.040 --> 00:04:56.079
+Zeljko Ivezic: Then you have formula by Our square, as you know, for kindergarten. Then you go to Third Dimension. It's 4 pi. Over 3 r. Cubed. And now you can write this.
+
+33
+00:04:56.480 --> 00:05:07.279
+Zeljko Ivezic: this formula for the sphere, for cube. It's simply 2. If you go from minus one to one, the length is 2, and it goes to power of B,
+
+34
+00:05:07.460 --> 00:05:12.600
+Zeljko Ivezic: and when you divide the 2, you get this formula at the bottom.
+
+35
+00:05:12.950 --> 00:05:16.060
+Zeljko Ivezic: This shows the fraction
+
+36
+00:05:16.370 --> 00:05:27.990
+Zeljko Ivezic: of points that are uniformly distributed in that hyper. Q that are within that hypersphere that touches that cube in each direction.
+
+37
+00:05:28.620 --> 00:05:32.399
+Zeljko Ivezic: But you look for points within some distance.
+
+38
+00:05:32.710 --> 00:05:36.890
+Zeljko Ivezic: and here is a little numerical simulation.
+
+39
+00:05:37.360 --> 00:05:42.999
+Zeljko Ivezic: And it basically evaluates this formula for certain values of D,
+
+40
+00:05:43.200 --> 00:05:58.940
+Zeljko Ivezic: and so for 1, 2, and 3, that's exactly what we discussed. So in one D. All the points are enclosed in that line segments, and then it drops down. So force two-dimensional case. 80%, roughly of points are within the circle.
+
+41
+00:05:58.970 --> 00:06:15.189
+Zeljko Ivezic: Half the points roughly are within 3 dimensional sphere, and then it rapidly goes down. If you look at 10 dimensions, it's only point 2%. Now, if you go to 30 dimensions, it's 2 times 10 to the minus 14.
+
+42
+00:06:15.620 --> 00:06:20.450
+Zeljko Ivezic: So unless your data sample includes 10 to the fourteenth points.
+
+43
+00:06:20.620 --> 00:06:30.930
+Zeljko Ivezic: and it essentially never does. If you have 30 features that you're trying to classify or cluster. most methods will just fall apart
+
+44
+00:06:32.860 --> 00:06:36.120
+Zeljko Ivezic: and with 100 is already hopeless
+
+45
+00:06:36.620 --> 00:06:47.200
+Zeljko Ivezic: minus 70. So what I did here was to write very simple piece of code that generates each coordinate in d dimensional space
+
+46
+00:06:47.280 --> 00:06:57.200
+Zeljko Ivezic: in the range, minus one to one. and then I compute distance for each point from the origin. And then I ask
+
+47
+00:06:57.640 --> 00:07:06.650
+Zeljko Ivezic: how many points are in that hypersphere? And I ran it with a sample of 1 million points. So it's a decent sample.
+
+48
+00:07:07.620 --> 00:07:17.639
+Zeljko Ivezic: First time I did it in 10 dimensional space and second time in 30 dimensional space. So you simply give it the size of desired sample and dimension of the space.
+
+49
+00:07:17.870 --> 00:07:23.459
+Zeljko Ivezic: And so, if you look now at D equal 10, we have 1 million points.
+
+50
+00:07:23.660 --> 00:07:29.460
+Zeljko Ivezic: but only 2,500 are in that sphere, as predicted by formula.
+
+51
+00:07:29.600 --> 00:07:32.110
+Zeljko Ivezic: And then now, when you look at
+
+52
+00:07:32.680 --> 00:07:36.520
+Zeljko Ivezic: the distribution of distance squared for those points.
+
+53
+00:07:37.060 --> 00:07:39.110
+Zeljko Ivezic: you get 3.3,
+
+54
+00:07:39.290 --> 00:07:49.519
+Zeljko Ivezic: and you can show by evaluating this distance in multi-dimensional space, that you expect that the mean distance square will be 3.3.
+
+55
+00:07:49.970 --> 00:07:53.810
+Zeljko Ivezic: So in 10 dimensional space. Most of your points
+
+56
+00:07:53.870 --> 00:07:59.939
+Zeljko Ivezic: are centered on distance of square root of 3.3, so little bit under 2.
+
+57
+00:08:00.470 --> 00:08:12.259
+Zeljko Ivezic: That means they are. Most of them are outside of this here as expected, and you can also evaluate expectations for standard deviation. And the formula is for the over 45.
+
+58
+00:08:12.310 --> 00:08:20.230
+Zeljko Ivezic: And this numerical example shows that with 1 million points you are getting results that are very close
+
+59
+00:08:20.420 --> 00:08:27.800
+Zeljko Ivezic: to theoretical expectation. There is always little bit of statistical fluctuation, but with 1 million points. It's not a lot.
+
+60
+00:08:28.260 --> 00:08:36.089
+Zeljko Ivezic: And then in d dimensional space, we know that the maximum distance that we can have will be 10.
+
+61
+00:08:36.250 --> 00:08:58.470
+Zeljko Ivezic: And here it's 7.9. So these points do not extend all the way to the corners of the cube hyper queue, but they are found at some specific distance, and it's relatively narrow distribution. It's even more obvious if you look at D of 30 with 1 million points, not a single one was within hyperspeed.
+
+62
+00:08:59.070 --> 00:09:02.589
+Zeljko Ivezic: And so now you run your nearest neighbor algorithm
+
+63
+00:09:03.130 --> 00:09:07.459
+Zeljko Ivezic: with 1 million points, and not a single one is found as a neighbor.
+
+64
+00:09:07.950 --> 00:09:10.449
+Zeljko Ivezic: And so then, as you go
+
+65
+00:09:10.670 --> 00:09:19.849
+Zeljko Ivezic: to higher dimensions than because of the central limit theorem. You can show that the distribution of distances from the origin
+
+66
+00:09:19.940 --> 00:09:23.460
+Zeljko Ivezic: will asymptotically go into normal distribution.
+
+67
+00:09:24.700 --> 00:09:29.510
+Zeljko Ivezic: and your distances will be centered on D over 3,
+
+68
+00:09:30.700 --> 00:09:38.679
+Zeljko Ivezic: and Sigma will be 4 d. Over 45. So about point one d. So if you have D of 30
+
+69
+00:09:39.940 --> 00:09:43.480
+Zeljko Ivezic: typical distance of your points will be 10,
+
+70
+00:09:44.720 --> 00:09:51.160
+Zeljko Ivezic: and standard deviation will be about 3. So to get to one from 10,
+
+71
+00:09:51.190 --> 00:10:06.029
+Zeljko Ivezic: if standard deviation is 3, it's more than 3 Sigma deviation. That's why you don't get any points in that sphere. In other words, if you have highly dimensional space, and you distribute points randomly
+
+72
+00:10:06.400 --> 00:10:12.709
+Zeljko Ivezic: in that multi-dimensional space they will form a spherical shell that will be relatively thin.
+
+73
+00:10:12.960 --> 00:10:23.229
+Zeljko Ivezic: But the radius of that shell will be much more that that one in which we are searching. and that then causes problems for a lot of
+
+74
+00:10:23.450 --> 00:10:24.450
+Zeljko Ivezic: methods.
+
+75
+00:10:24.870 --> 00:10:38.680
+Zeljko Ivezic: And so here is one realistic example. We already we already talked about Sdss survey in astronomy. So the last data release had 360 million sources.
+
+76
+00:10:39.000 --> 00:10:42.170
+Zeljko Ivezic: and it measures many attributes, 450.
+
+77
+00:10:42.760 --> 00:10:48.319
+Zeljko Ivezic: And so if you just selected the 30 that are most physically interesting.
+
+78
+00:10:48.890 --> 00:11:05.530
+Zeljko Ivezic: you would still have probability of only one in a million of getting an object within that unit sphere. So in these cases most methods will fall apart when we have highly dimensional space. So what is the solution? The solution is to use various methods
+
+79
+00:11:05.640 --> 00:11:19.400
+Zeljko Ivezic: for dimensionality reduction. It often happens when you have many features. that they are not independent of each other. and so in this highly multi-dimensional spaces, they show correlations.
+
+80
+00:11:19.780 --> 00:11:29.329
+Zeljko Ivezic: and so, if they are correlated, then, knowing one allows you to estimate the other one. In other words, you don't need to know all 30 features.
+
+81
+00:11:30.320 --> 00:11:42.610
+Zeljko Ivezic: the independent set of features may be much smaller, like a few. And so you need to find those little features. Sometimes there are linear combinations of things you measure.
+
+82
+00:11:42.680 --> 00:11:50.769
+Zeljko Ivezic: and we'll see an example today. Sometimes it's more complicated. But there are methods to handle the 2, and we'll talk about it at the end
+
+83
+00:11:51.090 --> 00:12:05.080
+Zeljko Ivezic: of the lecture. So let's start with the oldest and most well-known method called principal component analysis. How many of you have already heard or worked with principal components analysis.
+
+84
+00:12:06.110 --> 00:12:12.390
+Zeljko Ivezic: Okay, so at least half of people in the room. I'll assume the same fraction applies to zoom people.
+
+85
+00:12:13.170 --> 00:12:19.640
+Zeljko Ivezic: So this diagram shows 2 dimensional distribution of data points. That's the gray background.
+
+86
+00:12:20.080 --> 00:12:23.739
+Zeljko Ivezic: It was generated from 2 dimensional Gaussian
+
+87
+00:12:24.410 --> 00:12:30.199
+Zeljko Ivezic: which had rotation and angle of alpha compared to
+
+88
+00:12:31.130 --> 00:12:35.670
+Zeljko Ivezic: the x-axis. And so now imagine that you measure X and Y
+
+89
+00:12:35.720 --> 00:12:40.350
+Zeljko Ivezic: that are given with these blue lines. and you
+
+90
+00:12:40.790 --> 00:12:48.230
+Zeljko Ivezic: ask, what are my independent features? So these 2 are correlated. But if you now look at the red
+
+91
+00:12:48.290 --> 00:12:51.480
+Zeljko Ivezic: coordinate system called principal axis.
+
+92
+00:12:51.600 --> 00:12:58.870
+Zeljko Ivezic: this coordinate system, this Gaussian, is aligned with coordinate axis, and there is no
+
+93
+00:12:59.490 --> 00:13:06.170
+Zeljko Ivezic: covariance between the 2. They are independent. On top of that you can also see that
+
+94
+00:13:06.350 --> 00:13:14.540
+Zeljko Ivezic: the scatter of data points along P. One coordinates is much larger than along p. 2 coordinates.
+
+95
+00:13:14.770 --> 00:13:27.579
+Zeljko Ivezic: So in practice you could mean this could mean that in p. One you are measuring something scientifically interesting. and the scatter in p. 2 could be simply due to measurement noise.
+
+96
+00:13:28.850 --> 00:13:34.890
+Zeljko Ivezic: And so now, in this very simple example, you would say, I have one independent feature.
+
+97
+00:13:34.990 --> 00:13:36.760
+Zeljko Ivezic: It's p. One.
+
+98
+00:13:37.410 --> 00:13:44.729
+Zeljko Ivezic: and that tells me everything I can know from this data sample, because p. 2 is simply due to notes.
+
+99
+00:13:45.670 --> 00:14:00.730
+Zeljko Ivezic: So P. One also has noise, but it also has some signal, and that's why it's wider distribution than in p. 2. Direction. So that's very simple example. But it gives you the gist of what we are trying to do in multi-dimensional spaces.
+
+100
+00:14:01.050 --> 00:14:09.370
+Zeljko Ivezic: So how would you now determine access? P. One. And p. 2. And how would we generalize this to arbitrary
+
+101
+00:14:09.540 --> 00:14:10.840
+Zeljko Ivezic: dimensionality?
+
+102
+00:14:13.320 --> 00:14:31.180
+Zeljko Ivezic: So in 2D. You may have seen this formula before. so in 2D. This comes often in science and engineering. so especially in the, in the science of materials in mechanical engineering. When you're trying to compute. If something will break
+
+103
+00:14:31.450 --> 00:14:40.320
+Zeljko Ivezic: and you have forces, then you compute strength, usually depending on the angle of the force, the stress on one surface of some piece of machine, or whatever
+
+104
+00:14:41.010 --> 00:14:42.240
+Zeljko Ivezic: looks like
+
+105
+00:14:42.590 --> 00:14:55.079
+Zeljko Ivezic: this. First Gaussian, it has 2 principal directions, but it's not aligned between a Texas. So this formula are derived in 2D. To be explicit, and they tell you how to rotate the coordinate system.
+
+106
+00:14:55.330 --> 00:14:57.699
+Zeljko Ivezic: So when you look at. This picture.
+
+107
+00:14:57.920 --> 00:15:03.079
+Zeljko Ivezic: So you have now some unknown angle. Alpha, you say.
+
+108
+00:15:03.520 --> 00:15:09.860
+Zeljko Ivezic: if I compute covariance of this distribution between X and y, which means you integrate.
+
+109
+00:15:09.950 --> 00:15:21.940
+Zeljko Ivezic: P of x times. P. Of y over XY. Plane. Then if you in compute that covariance you will get for alpha of 0 for the blue coordinate system, you'll get some finite number.
+
+110
+00:15:22.250 --> 00:15:29.919
+Zeljko Ivezic: but then you assume some alpha, and you compute covariance again, and you vary Alpha until you hit 0.
+
+111
+00:15:30.560 --> 00:15:32.650
+Zeljko Ivezic: That is the right coordinate system.
+
+112
+00:15:32.990 --> 00:15:41.449
+Zeljko Ivezic: So the way to derive angle Alpha is to require that covariance 0, and that leads to this formula in 2D.
+
+113
+00:15:42.530 --> 00:15:51.980
+Zeljko Ivezic: They look pretty involved. So first, one just gives you tangent of 2 alpha Sigma X Sigma Y and Sigma Xy
+
+114
+00:15:52.470 --> 00:16:06.650
+Zeljko Ivezic: are the variances and covariances. So basically integrate X square over probability, y, sphere of probability and XY. Over probability distribution. You get sigmas from the data, and then you plug in this expression, and you have your alpha.
+
+115
+00:16:06.910 --> 00:16:13.569
+Zeljko Ivezic: and then the second set of formula, p. One and p. 2. Coordinates can be computed with this formula.
+
+116
+00:16:14.080 --> 00:16:21.680
+Zeljko Ivezic: and they look ugly, but they are just rotation of the coordinate system, that you also learn kindergarten, or whenever
+
+117
+00:16:22.600 --> 00:16:38.620
+Zeljko Ivezic: and finally, you can also compute these 2 scatters 2 sigmas in principle directions by the formula at the bottom. And that's the formula that every mechanical engineer knows by heart. You need to memorize it if you want to graduate.
+
+118
+00:16:38.900 --> 00:16:46.330
+Zeljko Ivezic: Now this looks ugly already in 2 dimensions. and now, if you go to 10 dimensions, then it would be impossibly aggregate.
+
+119
+00:16:46.650 --> 00:17:01.029
+Zeljko Ivezic: Fortunately we can treat 5 dimensions with linear algebra and matrix computations. So in particular, if you look at this expression, p. One and p. 2, you could write it as a simple 2 by 2 matrix
+
+120
+00:17:01.460 --> 00:17:16.839
+Zeljko Ivezic: that multiplies vector x one, so that matrix would have elements cosine of Alpha sine of Alpha in the first row, second row is minus sine alpha, and then cosine alpha. You must have seen this before, maybe in different notation.
+
+121
+00:17:16.869 --> 00:17:21.090
+Zeljko Ivezic: The same thing works in high dimensions, but you do matrix multiplication.
+
+122
+00:17:22.910 --> 00:17:26.950
+Zeljko Ivezic: And here is one simple, 2 dimensional example.
+
+123
+00:17:27.300 --> 00:17:32.399
+Zeljko Ivezic: So we give it. This goes in the opposite direction. We we
+
+124
+00:17:32.820 --> 00:17:34.860
+Zeljko Ivezic: specify what is
+
+125
+00:17:35.130 --> 00:17:43.270
+Zeljko Ivezic: the distribution in principle, axis, the width of the distribution, and we say we are going to rotate by
+
+126
+00:17:43.990 --> 00:17:51.470
+Zeljko Ivezic: by 30 degrees. and then we define the matrix of rotation, and then we get new coordinates.
+
+127
+00:17:52.870 --> 00:17:54.060
+Zeljko Ivezic: And
+
+128
+00:17:55.230 --> 00:17:56.700
+Zeljko Ivezic: this is the result.
+
+129
+00:17:56.930 --> 00:18:05.219
+Zeljko Ivezic: And the point of the figure is to show that you can also get the angle by minimizing these distances from the new axis.
+
+130
+00:18:05.380 --> 00:18:08.849
+Zeljko Ivezic: So I told you. One way to derive this formula is
+
+131
+00:18:09.030 --> 00:18:12.119
+Zeljko Ivezic: to ask that the covariance is
+
+132
+00:18:13.020 --> 00:18:14.160
+Zeljko Ivezic: 0.
+
+133
+00:18:14.450 --> 00:18:25.400
+Zeljko Ivezic: The other way which leads to mathematically. Same solution is to say, if I have new X prime direction, and I compute distances from that axis.
+
+134
+00:18:25.440 --> 00:18:34.430
+Zeljko Ivezic: I'm trying to minimize the squares of distances of the points. In other words, I'm trying to minimize the
+
+135
+00:18:34.820 --> 00:18:42.660
+Zeljko Ivezic: variance around this new axis, and that is the approach that generalizes to high dimensions.
+
+136
+00:18:44.220 --> 00:18:56.830
+Zeljko Ivezic: So I'm seeing that you're already half asleep. So I'm not going to go through each line in this formula. If you love math, and if you love linear algebra, then you can study this and see how it works.
+
+137
+00:18:56.860 --> 00:19:07.680
+Zeljko Ivezic: that 2 methods depending on your data and your them dimensionality. So if we have K. Dim K features and n observations.
+
+138
+00:19:08.020 --> 00:19:18.279
+Zeljko Ivezic: and it is not necessary that you have more observations than features. You can have, N. Larger than K. Or K. Larger than N. When they are very large. There are 2 methods that work
+
+139
+00:19:18.360 --> 00:19:20.960
+Zeljko Ivezic: well. In either case one is
+
+140
+00:19:21.260 --> 00:19:38.949
+Zeljko Ivezic: just displaying algebra, the other one uses tricks. Such a singular value decomposition. This is, too. It's not distracting. But I don't want to go through each line. I added this for completeness for you. If you love linear algebra. This is how you derive it.
+
+141
+00:19:39.020 --> 00:19:44.870
+Zeljko Ivezic: You can also try to do it in 2D. And compare to the previous result. That's a good exercise.
+
+142
+00:19:45.100 --> 00:19:49.910
+Zeljko Ivezic: But for our purpose. We will simply use code from psychic learn
+
+143
+00:19:50.330 --> 00:19:53.559
+Zeljko Ivezic: and show how to use it in practice.
+
+144
+00:19:54.180 --> 00:20:02.499
+Zeljko Ivezic: So cyclic already knows how to optimize solutions. So you don't have to worry about what is your end, and what is your K.
+
+145
+00:20:02.840 --> 00:20:09.039
+Zeljko Ivezic: For practical example? We'll use spectra of galaxies from Sdss.
+
+146
+00:20:09.380 --> 00:20:23.930
+Zeljko Ivezic: They, the raw spectra have 2,000 data points, 2,048 pixels. But for the purposes of this analysis we will use cleaned data set from Astro, Ml. That has 1,000 common wavelengths.
+
+147
+00:20:23.980 --> 00:20:27.459
+Zeljko Ivezic: So it's 1,000 dimensional feature set.
+
+148
+00:20:28.290 --> 00:20:33.610
+Zeljko Ivezic: And there are 4,000 spectrum this example. So we'll see how we can
+
+149
+00:20:33.790 --> 00:20:39.350
+Zeljko Ivezic: find the principal components by rotating coordinate system
+
+150
+00:20:40.780 --> 00:20:46.220
+Zeljko Ivezic: of these pixels. So the the top piece of code.
+
+151
+00:20:47.290 --> 00:20:49.069
+Zeljko Ivezic: So these are spectra
+
+152
+00:20:49.420 --> 00:21:06.740
+Zeljko Ivezic: at the bottom. At the x-axis there is wavelength. It's an optical wavelength range, and Y is some arbitrarily flux range which is not important in here. These show individual galaxies. So you put your telescope towards a galaxy, you get spectrum, and you get something like this.
+
+153
+00:21:07.370 --> 00:21:18.760
+Zeljko Ivezic: So our assumption is that these light from galaxies comes from many stars. and sometimes there are these emission lines that come from hot gas.
+
+154
+00:21:18.810 --> 00:21:29.529
+Zeljko Ivezic: And our basic assumption is that there are many additive linear contributions to this spectra. and we are hoping that we can write them as
+
+155
+00:21:29.770 --> 00:21:40.440
+Zeljko Ivezic: a linear sum of so-called Eigen spectra. In other words, we are now assuming that there are principal components, those eigen spectra that we can combine linearly
+
+156
+00:21:40.620 --> 00:21:42.890
+Zeljko Ivezic: and describe a spectrum
+
+157
+00:21:42.900 --> 00:21:56.020
+Zeljko Ivezic: by a small number of eigen components. So this first piece of code basically accesses this spectra chooses randomly 15 of them. Just to illustrate how they look like.
+
+158
+00:21:58.160 --> 00:22:06.009
+Zeljko Ivezic: Now, we will try to run the code from psychic learn that will basically solve these equations. So what do they tell us
+
+159
+00:22:06.150 --> 00:22:10.039
+Zeljko Ivezic: so in the first equation we have XI of K.
+
+160
+00:22:10.660 --> 00:22:16.239
+Zeljko Ivezic: So K is the pixel number that goes from one to 1,000,
+
+161
+00:22:16.460 --> 00:22:26.080
+Zeljko Ivezic: and I is the number that marks the galaxy. So each galaxy has its number. I goes from one to 4 0,
+
+162
+00:22:26.120 --> 00:22:30.840
+Zeljko Ivezic: and so given galaxy spectrum XI. As a function of pixel.
+
+163
+00:22:31.210 --> 00:22:34.509
+Zeljko Ivezic: We are now assuming this model.
+
+164
+00:22:35.080 --> 00:22:41.000
+Zeljko Ivezic: which is mean spectrum, new. Okay? And then the sum
+
+165
+00:22:42.050 --> 00:22:44.230
+Zeljko Ivezic: are eigen components.
+
+166
+00:22:45.170 --> 00:22:51.359
+Zeljko Ivezic: and they are given by these vectors, EJ. Of K, so that is also a spectrum.
+
+167
+00:22:52.320 --> 00:23:00.940
+Zeljko Ivezic: and that is always the same for all the galaxies, and will derive it from galaxy data. And then there are Eigen coefficients, Theta Ij.
+
+168
+00:23:01.650 --> 00:23:06.160
+Zeljko Ivezic: and when you run Pca on it, Pca is
+
+169
+00:23:06.320 --> 00:23:11.379
+Zeljko Ivezic: essentially rotation of the coordinate system, just like we did in twod
+
+170
+00:23:11.520 --> 00:23:14.600
+Zeljko Ivezic: to minimize variance along each axis.
+
+171
+00:23:14.980 --> 00:23:26.730
+Zeljko Ivezic: so the second principal component will have smaller scatter, and then third, principal component, even smaller scatter, etc. But it is just a rotation of coordinate system.
+
+172
+00:23:26.750 --> 00:23:35.040
+Zeljko Ivezic: Given the rules to minimize variance successfully. And this expression, if I put there, are
+
+173
+00:23:35.090 --> 00:23:38.190
+Zeljko Ivezic: that is equal to the data size. And
+
+174
+00:23:38.740 --> 00:23:40.609
+Zeljko Ivezic: then it's trivial
+
+175
+00:23:40.870 --> 00:23:46.929
+Zeljko Ivezic: expression. It's rotational. According to the system. We can find this matrix Beta, Ij and
+
+176
+00:23:47.360 --> 00:23:52.509
+Zeljko Ivezic: and the first site he doesn't give you anything. We just wrote it in parallelism.
+
+177
+00:23:53.140 --> 00:24:01.959
+Zeljko Ivezic: But if your data really can be expressed as a sum of a small number of components.
+
+178
+00:24:02.100 --> 00:24:16.690
+Zeljko Ivezic: and here we have 4,000 galaxies. Maybe that doesn't have to go to 4 0. Maybe it can go just a pen. And instead of carrying 0 numbers for each galaxy. Maybe you need to carry just 10 eigenfunctions.
+
+179
+00:24:16.700 --> 00:24:18.750
+Zeljko Ivezic: You don't know that in advance
+
+180
+00:24:18.760 --> 00:24:30.970
+Zeljko Ivezic: you have to try it on your data set. Sometimes it works, sometimes it doesn't depending on whether what you measure what you're working with is really a linear sum of some item components
+
+181
+00:24:31.080 --> 00:24:49.280
+Zeljko Ivezic: in galaxies. We know it's true, because the line is editing, and many different stars contribute to the final flux you are receiving from the glass. We will also see examples where it fails miserably, because this underlying assumption is wrong, it is not your signal is not
+
+182
+00:24:49.390 --> 00:24:50.660
+Zeljko Ivezic: a
+
+183
+00:24:50.910 --> 00:25:01.010
+Zeljko Ivezic: some of linear components. One example from astronomy, again, would be of physics. If you had a non bunch of stops right
+
+184
+00:25:01.060 --> 00:25:15.969
+Zeljko Ivezic: to the first order starts, radiates as planck functions. Not exactly. There are some absorption lines, sometimes emission lines, but overall. The most important thing is for no effective temperature, and you get plank function.
+
+185
+00:25:16.150 --> 00:25:27.140
+Zeljko Ivezic: And now you can have a range of starts going from cold to red from cold red starts to hot blue starts. So effective temperature has arranged and you have a bunch of fun functions.
+
+186
+00:25:27.520 --> 00:25:37.639
+Zeljko Ivezic: And now, if you wanted to apply Pca to 4,000 steles, but you will get nonsense out because it is not a linear system.
+
+187
+00:25:38.180 --> 00:25:48.829
+Zeljko Ivezic: Flux from one star is not linear combination of many different one functions, if that 1 one function and that one function is highly nonlinear in effect, thank you for its exponential function.
+
+188
+00:25:49.260 --> 00:25:58.259
+Zeljko Ivezic: So you could still do the first formula which are going to the dataset size for stars. You could rotate for an existing.
+
+189
+00:25:58.710 --> 00:26:04.569
+Zeljko Ivezic: but this truncation would not give you much. You would have to keep all of them to explain them
+
+190
+00:26:04.670 --> 00:26:21.159
+Zeljko Ivezic: at some that we can truncate only a few.
+
+191
+00:26:21.370 --> 00:26:25.449
+Zeljko Ivezic: And so this is for this next piece of code does
+
+192
+00:26:28.290 --> 00:26:44.639
+Zeljko Ivezic: so if you want it to run it with psychic, learn, then, this highlighted piece of code would do it for you. So. because there were some hacks in this real spectra from Sdss, etc. Here it's done explicitly.
+
+193
+00:26:45.170 --> 00:26:46.410
+Zeljko Ivezic: and it was
+
+194
+00:26:46.780 --> 00:26:58.530
+Zeljko Ivezic: precomputed. But if data was cleaner than this real spectra that have bad pixels and hot pixels, etc. Then you could simply with clean data. It's only 4 lines of code.
+
+195
+00:26:59.360 --> 00:27:05.680
+Zeljko Ivezic: and so we get spectra. We subtract the mean. And then
+
+196
+00:27:05.980 --> 00:27:11.589
+Zeljko Ivezic: we multiply these 2 matrices, and we get our Eigen spectra and
+
+197
+00:27:13.770 --> 00:27:17.390
+Zeljko Ivezic: eigen coefficients. And so this is the result for galaxies.
+
+198
+00:27:17.660 --> 00:27:19.229
+Zeljko Ivezic: And so the top.
+
+199
+00:27:19.560 --> 00:27:25.330
+Zeljko Ivezic: and we are comparing it to a single galaxy. Now, which one is which
+
+200
+00:27:30.140 --> 00:27:33.349
+Zeljko Ivezic: now I forget. Color coding hang on a second.
+
+201
+00:27:36.520 --> 00:27:38.850
+Zeljko Ivezic: so gray is the true spectrum
+
+202
+00:27:39.860 --> 00:27:43.400
+Zeljko Ivezic: black is reconstruction. So
+
+203
+00:27:43.440 --> 00:27:46.610
+Zeljko Ivezic: this is one galaxy in the top panel.
+
+204
+00:27:46.650 --> 00:27:54.029
+Zeljko Ivezic: and the mean spectrum of 4,000 galaxies is shown as black line in the top panel. They are different
+
+205
+00:27:54.350 --> 00:28:01.939
+Zeljko Ivezic: because one is me and the other one is just a particular galaxy. But now we add the first 4 components.
+
+206
+00:28:02.340 --> 00:28:13.649
+Zeljko Ivezic: So there are 4,000 components, but we just take the first 4, and they are ranked by the variance they explain. So as we add components, we can compute
+
+207
+00:28:13.710 --> 00:28:25.449
+Zeljko Ivezic: what fraction of the variance of the variation of that spectrum around reconstructed spectrum, we explained. And so with 4 components, we are already at 85%,
+
+208
+00:28:26.950 --> 00:28:39.350
+Zeljko Ivezic: and they're quite similar now. But there is still some some difference at long wavelengths on your right hand side in the second pan. Then we say, let's add
+
+209
+00:28:39.770 --> 00:28:44.970
+Zeljko Ivezic: 4 more components. So now we have 8 components. And it's almost perfect.
+
+210
+00:28:46.210 --> 00:28:56.390
+Zeljko Ivezic: We explain 93% of the total variance. And now when you add 20 components is essentially perfect. We are explaining 94% of variance.
+
+211
+00:28:56.930 --> 00:29:13.870
+Zeljko Ivezic: And so now, instead of keeping each spectrum. we could keep those 20 eigen spectra. and we could keep 20 eigen coefficients that multiply this twentyig spectra, we add them together, and we reconstruct the original spectrum.
+
+212
+00:29:14.970 --> 00:29:20.789
+Zeljko Ivezic: So, apart from those few Eigen spectra. Each galaxy carries 20 numbers instead of thousands.
+
+213
+00:29:20.950 --> 00:29:35.769
+Zeljko Ivezic: So first, it's compression in data, volume by factor of 50, which is sometimes super important when you have large samples, and, second, with 20 components. Most of our clustering and classification methods will still work.
+
+214
+00:29:36.630 --> 00:29:41.309
+Zeljko Ivezic: But if I just went blindly and took those 1,000 features per galaxy.
+
+215
+00:29:41.570 --> 00:29:52.550
+Zeljko Ivezic: and ran those methods for clustering, they would fall apart with 1,000 features, but by running Pca. In this case we get ahead by having only 20 features.
+
+216
+00:29:52.970 --> 00:29:55.810
+Zeljko Ivezic: Now, in some cases this will not work.
+
+217
+00:29:55.890 --> 00:30:03.330
+Zeljko Ivezic: and the way to find out if it works or not is to look at so so called screen plot.
+
+218
+00:30:03.810 --> 00:30:08.569
+Zeljko Ivezic: and I realized yesterday I did not actually know Croatian words for screen.
+
+219
+00:30:08.670 --> 00:30:19.949
+Zeljko Ivezic: so I looked up, and then I found it. I was still as smart as I was before. I would do that because I never heard in my life what, Isolina? Have you ever heard who, Solina?
+
+220
+00:30:20.630 --> 00:30:34.119
+Zeljko Ivezic: Okay? Then I googled. Apparently it is a true board, I suppose mountain hikers maybe know what Pusolina is. but that's when you have a mountain, and then the rocks fall off the mountain and make this slope that you see down.
+
+221
+00:30:34.540 --> 00:30:41.499
+Zeljko Ivezic: Typically, there is this knee in the distribution there is steep mountain, and then this
+
+222
+00:30:41.690 --> 00:30:48.969
+Zeljko Ivezic: debris makes it a smaller flow, and this is called screen. And in analogy with this.
+
+223
+00:30:49.040 --> 00:30:51.280
+Zeljko Ivezic: when you make plot of
+
+224
+00:30:53.780 --> 00:30:58.889
+Zeljko Ivezic: of explained variance in principle component analysis, it always tests
+
+225
+00:30:59.160 --> 00:31:02.930
+Zeljko Ivezic: this shape, it comes down very steeply.
+
+226
+00:31:03.120 --> 00:31:09.569
+Zeljko Ivezic: and then it threatens out. So in this plot we are looking for evidence of that change of flow.
+
+227
+00:31:10.710 --> 00:31:13.190
+Zeljko Ivezic: If you can see in this
+
+228
+00:31:13.680 --> 00:31:23.360
+Zeljko Ivezic: plot going down technique. That means your data set is roughly consistent with the assumption of linear combination.
+
+229
+00:31:24.620 --> 00:31:37.380
+Zeljko Ivezic: This is Number 10 below. So here we go to about 10 eigen components, and we explain most of the variance so towards, and the rest of it will improve
+
+230
+00:31:37.630 --> 00:31:51.779
+Zeljko Ivezic: the fidelity of your instructions, but you are essentially fitting measurement months. That's why it goes much slower, because every galaxy have the spectrum has different measurements, noise because it's random.
+
+231
+00:31:51.940 --> 00:31:59.499
+Zeljko Ivezic: So you look at this diagram and say, yes, this looks like good application. 58. I'll keep 10 or 20
+
+232
+00:31:59.880 --> 00:32:02.759
+Zeljko Ivezic: 20 eigen components, and you are done with it.
+
+233
+00:32:07.250 --> 00:32:21.259
+Zeljko Ivezic: Now this, each spectrum. So now I'm changing little bit topics. So this is how you do it. So there is sighted learning implementation. The basic model is that your data set can be explained as
+
+234
+00:32:21.270 --> 00:32:30.820
+Zeljko Ivezic: set of eigen components that get ident coefficients. And then if there is 3 plots, then it works. That's how you know it.
+
+235
+00:32:31.250 --> 00:32:37.659
+Zeljko Ivezic: So this bottom panel shows this reconstruction that is quite impressive. You can't tell by eye
+
+236
+00:32:37.690 --> 00:32:39.860
+Zeljko Ivezic: that there are 2 different plants.
+
+237
+00:32:40.450 --> 00:32:45.620
+Zeljko Ivezic: So we explain 94% covariance, and the rest is probably just measurement.
+
+238
+00:32:45.880 --> 00:33:01.130
+Zeljko Ivezic: Now, there is another interesting application of Pca that they want to mention when we measure this, especially in astronomy, but together in any instrument. Even if you work in biology or or chemistry. When you make spectral like this, there are always
+
+239
+00:33:01.330 --> 00:33:14.560
+Zeljko Ivezic: in astronomy. It's not just that pixels, but sometimes to get some asterisk that goes over your own observing area and destroys the pixel. And so often we have this spectra, and then you have to repair
+
+240
+00:33:15.450 --> 00:33:17.970
+Zeljko Ivezic: region in spectrum that is missing.
+
+241
+00:33:18.680 --> 00:33:23.000
+Zeljko Ivezic: and then you ask yourself what is the best way to interpolate in between.
+
+242
+00:33:23.590 --> 00:33:26.090
+Zeljko Ivezic: And so if you have just one balancing.
+
+243
+00:33:26.710 --> 00:33:32.360
+Zeljko Ivezic: then you can draw straight lines. People often do, but then obviously looks like missing data.
+
+244
+00:33:32.490 --> 00:33:53.399
+Zeljko Ivezic: If you know the underlying physics. Then you could maybe fit some model. If it's where a star where I have detailed models for stars as function of effective temperature, then I will just say, let me fit a model through the data that I have, and that model will interpolate for me over the missing data region.
+
+245
+00:33:54.020 --> 00:34:00.490
+Zeljko Ivezic: The other approach is when you have a lot of different objects like in here. You now
+
+246
+00:34:00.800 --> 00:34:07.930
+Zeljko Ivezic: develop this set of island spectrum. And now, if you look at particular galaxy. You get eigen coefficients
+
+247
+00:34:08.080 --> 00:34:10.980
+Zeljko Ivezic: by multiplying this
+
+248
+00:34:11.310 --> 00:34:21.249
+Zeljko Ivezic: spectrum that you observe with each item spectrum you integrate. That's what gives you identification, just like in Fourier analysis, for example, everybody knows.
+
+249
+00:34:21.679 --> 00:34:26.280
+Zeljko Ivezic: But now all the stars and points will give me constraining the guidance coefficient.
+
+250
+00:34:27.179 --> 00:34:37.320
+Zeljko Ivezic: but because we know that only a small number of Id Inspector Bill is explained. Spectrum only 10 to 20. I can now have significant
+
+251
+00:34:37.739 --> 00:34:40.000
+Zeljko Ivezic: parts of the spectrum missing
+
+252
+00:34:40.900 --> 00:34:52.889
+Zeljko Ivezic: unmeasured, but the rest of the data is measured will be still powerful enough to constrain Eigenfunctions. You just integrate over the parts of the wavelength spectrum where you have data.
+
+253
+00:34:53.120 --> 00:34:58.660
+Zeljko Ivezic: And so in theory, you could even lose half the spectrum and still constrain Eigen coefficients.
+
+254
+00:34:58.880 --> 00:35:02.220
+Zeljko Ivezic: And that is important because it allows you
+
+255
+00:35:02.510 --> 00:35:08.169
+Zeljko Ivezic: to interpolate better than with any other approach. You have large data set.
+
+256
+00:35:08.580 --> 00:35:12.760
+Zeljko Ivezic: And so basically, what we are doing is described here. So we fit
+
+257
+00:35:13.290 --> 00:35:17.790
+Zeljko Ivezic: over these missing pieces. And visualization is in here.
+
+258
+00:35:18.660 --> 00:35:32.770
+Zeljko Ivezic: So here is example of. or one galaxy. And so these gray regions. or without data. And so now you fit reconstruction. You fit those 10 or 20 eigen
+
+259
+00:35:33.080 --> 00:35:34.300
+Zeljko Ivezic: coefficients.
+
+260
+00:35:34.420 --> 00:35:46.149
+Zeljko Ivezic: And then you basically take this reconstruction to interpolate your data. So like this, data looks noisy because there is a lot of measurement noise. But then, in these regions. You can.
+
+261
+00:35:46.660 --> 00:35:50.630
+Zeljko Ivezic: You can replace missing values by that best bit.
+
+262
+00:35:51.970 --> 00:36:14.960
+Zeljko Ivezic: and then you can. That can simplify greatly your data analysis. Because if you have some method where you want to make mainly some spectra and send it to that method. If there are missing data, of course the the method will break. You need somehow to replace missing data, and this is one of the best methods to do so. Now we could take this repair spectra and then do much more uniform analysis.
+
+263
+00:36:14.960 --> 00:36:31.379
+Zeljko Ivezic: and that is exactly what happened when I said at the beginning. There is a little hack hidden in this spectrum. The hack was to prepare this in advance, to repair the spectra, so that each spectrum has all the thousands data points. But some of them did not have it
+
+264
+00:36:31.740 --> 00:36:37.239
+Zeljko Ivezic: did not have the complete spectrum. Then there is another
+
+265
+00:36:37.970 --> 00:36:48.360
+Zeljko Ivezic: interesting application of Pca. Where we measure these features. Here we have pixels, but we know exactly which pixel. Our measurement falls in.
+
+266
+00:36:48.740 --> 00:36:52.210
+Zeljko Ivezic: but sometimes you also have uncertainty on X-axis.
+
+267
+00:36:52.660 --> 00:37:16.360
+Zeljko Ivezic: and so, you know, don't know exactly where you are, but there is some uncertainty range. You can also treat this with Pca. It's a bit more involved. I haven't tried it yet. It's relatively new implementation from Jake Underclass. I just put links in. If you have this case, perhaps in your data analysis, this is the best place to start, but I don't unfortunately have numerical exam.
+
+268
+00:37:18.630 --> 00:37:24.109
+Zeljko Ivezic: Alright. So that's Pca. It's super powerful method, very simple to use.
+
+269
+00:37:24.520 --> 00:37:29.309
+Zeljko Ivezic: And it works. If that's linear model is applicable to your data set
+
+270
+00:37:29.670 --> 00:37:34.900
+Zeljko Ivezic: again in astronomy voice, break the galaxies, but face miserably in itself.
+
+271
+00:37:35.270 --> 00:37:38.260
+Zeljko Ivezic: So what do you do when you have?
+
+272
+00:37:38.650 --> 00:37:44.750
+Zeljko Ivezic: Okay? I'm jumping ahead too fast. There is one more thing, so we assume
+
+273
+00:37:44.890 --> 00:37:58.260
+Zeljko Ivezic: that we have a linear combination of individual components when we explain this galaxy spectrum. So I'm talking about these reconstructions. And the model was this.
+
+274
+00:37:58.300 --> 00:38:05.930
+Zeljko Ivezic: So in this top formula we say that spectrum of my galaxy is the sum of Eigen spectrum.
+
+275
+00:38:06.160 --> 00:38:11.020
+Zeljko Ivezic: but this, I guess, spectra may represent individual stars, or or
+
+276
+00:38:11.080 --> 00:38:15.370
+Zeljko Ivezic: different ages of stars that then plump in small number of classes, etc.
+
+277
+00:38:15.470 --> 00:38:20.730
+Zeljko Ivezic: But I never said that data Ij has to be positive
+
+278
+00:38:21.140 --> 00:38:22.940
+Zeljko Ivezic: when I applied this year.
+
+279
+00:38:24.090 --> 00:38:36.659
+Zeljko Ivezic: Now, if I think of a galaxy as a sum of light from stars. then there are no negative spots. I can only add light and start. But this method does not guarantee that
+
+280
+00:38:36.760 --> 00:38:46.059
+Zeljko Ivezic: that these Eigen coefficients data are agendas because they can be negative, and often they are even eigen spectra can be negative, which is totally non-physical.
+
+281
+00:38:46.780 --> 00:38:56.030
+Zeljko Ivezic: So mathematically. Pca works fine with galaxies. but it makes no physical sense often, and we'll see in the example that indeed we have some negativities.
+
+282
+00:38:56.410 --> 00:39:03.389
+Zeljko Ivezic: So there is another method that is very similar to Pca. But it it enforces
+
+283
+00:39:03.970 --> 00:39:22.409
+Zeljko Ivezic: that this coefficient and eigen components are positive. It's called non-negative matrix factorization. And Nmf, and the trick is to assume that your data might matrix is product of 2 matrices, and you force those matrices to be positive.
+
+284
+00:39:22.570 --> 00:39:27.980
+Zeljko Ivezic: And then you minimize the reconstruction error and you again get your coefficients.
+
+285
+00:39:28.530 --> 00:39:42.510
+Zeljko Ivezic: And we'll see example in a moment. Basically, again, it's few lines from psychic learn to apply it. It's as simple as changing 3 characters to go from Pca to Nmf. Because it's already implemented inside to learn.
+
+286
+00:39:45.160 --> 00:39:51.579
+Zeljko Ivezic: And then there is another related method that also looks very similar in derivation. But it's
+
+287
+00:39:51.610 --> 00:39:53.740
+Zeljko Ivezic: in in spirit, it's different.
+
+288
+00:39:53.840 --> 00:39:57.489
+Zeljko Ivezic: It's often called cocktail party problem.
+
+289
+00:39:58.030 --> 00:40:01.230
+And so you imagine a room full of people like here.
+
+290
+00:40:01.670 --> 00:40:10.680
+Zeljko Ivezic: and you have cocktail sales. So you you start getting tips and start talking a lot about that, as people do when they drink alcohol.
+
+291
+00:40:10.840 --> 00:40:13.840
+Zeljko Ivezic: and so, after a while, you can't tell who is saying what.
+
+292
+00:40:14.720 --> 00:40:24.080
+Zeljko Ivezic: And so then I assume that Philip is a secret agent coming from enemy country, and I need to
+
+293
+00:40:24.340 --> 00:40:29.600
+Zeljko Ivezic: know what he's saying. But all of you are talking at same time. So how do I do that?
+
+294
+00:40:30.230 --> 00:40:38.909
+Zeljko Ivezic: So you take a bunch of microphones. You need to have at least as many microphones as people in the room, and you spread them around the room.
+
+295
+00:40:39.420 --> 00:40:53.220
+Zeljko Ivezic: and you assume that each microphone will get signal from each of you. and then for each signal from the microphone, you are saying it is a linear combination of the signal from each of you.
+
+296
+00:40:53.660 --> 00:41:07.260
+Zeljko Ivezic: but how they combine will depend on the position of the microphone, because this microphone will hear more of her, and this microphone will hear more of what you are saying. So they all have different eigenfunctions.
+
+297
+00:41:08.240 --> 00:41:16.930
+Zeljko Ivezic: And so, if now we assume that you, what you are saying is totally uncorrelated between 2 people. Everybody is telling their own story.
+
+298
+00:41:17.530 --> 00:41:23.329
+Zeljko Ivezic: Then you can express this. That signal in microphone is a linear combination
+
+299
+00:41:23.360 --> 00:41:26.700
+Zeljko Ivezic: of all the signals, just like in Pca.
+
+300
+00:41:27.160 --> 00:41:41.249
+Zeljko Ivezic: But the constraint on the coefficients is not that you minimize variance and keep orthonormal coordinate systems. So it's not just rotational coordinate system. But you force that the signal starts statistically independent
+
+301
+00:41:41.340 --> 00:41:52.629
+Zeljko Ivezic: in other. You force that assumption. So your your Eigen spectrum, the solutions for what each of you are saying, when you integrate them off time, and you multiply them and integrate
+
+302
+00:41:52.760 --> 00:42:06.669
+Zeljko Ivezic: the fluctuations around. Mean value will integrate to 0. That means that this becomes independence, and you can solve for these 2, and you can compare the 3 methods. This method, 2 is only 3 lines inside it. Learn.
+
+303
+00:42:07.180 --> 00:42:13.580
+Zeljko Ivezic: So now we'll run them all on the same data set that we already looked at. And this is what you get.
+
+304
+00:42:14.360 --> 00:42:16.880
+Zeljko Ivezic: So these are
+
+305
+00:42:19.240 --> 00:42:22.270
+Zeljko Ivezic: Pca in the left. Then
+
+306
+00:42:22.360 --> 00:42:34.689
+Zeljko Ivezic: second mental is unfortunate in the third problem. So non megat matrix factorization is in the last column. So that's just like Pca. So let's forget about the middle phone for a moment.
+
+307
+00:42:34.700 --> 00:42:41.719
+Zeljko Ivezic: So Nms. Is just like the Pca. But to force non-negative coefficients and non negative.
+
+308
+00:42:41.960 --> 00:42:53.660
+Zeljko Ivezic: So if you look at the mean spectrum, they are slightly different. But then, if you look at other components in each panel, the horizontal gray line is 0 level.
+
+309
+00:42:54.490 --> 00:43:10.549
+Zeljko Ivezic: So these 2 are positive. But now, if you go to Pca component 2, you can see that those under 0 and even component 3 has little bits of flux that goes under 0. But you can't bet negative months. So Pca is not physical.
+
+310
+00:43:10.900 --> 00:43:20.289
+Zeljko Ivezic: But if you look at Nms now, each component is non-negative, it never goes below 0. And now, if you wear
+
+311
+00:43:20.600 --> 00:43:48.310
+Zeljko Ivezic: an astronomer familiar with galaxy spectra, you'll say, Oh, yeah, I understand this now. Physically, I understand that component one is just a galaxy. The average page of stars I can see second component is out, provided first from very young stars. The third component is so-called 8 stars that still have a mission lines and blah blah blah! So an astronomer will immediately look at the last column and say, This looks physical, I know spectra.
+
+312
+00:43:48.370 --> 00:43:51.109
+Zeljko Ivezic: but this doesn't look like anything in the first family.
+
+313
+00:43:51.210 --> 00:44:16.959
+Zeljko Ivezic: So you can be fooled by this click. What if you didn't know Stella spectroscopy, galaxy, photography, Youtube, and just the data minor and apply Pca to dialysis spectra, you would be excited that you can only use small number of components, but often you also need to have the main knowledge to understand is the physical constraint on what you're getting. In this case, physical constraint is, there is no negative stuff.
+
+314
+00:44:16.960 --> 00:44:26.449
+Zeljko Ivezic: And so here you would definitely use Nms, if you wanted to do data, compression or classification, or whatever it's still linear expansion.
+
+315
+00:44:26.660 --> 00:44:29.540
+Zeljko Ivezic: But it's physical.
+
+316
+00:44:29.620 --> 00:44:33.690
+Zeljko Ivezic: And then finally, Ica, in this example
+
+317
+00:44:35.150 --> 00:44:43.590
+Zeljko Ivezic: it makes not much sense, because these are galaxies, and it's not talked about the problem. So they are individual components
+
+318
+00:44:44.490 --> 00:45:14.330
+Zeljko Ivezic: are forced to be statistically independent but in vain direction. So the numerical example is not physically illuminating. It could be nice that it depends on. If you could bring microphones and play with microphones and see how it works in practice, but that for completeness you can see. I can spectra in in the middle column. Some of them are actually similar to, and Mms components. Tool for Ica looks just like flipped components from from and Mms component number 2.
+
+319
+00:45:14.890 --> 00:45:18.989
+Zeljko Ivezic: So for Spectra and Nms is the best.
+
+320
+00:45:19.330 --> 00:45:23.079
+Zeljko Ivezic: Sometimes Ica is important when you have.
+
+321
+00:45:23.770 --> 00:45:30.830
+Zeljko Ivezic: when you have different signals for which you know they have to be, they have to be statistically independent.
+
+322
+00:45:32.620 --> 00:45:35.039
+Zeljko Ivezic: Okay, so that was linear problems.
+
+323
+00:45:36.860 --> 00:45:43.119
+Zeljko Ivezic: Now, sometimes we have highly nonlinear data distribution.
+
+324
+00:45:43.460 --> 00:45:46.930
+Zeljko Ivezic: And this is famous. Example, this letter S
+
+325
+00:45:47.590 --> 00:45:52.300
+Zeljko Ivezic: is a feature data distribution in 3 dimensional space.
+
+326
+00:45:52.310 --> 00:45:55.449
+Zeljko Ivezic: So you can think of XY, and Z,
+
+327
+00:45:56.190 --> 00:46:07.189
+Zeljko Ivezic: and the color coding is simply added to help you later. And basically the color coding changes as you go around this s.
+
+328
+00:46:07.500 --> 00:46:11.450
+Zeljko Ivezic: so from red to yellow, and then finally to blue.
+
+329
+00:46:11.980 --> 00:46:16.269
+Zeljko Ivezic: And so this is some complicated distribution in 3 dimensional space.
+
+330
+00:46:16.890 --> 00:46:28.880
+Zeljko Ivezic: What we would like computer to do for us is to figure out that this distribution in 2 men in 3 dimensional space in reality is actually 2 dimensional surface
+
+331
+00:46:30.010 --> 00:46:55.719
+Zeljko Ivezic: that can be full requirement price just with 2 numbers, not with 3, but with 2, because if you go along, it's one coordinate is how travel around S, and then the second coordinate tells you on that bit where you are. It could be noise, for example, and you don't care. Sometimes you would, but it is dimensionality 3 to 2, and your method needs to recognize that.
+
+332
+00:46:56.410 --> 00:47:00.670
+Zeljko Ivezic: And so now, if you write a Pca on it, you would get garbage
+
+333
+00:47:00.690 --> 00:47:05.760
+Zeljko Ivezic: because you would have one coordinate, probably going through us.
+
+334
+00:47:05.830 --> 00:47:11.049
+Zeljko Ivezic: That maximize this variance, and then the other coordinates would be the second principal component.
+
+335
+00:47:11.080 --> 00:47:14.049
+Zeljko Ivezic: And that's what happens in the top right corner.
+
+336
+00:47:14.160 --> 00:47:29.290
+Zeljko Ivezic: If our method works well, then, when you put it in the diagram of Eigenfunctions, which are these 3 panels. you would expect the power separating, you would expect that the ordering of these points is preserved.
+
+337
+00:47:29.760 --> 00:47:36.030
+Zeljko Ivezic: So in Xyz you don't know where you are. but once you have your 2 Eigen coefficients.
+
+338
+00:47:36.410 --> 00:47:46.740
+Zeljko Ivezic: You have nice separate. So you did your job. Pca sales are obviously mixed. So it doesn't work.
+
+339
+00:47:47.470 --> 00:47:52.760
+Zeljko Ivezic: Methods. Support in this case is a call man for learning methods.
+
+340
+00:47:53.080 --> 00:48:12.860
+Zeljko Ivezic: and they mostly work by going locally around each data point. And they're trying to fit something to describe this. So, for example, local linear embedding goes little bit by little bit around each data point, and it fits a plane locally this multi-dimensional space
+
+341
+00:48:13.020 --> 00:48:23.989
+Zeljko Ivezic: and then uses this local plane pick to describe the whole geometry so you could imagine that this whole letter S is made of little pieces of flat
+
+342
+00:48:24.400 --> 00:48:29.849
+Zeljko Ivezic: paper, so you just connect them together to get the whole, the whole shape.
+
+343
+00:48:29.910 --> 00:48:45.040
+Zeljko Ivezic: And so we'll look at the method called local linear embedding, which is what it does, and the solution is bottom left. You can see now that they have 2 eigen coefficients to id in directions, and the separated perfectly.
+
+344
+00:48:45.160 --> 00:48:53.659
+Zeljko Ivezic: The Y axis gives you position along the X letter and the X axis then gives you perpendicular.
+
+345
+00:48:54.230 --> 00:49:08.129
+Zeljko Ivezic: and that's produced automatically. So you can have some probably complicated morphology. We move within this space where it could be like visualize, and then local linear embedding will tell you
+
+346
+00:49:08.200 --> 00:49:14.789
+Zeljko Ivezic: how many pieces of information you really have. So here with ice, we can tell for S.
+
+347
+00:49:14.860 --> 00:49:26.749
+Zeljko Ivezic: 2 is the number of independent coefficients, and 3 is dimensionality of the space. But if you have 20 dimensional space, a thousand dimensional space, then you can't do it with your eyes.
+
+348
+00:49:29.230 --> 00:49:32.359
+Zeljko Ivezic: Er okay. So I think I went through all of this.
+
+349
+00:49:33.740 --> 00:49:36.570
+Zeljko Ivezic: Yes, locally linear. Embedding fits locally
+
+350
+00:49:36.760 --> 00:49:47.480
+Zeljko Ivezic: this plane. And again, it looks for nearest neighbor distribution that brings us back to the original motivation for dimensionality reduction when you have a lot of features to start with.
+
+351
+00:49:48.340 --> 00:50:10.380
+Zeljko Ivezic: And so here is example, now again on galaxy spectrum. So if you run galaxy spectrum, and then from some other efforts to classify them, we can separate galaxy spectrum into 5 growth classes. You saw that some of those lines that are some mission lines that is slow and vary.
+
+352
+00:50:10.410 --> 00:50:16.030
+Zeljko Ivezic: So using that information, you can separate them into a mission line galaxies.
+
+353
+00:50:16.340 --> 00:50:21.569
+Zeljko Ivezic: the other is galaxy, absorption, line, galaxy, and then 2 of them that have
+
+354
+00:50:21.620 --> 00:50:36.420
+Zeljko Ivezic: features. Broad lines are quasars. So another object embedded in galaxy. And so you basically get for each balance 5 labels, 5 different possibilities for a label. You run Pca.
+
+355
+00:50:36.990 --> 00:50:49.559
+Zeljko Ivezic: And then, when you plot from this diagram of Id coefficient. You see that this colors are not separate. So this in the space of Pca identification, you don't get good description.
+
+356
+00:50:49.570 --> 00:51:01.250
+Zeljko Ivezic: And the reason is that you get this negative. I can specify negative. I think so. It is not the right method. If I had the example and and a man. It would look better than this.
+
+357
+00:51:01.360 --> 00:51:12.639
+Zeljko Ivezic: but still not as good as the bottom panel bottom. 3 panels, which is the result of running local linear embedding on Sdss. Galaxy, spectrum.
+
+358
+00:51:12.830 --> 00:51:20.199
+Zeljko Ivezic: And so we have here 3. Again, positions quoted. So there are 3 different projections.
+
+359
+00:51:20.470 --> 00:51:24.460
+Zeljko Ivezic: So there is C. One. See to us. The projection is
+
+360
+00:51:25.740 --> 00:51:34.509
+Zeljko Ivezic: C, one c. 2 is the top left c. One c. 3 bottom left, and then C, 2 c. 3 on the right. The point of this panel is
+
+361
+00:51:34.520 --> 00:51:38.320
+Zeljko Ivezic: that in these diagrams you can see separation of colors.
+
+362
+00:51:38.850 --> 00:51:47.520
+Zeljko Ivezic: So this is our training sample, the test classification. And these 3 Eigen coefficients separate these classes.
+
+363
+00:51:47.740 --> 00:51:49.900
+Zeljko Ivezic: So now, if you have new spectra.
+
+364
+00:51:50.640 --> 00:52:00.149
+Zeljko Ivezic: you could compute directly for them identifications, and from the position in design, once you would know exactly what later. You're looking at
+
+365
+00:52:00.930 --> 00:52:02.430
+Zeljko Ivezic: excellent. You have
+
+366
+00:52:03.210 --> 00:52:16.910
+Zeljko Ivezic: 100 million dollars spectrum. Then you would classify visually, also by some other method, maybe 10,000 1,000. Then you would train this method, and then you would go through the rest of 100 million spectrum.
+
+367
+00:52:17.340 --> 00:52:20.640
+Zeljko Ivezic: and you would use this Llp. Method.
+
+368
+00:52:24.140 --> 00:52:27.640
+Zeljko Ivezic: And here is little summary of when and
+
+369
+00:52:27.740 --> 00:52:32.900
+Zeljko Ivezic: where to use each method. So basically, 4 metrics we are looking at is
+
+370
+00:52:32.930 --> 00:52:46.499
+Zeljko Ivezic: accuracy of the method than interpretability. So do you understand what it's really doing. then how simple it is, and then speed is important with large samples. So each of them have their pros and cons.
+
+371
+00:52:47.790 --> 00:52:59.479
+Zeljko Ivezic: and then few more words about local linear embedding. So you fit locally some plane and you minimize distances, squares of distances from that plane. And that gives you constraints
+
+372
+00:52:59.530 --> 00:53:01.889
+Zeljko Ivezic: on your coefficients.
+
+373
+00:53:02.330 --> 00:53:11.680
+Zeljko Ivezic: And here is implementation of Lle. So basically, what I showed you is produced with this code that compares Pca and Lle.
+
+374
+00:53:12.020 --> 00:53:19.269
+Zeljko Ivezic: And now, as I'm talking. I'm thinking I should have added Nmf. 2 for the fair comparison.
+
+375
+00:53:19.410 --> 00:53:38.309
+Zeljko Ivezic: So this code produces these plots. So it's again showing eigenfunctions for that expansion of Pca that we started with today. And then it shows this superior method called local linear embedding that works better when you have complicated morphologies.
+
+376
+00:53:38.820 --> 00:53:42.309
+Zeljko Ivezic: And so you can ask. Well, why
+
+377
+00:53:42.480 --> 00:54:10.989
+Zeljko Ivezic: would you ever want to go with Pca and galaxies? If you have local linear banding? Well, the answer is that that method was developed not so long ago. That was only a few years that it was implemented inside to learn, and there is a huge difference between finding some students or finding time to do it yourself, to develop method and test it, etc. It can take many weeks, if not months, and it's like to learn. You go there down, you basically just write 4 months.
+
+378
+00:54:11.110 --> 00:54:14.280
+Zeljko Ivezic: And so that's that's the point of
+
+379
+00:54:14.590 --> 00:54:31.830
+Zeljko Ivezic: trying these different methods, because now it's easy to do them. And then, if you have data set that you don't fully understand you trying to use different methods to learn more about your data set again. There is no magic recipe. There is no foolproof approach.
+
+380
+00:54:32.180 --> 00:54:43.710
+Zeljko Ivezic: You always have to think about what you're doing. and that's what keeps us in business. Otherwise computers will completely replace us if they put things. So I think I'll stop here and
+
+381
+00:54:43.920 --> 00:54:48.789
+Zeljko Ivezic: let's open discussion if there are questions. Can you hear me still on zoom?
+
+382
+00:54:52.730 --> 00:54:55.410
+Akshay Kumar Remeshan: Okay, I managed to put everyone to sleep. Yes, yes.
+
+383
+00:54:55.620 --> 00:55:00.589
+Zeljko Ivezic: okay. Someone is awake. Are there any questions?
+
+384
+00:55:01.430 --> 00:55:05.360
+Akshay Kumar Remeshan: Have any of you use?
+
+385
+00:55:29.150 --> 00:55:30.080
+Zeljko Ivezic: It would be
+
+386
+00:55:30.600 --> 00:55:31.320
+all of you.
+
+387
+00:55:34.050 --> 00:55:40.319
+Zeljko Ivezic: But you can.
+
+388
+00:55:40.520 --> 00:55:44.030
+Zeljko Ivezic: I would renew it. When did the components ending at 1%?
+
+389
+00:55:45.170 --> 00:55:46.390
+Zeljko Ivezic: Why do we?
+
+390
+00:55:47.290 --> 00:55:48.920
+Zeljko Ivezic: If there's no way.
+
+391
+00:55:49.180 --> 00:55:50.160
+I guess
+
+392
+00:55:50.940 --> 00:55:54.799
+Zeljko Ivezic: market to like? If you don't get any known support.
+
+393
+00:55:55.940 --> 00:56:01.760
+Zeljko Ivezic: Let me repeat the question for people on Zoom. So we were talking about
+
+394
+00:56:02.420 --> 00:56:13.169
+Zeljko Ivezic: this example with Pca. Of galaxies. And so we show that we explain 93% of variance with 8 components.
+
+395
+00:56:13.250 --> 00:56:24.060
+Zeljko Ivezic: And then you explain only a little bit more of variance when you go with 20 components. So why would you ever want to go to 20 components? So it depends on your application.
+
+396
+00:56:24.630 --> 00:56:27.769
+Zeljko Ivezic: So rule of thumb is to look at the screenplot.
+
+397
+00:56:28.060 --> 00:56:34.339
+Zeljko Ivezic: And here it clearly shows that 10 is about magic number. So why would you want to go to 20?
+
+398
+00:56:34.550 --> 00:56:40.430
+Zeljko Ivezic: Well, it depends on your application. If you now want to classify this spectra.
+
+399
+00:56:41.000 --> 00:56:55.620
+Zeljko Ivezic: and you want to reduce your dimensionality from thousands to something that you can handle. You don't want to introduce any big systematic errors so definitely, if we want to go down to say 8 or 10, what's the process?
+
+400
+00:56:55.930 --> 00:56:57.249
+Zeljko Ivezic: And that's good enough.
+
+401
+00:56:58.040 --> 00:57:13.049
+Zeljko Ivezic: However, if you want to compress your huge data set. So there will be datasets that will have 100 million spectra. Actually, there is another survey Space mission that is not launched yet, but they are promising 4 billion spectra galaxies.
+
+402
+00:57:13.570 --> 00:57:16.990
+Zeljko Ivezic: So in this case, you want to do some data compression.
+
+403
+00:57:17.250 --> 00:57:24.510
+Zeljko Ivezic: And you don't want to introduce unnecessary systematics in your compression. So if I go from 1,000
+
+404
+00:57:25.220 --> 00:57:29.009
+Zeljko Ivezic: features to 10, I already compressed by factor of 100.
+
+405
+00:57:29.110 --> 00:57:44.029
+Zeljko Ivezic: So typically, you can afford factor of 2 more because you're already doing well in order to avoid systematics like, for example, there, at the long wavelength there, you are definitely not fitting noise, yet there is offset
+
+406
+00:57:44.200 --> 00:57:50.810
+Zeljko Ivezic: with 20 components. There are no offsets, there are no systematics. You are already in regime of fitting lines.
+
+407
+00:57:50.900 --> 00:58:02.120
+Zeljko Ivezic: So somewhere between 10 and 20, you would choose your number. It's easy to buy twice as many computers as you have, but it's harder to buy 100 times as many computers.
+
+408
+00:58:08.000 --> 00:58:08.900
+Zeljko Ivezic: Yes.
+
+409
+00:58:26.780 --> 00:58:28.669
+you can make that
+
+410
+00:58:36.870 --> 00:58:41.890
+Zeljko Ivezic: excellent question. So the question was, when we look at Sds galaxies.
+
+411
+00:58:41.930 --> 00:59:06.919
+Zeljko Ivezic: where do we know that? There are? No, there should be no negative eigenfunctions? Why is it that Pca actually ends up with negative coefficient? And you already gave the answer. It's basically noise and various systematics in your sample. And so then you're just minimizing variance. And sometimes it just works out for that sample that you'll end up with negative eigenfunctions
+
+412
+00:59:07.170 --> 00:59:09.479
+Zeljko Ivezic: if you generate it.
+
+413
+00:59:09.520 --> 00:59:30.050
+Zeljko Ivezic: Now, I'm not sure I can prove that mathematically. But if I generated spectra by linearly combining positive spectra with positive coefficients, and I gave it pure Gaussian. Well, if I didn't give it Gaussian noise, then I'm certain you would never get negative. If you edit Gaussian noise
+
+414
+00:59:30.680 --> 00:59:54.669
+Zeljko Ivezic: that is not very large, I think you would still get positive predictions. But if you have a large noise compared to measurement that can actually produce negative measurements, sometimes we truncate them, but then you have a symmetric noise distribution. Then I think maybe you could hand way your way through equations to show you can get negative eigen coefficient. That is optimal.
+
+415
+00:59:55.430 --> 01:00:04.589
+Zeljko Ivezic: So you basically, your noise introduces departures from that underlying truth, that it's always positive spectrum and positive identification.
+
+416
+01:00:04.630 --> 01:00:18.020
+Zeljko Ivezic: Once you go from this idealized spectra to observe spectra when you simulate the noise process. Then I think you can. You can introduce effects that when it later minimize variance will give you a negative coefficient.
+
+417
+01:00:19.540 --> 01:00:21.590
+Zeljko Ivezic: So you
+
+418
+01:00:35.550 --> 01:00:46.519
+Zeljko Ivezic: so if you use nonnegative matrix factorization, then you are guaranteed. You're gonna get positive eigen coefficients and positive eigen spectra.
+
+419
+01:00:46.540 --> 01:00:53.920
+Zeljko Ivezic: But you do not. You are not guaranteed that with N components that variance is as small as with Pca.
+
+420
+01:00:54.610 --> 01:00:59.589
+Zeljko Ivezic: So if you ask how good is my reconstruction with them, I can speak right
+
+421
+01:01:00.330 --> 01:01:18.089
+Zeljko Ivezic: with, and Nms. You will get some physical solution. But if you now take 10 eigen spectra from Pca, and you ask, what is the deviation between true spectrum and reconstructed spectrum Pca will be better because it's it's derived by minimizing
+
+422
+01:01:18.210 --> 01:01:20.000
+Zeljko Ivezic: the reconstruction error.
+
+423
+01:01:21.530 --> 01:01:30.949
+Zeljko Ivezic: But typically in practice you you accept little bit more of the construction error. You just take more eigen components in order to have physical IP components.
+
+424
+01:01:33.990 --> 01:01:35.930
+Excuse.
+
+425
+01:01:46.060 --> 01:01:59.070
+Zeljko Ivezic: Sometimes you can. Yeah, sometimes you can depends on your what you're doing what space you have, what kind of measurements and like in mechanical engineering example, you do find exactly what is the direction of
+
+426
+01:01:59.560 --> 01:02:03.359
+maximum stress like in this simple example.
+
+427
+01:02:03.720 --> 01:02:08.239
+Zeljko Ivezic: in this simple example. Here. Now you ask.
+
+428
+01:02:08.270 --> 01:02:14.480
+Zeljko Ivezic: what is the largest stress? And if you look at along the red line.
+
+429
+01:02:14.600 --> 01:02:17.440
+Zeljko Ivezic: the size of the Gaussian
+
+430
+01:02:17.690 --> 01:02:20.560
+Zeljko Ivezic: is larger than if you look along blue line.
+
+431
+01:02:21.530 --> 01:02:36.609
+Zeljko Ivezic: and that's exactly why you need to find principal components. Because now, if you said, I have piece of metal, and I'm going to break it. What is the largest stress? If you look in blue coordinate system, that largest stress is smaller than the actual largest stress.
+
+432
+01:02:36.640 --> 01:02:51.159
+Zeljko Ivezic: So it is the. It is this major axis of of the ellipse. That is the largest stress. That's exactly why you need to rotate, and then do your stress analysis with that larger one. So here it gives you exactly the the physics physics you want.
+
+433
+01:02:53.980 --> 01:02:54.920
+and I guess
+
+434
+01:02:55.430 --> 01:03:01.880
+Zeljko Ivezic:  usually.
+
+435
+01:03:04.170 --> 01:03:11.360
+Zeljko Ivezic: Now, if you're doing something like you have 50 features or 100 features, and you want the bit.
+
+436
+01:03:11.590 --> 01:03:20.449
+Zeljko Ivezic: what is the next net next movie your customer wants? And you have, like last 100 movies or 10 movies with some features that that person looked at
+
+437
+01:03:20.620 --> 01:03:27.500
+Zeljko Ivezic: and you and you run some method. And then you have good performance. You don't know how it works.
+
+438
+01:03:27.530 --> 01:03:33.839
+Zeljko Ivezic: You don't know if it's doing anything stupid, but your customers are happy and you're making money, then you don't have it.
+
+439
+01:03:33.890 --> 01:03:51.290
+Zeljko Ivezic: So it's different set of problems than in science and science. We want to understand what we're doing and what is the physics? We recover the design and components. That is exactly here in the case of galaxies. When you run and Nmf, you look at the, I think components and say, Oh, this look like different galaxies. You're really mixing galaxies.
+
+440
+01:03:51.400 --> 01:03:58.099
+Zeljko Ivezic: But with Pca you get negative spectrum. And what does that mean? Well, it's just numerical nonsense that method gave me.
+
+441
+01:04:02.270 --> 01:04:03.669
+Zeljko Ivezic: and the more questions
+
+442
+01:04:05.610 --> 01:04:07.709
+Zeljko Ivezic: on Zoom. Are there more questions?
+
+443
+01:04:11.610 --> 01:04:15.199
+Zeljko Ivezic: Okay, then, thank you. And I'll see you next week.
+
+444
+01:04:16.670 --> 01:04:19.580
+Zeljko Ivezic: Thank you. Zoom bye.
+
+445
+01:04:20.240 --> 01:04:21.590
+Akshay Kumar Remeshan: bye, thank you.
+
