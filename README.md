@@ -85,5 +85,6 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 - Principal Component Analysis
 - Comparing PCA, NMF and ICA
 
+[ Zoom recording for Lecture 10](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture10/Lecture10_zoom.mp4)
 -----------------------------------------------------------------------------
 
