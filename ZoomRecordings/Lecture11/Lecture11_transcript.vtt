@@ -1,0 +1,970 @@
+WEBVTT
+
+1
+00:00:04.440 --> 00:00:07.389
+Zeljko Ivezic: We are almost to the end of our series.
+
+2
+00:00:10.310 --> 00:00:19.260
+Zeljko Ivezic: The last 2 lectures will be brief introduction to some of the modern methods that I use everywhere.
+
+3
+00:00:19.390 --> 00:00:25.640
+Zeljko Ivezic: So today, we'll just introduce conceptually neural networks. And then
+
+4
+00:00:25.700 --> 00:00:35.569
+Zeljko Ivezic: we'll go through few simple examples that expose the code. It's not professional level implementation, but just for educational purposes.
+
+5
+00:00:35.870 --> 00:00:46.449
+Zeljko Ivezic: And then in the last lecture on Thursday, we'll use professional level code to classify images and see how neural networks can be generalized.
+
+6
+00:00:46.680 --> 00:00:58.930
+Zeljko Ivezic: so that, for example, you can distinguish dogs and cats and everything else when you're on your classifier and many other things. and these these concepts are not very complicated.
+
+7
+00:00:59.130 --> 00:01:01.269
+Zeljko Ivezic: and they became useful.
+
+8
+00:01:01.480 --> 00:01:04.950
+Once computers became powerful enough to
+
+9
+00:01:05.110 --> 00:01:12.410
+Zeljko Ivezic: to get model training done. For example, you, you must have heard of Chat Gp, right
+
+10
+00:01:12.650 --> 00:01:17.059
+Zeljko Ivezic: that one has over a billion model parameters. Strange.
+
+11
+00:01:17.400 --> 00:01:29.359
+Zeljko Ivezic: And the older versions, there was one that had over 100 billion model parameters one. But conceptually, they're not very complicated. So let's see how that works
+
+12
+00:01:30.510 --> 00:01:35.549
+Zeljko Ivezic: for background. In motivation, I produced this plot
+
+13
+00:01:35.770 --> 00:01:41.729
+Zeljko Ivezic: that we already discussed before. So here we have 2 clumps of points.
+
+14
+00:01:42.210 --> 00:01:53.559
+Zeljko Ivezic: the black and white points, and we assume that we know these labels. and we want to find a line that will separate them. So there are many possible lines.
+
+15
+00:01:53.640 --> 00:01:59.549
+Zeljko Ivezic: I took one simple line, y equals x minus point 5 or something.
+
+16
+00:01:59.800 --> 00:02:14.249
+Zeljko Ivezic: And so then you say this line separates the 2. So if I now give you an arbitrary position in this diagram and ask you, are you in the white dots area or the black dot area?
+
+17
+00:02:14.660 --> 00:02:18.400
+Zeljko Ivezic: Basically what you want to calculate is distance to that line.
+
+18
+00:02:19.250 --> 00:02:32.889
+Zeljko Ivezic: So we have separator. Then we draw perpendicular line. and as you go along that perpendicular line, if you are in the red area. You call it Black Point. If you're in blue area, you call it White Point.
+
+19
+00:02:33.580 --> 00:02:42.879
+Zeljko Ivezic: And so you want some function of that distance from the line that will go from one label. Let's say black dots are 0
+
+20
+00:02:43.220 --> 00:02:45.630
+Zeljko Ivezic: label, and white dots are one.
+
+21
+00:02:45.660 --> 00:02:52.910
+Zeljko Ivezic: So you want some smooth function that will transition from 0 across the boundary, and then it will become one.
+
+22
+00:02:53.380 --> 00:02:56.650
+Zeljko Ivezic: So there is one coordinate. Let's call it Z.
+
+23
+00:02:56.900 --> 00:03:05.959
+Zeljko Ivezic: That is perpendicular to this line. And then we have some nonlinear function of that Z that will jump from 0 to one to classify these objects.
+
+24
+00:03:06.380 --> 00:03:17.519
+Zeljko Ivezic: And so if you look at the code. That's basically what's happening. So I calculate, perpendicular distance here on a grid of X and YXXY,
+
+25
+00:03:17.610 --> 00:03:27.239
+Zeljko Ivezic: are the grid of positions. And then I put this function one over one plus e to minus x or minus Z. Here
+
+26
+00:03:27.810 --> 00:03:35.230
+Zeljko Ivezic: I put some scale so I can control how quickly I turn from the red to blue area.
+
+27
+00:03:35.450 --> 00:03:48.990
+Zeljko Ivezic: By putting this scale in this equation, I put point one so over few times point one. I transition from red to blue. That's my classifier. It's simple, but
+
+28
+00:03:49.260 --> 00:03:50.370
+Zeljko Ivezic: it works.
+
+29
+00:03:51.830 --> 00:03:55.200
+Zeljko Ivezic: And so now, if you, if you look at these equations
+
+30
+00:03:55.890 --> 00:04:03.439
+Zeljko Ivezic: so I can write perpendicular distance for any position in the diagram given by X and Y
+
+31
+00:04:03.590 --> 00:04:10.970
+Zeljko Ivezic: some coefficient times x plus some other coefficient times y plus some offset. C.
+
+32
+00:04:11.730 --> 00:04:16.859
+Zeljko Ivezic: So first of all, this is a linear function of X and y.
+
+33
+00:04:17.519 --> 00:04:19.280
+Zeljko Ivezic: and there is some offset. See?
+
+34
+00:04:19.550 --> 00:04:39.940
+Zeljko Ivezic: And then I plug this expression, Z is this perpendicular distance over scale. So then I could call Z to be a prime x plus b prime y plus c prime. And then I plug this into this highly nonlinear equation. It's called logistic function. This particular
+
+35
+00:04:40.050 --> 00:04:49.479
+Zeljko Ivezic: particular expression, or sigmoid and general name for a whole family of such functions is activation function. We'll see in a moment why.
+
+36
+00:04:49.940 --> 00:05:02.069
+Zeljko Ivezic: And so I can generalize this now to arbitrary number of dimensions. So I call them X and Y here in twod. But if you're working with hundreds of thousands of dimensions. Then you just want
+
+37
+00:05:02.110 --> 00:05:09.129
+Zeljko Ivezic: index vector like vector X with XX, one x, 2 x 3 components, arbitrary number of components.
+
+38
+00:05:09.240 --> 00:05:11.700
+Zeljko Ivezic: So it is generally
+
+39
+00:05:11.970 --> 00:05:17.619
+Zeljko Ivezic: true that you will write some linear combination in that multi-dimensional space.
+
+40
+00:05:17.850 --> 00:05:30.550
+Zeljko Ivezic: Again, the motivation is that these linear combinations will give you some planes in multi-dimensional space. And so you can combine many of them to make an arbitrary service.
+
+41
+00:05:30.870 --> 00:05:45.470
+Zeljko Ivezic: So this general expression that you will take a linear combination of your inputs of your X components and then plug it into some nonlinear function to get output. That's essentially what neural networks are.
+
+42
+00:05:46.050 --> 00:05:48.239
+Zeljko Ivezic: And so this little diagram
+
+43
+00:05:48.720 --> 00:05:58.699
+Zeljko Ivezic: shows what we did. So there were number of inputs. It can be arbitrary number. Each input is associated with some weight W
+
+44
+00:05:59.270 --> 00:06:12.760
+Zeljko Ivezic: and linear combination of these weights and inputs will give you some some quantity. Let's call it Z, that Z is then plugged into nonlinear function, and you get your output.
+
+45
+00:06:14.340 --> 00:06:19.510
+Zeljko Ivezic: and that's neural net. It is motivated by how our brains work.
+
+46
+00:06:19.710 --> 00:06:23.510
+Zeljko Ivezic: That's how neurons operate in your head.
+
+47
+00:06:23.520 --> 00:06:29.049
+Zeljko Ivezic: They have synapses, they fire them. So it works with electricity. But this is how the signal flows.
+
+48
+00:06:29.180 --> 00:06:43.939
+Zeljko Ivezic: and in our brain I forget the exact numbers. But to think it was about 100 billion such little units than we think so in in practice, neural networks can also have billions of these 3 parameters. W,
+
+49
+00:06:44.100 --> 00:06:53.909
+Zeljko Ivezic: so X is, input Y is output. So you could use it for regression. You could use it for classification, like, if you have labels, your Y would be labels.
+
+50
+00:06:54.360 --> 00:06:57.440
+Zeljko Ivezic: and then you need to train W's
+
+51
+00:06:57.520 --> 00:07:01.679
+Zeljko Ivezic: on your training set. And then you have your network.
+
+52
+00:07:03.300 --> 00:07:04.630
+Zeljko Ivezic: So
+
+53
+00:07:05.820 --> 00:07:10.729
+Zeljko Ivezic: this first layer is called input layer. So this vertical
+
+54
+00:07:11.480 --> 00:07:28.870
+Zeljko Ivezic: linear combinations are called layers. So the first one is input layer, and the last one is output layer. And then the simplest possible neural network has one layer in the middle. It's called hidden layer. Because you. It's not exposed to you when you operate with input and output.
+
+55
+00:07:29.590 --> 00:07:36.159
+Zeljko Ivezic: and you can have many hidden layers. If you have more than one.
+
+56
+00:07:36.590 --> 00:07:42.980
+Zeljko Ivezic: then it's called deep learning. So deep learning is not a network that has at least 2 hidden layers.
+
+57
+00:07:43.220 --> 00:07:47.820
+Zeljko Ivezic: And so then the question is, how do we trained this?
+
+58
+00:07:48.350 --> 00:07:54.000
+Zeljko Ivezic: And again, you use training sample, and some of the methods will quickly go over.
+
+59
+00:07:54.390 --> 00:07:58.350
+Zeljko Ivezic: But one key question about neural networks is
+
+60
+00:07:58.400 --> 00:08:06.309
+Zeljko Ivezic: that successive layers that are all nonlinear, give you enormous power to model anything you want.
+
+61
+00:08:06.700 --> 00:08:17.639
+Zeljko Ivezic: Indeed, they are mathematical theorems that are not general, but for a given activation function. You can prove that they are universal approximately
+
+62
+00:08:18.250 --> 00:08:21.519
+Zeljko Ivezic: so. Your input is a multi-dimensional space.
+
+63
+00:08:22.310 --> 00:08:31.440
+Zeljko Ivezic: and your output is some multi-dimensional space. It can have different dimension. So you go from X to Y. The magic happens in between.
+
+64
+00:08:32.049 --> 00:08:35.609
+Zeljko Ivezic: and you can fit anything you want. You can describe
+
+65
+00:08:36.059 --> 00:08:37.570
+Zeljko Ivezic: arbitrary function.
+
+66
+00:08:38.419 --> 00:08:49.979
+Zeljko Ivezic: And so it's similar to like when you make one dimensional histogram. So remember, histogram is just a function where we say, my data follows step function.
+
+67
+00:08:50.020 --> 00:09:03.470
+Zeljko Ivezic: And from your data information, you did you determine what is the height of each box. So when you do histogram, you can apply to any data you want, because you have this approximating power of step function at your disposal.
+
+68
+00:09:03.780 --> 00:09:15.240
+Zeljko Ivezic: In some sense neural networks do the same. They have so many free parameters that they can by chaining. So this is the key equation here. So you chain different layers.
+
+69
+00:09:15.440 --> 00:09:17.879
+Zeljko Ivezic: and the more layers you have.
+
+70
+00:09:17.980 --> 00:09:32.259
+Zeljko Ivezic: the more powerful you are at describing functions, and with sufficient number of layers and sufficient number of 3 parameters. You can describe any function you want, and that's what gives you power with neural networks.
+
+71
+00:09:32.690 --> 00:09:38.329
+Zeljko Ivezic: Of course, if you don't have computer. If you were doing it by hand, then it wouldn't work.
+
+72
+00:09:38.760 --> 00:09:46.430
+Zeljko Ivezic: It would be just too tedious, not practical. That's exactly why neural networks appeared only in the ninetys.
+
+73
+00:09:46.790 --> 00:09:58.930
+Zeljko Ivezic: and then with deep networks and convolutional neural networks. It's maybe last 10 years or so computers became powerful enough that it's cheap enough to train models that have billions of parameters.
+
+74
+00:10:01.240 --> 00:10:08.779
+Zeljko Ivezic: And so the main one of the main components components of neural networks are this activation function
+
+75
+00:10:10.160 --> 00:10:16.199
+Zeljko Ivezic: and networks are not super sensitive to activation functions. So the one we use is
+
+76
+00:10:16.500 --> 00:10:20.550
+Zeljko Ivezic: is, where is it? Here? Bottom middle. That's sigmoid.
+
+77
+00:10:20.880 --> 00:10:38.010
+Zeljko Ivezic: So it's one over one plus E to minus X, and it goes from 0 in minus infinity to one at plus infinity. It's bounded to 0 to one, and pretty much all these other functions behave in a similar way.
+
+78
+00:10:38.200 --> 00:10:40.849
+Zeljko Ivezic: There are some tiny details between them.
+
+79
+00:10:40.900 --> 00:10:46.960
+Zeljko Ivezic: For example, if you have the top left, which is called rectified linear units.
+
+80
+00:10:47.030 --> 00:10:48.879
+Zeljko Ivezic: it works in many
+
+81
+00:10:49.190 --> 00:10:54.510
+Zeljko Ivezic: context, but it has one unfortunate property, that derivative
+
+82
+00:10:54.710 --> 00:10:56.520
+Zeljko Ivezic: jumps suddenly
+
+83
+00:10:56.750 --> 00:11:05.140
+Zeljko Ivezic: from 0 to some positive numbers numbers. So it's second derivative is misbehaving. Then there are some
+
+84
+00:11:06.340 --> 00:11:18.339
+Zeljko Ivezic: adjustments, maybe both to negative values, where you have some bias, etc., etc. So there is no theory that will tell you when you should use which function.
+
+85
+00:11:18.510 --> 00:11:25.380
+Zeljko Ivezic: and in many contexts many of them would do the job. Sometimes you will fail because you have a wrong one.
+
+86
+00:11:25.610 --> 00:11:34.410
+Zeljko Ivezic: So there is no theory. Basically, people are trying different functions with some prior knowledge. It's mixture of art and math.
+
+87
+00:11:34.960 --> 00:11:36.200
+Zeljko Ivezic: And
+
+88
+00:11:37.310 --> 00:11:42.990
+Zeljko Ivezic: they find what's what gives them the best performance. So I just added, if you build.
+
+89
+00:11:43.070 --> 00:11:45.960
+Zeljko Ivezic: want to to design your own
+
+90
+00:11:46.120 --> 00:11:53.499
+Zeljko Ivezic: neural network, I added few lines, what works well, in which context, but in principle.
+
+91
+00:11:54.920 --> 00:12:02.339
+Zeljko Ivezic: I would anticipate. If you use neural networks, you will use something that is already implemented in psychic learn.
+
+92
+00:12:02.650 --> 00:12:14.950
+Zeljko Ivezic: So we'll see next time how to do that. So here, basically you need just to understand the concept and and some basic terminology. So when we train the network.
+
+93
+00:12:15.390 --> 00:12:20.119
+Zeljko Ivezic: we have some data set. and typically they split it into 3 pieces.
+
+94
+00:12:20.990 --> 00:12:37.350
+Zeljko Ivezic: So, roughly speaking, we take maybe half or 2, 3 of the data sample for training. and then you have 2 smaller subsets. One is called validation, and the other one is called testing sample. So as you optimize model parameters.
+
+95
+00:12:37.410 --> 00:12:52.849
+Zeljko Ivezic: you always ask your validation sample, how am I doing? How am I doing? You train parameters on the big training sample and then validation validation sample interacts during that process with training samples. So it's not completely independent.
+
+96
+00:12:53.100 --> 00:13:03.560
+Zeljko Ivezic: and so at the end, when you are done with your model. then you take the test sample, which was completely independent of screening. and then you
+
+97
+00:13:03.680 --> 00:13:18.369
+Zeljko Ivezic: try that model on your test sample, and then you get unbiased estimate of the performance. Validation sample because it interacts with training. Sample can always give you better performance than it's really happening in reality.
+
+98
+00:13:19.600 --> 00:13:21.509
+Zeljko Ivezic: Then I added, few
+
+99
+00:13:22.360 --> 00:13:38.579
+Zeljko Ivezic: terminology, words like bench, gradient descent, mini-batch, etcetera. These are little tricks, numerical tricks that you do when you try to apply this to to huge datasets or huge models. For example, if your loss function
+
+100
+00:13:38.600 --> 00:13:52.609
+Zeljko Ivezic: is basically summing over your entire, input then you can do it on different processors, so you can split it in 1,000 ports or 10,000 ports. If you have, for example, if you come up with loss function that is additive.
+
+101
+00:13:52.830 --> 00:14:08.860
+Zeljko Ivezic: That's what what minivan is. You can also then train the model in these little batches, and then at the end, when you collect all the model parameters, you can average them. And this way you have trivial parallelization for very complicated models.
+
+102
+00:14:09.120 --> 00:14:13.680
+Zeljko Ivezic: So these are technicalities that I added basically for com for completeness.
+
+103
+00:14:14.700 --> 00:14:15.940
+Zeljko Ivezic: One
+
+104
+00:14:16.360 --> 00:14:26.870
+Zeljko Ivezic: one important thing to remember is that when you determine these parameters, what you're doing often is taking derivatives of your loss function
+
+105
+00:14:27.080 --> 00:14:29.609
+Zeljko Ivezic: with respect to those weights.
+
+106
+00:14:30.270 --> 00:14:44.520
+Zeljko Ivezic: So you you just initialize your rates randomly, or whatever method you use, then you calculate your loss function, and then you say, how would that lost function change if I change the parameters in the last layer?
+
+107
+00:14:45.120 --> 00:14:56.050
+Zeljko Ivezic: And then you go next layer. And basically you use chain rule, live needs rules from derivatives to go to connect your output, your loss function that you calculated to the input.
+
+108
+00:14:56.060 --> 00:15:07.019
+Zeljko Ivezic: And this gives you constraints on all the weights, and then you adjust these weights from the gradient of loss function. So you take derivative of loss function with respect to every
+
+109
+00:15:07.130 --> 00:15:08.120
+Zeljko Ivezic: great.
+
+110
+00:15:08.430 --> 00:15:18.980
+Zeljko Ivezic: But you do it you. You go from the output and then you take derivatives to the last layer, an alternate layer and so on. That's why it's called back propagation and gradient descent.
+
+111
+00:15:19.350 --> 00:15:21.979
+Zeljko Ivezic: So that's roughly how how it works.
+
+112
+00:15:22.720 --> 00:15:31.420
+Zeljko Ivezic: So here is one very, very simple example of neural network. Before we show example, we'll make another
+
+113
+00:15:31.550 --> 00:15:36.130
+Zeljko Ivezic: datasets for ourselves. So the first one that we looked at
+
+114
+00:15:37.170 --> 00:15:44.509
+Zeljko Ivezic: this one had perfect separation. So it's not hard to get separate. But yeah.
+
+115
+00:15:46.780 --> 00:15:51.650
+Zeljko Ivezic: But then we'll make a similar Epsi. We'll make a similar
+
+116
+00:15:52.300 --> 00:15:53.590
+Zeljko Ivezic: dataset
+
+117
+00:15:55.440 --> 00:15:58.119
+Zeljko Ivezic: that now intentionally has overlap.
+
+118
+00:15:58.300 --> 00:16:05.259
+Zeljko Ivezic: So now it's impossible to get perfect performance. And we want to see how a neural network will behave.
+
+119
+00:16:06.540 --> 00:16:17.879
+Zeljko Ivezic: And here is the this little piece of code that's essentially neural network. So what does it do? It takes some matrix X of your data.
+
+120
+00:16:18.880 --> 00:16:23.520
+Zeljko Ivezic: So one dimension is the dimensionality of your
+
+121
+00:16:23.720 --> 00:16:28.820
+Zeljko Ivezic: of your data set and the other one is the size of your data set.
+
+122
+00:16:29.310 --> 00:16:33.160
+Zeljko Ivezic: We use for activation function. We have sequence function
+
+123
+00:16:33.550 --> 00:16:38.979
+Zeljko Ivezic: because we'll be taking derivatives. We'll also take derivative of Sigma function, which is
+
+124
+00:16:39.070 --> 00:16:41.420
+Zeljko Ivezic: sigmoids times one minus sigmoid.
+
+125
+00:16:41.740 --> 00:16:47.239
+Zeljko Ivezic: And then in the step one, we randomly initialize ways.
+
+126
+00:16:47.830 --> 00:16:50.049
+Zeljko Ivezic: So you just pick up a number.
+
+127
+00:16:50.610 --> 00:16:56.949
+Zeljko Ivezic: And then we go. Now through many iterations. Obvious question is, how
+
+128
+00:16:57.170 --> 00:17:22.620
+Zeljko Ivezic: how many iterations you need. Well, you don't know in advance. So basically in practice, you go through iterations until your most function start oscillating around some small numbers. So you basically ask, did I con merge with my most function. And these lines are basically linear algebra. So this thought product, this is basically multiplying your inputs with weights.
+
+129
+00:17:22.849 --> 00:17:37.239
+Zeljko Ivezic: And then you take derivatives and the last block under 3 now adjusts the values of these rates and biases. Given these derivatives. And then there is this quantity called learning rate.
+
+130
+00:17:38.010 --> 00:17:42.980
+Zeljko Ivezic: which you can use to accelerate or decelerate this process.
+
+131
+00:17:43.600 --> 00:17:51.759
+Zeljko Ivezic: So if it's if it's learning rate of one, then it means it just plain derivative. But sometimes you get into unstable situation
+
+132
+00:17:51.920 --> 00:17:59.290
+Zeljko Ivezic: and you oscillate around the local minimum in loss function. So there, you want to have smaller learning rate.
+
+133
+00:17:59.440 --> 00:18:12.479
+Zeljko Ivezic: but if you overdo it, then it will take many, many iterations to converge again. There is no theoretical recipe for how to determine it in practice. You have to play with it and see how it works.
+
+134
+00:18:12.730 --> 00:18:16.000
+Zeljko Ivezic: But this little piece of code that's essentially
+
+135
+00:18:16.210 --> 00:18:33.710
+Zeljko Ivezic: neural network, you know features. Now, you would not use this to to work with a billion sample something or multi-dimensional thing, because it has just this simple implementation of gradient descent. It doesn't have any guarantee that it will
+
+136
+00:18:33.960 --> 00:18:47.590
+Zeljko Ivezic: tell you that it's in local minimum if it gets stuck in local minimum, etc. But otherwise it is neural network. And so now we'll run it on these 2 datasets. So I didn't know how many iterations I need.
+
+137
+00:18:47.680 --> 00:18:55.940
+Zeljko Ivezic: So I just took 1,000 iterations because it's super fast. and then what it prints is your loss function.
+
+138
+00:18:56.020 --> 00:19:01.070
+Zeljko Ivezic: So in in epochere, when they set weights randomly.
+
+139
+00:19:01.350 --> 00:19:03.770
+Zeljko Ivezic: it was point 6 in some units.
+
+140
+00:19:03.930 --> 00:19:08.040
+Zeljko Ivezic: and then, after hundreds iterations. It's already almost emerging
+
+141
+00:19:08.120 --> 00:19:13.469
+Zeljko Ivezic: with another 900 iterations came down by a factor of 2 or so.
+
+142
+00:19:13.690 --> 00:19:21.850
+Zeljko Ivezic: and it's very, very small if you compare it now to the second sample loss function is almost
+
+143
+00:19:22.170 --> 00:19:24.759
+Zeljko Ivezic: 1,000 times like 100 times larger.
+
+144
+00:19:26.480 --> 00:19:31.560
+Zeljko Ivezic: And that's because it is impossible to do perfect job. Remember, the second sample
+
+145
+00:19:31.800 --> 00:19:39.449
+Zeljko Ivezic: had overlapped between 2 classes. And that's why this final value of loss function is higher than in the first exam.
+
+146
+00:19:40.170 --> 00:19:46.810
+Zeljko Ivezic: But at the end you get your weights and you get your biases. And now you have a model, simple model.
+
+147
+00:19:47.210 --> 00:19:54.520
+Zeljko Ivezic: And now you can plug in X and Y arbitrary values, and it will tell you, are you white Point or Blackpoint?
+
+148
+00:19:57.790 --> 00:20:03.779
+Zeljko Ivezic: And now, if you wanted to make it slightly more complicated, then you would follow
+
+149
+00:20:04.780 --> 00:20:09.450
+Zeljko Ivezic: proper coding with little bit more of class approach and
+
+150
+00:20:09.480 --> 00:20:37.470
+Zeljko Ivezic: certain methods are implemented better. So this is again super simple neural network, but it has all the components from training to back propagation, to determine parameters, etc. So in reality, when you do neural networks, the code is usually hidden from you and opaque in psychic learn. But the basic components look like this. It's just more involved implementation.
+
+151
+00:20:38.590 --> 00:20:47.130
+Zeljko Ivezic: And so now I run my little neural network. So I give it data. And everything is in this piece of code.
+
+152
+00:20:47.370 --> 00:20:56.269
+Zeljko Ivezic: And so now we plot this loss, function, or error, called here called error as a function of iteration. So this is our first example.
+
+153
+00:20:56.670 --> 00:21:07.349
+Zeljko Ivezic: where we have perfect separation. and you can see that in 3 iterations the network converge because it was an easy example.
+
+154
+00:21:08.600 --> 00:21:15.079
+Zeljko Ivezic: If we now go to. We can also ask now for each of the input points.
+
+155
+00:21:15.210 --> 00:21:21.820
+Zeljko Ivezic: You can ask how many are misclassified? It happened that one data point is misclassified, it should work perfectly
+
+156
+00:21:22.100 --> 00:21:27.100
+Zeljko Ivezic: if if everything is okay. And so now this is our result.
+
+157
+00:21:27.410 --> 00:21:38.879
+Zeljko Ivezic: So here it it was not me who put this line, and it was neural network who decided that this line will separate the 2 classes with that Sigma function.
+
+158
+00:21:38.910 --> 00:21:43.110
+Zeljko Ivezic: So it's exactly the same example that we started with.
+
+159
+00:21:44.430 --> 00:21:47.769
+Zeljko Ivezic: But here it was done completely, automatically.
+
+160
+00:21:48.280 --> 00:21:52.520
+Zeljko Ivezic: And if I had 100 dimensions I could run exactly the same piece of code.
+
+161
+00:21:52.530 --> 00:22:01.160
+Zeljko Ivezic: So it gives me that mapping from the input space X and Y to the space of labels that can be 0 or one.
+
+162
+00:22:01.460 --> 00:22:03.510
+Zeljko Ivezic: So the network learns
+
+163
+00:22:04.010 --> 00:22:14.490
+Zeljko Ivezic: these, or in in science, we call it fitting in computer science. They call it learning. You estimate these 3 parameters W's and biases
+
+164
+00:22:15.110 --> 00:22:18.149
+Zeljko Ivezic: by minimizing your loss function.
+
+165
+00:22:19.900 --> 00:22:23.589
+Zeljko Ivezic: And now, if you run it on this harder example.
+
+166
+00:22:24.870 --> 00:22:28.069
+Zeljko Ivezic: Then it takes many more iterations. Now
+
+167
+00:22:28.260 --> 00:22:38.410
+Zeljko Ivezic: it started oscillating a lot at the beginning and then around thirtieth iteration, it finally converged. It's still oscillating little bit.
+
+168
+00:22:38.720 --> 00:22:52.010
+Zeljko Ivezic: And so you presume? Then then you you got good solution for your network after 30 iterations again, there is no theoretical guarantee that if you went for 2,000
+
+169
+00:22:52.240 --> 00:23:00.400
+Zeljko Ivezic: iterations that you wouldn't get even better performance. But then, in practice, you ask yourself, how well am I doing? Am I happy with the output?
+
+170
+00:23:00.500 --> 00:23:06.110
+Zeljko Ivezic: And so here again, you can apply this network to your data points and ask
+
+171
+00:23:06.160 --> 00:23:12.070
+Zeljko Ivezic: how many mistakes I made. And now you can see that there are many more mistakes, that 30
+
+172
+00:23:12.170 --> 00:23:14.620
+Zeljko Ivezic: 30 data points are misclassified.
+
+173
+00:23:16.160 --> 00:23:23.860
+Zeljko Ivezic: And so let's see how it looks like. So now. Network decided to draw a different line.
+
+174
+00:23:24.090 --> 00:23:36.570
+Zeljko Ivezic: it optimize that line. So this, the reason why it looks like these is that I throw 3 lines, but they're defined on a course great. So basically, I'm drawing line at
+
+175
+00:23:36.710 --> 00:23:43.159
+Zeljko Ivezic: point 5 probability 0 point 0 one and point 9. So that's your transition region.
+
+176
+00:23:43.490 --> 00:23:53.000
+Zeljko Ivezic: As you cross this wide region, you go from 1% probability to 99% probability. Correctly classified points are red and blue
+
+177
+00:23:53.070 --> 00:23:55.620
+Zeljko Ivezic: and misclassified points are yellow.
+
+178
+00:23:56.250 --> 00:24:02.860
+Zeljko Ivezic: And so now you look at it and say, Well, there is nothing much more you can do, because the samples are means.
+
+179
+00:24:09.320 --> 00:24:10.899
+Zeljko Ivezic: And so now
+
+180
+00:24:12.130 --> 00:24:16.010
+Zeljko Ivezic: the I did not
+
+181
+00:24:16.190 --> 00:24:26.040
+Zeljko Ivezic: use. We introduced training, sample, validation, sample and test sample. We didn't use it here because it's a simple problem.
+
+182
+00:24:26.240 --> 00:24:32.899
+Zeljko Ivezic: But just for comparison. Now, we use the same recipe that was used to generate the original sample.
+
+183
+00:24:32.910 --> 00:24:50.300
+Zeljko Ivezic: We change the random seed. So we get completely independent sample. And we ask, How is this model doing? And now we find that it's not just 30 points, it's the same sample size. So instead of 30 points, we get 81 data points that that is classified
+
+184
+00:24:50.680 --> 00:24:55.610
+Zeljko Ivezic: because when you fit neural network, you fit it to this particular sample.
+
+185
+00:24:56.080 --> 00:24:57.480
+Zeljko Ivezic: And so
+
+186
+00:24:58.800 --> 00:25:05.290
+Zeljko Ivezic: there is statistical fluctuation. If the sample is small as it is in here, then you can have this little bit of
+
+187
+00:25:05.540 --> 00:25:17.989
+Zeljko Ivezic: change because of statistical fluctuations. That's why it's important to have test sample, which is completely independent. And then you ask, how well am I doing? And so that's what we got with
+
+188
+00:25:19.260 --> 00:25:26.090
+Zeljko Ivezic: with the with 81 is classified data points. So let's stop here
+
+189
+00:25:26.250 --> 00:25:33.520
+Zeljko Ivezic: and then discuss questions. I went relatively quickly today through the lecture, because I feel like
+
+190
+00:25:33.910 --> 00:25:40.219
+Zeljko Ivezic: I'm getting sick as I speak. So I'm running out of power. But let's go through the questions.
+
+191
+00:25:43.670 --> 00:25:46.080
+Zeljko Ivezic: Any questions. Does it make
+
+192
+00:25:46.900 --> 00:25:49.640
+Zeljko Ivezic: conceptual sense what is happening?
+
+193
+00:25:51.040 --> 00:26:17.610
+Zeljko Ivezic: So again, you know, from from kindergarten, when you have multi dimensional space, when you have linear combination of coordinates. That's basically drawing planes in that multi-dimensional space in lines, in it's literally playing. And then higher dimensions. It's multi-dimensional hyperplanes but that's what gives you the ability then, to model any shape in multi dimensional space. And then you just
+
+194
+00:26:17.680 --> 00:26:22.510
+Zeljko Ivezic: numerically determined the best bit coefficients. And that's why it works.
+
+195
+00:26:27.170 --> 00:26:39.979
+Zeljko Ivezic: Yes, exactly so. Unfortunately, there is no
+
+196
+00:26:40.110 --> 00:26:45.340
+Zeljko Ivezic: general proof. At least I'm not aware of it. That would take arbitrary activation function.
+
+197
+00:26:45.390 --> 00:27:13.650
+Zeljko Ivezic: But if you pick specific activation function, like the easiest proofs are when you work with that to rectify linear units because it's exactly 0 negative values. And then it's simply identity. When you go to positive values, there are papers that prove that in this case, if you have enough layers, more layers, you have the more ability to to model anything you have. And so if you have huge number of layers, you can model any function you want.
+
+198
+00:27:16.700 --> 00:27:17.939
+Zeljko Ivezic: Do we have any
+
+199
+00:27:17.970 --> 00:27:22.530
+Zeljko Ivezic: knowledge and bottom of pool case, the big ones
+
+200
+00:27:22.600 --> 00:27:30.879
+Zeljko Ivezic: for the activation functions. That's an excellent question. And I don't know the answer. If they know mathematically.
+
+201
+00:27:31.580 --> 00:27:37.280
+Zeljko Ivezic: how does it work in our brain? Is it? What shape it is? That's an excellent question. I'll look it up. Yeah, I don't know.
+
+202
+00:27:38.890 --> 00:27:45.079
+Zeljko Ivezic: But they did. The first neural networks were constructed in computers
+
+203
+00:27:45.410 --> 00:27:52.740
+Zeljko Ivezic: to model brain, not to do classification or regression nineties. People are actually trying to understand how human brain works.
+
+204
+00:27:52.880 --> 00:27:56.779
+Zeljko Ivezic: And then they realized, wow! This is such a powerful approach that this
+
+205
+00:27:57.060 --> 00:27:59.420
+Zeljko Ivezic: powerful computers you can do anything you want.
+
+206
+00:28:05.030 --> 00:28:05.910
+Zeljko Ivezic: And
+
+207
+00:28:07.780 --> 00:28:08.480
+Zeljko Ivezic: the
+
+208
+00:28:09.170 --> 00:28:11.590
+Zeljko Ivezic: how, Mangan.
+
+209
+00:28:19.360 --> 00:28:22.519
+Zeljko Ivezic: there's a way of living in at point.
+
+210
+00:28:23.760 --> 00:28:25.720
+How many?
+
+211
+00:28:30.010 --> 00:28:40.910
+Zeljko Ivezic: So what do they model with differential equation. information flow or something. information flow, or what is model?
+
+212
+00:28:45.080 --> 00:28:45.780
+Yeah.
+
+213
+00:28:46.640 --> 00:28:48.040
+Zeljko Ivezic: you're ready.
+
+214
+00:28:48.270 --> 00:28:50.419
+Zeljko Ivezic: Fabi, safety data value.
+
+215
+00:28:51.800 --> 00:28:56.070
+Zeljko Ivezic: You know what we can get with something is
+
+216
+00:28:57.030 --> 00:29:00.210
+Zeljko Ivezic: one of the women that decided to move.
+
+217
+00:29:00.830 --> 00:29:05.890
+Zeljko Ivezic: If you get one of the same phones with like with.
+
+218
+00:29:06.010 --> 00:29:09.290
+Zeljko Ivezic: But you can use it to ballroom.
+
+219
+00:29:10.330 --> 00:29:11.840
+Zeljko Ivezic: or
+
+220
+00:29:12.210 --> 00:29:19.480
+Zeljko Ivezic: I don't know. But I just want to say.
+
+221
+00:29:19.860 --> 00:29:22.679
+Zeljko Ivezic: all of these are one of those
+
+222
+00:29:23.880 --> 00:29:25.200
+Zeljko Ivezic: they have limits.
+
+223
+00:29:27.630 --> 00:29:30.180
+Zeljko Ivezic: Yeah.
+
+224
+00:29:33.680 --> 00:29:41.909
+Zeljko Ivezic: So next time we will learn a little bit more about how you process images with neural networks. There. The problem is, if you have a large image
+
+225
+00:29:42.070 --> 00:29:46.640
+Zeljko Ivezic: like, say, just one K by one K. It's already 1 million pixels.
+
+226
+00:29:47.290 --> 00:29:51.269
+Zeljko Ivezic: And so then it becomes unbuilding to work in that space.
+
+227
+00:29:51.350 --> 00:29:58.949
+Zeljko Ivezic: And so the trick is that you look only at small parts of that image to convolution, etc., and see how that works.
+
+228
+00:29:59.100 --> 00:30:13.920
+Zeljko Ivezic: But that's basically what what the algorithm that everybody uses these days to recognize spaces when you go like, if you go to China that is full of cameras, you are constantly followed, and they recognize you, and they follow you wherever you go.
+
+229
+00:30:14.110 --> 00:30:23.069
+Zeljko Ivezic: because we are always exposed to those cameras. And they have these algorithms that are smart enough to pick one person out the 1 billion with very little errors.
+
+230
+00:30:24.600 --> 00:30:25.400
+Zeljko Ivezic: The
+
+231
+00:30:25.570 --> 00:30:26.290
+wow
+
+232
+00:30:27.840 --> 00:30:31.050
+Zeljko Ivezic:  data can
+
+233
+00:30:31.460 --> 00:30:32.860
+would state that
+
+234
+00:30:33.000 --> 00:30:34.380
+Zeljko Ivezic: that have been
+
+235
+00:30:34.730 --> 00:30:36.200
+again, if we
+
+236
+00:30:36.460 --> 00:30:38.940
+Zeljko Ivezic: and they'll be able.
+
+237
+00:30:42.190 --> 00:30:54.369
+Zeljko Ivezic: Yeah, progress has been amazing. If you read papers from 30 years ago, people are getting getting excited about the ability to write model and recognize handwritten digits
+
+238
+00:30:54.490 --> 00:31:04.299
+Zeljko Ivezic: or recognize license plates that was like, Wow, computer can do it today, you have video 1 billion people, and they go around and automatically track.
+
+239
+00:31:04.670 --> 00:31:08.390
+Zeljko Ivezic: So things are changing rapidly. It's very hard to to
+
+240
+00:31:08.790 --> 00:31:13.969
+Zeljko Ivezic: to stay up with the progress it's there is huge number of people working in this building
+
+241
+00:31:15.290 --> 00:31:19.980
+Zeljko Ivezic: so hopefully, I will not get totally sick, and I'll come back on Thursday.
+
+242
+00:31:21.250 --> 00:31:23.619
+Zeljko Ivezic: We will stop recording now.
+
