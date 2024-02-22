@@ -91,7 +91,11 @@ https://github.com/ivezic/RBI2023/tree/main/notebooks
 
 [ Zoom recording for Lecture 11](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture11/Lecture11_zoom.mp4)
 -----------------------------------------------------------------------------
-[ Lecture 12, February 22, 2024: "Image Classification with Deep Learning"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture12.ipynb) 
+[ Lecture 12, February 22, 2024: "Image Classification with Deep
+Learning"](https://github.com/ivezic/RBI2023/blob/main/notebooks/Lecture12.ipynb) 
+
+
+[ Zoom recording for Lecture 12](https://github.com/ivezic/RBI2023/tree/main/ZoomRecordings/Lecture12/Lecture12_zoom.mp4)
 -----------------------------------------------------------------------------
 
 
