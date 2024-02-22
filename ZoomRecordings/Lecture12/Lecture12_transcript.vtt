@@ -1,0 +1,2086 @@
+WEBVTT
+
+1
+00:00:03.160 --> 00:00:04.809
+Zeljko Ivezic: So far so good.
+
+2
+00:00:06.680 --> 00:00:13.909
+Zeljko Ivezic: 15 min behind the schedule. We are doing much better than Rubin Observatory.
+
+3
+00:00:17.300 --> 00:00:19.180
+Zeljko Ivezic: That was an internal joke.
+
+4
+00:00:20.810 --> 00:00:23.280
+Zeljko Ivezic: so welcome to our last lecture.
+
+5
+00:00:24.960 --> 00:00:28.729
+Zeljko Ivezic: I am still alive after being sick on Monday and Tuesday.
+
+6
+00:00:28.910 --> 00:00:38.900
+Zeljko Ivezic: Thank you for coming. So today we'll talk about deep learning. and we'll show one example of
+
+7
+00:00:40.010 --> 00:00:42.950
+Zeljko Ivezic: how to classify images with
+
+8
+00:00:42.960 --> 00:00:48.190
+Zeljko Ivezic: one of the modern methods relatively modern. It's like 8 years old.
+
+9
+00:00:49.190 --> 00:00:53.259
+Zeljko Ivezic: So I put link to this the little book of deep learning.
+
+10
+00:00:53.700 --> 00:01:06.690
+Zeljko Ivezic: which has a very nice introduction to neural networks and all the practical problems that you encounter when you have to design your own neural network last time, events
+
+11
+00:01:06.930 --> 00:01:08.900
+Zeljko Ivezic: super quickly through
+
+12
+00:01:09.030 --> 00:01:22.139
+Zeljko Ivezic: the lecture. But all the details that we didn't go deep into it's in this little book which is publicly available. So if you will be working on some application of Dunall Network so deep learning, then I would recommend
+
+13
+00:01:22.360 --> 00:01:25.849
+Zeljko Ivezic: this book to to consult this book.
+
+14
+00:01:26.720 --> 00:01:31.010
+Zeljko Ivezic: How can we get rid of this? It's okay. Good.
+
+15
+00:01:32.120 --> 00:01:33.729
+Zeljko Ivezic: So last time
+
+16
+00:01:34.160 --> 00:01:44.720
+Zeljko Ivezic: we introduced this concept of neural networks. So to remind you, we have some multi-dimensional set of data, these x one x 2 x 3. That's
+
+17
+00:01:44.940 --> 00:01:56.579
+Zeljko Ivezic: highly. Multi-dimensional. Vector then we make a linear combination of all these inputs with some weights. W, that's that formula.
+
+18
+00:01:56.740 --> 00:02:01.500
+Zeljko Ivezic: some I one to NWIJ. XI.
+
+19
+00:02:02.310 --> 00:02:18.790
+Zeljko Ivezic: And so it's matrix weights are matrix. So it comes from, let's say, x one, and then it can go to a one, a 2, a 3, etcetera. So that's linear transformation. This is equation of some plane in multi dimensional space.
+
+20
+00:02:19.370 --> 00:02:27.690
+Zeljko Ivezic: and then you feed it to some nonlinear function called activation function. That gives us nonlinearity in the problem.
+
+21
+00:02:28.070 --> 00:02:40.690
+Zeljko Ivezic: And then for the last step for the output layer. We have outputs. Yk, that we want to predict. So when we train the network, we know the outputs. But once the network is trained.
+
+22
+00:02:40.950 --> 00:02:45.549
+Zeljko Ivezic: then we use those W weights to predict.
+
+23
+00:02:45.630 --> 00:02:48.640
+Zeljko Ivezic: based on X what should be YK.
+
+24
+00:02:49.320 --> 00:02:59.830
+Zeljko Ivezic: And that last layer has the same structure. It's linear combination of the outputs from the last hidden layer. Here we have only one hidden layer, but we will generalize.
+
+25
+00:02:59.860 --> 00:03:04.660
+Zeljko Ivezic: So you take the last hidden layer output scroll day one, a 2, etcetera.
+
+26
+00:03:04.790 --> 00:03:10.660
+Zeljko Ivezic: And then you do linear combination and you feed it to the final activation function.
+
+27
+00:03:10.790 --> 00:03:22.169
+Zeljko Ivezic: In practice. Usually these different activation functions in different layers may be different, too. And then you predict YK, so when you train your network.
+
+28
+00:03:22.350 --> 00:03:24.809
+Zeljko Ivezic: then you take known YK,
+
+29
+00:03:25.120 --> 00:03:31.839
+Zeljko Ivezic: and then you back propagate information about derivatives of those outputs with respect to
+
+30
+00:03:31.870 --> 00:03:33.419
+Zeljko Ivezic: to weights. W,
+
+31
+00:03:33.750 --> 00:03:46.319
+Zeljko Ivezic: and then you minimize the loss function which usually, if you are working with classification, then you define it as number of mis predictions. You minimize that and you get your rates.
+
+32
+00:03:46.660 --> 00:03:48.860
+Zeljko Ivezic: And so, if your network is small.
+
+33
+00:03:48.910 --> 00:03:55.460
+Zeljko Ivezic: then all that works quite easily, as we showed in those simple examples from
+
+34
+00:03:55.550 --> 00:03:56.609
+Zeljko Ivezic: the last time.
+
+35
+00:03:56.790 --> 00:04:06.690
+Zeljko Ivezic: There we had one layer, and dimensionality was not super high, so it all works nicely in simple cases. Now the true power
+
+36
+00:04:06.980 --> 00:04:11.670
+Zeljko Ivezic: of this network approach comes when you have many hidden layers.
+
+37
+00:04:11.840 --> 00:04:14.370
+Zeljko Ivezic: and when you work with high dimensions.
+
+38
+00:04:14.530 --> 00:04:23.459
+Zeljko Ivezic: Last time examples we discussed there. You could solve the problem by eye. You just draw the line between those 2 clumps in 2 dimensions, and that's it.
+
+39
+00:04:23.520 --> 00:04:29.990
+Zeljko Ivezic: But if you have thousands of dimensions. then it's not so trivial, and that's where the power of
+
+40
+00:04:30.130 --> 00:04:32.680
+Zeljko Ivezic: of neural networks come comes in.
+
+41
+00:04:34.320 --> 00:04:35.680
+Zeljko Ivezic: So
+
+42
+00:04:36.640 --> 00:04:41.390
+Zeljko Ivezic: this would be then general equation for our YK, so we have
+
+43
+00:04:41.580 --> 00:04:47.040
+Zeljko Ivezic: 2 linear combinations. One comes from the from hidden layer, this one.
+
+44
+00:04:47.690 --> 00:04:55.220
+Zeljko Ivezic: and then you plug this in into the final combination and the final activation function. And that's your mathematical model.
+
+45
+00:04:57.250 --> 00:05:01.789
+Zeljko Ivezic: And then this can be now chained. You can have many layers. And the example
+
+46
+00:05:01.820 --> 00:05:05.979
+Zeljko Ivezic: we'll look later at as 50 hidden layers.
+
+47
+00:05:07.170 --> 00:05:12.199
+Zeljko Ivezic: So in practice, when you run these big networks, then you don't use toy
+
+48
+00:05:12.250 --> 00:05:14.780
+Zeljko Ivezic: example code like we did last time.
+
+49
+00:05:14.860 --> 00:05:17.830
+Zeljko Ivezic: They are professional frameworks
+
+50
+00:05:18.380 --> 00:05:22.169
+Zeljko Ivezic: that support super large networks.
+
+51
+00:05:22.430 --> 00:05:32.409
+Zeljko Ivezic: and many of those operations like back propagation, gradient descent to get weight or convolution that we will introduce in a second
+
+52
+00:05:32.590 --> 00:05:34.969
+Zeljko Ivezic: you you you have these
+
+53
+00:05:35.750 --> 00:05:46.129
+Zeljko Ivezic: mathematical blocks implemented already in framework, and then what you do to construct network is similar to but what what you did when you played with Lego blocks.
+
+54
+00:05:46.350 --> 00:06:02.759
+Zeljko Ivezic: So you got present box of Lego blocks. You did not mold your own plastic to make Lego blocks. You got standardized Lego blocks. But then you could make a little house. You could make a telescope. You could make whatever you want airplane. So that's the same idea with those 2 frameworks.
+
+55
+00:06:03.250 --> 00:06:15.509
+Zeljko Ivezic: So tensorflow was developed by Google. It's like professional quality framework. And it was proprietary for a while. But then Google made it public. And that's what many people use.
+
+56
+00:06:15.560 --> 00:06:19.889
+Zeljko Ivezic: And then the other one that is still kind of a smaller and network.
+
+57
+00:06:19.930 --> 00:06:29.229
+Zeljko Ivezic: But it's pythonic, and it's open source. Development is by torch. And so our example today will be based on tensorflow.
+
+58
+00:06:29.390 --> 00:06:34.550
+Zeljko Ivezic: And on top of the framework there is a high level Api
+
+59
+00:06:34.870 --> 00:06:38.900
+Zeljko Ivezic: that is called keras. And so that's where you get your Lego blocks.
+
+60
+00:06:39.280 --> 00:06:46.550
+Zeljko Ivezic: Now, many people say that because Spy Torch is easier to use, easier to learn. It's fully pythonic
+
+61
+00:06:46.660 --> 00:06:53.690
+Zeljko Ivezic: that eventually it will take over in the scientific communities. Now, if you are working for Netflix or Facebook.
+
+62
+00:06:53.710 --> 00:06:56.309
+Zeljko Ivezic: then I think they all use tensorflow.
+
+63
+00:06:56.440 --> 00:07:07.940
+Zeljko Ivezic: But in science we would like we'd we'd like to understand what we are doing, and that's much easier to follow if you're using pythorch. So I asked my daughter. She works in daytime.
+
+64
+00:07:08.250 --> 00:07:12.039
+Zeljko Ivezic: Science, I ask you, should I use pythorch? Or should I use
+
+65
+00:07:12.110 --> 00:07:16.010
+Zeljko Ivezic: Karis? She said. Dad, you're such a dinosaur.
+
+66
+00:07:16.050 --> 00:07:20.220
+Zeljko Ivezic: All the cool young people use bytorch. So that's advice from her.
+
+67
+00:07:20.230 --> 00:07:29.270
+Zeljko Ivezic: But my example today is still this old-fashioned. It's not that old fashioned, but it's it's it's a more traditional tensorflow and keras.
+
+68
+00:07:31.930 --> 00:07:37.699
+Zeljko Ivezic: So when we train the network, this is just recap of what we talked about last time.
+
+69
+00:07:37.800 --> 00:07:49.239
+Zeljko Ivezic: we have to split our sample into training and validation and then testing subsample. And then we run the code to minimize loss function. We get our weights
+
+70
+00:07:49.300 --> 00:07:54.340
+Zeljko Ivezic: and then we measure performance using testing sample, we see how we are working.
+
+71
+00:07:55.920 --> 00:08:01.100
+Zeljko Ivezic: Now, when we want to classify images. then
+
+72
+00:08:01.330 --> 00:08:07.110
+Zeljko Ivezic: things quickly get out of hand. Say, typical image has few K by few. K,
+
+73
+00:08:07.360 --> 00:08:28.820
+Zeljko Ivezic: so that's many megapixels, many millions of pixels. And these pixels are those Xis that we have. As input to the network. so now you have millions of numbers that come into your network. But information content usually is not such that you need to individually analyze all these pixels.
+
+74
+00:08:29.330 --> 00:08:39.770
+Zeljko Ivezic: Another problem is that if you just treat it as ordinary neural network, an image. Let's say, you have super big computer. You don't care about spending money on big computer.
+
+75
+00:08:39.850 --> 00:08:48.369
+Zeljko Ivezic: Then, still, there is fundamental problem that when you look at an image, either you have a star, a galaxy, you can have a cat. You can have your baby.
+
+76
+00:08:48.690 --> 00:09:02.189
+Zeljko Ivezic: those pixels that are in the neighborhood. They are correlated with each other. Picture of something is not just one pixel. It's many pixels together that gives us that give us appearance of some pattern.
+
+77
+00:09:02.980 --> 00:09:08.309
+Zeljko Ivezic: and with this traditional implementation of the wrong network we can reshuffle all the pixels
+
+78
+00:09:08.860 --> 00:09:11.120
+Zeljko Ivezic: and the equations will be exactly the same.
+
+79
+00:09:11.220 --> 00:09:37.539
+Zeljko Ivezic: In other words, you are not using the fact that neighboring pixels together encode some information. So for image classification, we would like to develop a method that somehow will extract information from groups of pixels from some little regions in your image, like if you were scanning with some little window like with Microsoft, and you go through your image. You try to get many pixels together.
+
+80
+00:09:37.980 --> 00:09:44.690
+Zeljko Ivezic: and that is addressed by the concept of convolutional neural networks.
+
+81
+00:09:45.830 --> 00:10:02.840
+Zeljko Ivezic: So there are 2 problems we want to solve. One problem is that we want to aggregate information together from neighboring pixels. And the other one is that we want to reduce dimension from many millions of inputs to something that is easier to handle. Say, thousands of inputs.
+
+82
+00:10:03.260 --> 00:10:04.879
+Zeljko Ivezic: So on the left.
+
+83
+00:10:04.930 --> 00:10:13.000
+Zeljko Ivezic: you can see a real image that's from Sloan digital Sky Survey. It's color composite. It shows 2 merging galaxies.
+
+84
+00:10:13.690 --> 00:10:20.529
+Zeljko Ivezic: One is the big one is part of our galaxy. You can see it has some blue shade. These are baby stars, young stars.
+
+85
+00:10:20.680 --> 00:10:22.629
+Zeljko Ivezic: and then the one above
+
+86
+00:10:22.740 --> 00:10:30.409
+Zeljko Ivezic: is also a spiral galaxy. It looks like that. It's got some spirals and bar in the middle. But it's an older galaxy, because the colors are redder.
+
+87
+00:10:30.840 --> 00:10:46.430
+Zeljko Ivezic: And so typically such image would have few 1 million pixels. So the first thing you do is you run so-called convolutional layer. So convolution is a simple mathematical operation described by this equation.
+
+88
+00:10:46.890 --> 00:10:52.520
+Zeljko Ivezic: So you have some filter. and so at each pixel.
+
+89
+00:10:52.700 --> 00:10:58.919
+Zeljko Ivezic: That filter is centered on that pixel, and then it gives you weights for all the neighboring pixels.
+
+90
+00:10:59.600 --> 00:11:11.109
+Zeljko Ivezic: and it has some finite extent. so you can think of a Gaussian function. So the center pixel on which you centered that function, two-dimensional Gaussian has the highest weight.
+
+91
+00:11:11.350 --> 00:11:26.749
+Zeljko Ivezic: and then the pixels around it have lower weight, and then another layer around it has even lower weight, and very soon Gaussian will drop to essentially 0, and all the pixels further than 2 or 3 sigma that Gaussian. They don't have 0 weights.
+
+92
+00:11:27.380 --> 00:11:29.120
+Zeljko Ivezic: so that convolution
+
+93
+00:11:29.530 --> 00:11:41.479
+Zeljko Ivezic: sometimes called blurring of images that will aggregate information from that region that is defined roughly as 2 or 3 sigma of the Gaussian. That's where you will extract information.
+
+94
+00:11:42.360 --> 00:11:43.550
+Zeljko Ivezic: and then
+
+95
+00:11:44.620 --> 00:11:57.079
+Zeljko Ivezic: the rest of pixels will not count. But you do this convolution for every pixel in original image. So at this point we have not reduced dimension of the problem. The only thing that we did
+
+96
+00:11:57.420 --> 00:12:03.649
+Zeljko Ivezic: was to aggregate information through pixels. Here is example of a Gaussian filter
+
+97
+00:12:03.830 --> 00:12:08.750
+Zeljko Ivezic: or blurring function. So that's the formula. So U and V
+
+98
+00:12:08.850 --> 00:12:12.170
+Zeljko Ivezic: are X and y coordinates of pixel in your image.
+
+99
+00:12:13.020 --> 00:12:23.210
+Zeljko Ivezic: And Sigma is something of the other one or 2 pixels. Typically so in in practice, it depends on your image what you are doing. If you're classifying
+
+100
+00:12:23.310 --> 00:12:31.699
+Zeljko Ivezic: dogs and cats. those images typically have very high signal to noise ratio, you don't have to worry about background noise.
+
+101
+00:12:31.930 --> 00:12:39.850
+Zeljko Ivezic: because it's typically limited by systematics, not photon statistics. Then each pixel has roughly the same
+
+102
+00:12:40.100 --> 00:12:43.429
+Zeljko Ivezic: noise. And so in this case
+
+103
+00:12:43.460 --> 00:13:07.620
+Zeljko Ivezic: it's easier to to interpret it, because, if you remember regression when we were fitting straight lines or polynomials. When you have the same error bar on each point, then the solution is just matrix inversion. It's simple linear problem. When you have error bars that are different for each point, and especially if you have error bars on X axis, then it becomes much more involved statistical problem.
+
+104
+00:13:08.000 --> 00:13:09.190
+Zeljko Ivezic: And then.
+
+105
+00:13:11.310 --> 00:13:36.389
+Zeljko Ivezic: second in in when we do astronomical images, or or sometimes even in other fields, when you have intrinsic resolution, then, if you don't want to suffer from pixelization. There is something called Nyquist criterion, which can be translated as your pixels have to be at least 2.5 times as small as your angular, intrinsic, angular resolution.
+
+106
+00:13:36.690 --> 00:13:42.640
+Zeljko Ivezic: And if that is true, then essentially, you don't have pixels. You don't have any loss
+
+107
+00:13:42.790 --> 00:13:54.170
+Zeljko Ivezic: due to pixelization. You can shift your image, you can rotate, you can warp it. You can do anything you want with your image without loss of information, with your Nike sample.
+
+108
+00:13:54.370 --> 00:13:59.550
+Zeljko Ivezic: So in typically in astronomical image, you will take the Sigma in Gaussian
+
+109
+00:13:59.950 --> 00:14:12.230
+Zeljko Ivezic: to be about your intrinsic angular resolution of the order within factor of 2 or so and then. Now imagine you're sitting in the central pixel. and we are looking at these 8 pixels around it.
+
+110
+00:14:12.730 --> 00:14:18.680
+Zeljko Ivezic: And so then you compute value of this function for this pixel for all of them.
+
+111
+00:14:19.000 --> 00:14:29.409
+Zeljko Ivezic: and then you renormalize the round numbers. It could be also real numbers. But typically it's in integer numbers. You normalize it, that they sum to
+
+112
+00:14:30.290 --> 00:14:33.900
+Zeljko Ivezic: squares or or numbers sum to one depends on
+
+113
+00:14:34.000 --> 00:14:39.570
+Zeljko Ivezic: application. And so then you go through your image. And so, if I take one pixel in here.
+
+114
+00:14:39.710 --> 00:14:41.940
+Zeljko Ivezic: I will now make new image.
+
+115
+00:14:42.430 --> 00:14:50.739
+Zeljko Ivezic: where I will take original pixel, multiplied by 4. I will take neighboring pixels, pixels month, multiplied by these 8 numbers
+
+116
+00:14:51.060 --> 00:15:01.000
+Zeljko Ivezic: divide by 16, I add all these numbers multiplied by 16, and that's the pixel value in my new image. My new image will be exactly the same size
+
+117
+00:15:01.020 --> 00:15:09.360
+Zeljko Ivezic: as the original image, except I smooted it with that Gaussian. And so here is one picture of a street that was
+
+118
+00:15:09.680 --> 00:15:16.219
+Zeljko Ivezic: convolve with a Gaussian filter. So it's blurry. Original picture was much sharper. This one is blurry.
+
+119
+00:15:16.540 --> 00:15:33.999
+Zeljko Ivezic: So that is what this formula here shows. So that is convolution step where we aggregate information in the new image. then the next important step in convolutional neural network is so-called Max pooling or average pooling.
+
+120
+00:15:34.160 --> 00:15:39.530
+Zeljko Ivezic: So in the first step. We did not reduce the size of the image.
+
+121
+00:15:39.860 --> 00:15:45.270
+Zeljko Ivezic: but now we'll reduce it by the factor that is equal to this gray
+
+122
+00:15:45.820 --> 00:15:48.170
+Zeljko Ivezic: gray region. So, for each
+
+123
+00:15:49.470 --> 00:15:50.870
+Zeljko Ivezic: did go to sleep.
+
+124
+00:15:53.790 --> 00:15:56.679
+Zeljko Ivezic: Lana sprinkles. Why is that happening?
+
+125
+00:15:58.470 --> 00:16:09.149
+Zeljko Ivezic: I see. So what do I do now? Zoom people be patient with us. We lost our display. I thought it was my screensaver. But it's not.
+
+126
+00:16:11.900 --> 00:16:16.249
+Zeljko Ivezic: Maybe I'll try to disconnect and reconnect, and maybe, too.
+
+127
+00:16:17.630 --> 00:16:19.050
+solve the problem.
+
+128
+00:16:25.810 --> 00:16:27.800
+So there's some remote control somewhere.
+
+129
+00:16:28.140 --> 00:16:28.940
+Zeljko Ivezic: No.
+
+130
+00:16:31.360 --> 00:16:34.090
+Zeljko Ivezic: no. We just identified remote control.
+
+131
+00:16:43.990 --> 00:16:48.830
+Zeljko Ivezic: You're using HDMI there, you go.
+
+132
+00:16:49.730 --> 00:16:57.519
+Zeljko Ivezic: I will leave this in their capable hands, occasionally, there is something that shows up, you know.
+
+133
+00:17:00.260 --> 00:17:02.139
+Zeljko Ivezic: All right. Thank you, Laura.
+
+134
+00:17:04.829 --> 00:17:09.860
+Zeljko Ivezic: so that's what we do in this step from each region that we define
+
+135
+00:17:09.960 --> 00:17:22.000
+Zeljko Ivezic: independently of the size of kernel. Let's say it would be 3 by 3, or 6 by 6. That gives you reduction of the dimensionality. You say, from that image. I will take one statistic.
+
+136
+00:17:22.670 --> 00:17:33.710
+Zeljko Ivezic: and that statistic can be the value of the maximum pixel, so on the maximum value in that region. And so if, when you convolve the image it was just some background noise.
+
+137
+00:17:33.740 --> 00:17:35.959
+Zeljko Ivezic: Then that value will be low.
+
+138
+00:17:36.700 --> 00:17:50.400
+Zeljko Ivezic: And then, if you really had some signal in your original image, and you convolve. That will be high value of that pixel in that region, and so you will pick up the highest pixel that will correspond probably to peak of the background pattern
+
+139
+00:17:50.850 --> 00:17:59.450
+Zeljko Ivezic: now at face value. That doesn't seem to be good thing to do, because it sounds like you're now losing a lot of information.
+
+140
+00:17:59.740 --> 00:18:05.090
+Zeljko Ivezic: But the trick is that you have many different kernels.
+
+141
+00:18:05.860 --> 00:18:20.729
+Zeljko Ivezic: so you can have 10 different kernels, so 20 different kernels. while the reduction of the dimensionality in this step is much higher. It can be factor 100 or 1,000, and the trick with having many different kernels is that they act as filters.
+
+142
+00:18:21.200 --> 00:18:38.599
+Zeljko Ivezic: and so, depending on their mathematical expression for each of them. You will get matrix of numbers like this, but these values will be different. Sometimes they will be negative. Sometimes they will be 0, and so, depending on your kernel, you will be sensitive to different features in your image.
+
+143
+00:18:39.060 --> 00:18:40.859
+Zeljko Ivezic: So here is an example.
+
+144
+00:18:40.930 --> 00:18:46.130
+Zeljko Ivezic: This is image of something that was smoothed by Gaussian, some beautiful building.
+
+145
+00:18:46.840 --> 00:18:50.449
+Zeljko Ivezic: And then when you run a filter, you get this image
+
+146
+00:18:51.010 --> 00:19:07.169
+Zeljko Ivezic: and that filter is edge detection filter. Did I put expression? I didn't. So basically, it's very similar matrix to this one. I forget now of hand exact values of numbers. There are some zeros and minuses, but if you run that kernel you will get these edges.
+
+147
+00:19:08.490 --> 00:19:25.860
+Zeljko Ivezic: and then another kernel will pick up different features. More complicated kernels can even pick up like crescent moon shape, they can pick up rings, and so on. So each image, whether it is a galaxy or a dog or a cat will be in a sense decomposed
+
+148
+00:19:26.200 --> 00:19:32.410
+Zeljko Ivezic: in those little constituent features that when you combine together you get your picture.
+
+149
+00:19:32.540 --> 00:19:39.399
+Zeljko Ivezic: It's similar. For example, if you look at Van Gogh paintings, where everything is made of little dots of different color.
+
+150
+00:19:39.720 --> 00:19:43.240
+Zeljko Ivezic: and then you look from distance, and they all blend into an image.
+
+151
+00:19:43.740 --> 00:19:49.860
+Zeljko Ivezic: or when you do mosaic like, if you look at Roman mosaics that have different colored pieces of rock.
+
+152
+00:19:50.300 --> 00:19:53.220
+Zeljko Ivezic: So you have this basic
+
+153
+00:19:53.700 --> 00:20:05.610
+Zeljko Ivezic: Eigen set of rocks, and with those rocks you can make any picture you want. So a similar thing happens in here. And then you uncover these basic, constituent features by running these filters, these kernels.
+
+154
+00:20:05.770 --> 00:20:08.279
+Zeljko Ivezic: It's like, if you want to expand something in
+
+155
+00:20:08.290 --> 00:20:17.690
+Zeljko Ivezic: Fourier Series or Taylor series in order to get Eigen coefficients, you take your function. You multiply by one of the Eigen
+
+156
+00:20:18.010 --> 00:20:25.349
+Zeljko Ivezic: functions, you integrate over the domain, and the result is Eigen coefficient, and then you have expansion of
+
+157
+00:20:25.500 --> 00:20:29.299
+Zeljko Ivezic: of your input function. So that
+
+158
+00:20:29.310 --> 00:20:41.579
+Zeljko Ivezic: multiplication by eigenfunction and integration over the domain that's essentially filtering of your input function. And we do here the same, except it's in 2D, and we pick up image features.
+
+159
+00:20:44.210 --> 00:20:45.700
+Zeljko Ivezic: So going back.
+
+160
+00:20:47.290 --> 00:20:53.699
+Zeljko Ivezic: So that's the basic idea for image classification to use convolutional networks.
+
+161
+00:20:53.750 --> 00:20:58.140
+Zeljko Ivezic: So it achieves 2 goals. One is to aggregate
+
+162
+00:20:58.340 --> 00:21:10.459
+Zeljko Ivezic: information from neighboring pixels that's convolution, and then pick up different features that make an image, and then you reduce dimension of the problem greatly by doing this
+
+163
+00:21:10.780 --> 00:21:17.659
+Zeljko Ivezic: pooling of some statistics that in practice typically is taking maximum on average.
+
+164
+00:21:20.210 --> 00:21:21.590
+Zeljko Ivezic: All right.
+
+165
+00:21:21.600 --> 00:21:23.230
+Zeljko Ivezic: Okay.
+
+166
+00:21:27.290 --> 00:21:35.949
+Zeljko Ivezic: okay, we talked about pooling. And then there is another trick which is more art than science. It's
+
+167
+00:21:36.420 --> 00:21:41.759
+Zeljko Ivezic: I'm not aware of any theoretical justification for why this should work.
+
+168
+00:21:42.560 --> 00:21:48.599
+Zeljko Ivezic: But often you over fit the data. If you produce very complicated network.
+
+169
+00:21:48.670 --> 00:22:06.349
+Zeljko Ivezic: you may overfit the data, which means that if you now take another image you will get wild oscillation like, if you take. If you take some say parabola, and you have small number of points like 10, and then you force sixth order polynomial on those data points.
+
+170
+00:22:06.720 --> 00:22:19.619
+Zeljko Ivezic: then it will go through all the data points, but in between it can oscillate widely. And now, if you apply this fit to some other data set drawn from the same distribution. You will get nonsense. You're overfitting.
+
+171
+00:22:19.660 --> 00:22:30.899
+Zeljko Ivezic: So similar thing happens here, and it was found empirically that if you now take randomly neurons and some of them is set to 0, so there is no signal flow.
+
+172
+00:22:30.990 --> 00:22:33.620
+Zeljko Ivezic: Then you stabilize your network.
+
+173
+00:22:36.090 --> 00:22:42.129
+Zeljko Ivezic: and then when you construct it. that's some rule of times like, if you have
+
+174
+00:22:42.870 --> 00:22:50.320
+Zeljko Ivezic: d dimension of your problem, then you ask yourself, Well, how many neurons do I really need, and how many layers do I need.
+
+175
+00:22:50.340 --> 00:22:52.560
+Zeljko Ivezic: And so there are some rules of time like
+
+176
+00:22:52.700 --> 00:23:03.469
+Zeljko Ivezic: you should choose the number of neurons to be between the number of your input nodes meaning dimensionality of your input data and dimensionality of your output data.
+
+177
+00:23:04.450 --> 00:23:15.560
+Zeljko Ivezic: And then there is some magic formula that number of neurons should also be equal to the number of outputs, plus 2, 3 of the number of input nodes. How do you prove that?
+
+178
+00:23:15.570 --> 00:23:29.909
+Zeljko Ivezic: Well, you can't. But people ran thousands of networks, and they came up with these rules of thumb. So there is no theory for this. It's just a guidance where to start when you start optimizing your neural network.
+
+179
+00:23:31.790 --> 00:23:36.220
+Zeljko Ivezic: And so that's intro to convolutional neural networks.
+
+180
+00:23:37.680 --> 00:23:49.160
+Zeljko Ivezic: And when you now try to apply this concept to very complicated images. like images of real scenes. then
+
+181
+00:23:49.550 --> 00:23:57.070
+Zeljko Ivezic: the more layers, you have the more ability your network has to fit arbitrary functions.
+
+182
+00:23:57.670 --> 00:23:58.949
+Zeljko Ivezic: So if you have.
+
+183
+00:23:58.960 --> 00:24:21.300
+Zeljko Ivezic: you remember when we were doing our simple 2D example, we could only fit a straight line in a 3 diagram in multi-dimensional cases. These are planes. But now, if you want to have something very complicated, then you need to add more layers because nonlinear linearity of each layer improves your ability to fit more and more complex functions.
+
+184
+00:24:21.630 --> 00:24:25.840
+Zeljko Ivezic: But there is a problem with just slapping more hidden layers.
+
+185
+00:24:26.050 --> 00:24:34.920
+Zeljko Ivezic: And the problem is that now, if you, if you think of how the output changes with each layer, you have first some transformation.
+
+186
+00:24:35.160 --> 00:24:52.950
+Zeljko Ivezic: And then that information is passed to the next layer as you go from a layer to layer the sensitivity after that layer to the original input becomes less and less because you transformed it many times. And so there is something called vanishing gradient.
+
+187
+00:24:53.230 --> 00:24:59.509
+Zeljko Ivezic: that if you overdo the number of layers for your given dataset size.
+
+188
+00:24:59.580 --> 00:25:03.439
+Zeljko Ivezic: you will get to these gradients that are essentially 0,
+
+189
+00:25:03.950 --> 00:25:15.240
+Zeljko Ivezic: and then you lose ability to train the network. And that was for many years stopping the further development of convolutional neural networks. You could do things
+
+190
+00:25:15.580 --> 00:25:18.519
+Zeljko Ivezic: 15 years ago like recognizing
+
+191
+00:25:18.730 --> 00:25:24.270
+Zeljko Ivezic: numbers of a license plate if you run through red lights. That's what police was using to recognize.
+
+192
+00:25:24.340 --> 00:25:29.309
+Zeljko Ivezic: You could do. You could recognize handwritten digits.
+
+193
+00:25:29.380 --> 00:25:36.679
+Zeljko Ivezic: And even 1520 years ago post offices were using automatic machines that would go through
+
+194
+00:25:36.810 --> 00:25:40.179
+Zeljko Ivezic: through the mail, and they would recognize the address.
+
+195
+00:25:40.570 --> 00:25:47.930
+Zeljko Ivezic: But complicated scenes were much harder because you needed more hidden layers, and the networks were unstable.
+
+196
+00:25:48.360 --> 00:25:50.550
+Zeljko Ivezic: and then, about 8 years ago.
+
+197
+00:25:50.640 --> 00:25:55.379
+Zeljko Ivezic: soon to be 9, there was this seminal paper that was published
+
+198
+00:25:55.790 --> 00:25:57.220
+Zeljko Ivezic: by who at all.
+
+199
+00:25:57.900 --> 00:26:04.879
+Zeljko Ivezic: So it's not so long ago, 8 years ago. That paper has already over 200,000 set patients.
+
+200
+00:26:06.690 --> 00:26:11.969
+Zeljko Ivezic: Have you ever written any paper that has more than 200,000 of patients. Not yet.
+
+201
+00:26:12.230 --> 00:26:15.090
+Zeljko Ivezic: Okay, you'd need to switch to computer science
+
+202
+00:26:15.840 --> 00:26:22.010
+Zeljko Ivezic: because the number of people who would cite you is much larger than in in physics or astronomy.
+
+203
+00:26:22.550 --> 00:26:32.690
+Zeljko Ivezic: So they said. Imagine, I think of a function. and I give you multiple choice questions. Question answer A
+
+204
+00:26:33.390 --> 00:26:40.280
+Zeljko Ivezic: is, I was thinking of a constant function? Answer. BI was thinking of a
+
+205
+00:26:40.700 --> 00:26:46.050
+Zeljko Ivezic: straight line function. Y of X equals X. What do you think? I guess
+
+206
+00:26:52.870 --> 00:26:56.579
+Zeljko Ivezic: so. I'm thinking of a function one-dimensional function.
+
+207
+00:26:57.320 --> 00:26:58.570
+Zeljko Ivezic: And
+
+208
+00:26:59.230 --> 00:27:08.850
+Zeljko Ivezic: I'm asking you, what do you think is what I was thinking of? Closer to a constant function. Y of x equal constant, or y of X equals X.
+
+209
+00:27:11.040 --> 00:27:12.170
+Zeljko Ivezic: Why
+
+210
+00:27:15.520 --> 00:27:21.870
+Zeljko Ivezic: so? The space, the possible space of functions that I have in my hand is huge, essentially infinite.
+
+211
+00:27:22.140 --> 00:27:34.410
+Zeljko Ivezic: and for many functions something is changing right. And so it doesn't have to be changing linearly. But if I say it's constant. then basically I'm wrong
+
+212
+00:27:34.770 --> 00:27:45.579
+Zeljko Ivezic: in many cases, because for most functions they are changing. And so the next simplest guess for some function that I know don't know is y equals X,
+
+213
+00:27:46.390 --> 00:27:51.539
+Zeljko Ivezic: and that's simple, sound, simple, and trivial. But these guys showed that
+
+214
+00:27:51.580 --> 00:27:58.230
+Zeljko Ivezic: if you train your network. not for some function F effects.
+
+215
+00:27:58.280 --> 00:28:02.630
+Zeljko Ivezic: some arbitrary function, but you train your network for
+
+216
+00:28:02.670 --> 00:28:12.989
+Zeljko Ivezic: decomposition of unknown function. G of X. That already has identity function in that that greatly stabilizes network.
+
+217
+00:28:14.300 --> 00:28:17.319
+Zeljko Ivezic: In other words, if you want to fit some function.
+
+218
+00:28:17.340 --> 00:28:22.509
+Zeljko Ivezic: it's much easier to fit it. If you first subtract y equals x.
+
+219
+00:28:23.090 --> 00:28:30.470
+Zeljko Ivezic: So if some function goes widely. you subtract the trend. and you fit the residuals around it.
+
+220
+00:28:31.820 --> 00:28:35.340
+Zeljko Ivezic: And so in practice that was ingenious solution.
+
+221
+00:28:35.530 --> 00:28:41.419
+Zeljko Ivezic: And so in this paper they did many experiments. They showed they can go
+
+222
+00:28:41.600 --> 00:28:46.020
+Zeljko Ivezic: to 50 layers and still have stable network.
+
+223
+00:28:46.370 --> 00:28:49.369
+Zeljko Ivezic: Now there are some pieces of art in it.
+
+224
+00:28:49.410 --> 00:28:59.530
+Zeljko Ivezic: How will you arrange the activation functions? What kind of activations, functions you will use? Etc. They did a variety of datasets.
+
+225
+00:28:59.550 --> 00:29:07.560
+Zeljko Ivezic: and came up with a set of blocks that are now like these Lego blocks that have their fixed activation functions.
+
+226
+00:29:07.850 --> 00:29:10.790
+Zeljko Ivezic: And so that's called resnet 50.
+
+227
+00:29:11.920 --> 00:29:14.529
+Zeljko Ivezic: And it's basically just
+
+228
+00:29:14.660 --> 00:29:21.390
+Zeljko Ivezic: adding signal from X to the next layer. So this part is just the standard neural network.
+
+229
+00:29:21.420 --> 00:29:23.130
+Zeljko Ivezic: So you have these weights.
+
+230
+00:29:23.250 --> 00:29:31.380
+Zeljko Ivezic: Then you feed it through this rectified linear units. In this case activation function. And then at the end.
+
+231
+00:29:31.650 --> 00:29:45.449
+Zeljko Ivezic: you add to it X, basically, you're fitting, not for some unknown function, but you're fitting for unknown function, plus x where that X is fixed, and that magic trick works like charm in practice.
+
+232
+00:29:45.460 --> 00:29:48.480
+Zeljko Ivezic: That's why they had 200,000
+
+233
+00:29:48.640 --> 00:29:50.840
+Zeljko Ivezic: citations. Yeah.
+
+234
+00:29:56.100 --> 00:29:59.320
+decreasing trend. Unless you change the gradient.
+
+235
+00:30:02.660 --> 00:30:04.380
+Zeljko Ivezic: Typically
+
+236
+00:30:04.400 --> 00:30:09.980
+Zeljko Ivezic: typically when we get this base, this linear linear matrix that multiplies input.
+
+237
+00:30:10.370 --> 00:30:11.600
+Zeljko Ivezic: typically.
+
+238
+00:30:12.290 --> 00:30:21.379
+Zeljko Ivezic: these weights are the same order of size as the input in practice. And you already have linear function. What you're doing is linear function.
+
+239
+00:30:21.440 --> 00:30:24.280
+Zeljko Ivezic: And so if you take out that dependence.
+
+240
+00:30:24.330 --> 00:30:26.990
+Zeljko Ivezic: then you are already ahead with
+
+241
+00:30:27.030 --> 00:30:33.620
+Zeljko Ivezic: fitting, because you're fitting some residual, which in most cases is much smaller than the function itself.
+
+242
+00:30:33.750 --> 00:30:46.260
+Zeljko Ivezic: and there is no hard theoretical explanation. They they in their paper. They don't provide any theoretical background, they say intuitively, this should help. We tried it, and it worked for chart.
+
+243
+00:30:47.420 --> 00:31:00.869
+Zeljko Ivezic: It's a good paper to take a look at, too. And so since then it became a standard. you know, it's interesting. It was bunch of students in China. in packing mostly.
+
+244
+00:31:00.900 --> 00:31:07.189
+Zeljko Ivezic: And then Microsoft Research had their office in pecking, and they would take summer students
+
+245
+00:31:07.660 --> 00:31:16.420
+Zeljko Ivezic: and they would work on projects. So these guys stood out as excellent students. Then they came to Seattle to Microsoft Research Lab, and they
+
+246
+00:31:16.540 --> 00:31:28.150
+Zeljko Ivezic: were employed there for a few years they wrote this paper and this exploded Cnn became super tool. They're all now professors of computer science or presidents of companies and such.
+
+247
+00:31:28.330 --> 00:31:35.049
+Zeljko Ivezic: It's a nice success story. all based on this little idea. And so meanwhile.
+
+248
+00:31:36.160 --> 00:31:40.339
+Zeljko Ivezic: as this became popular. there were many implementations.
+
+249
+00:31:40.440 --> 00:31:56.329
+Zeljko Ivezic: And so it's now called this resnet 50. So everyone in computer science knows about it. Resnet stands for residual network because we subtracted X and 50 stands for 50 hidden layers that are implemented implement in this network.
+
+250
+00:31:56.730 --> 00:32:00.060
+Zeljko Ivezic: and it works great for image classification.
+
+251
+00:32:00.550 --> 00:32:06.000
+Zeljko Ivezic: And so now we'll do one simple example of image classification.
+
+252
+00:32:06.360 --> 00:32:16.500
+Zeljko Ivezic: I could have used cats and dogs, or my former professor set Roger, I decided to simulate images. And we have 3 different types of simple image.
+
+253
+00:32:16.900 --> 00:32:18.940
+Zeljko Ivezic: So it's pretty
+
+254
+00:32:18.990 --> 00:32:24.670
+Zeljko Ivezic: anything complicated function.
+
+255
+00:32:24.810 --> 00:32:35.209
+Zeljko Ivezic: because if intuitively, any kind of function is supposed to be at least as complicated as a linear. Then I would guess it's supposed to be at least as complicated as
+
+256
+00:32:35.220 --> 00:32:52.980
+Zeljko Ivezic: I don't know a third order polynomial in that paper. They did not. Now, whether someone else tried and said works or not, if it worked better and and think we would know by now if it didn't work. Well, then, maybe they wouldn't publish. Maybe they did publish, but I'm unaware of it, so I don't know.
+
+257
+00:32:53.010 --> 00:32:55.880
+Zeljko Ivezic: but in that paper I read it. They did not.
+
+258
+00:32:57.920 --> 00:33:10.350
+Zeljko Ivezic: But it does give you motivation to try different things. If in your network, you know roughly what kind of shapes you would expect, then you could do better. And indeed there is a rapidly now that you mentioned it.
+
+259
+00:33:10.570 --> 00:33:13.829
+Zeljko Ivezic: there is a rapidly growing subfield
+
+260
+00:33:13.850 --> 00:33:19.009
+Zeljko Ivezic: of machine learning that is developing mostly by physicists
+
+261
+00:33:19.090 --> 00:33:21.910
+Zeljko Ivezic: where you force your network
+
+262
+00:33:21.990 --> 00:33:26.490
+Zeljko Ivezic: to respect the laws of physics, for example, momentum, conservation and
+
+263
+00:33:26.730 --> 00:33:37.419
+Zeljko Ivezic: energy conservation. or even more complicated things from hydrodynamics, thermodynamics when you say model galaxy information. And so you give structure to network
+
+264
+00:33:37.460 --> 00:33:46.849
+Zeljko Ivezic: that respects the conservation laws. But then there's some coefficients that you let network decide. So that's along this idea that you just mentioned.
+
+265
+00:33:50.300 --> 00:34:03.120
+Zeljko Ivezic: I don't have it handy. But if you Google for machine learning conservation laws of physics. I'm sure you'll get 1 point where you can start clicking in.
+
+266
+00:34:03.440 --> 00:34:08.130
+Zeljko Ivezic: There are lots of conferences over last 5 years. That's now hot subject in physics.
+
+267
+00:34:10.630 --> 00:34:14.700
+Zeljko Ivezic: so my example is much simpler. I was motivated by
+
+268
+00:34:14.760 --> 00:34:28.569
+Zeljko Ivezic: alerts that we will be issuing in in L Sd. In project. I'm working on where you take 2 images. So we get image from telescope, and then we have a series of images that we obtained over many previous nights or months.
+
+269
+00:34:28.590 --> 00:34:39.249
+Zeljko Ivezic: and those before we average, basically, we add them and reject outliers. So you have like, one position on the sky is observed 10 times.
+
+270
+00:34:39.260 --> 00:34:49.170
+Zeljko Ivezic: And so if sometimes there was something changing like asteroid or whatever. When you have these 10 data points, you can reject outliers. And so basically average image.
+
+271
+00:34:49.250 --> 00:34:56.500
+Zeljko Ivezic: And then you get that's like average image of sky in time, things that are constant on sky that are always there.
+
+272
+00:34:56.800 --> 00:35:01.319
+Zeljko Ivezic: And then you take new image and you subtract the 2 pixel by pixel.
+
+273
+00:35:01.600 --> 00:35:10.729
+Zeljko Ivezic: There are some problems, because background varies and color resolution varies, and it's not as simple as pixel by pixel. But conceptually, you take 2 images to subtract them.
+
+274
+00:35:10.750 --> 00:35:17.910
+Zeljko Ivezic: If they're identical, what you get is just noise. If they are not identical. If there is an asterisk in that image
+
+275
+00:35:17.950 --> 00:35:22.750
+Zeljko Ivezic: or supernova that appear. Then when you subtract them at that spot, you see a source.
+
+276
+00:35:23.020 --> 00:35:32.720
+Zeljko Ivezic: and so it can be variable. Start, too. so supernova and variable stars. They they would look then like point spread function. And so that's what we
+
+277
+00:35:32.750 --> 00:35:40.319
+Zeljko Ivezic: that's what I call star in here. That's one example. It doesn't look like too big Gaussian, because I intentionally
+
+278
+00:35:40.800 --> 00:35:43.910
+Zeljko Ivezic: shows low, signal-to-noise detection.
+
+279
+00:35:44.240 --> 00:35:51.340
+Zeljko Ivezic: So if it was high signal to noise detection, then it would look like beautiful two-dimensional Gaussian, but because it's
+
+280
+00:35:51.440 --> 00:35:58.220
+Zeljko Ivezic: it's low noise, and you can see noise in here. So there is background noise that this combination of
+
+281
+00:35:58.480 --> 00:36:07.020
+Zeljko Ivezic: of the emission from the earth's atmosphere, and also poisson statistic when you have low count of buttons.
+
+282
+00:36:07.510 --> 00:36:26.690
+Zeljko Ivezic: And so when that happens, then you see this noisy background. This is all flat. But you have different strengths because of background. And this is signal yellow and green and red means a lot of lot of photons. So that's example of low signal to noise object. Then I also added 2 other types of
+
+283
+00:36:27.340 --> 00:36:46.649
+Zeljko Ivezic: sources in order to classify them with this network, one is moving source. So when we make pictures the faster it's then move little bit during the exposure. It's not very large motion, it's not aligned, but they move in one direction, and that elongates your detection. So it becomes a very elliptical Gaussian.
+
+284
+00:36:46.880 --> 00:36:59.680
+Zeljko Ivezic: And then there is third type of objects that we often see in those different images where the position of a star is not perfectly lined. and then you can ask, Well, why
+
+285
+00:36:59.720 --> 00:37:04.880
+Zeljko Ivezic: would it be misaligned? The problem is that when you do observations from the ground.
+
+286
+00:37:05.000 --> 00:37:11.630
+Zeljko Ivezic: the light refracts through the earth's atmosphere. Earth's atmosphere acts essentially like spectrograph.
+
+287
+00:37:12.150 --> 00:37:18.060
+Zeljko Ivezic: and then, when you do a strometric transformation to go from sky coordinates to pixel coordinates.
+
+288
+00:37:18.140 --> 00:37:25.409
+Zeljko Ivezic: That transformation depends. Then little bit on the color of a star. and you can have a transformation.
+
+289
+00:37:25.560 --> 00:37:35.480
+Zeljko Ivezic: and then you can fit for dependence on color. But when you fit for dependence on color in practice, because you have limited number of stars, typically, it's some linear function.
+
+290
+00:37:35.860 --> 00:37:53.190
+Zeljko Ivezic: And so if you go to the edges of that color range, if you have super blue or super red star, it will have slightly offset Strometry. And now you have to subtract 2 stars to detections of the same star, but because you were observing a different Z in its distance, they're slightly offset.
+
+291
+00:37:53.370 --> 00:38:08.760
+Zeljko Ivezic: and then they don't, even though it's a non variable star. It doesn't subtract perfectly. But you get something that looks like we call it dipole. There is one negative blob and one positive blob that is slightly separated from each other. And so that's the third type of sources.
+
+292
+00:38:08.960 --> 00:38:11.059
+Zeljko Ivezic: And this where
+
+293
+00:38:11.700 --> 00:38:17.400
+Zeljko Ivezic: generated. If you're astronomer or you want to simulate images. Here is a bunch of
+
+294
+00:38:17.540 --> 00:38:19.179
+Zeljko Ivezic: routines like
+
+295
+00:38:20.540 --> 00:38:28.270
+Zeljko Ivezic: construct to Gaussian image, add noise to image measure. Once you made the image. If everything looks fine.
+
+296
+00:38:28.350 --> 00:38:34.360
+Zeljko Ivezic: Make a stamp. Stamp is slang for little image that only includes your source.
+
+297
+00:38:34.720 --> 00:38:35.700
+Zeljko Ivezic: Whoopsie.
+
+298
+00:38:36.310 --> 00:38:41.439
+Zeljko Ivezic: Make a star blah blah blah! Make a trail, and so it.
+
+299
+00:38:41.490 --> 00:38:44.260
+Zeljko Ivezic: Go away, and then what am I doing?
+
+300
+00:38:45.390 --> 00:38:49.849
+Zeljko Ivezic: And then at the end. you generate these images.
+
+301
+00:38:50.970 --> 00:39:05.039
+Zeljko Ivezic: There's this mask for determining background. Here is a very bright star. and the noise is almost negligible. You're a slower signal to noise. Here is something. This is dipole. Okay? So this image is.
+
+302
+00:39:05.660 --> 00:39:10.620
+Zeljko Ivezic: there is negative in here and positive in here, and that's
+
+303
+00:39:11.230 --> 00:39:26.259
+Zeljko Ivezic: astrometric error. And so what we want to do now is when we start observing, in a year we'll have every 40 s. We'll get about few 1,000 such images, and then we'll go through the entire night and have about 10 million such images.
+
+304
+00:39:26.500 --> 00:39:48.089
+Zeljko Ivezic: But we want to report to the world within 60 s of getting those 1,000 images. We want to give classification and say, this is garbage. This is real source. These are other data. If you have the supernova, you could filter it for this property. If you after asterage you filter it. It all has to be done in 60 s. That's why we need to have automated classification.
+
+305
+00:39:48.880 --> 00:39:56.960
+Zeljko Ivezic: And so this is example of such dipole. And then at the end, there is little bit of code where you can set up how many objects you want, etc.
+
+306
+00:39:57.040 --> 00:40:04.930
+Zeljko Ivezic: Then you run it, and then at the end you'll save it in Mpz file. This is now measuring of those images to see
+
+307
+00:40:05.150 --> 00:40:08.250
+Zeljko Ivezic: that it behaves like we. We
+
+308
+00:40:08.340 --> 00:40:20.060
+Zeljko Ivezic: thought it should. So, for example, electricity of image and number of counts number of photons. So these are dipoles because they have negative and positive, and they sum to 0.
+
+309
+00:40:20.180 --> 00:40:27.970
+Zeljko Ivezic: But they can have very large electricity, and some of these, these black ones are stars, and the red ones are
+
+310
+00:40:28.110 --> 00:40:37.259
+Zeljko Ivezic: asterisk moving objects. So if you're interested in in generating your own simple images, that's example of such code.
+
+311
+00:40:37.890 --> 00:40:49.310
+Zeljko Ivezic: So what we do here is. we now read those stamps. There are 3,000 of them. and each stamp is 32 by 32 pixels.
+
+312
+00:40:50.330 --> 00:40:55.640
+Zeljko Ivezic: and then we run resnet. So this code
+
+313
+00:40:56.230 --> 00:41:00.619
+Zeljko Ivezic: I stole from Pre. I'd be ready
+
+314
+00:41:00.680 --> 00:41:05.699
+Zeljko Ivezic: who works in some data mining company. So some years ago, she implemented
+
+315
+00:41:05.760 --> 00:41:09.670
+Zeljko Ivezic: resnet 50 in keras framework.
+
+316
+00:41:10.140 --> 00:41:13.010
+Zeljko Ivezic: And so most of that quote comes from her.
+
+317
+00:41:13.460 --> 00:41:20.310
+Zeljko Ivezic: But I adjusted it to use my images. So when I read my images. They are all stored in this
+
+318
+00:41:20.560 --> 00:41:28.880
+Zeljko Ivezic: in this data frame code data. And so now there is little bit of art that comes in. So
+
+319
+00:41:29.670 --> 00:41:36.010
+Zeljko Ivezic: they are Lego blocks that they told you about. So like con of twod, that's twod convolution.
+
+320
+00:41:36.100 --> 00:41:38.660
+Zeljko Ivezic: You give it image. You give it kernel.
+
+321
+00:41:38.770 --> 00:41:47.860
+Zeljko Ivezic: You give it stride. Stride is, how many steps you do in original image when you're on your kernel? Typically, you step pixel by pixel.
+
+322
+00:41:47.940 --> 00:41:56.189
+Zeljko Ivezic: But if you have Nyquist sampling, for example, and you have giant image. You could do stride of 2 and then do every other pixel. You wouldn't lose much.
+
+323
+00:41:56.550 --> 00:42:07.199
+Zeljko Ivezic: Then there is something called base normalization. We discussed last time. And then there is activation function. And so that activation function again, it's a Lego block called activation.
+
+324
+00:42:07.550 --> 00:42:10.280
+Zeljko Ivezic: If you look at the and buff.
+
+325
+00:42:11.030 --> 00:42:14.719
+Zeljko Ivezic: We read all of these, these are karas layers.
+
+326
+00:42:14.810 --> 00:42:23.560
+Zeljko Ivezic: So we read, Activation 0 padding based normalization. It's of the screen is kernel, etc.
+
+327
+00:42:24.000 --> 00:42:27.009
+Zeljko Ivezic: So all these Lego blocks come to you from Keras.
+
+328
+00:42:27.320 --> 00:42:40.630
+Zeljko Ivezic: and now you can make any neural network. And so she chose now to follow the recipe. All these, why is it convolution? 2D. And then relu y. Another one, and relo that all comes from that paper
+
+329
+00:42:40.750 --> 00:42:45.610
+Zeljko Ivezic: that I showed you resnet 50 paper where they experimented with hundreds of networks.
+
+330
+00:42:45.760 --> 00:43:05.729
+Zeljko Ivezic: and they ended up with this architecture. So the number of layers, the kind of activation function, details like stripes, etc., etc. that's called architecture of the network. So the architecture of the network was fixed in that paper proposed in that paper, and then she took keras and implemented this.
+
+331
+00:43:08.570 --> 00:43:15.600
+Zeljko Ivezic: and I asked my daughter, I said, Well, since you're using pythorch, look at this code and try to implement it in pi torch.
+
+332
+00:43:15.630 --> 00:43:20.380
+Zeljko Ivezic: because I'm super busy. I will not finish this over the weekend, and you could do it in 2 h.
+
+333
+00:43:20.440 --> 00:43:28.040
+Zeljko Ivezic: And she said, Not my problem. So I don't have python implementation because my child doesn't listen to me.
+
+334
+00:43:30.760 --> 00:43:42.679
+Zeljko Ivezic: And so now this is convolutional block. It's very similar code to the previous one. So basically, she was following architecture and implementing in resonance in keras.
+
+335
+00:43:43.590 --> 00:43:48.000
+Zeljko Ivezic: And so this is now resonant 50 that uses all these.
+
+336
+00:43:48.030 --> 00:43:55.309
+Zeljko Ivezic: So she took Lego blocks to build bigger structures. And now at the top level code, she's using
+
+337
+00:43:55.350 --> 00:43:59.289
+Zeljko Ivezic: hair bigger structures that are built built on
+
+338
+00:43:59.390 --> 00:44:06.809
+Zeljko Ivezic: original keras. primitives that exist for for convolution, etc. And so that's the code.
+
+339
+00:44:07.630 --> 00:44:15.459
+Zeljko Ivezic: You can ask why all these numbers? That's how experimentation in resnet 50 paper came up with.
+
+340
+00:44:15.720 --> 00:44:17.180
+Zeljko Ivezic: And so now
+
+341
+00:44:18.280 --> 00:44:30.450
+Zeljko Ivezic: you can run this resnet 50. You give it data. define input shape. How many output classes you have in our case, we'll have 3, and you get your model.
+
+342
+00:44:31.900 --> 00:44:36.700
+Zeljko Ivezic: So that's how hard it is. Yes, stages.
+
+343
+00:44:39.050 --> 00:44:42.140
+Zeljko Ivezic: Yeah. Each layer. Yeah. no.
+
+344
+00:44:44.670 --> 00:44:56.870
+Zeljko Ivezic: And then these are just some helpers. They're not really networks. It's like normalizing image reshaping arrays. Just to make it easy to display. And then this piece of code
+
+345
+00:44:57.250 --> 00:45:03.320
+Zeljko Ivezic: plots, confusion, matrix. So we have 3 classes. We have star moving object and dipole.
+
+346
+00:45:03.390 --> 00:45:19.739
+Zeljko Ivezic: So we will have 3 true values. And then we can ask how well we did. When the model is run. When the network is run, it will tell us for each input image. What is the probability for each of the 3 possible classes?
+
+347
+00:45:20.260 --> 00:45:31.369
+Zeljko Ivezic: And then you can define your threshold. Typically, we just say, the highest probability is what I will assign as estimated class. And you do 3 by 3 matrix to see how well you did.
+
+348
+00:45:31.540 --> 00:45:48.080
+Zeljko Ivezic: If you did perfectly well, then your matrix will only have diagonal. So each class went into its own class. If there is mixing, it means we are making mistakes, and we want to see how many mistakes and what kind of mistakes are we are making. And so this
+
+349
+00:45:48.320 --> 00:46:02.080
+Zeljko Ivezic: plot here use this confusion matrix from psychiclearn. So that's a standard thing to do. So you don't have to code your own piece of code to display matrix that exists. You just need to feed its data.
+
+350
+00:46:02.130 --> 00:46:04.359
+Zeljko Ivezic: And that's what this piece of code does.
+
+351
+00:46:08.660 --> 00:46:10.519
+Zeljko Ivezic: And then, if you want to
+
+352
+00:46:10.700 --> 00:46:18.699
+Zeljko Ivezic: follow iterations. So there are many iterations to improve coefficients, you can also plot your loss function, how well it does.
+
+353
+00:46:19.100 --> 00:46:21.590
+Zeljko Ivezic: And so that's what we gonna do. Now.
+
+354
+00:46:22.930 --> 00:46:28.699
+Zeljko Ivezic: this is little bit of hacking, because it's just throwaway codes. So I wasn't doing anything complicated.
+
+355
+00:46:28.790 --> 00:46:33.090
+Zeljko Ivezic: You shouldn't worry about it, but it's easy to break it. So I put comment.
+
+356
+00:46:33.360 --> 00:46:35.540
+Zeljko Ivezic: And so this is where I split.
+
+357
+00:46:36.280 --> 00:46:39.480
+Zeljko Ivezic: I split samples. I have my input data.
+
+358
+00:46:39.890 --> 00:46:51.939
+Zeljko Ivezic: and then I split it into 3 subsample. I have training, sample validation and testing that we use at the end to assess how well we are doing. We have 2,100. So most of sample goes into training
+
+359
+00:46:52.410 --> 00:47:01.860
+Zeljko Ivezic: little bit for validation while you're doing training and then test sample is not used in training that we will use at the end to assess how well we do.
+
+360
+00:47:02.390 --> 00:47:05.279
+Zeljko Ivezic: And so here and now there is collage
+
+361
+00:47:05.510 --> 00:47:08.480
+Zeljko Ivezic: of stamps. We are trying to do.
+
+362
+00:47:08.940 --> 00:47:15.600
+Zeljko Ivezic: So. This is before the model is run. This is just to show what we are trying to classify.
+
+363
+00:47:15.840 --> 00:47:28.500
+Zeljko Ivezic: So true class and predicted class is the same, because the same code is used later to to plot. So through classes 1, 2, 0. So one is moving object.
+
+364
+00:47:28.890 --> 00:47:34.289
+Zeljko Ivezic: You can see that there is some elongated image. high signal to noise.
+
+365
+00:47:34.610 --> 00:47:39.530
+Zeljko Ivezic: Then there is through Class 2. That is a dipole.
+
+366
+00:47:39.570 --> 00:47:44.290
+Zeljko Ivezic: but it's exceeding exceedingly low signal to noise. It's hard to pick it up with ice.
+
+367
+00:47:44.580 --> 00:47:52.159
+Zeljko Ivezic: and then etc., etc., so you can go from high signal to noise. So this object is so bright in the top left
+
+368
+00:47:52.180 --> 00:47:57.400
+Zeljko Ivezic: that the fluctuation in the background noise is not even visible with that stretch.
+
+369
+00:47:57.460 --> 00:48:04.609
+Zeljko Ivezic: but if you go to super faint object. Then you pick up the noise because the normalization is constant. So that's what we want to do.
+
+370
+00:48:05.750 --> 00:48:19.020
+Zeljko Ivezic: And then you run your model. So basically. we use that piece of code from Priya, and we say we want to run for 100 epochs. So in this example, each image is 1,000 pixels.
+
+371
+00:48:19.110 --> 00:48:24.710
+Zeljko Ivezic: and we have 2,000 images so roughly 2 million numbers that we are feeding to the network.
+
+372
+00:48:24.740 --> 00:48:28.960
+Zeljko Ivezic: and the network is then running 400 iterations.
+
+373
+00:48:29.000 --> 00:48:32.370
+Zeljko Ivezic: It takes 3 h on my laptop.
+
+374
+00:48:33.020 --> 00:48:44.780
+Zeljko Ivezic: so it can be very slow. And so, typically if you're doing it for real, you would use a cluster, and then you would split batches. If you have 1,000 course, you have 1,000 batches, and then you connect them at the end.
+
+375
+00:48:45.180 --> 00:48:50.260
+Zeljko Ivezic: And I'm not even sure it runs anymore. Because I
+
+376
+00:48:50.450 --> 00:49:10.729
+Zeljko Ivezic: screwed up installation of tensorflow on my laptop. It's the new lap, the new apple that has that chip, and then I have Conda that works with the old chip, and I did something really bad. And this weekend I didn't have time to fix it. And so maybe if you try it on your computer if you'll run. But maybe Api changed.
+
+377
+00:49:10.940 --> 00:49:20.139
+Zeljko Ivezic: and maybe you'll have to fix something if you want to do it yourself. There is possibility that there is change of Api, because I haven't run it in more than a year, maybe 2 years
+
+378
+00:49:20.390 --> 00:49:21.380
+Zeljko Ivezic: now
+
+379
+00:49:23.330 --> 00:49:31.339
+Zeljko Ivezic: in my on my laptop. It breaks immediately because it has wrong architecture of the processor, so I don't know what's the answer, whether it would run or not.
+
+380
+00:49:32.010 --> 00:49:46.139
+Zeljko Ivezic: So that was run at some point 2 years ago, say. and so as it goes, then it tells you, progress takes about 3 h for 100 epochs. So that's about 2 min per one epoch.
+
+381
+00:49:46.900 --> 00:49:48.820
+Zeljko Ivezic: and then, once it's done.
+
+382
+00:49:49.740 --> 00:49:58.420
+Zeljko Ivezic: The first thing to see is, how well are you doing with loss, function, or accuracy, which is one minus loss function.
+
+383
+00:49:58.830 --> 00:50:02.249
+Zeljko Ivezic: So the blue line is the training plus.
+
+384
+00:50:02.500 --> 00:50:07.250
+Zeljko Ivezic: So we fit to that data set, and it should rapidly converge
+
+385
+00:50:07.310 --> 00:50:16.549
+Zeljko Ivezic: to something very small. and accuracy should be high. So 100%. And that's what happens. Some after maybe 20 epochs.
+
+386
+00:50:16.760 --> 00:50:22.409
+Zeljko Ivezic: We are already in that asymptotic domain. So basically we fit.
+
+387
+00:50:22.810 --> 00:50:29.089
+Zeljko Ivezic: We'll see later how many. I think it was 20 million parameters. and with 20 million parameters.
+
+388
+00:50:29.120 --> 00:50:37.749
+Zeljko Ivezic: you ought to be able to describe behavior of 2 million numbers. And that's what happens. And that's why we can achieve accuracy. 100%,
+
+389
+00:50:38.210 --> 00:50:40.840
+Zeljko Ivezic: and then validation loss is used
+
+390
+00:50:40.950 --> 00:50:46.649
+Zeljko Ivezic: interchangeably with training sample to assess how well you are doing so validation
+
+391
+00:50:46.890 --> 00:51:03.390
+Zeljko Ivezic: went up. And then, even though training the training sample was already well described, it had to iterate more to go over that hump and then go to the small values, and it was still oscillating. So now, if that was some real research project.
+
+392
+00:51:03.780 --> 00:51:05.129
+Zeljko Ivezic: I would say
+
+393
+00:51:05.370 --> 00:51:18.309
+Zeljko Ivezic: we need to run it for at least 200 epochs. I'm worried about oscillations at the end. We don't know if it would continue oscillating or not. The yellow curve also has to get into asymptotic behavior like the blue curve.
+
+394
+00:51:18.550 --> 00:51:26.190
+Zeljko Ivezic: So we don't know that we need to rerun the whole thing to convince ourselves ourselves that the network converged.
+
+395
+00:51:28.230 --> 00:51:32.829
+Zeljko Ivezic: and then we can say, Well, let's see how well we are doing doing with predictions.
+
+396
+00:51:33.660 --> 00:51:34.960
+Zeljko Ivezic: And so
+
+397
+00:51:35.250 --> 00:51:41.699
+Zeljko Ivezic: here in the top left panel. Now, you have true class and predicted class, they agree
+
+398
+00:51:41.950 --> 00:51:53.350
+Zeljko Ivezic: and predicted. Client class comes from these 3 numbers. Each of these 3 numbers is the probability that this particular stamp belongs to one of these classes.
+
+399
+00:51:53.440 --> 00:52:00.100
+Zeljko Ivezic: So this one has the highest probability, 0 point 9 9 that it belongs to moving
+
+400
+00:52:00.360 --> 00:52:10.009
+Zeljko Ivezic: object which is supposed to be elongated Gaussian, and it looks like elongated Gaussian, and all these other probabilities, then, are super low.
+
+401
+00:52:10.530 --> 00:52:13.570
+Zeljko Ivezic: Now, if if you have lower signal to noise.
+
+402
+00:52:14.220 --> 00:52:18.370
+Zeljko Ivezic: then you still do good prediction. But then.
+
+403
+00:52:18.890 --> 00:52:30.940
+Zeljko Ivezic: okay, so here it's almost one. It claims it has to be dipole. and so there is no signal, for there is no signal for a well defined source. Elongated or not.
+
+404
+00:52:30.950 --> 00:52:34.660
+Zeljko Ivezic: so dipole is the most the most
+
+405
+00:52:35.020 --> 00:52:46.150
+Zeljko Ivezic: probable case, even though you can't see anything by eyes, because Dipole has some negative and some positive fluctuations. That's why it's preferred in high signal to noise. It works like charm.
+
+406
+00:52:46.790 --> 00:52:58.279
+Zeljko Ivezic: So whenever you have high signal to noise, the true class and predictive class are 0. So this kind of makes sense on these 5 stamps or 10 stamps.
+
+407
+00:52:58.560 --> 00:53:06.160
+Zeljko Ivezic: then we want to do more robust statistical analysis. And that's that confusion matrix that we have
+
+408
+00:53:06.400 --> 00:53:21.850
+Zeljko Ivezic: so true level is on YY axis and predicted label is on X axis, and you can see that for for the star, which is Class 0 and for Dipole, which is Class One. We are essentially doing
+
+409
+00:53:22.130 --> 00:53:23.320
+Zeljko Ivezic: perfectly well
+
+410
+00:53:24.420 --> 00:53:32.189
+Zeljko Ivezic: where we depart from, one is for the class one which is moving object.
+
+411
+00:53:32.470 --> 00:53:40.100
+Zeljko Ivezic: And so there, in 3 quarters of images, we are fine, but sometimes we think it's not elongated.
+
+412
+00:53:40.390 --> 00:53:45.150
+Zeljko Ivezic: and sometimes we think it's even dipole. So now
+
+413
+00:53:45.180 --> 00:54:04.779
+Zeljko Ivezic: this one is easy to understand. So sometimes the motion will be so small that the effect on on electricity of the final image will be tiny, and it can't tell whether it's really round source or slightly elongated. And that's where these mistakes happen. The other one is initially more puzzling, because how can it
+
+414
+00:54:04.810 --> 00:54:19.340
+Zeljko Ivezic: mistake? Elongated Gaussian, which Dipole with one blob negative, one positive. How can that happen? And then, when you look at what happened, you find out these are all these super low signal to noise objects where you can't fail even by eye.
+
+415
+00:54:19.820 --> 00:54:27.039
+Zeljko Ivezic: So that's understandable that it cannot do anything about it. And so this looks very nice.
+
+416
+00:54:28.930 --> 00:54:36.949
+Zeljko Ivezic: Then, if you really want to investigate deeper, then you take misclassified stamps. So you know which one is which it's easy to
+
+417
+00:54:39.240 --> 00:54:52.049
+Zeljko Ivezic: separate stamps into those that were correctly classified and those that were not 91% of them is correctly classified. And then we look at those 9% that are misclassified.
+
+418
+00:54:52.410 --> 00:54:57.010
+Zeljko Ivezic: we select them. And now we show those that are wrong.
+
+419
+00:54:57.780 --> 00:54:59.559
+Zeljko Ivezic: And so this one
+
+420
+00:55:00.120 --> 00:55:02.729
+Zeljko Ivezic: is moving object.
+
+421
+00:55:03.260 --> 00:55:08.180
+Zeljko Ivezic: But predicted classes 0. So in that matrix, that was middle row to the left.
+
+422
+00:55:08.570 --> 00:55:23.649
+Zeljko Ivezic: And so you can see that it's barely elongated. That's because the input motions had a range from very small to large, and those that are very small are indistinguishable. So we would be making mistakes here. We would be thinking, it's point source
+
+423
+00:55:24.880 --> 00:55:27.370
+Zeljko Ivezic: here. This one is elongated.
+
+424
+00:55:27.700 --> 00:55:31.440
+Zeljko Ivezic: but it's interpreted as being dipole.
+
+425
+00:55:31.670 --> 00:55:44.470
+Zeljko Ivezic: and that's because here, because of noise fluctuations, it looks like this is much lower level than this bright part, and so it fits the model to some extent to within this large noise it fits the model.
+
+426
+00:55:44.860 --> 00:55:51.220
+Zeljko Ivezic: And so then you can continue looking for such cases, and then maybe improve your network. Go further, etc.
+
+427
+00:55:52.950 --> 00:55:59.250
+Zeljko Ivezic: Hmm. And one last point. why is this network so powerful?
+
+428
+00:56:01.020 --> 00:56:05.490
+Zeljko Ivezic: Because it has many model parameters that are all adjusted to fit well.
+
+429
+00:56:06.490 --> 00:56:10.179
+Zeljko Ivezic: And so you can ask your resnet
+
+430
+00:56:10.240 --> 00:56:26.849
+Zeljko Ivezic: model for lots of interesting things. This is all describing architecture. How many layers, how many parameters blah blah blah! And at the end it will tell you how many parameters it trained. It trains 23 million parameters.
+
+431
+00:56:27.620 --> 00:56:29.370
+Zeljko Ivezic: But remember, we had
+
+432
+00:56:29.450 --> 00:56:38.109
+Zeljko Ivezic: 2,000 images in training sample. Each image is about 1,000 pixels. So that's only 2 million pixels. We gave it 2 million numbers.
+
+433
+00:56:38.190 --> 00:56:43.239
+Zeljko Ivezic: It speed back at us 23 million numbers. Now, how does that magic work?
+
+434
+00:56:43.360 --> 00:56:45.659
+Zeljko Ivezic: Where did it get additional information
+
+435
+00:56:48.810 --> 00:56:53.669
+Zeljko Ivezic: or simple problem is, I have 5 data points. Why
+
+436
+00:56:53.680 --> 00:56:55.020
+Zeljko Ivezic: versus sex?
+
+437
+00:56:55.270 --> 00:57:00.959
+Zeljko Ivezic: I have some 5 measurements. Can I fit 10 order polynomials to the dataset?
+
+438
+00:57:06.390 --> 00:57:12.360
+Zeljko Ivezic: So I'm many people would say, No, you can't. and many textbooks
+
+439
+00:57:12.650 --> 00:57:18.299
+Zeljko Ivezic: will tell you that you cannot fit more higher order polynomial than the number of data points.
+
+440
+00:57:18.700 --> 00:57:22.160
+Zeljko Ivezic: But as we learned in the first part of this class that's wrong.
+
+441
+00:57:23.000 --> 00:57:29.400
+Zeljko Ivezic: You can fit as many parameters as you want in Bayesian context, because you have priors for each parameter.
+
+442
+00:57:29.480 --> 00:57:32.179
+Zeljko Ivezic: And so, if data do not support
+
+443
+00:57:32.530 --> 00:57:42.300
+Zeljko Ivezic: departure of that parameter from its prior. It will stay where you put it. So you can have 5 data points. You can fit 100 or the polynomial.
+
+444
+00:57:42.310 --> 00:58:05.269
+Zeljko Ivezic: But you will need to specify primers for all these coefficients. And so typically, you would put some Gaussian or exponential function centered on 0, and it will stay 0 unless data tells you, you got to move away in order to explain the data. That's what we call the regularization lectures. And if you remember there was L. One and L. 2, regularization.
+
+445
+00:58:05.320 --> 00:58:16.380
+Zeljko Ivezic: etc. If you don't remember, you can go back to these lectures. But the bottom line thing to remember is, you can fit more model parameters than you have data points.
+
+446
+00:58:16.630 --> 00:58:18.839
+Zeljko Ivezic: And the reason is that you have priors.
+
+447
+00:58:19.220 --> 00:58:24.559
+Zeljko Ivezic: And so here we fit 23 million out to 2 million data points.
+
+448
+00:58:26.530 --> 00:58:34.340
+Zeljko Ivezic: And so the last point for today and for the whole class is now when you look at these images in this simple case.
+
+449
+00:58:34.600 --> 00:58:47.019
+Zeljko Ivezic: It is easy to tell why Network did what it did. Why did it misclassify moving objects as point source? So we saw that the elongation was tiny, so it didn't move far away.
+
+450
+00:58:47.080 --> 00:58:49.590
+Zeljko Ivezic: But if you're classifying something more
+
+451
+00:58:49.640 --> 00:59:03.999
+Zeljko Ivezic: complex like, if you were doing really classification of galaxy, morphology, and you wanted to learn physics. Why network can tell difference between spiral galaxy and elliptical galaxy, or you're classifying dogs and cats, or
+
+452
+00:59:04.250 --> 00:59:08.030
+Zeljko Ivezic: you want to know why they're different. Or you can be doing
+
+453
+00:59:08.150 --> 00:59:17.159
+Zeljko Ivezic: human classification. And you are afraid of biases. As we know, there are lots of biases in those programs that classify humans. You can ask Network.
+
+454
+00:59:17.440 --> 00:59:29.189
+Zeljko Ivezic: what is the reason that you classify that image as you did? There are many different methods to do so. Some of them are more involved. This example is quite simple occlusion. Map
+
+455
+00:59:29.510 --> 00:59:35.910
+Zeljko Ivezic: takes part of an image, and then you calculate, based on that part of image probability that
+
+456
+00:59:35.970 --> 00:59:37.629
+Zeljko Ivezic: belongs to given class.
+
+457
+00:59:37.770 --> 00:59:49.549
+Zeljko Ivezic: If that piece of image doesn't tell you anything. if the probability is 0, basically, it doesn't contain information about the final outcome, then you know, these pixels don't count.
+
+458
+00:59:49.810 --> 00:59:51.710
+Zeljko Ivezic: So this following piece of
+
+459
+00:59:51.740 --> 00:59:58.110
+Zeljko Ivezic: quote does exactly this. So this is calculation, and then it shows pixels and image
+
+460
+00:59:58.150 --> 01:00:00.930
+Zeljko Ivezic: with heat map that contributes
+
+461
+01:00:01.630 --> 01:00:11.690
+Zeljko Ivezic: to this classification. So it looks like you would expect. This red region is pixels that have an impact on the final classification.
+
+462
+01:00:11.930 --> 01:00:33.239
+Zeljko Ivezic: The black pixels do not. And that's what you would think. The black pixels we know in this this data set are simply background. There is no information about these sources in the corners of the image. What we are classifying is concentrated in the center of this image. And this basically tells you what you already knew. But now you could imply
+
+463
+01:00:33.260 --> 01:00:48.350
+Zeljko Ivezic: applied to a more complicated problem where you don't know yourself, what's important like? If you had spiral galaxy, is it the center, the bulge of the galaxy that gives a signal of the existence of spiral arms, or the central bar, or something. Third.
+
+464
+01:00:48.420 --> 01:00:53.489
+Zeljko Ivezic: and so you would learn with this approach what is physically
+
+465
+01:00:53.830 --> 01:00:57.669
+Zeljko Ivezic: giving signal to the network to tell you that it's a spiral balance.
+
+466
+01:01:00.540 --> 01:01:05.089
+Zeljko Ivezic: Alright. So I'll stop here and let's see if there are questions
+
+467
+01:01:05.740 --> 01:01:07.810
+Zeljko Ivezic: people on zoom. Are you still awake?
+
+468
+01:01:09.250 --> 01:01:15.219
+Zeljko Ivezic: Absolutely all right? If there are questions, either shout or type them in chat.
+
+469
+01:01:17.560 --> 01:01:18.949
+Zeljko Ivezic: questions in the room.
+
+470
+01:01:21.020 --> 01:01:21.760
+Zeljko Ivezic: please.
+
+471
+01:01:31.410 --> 01:01:36.649
+Zeljko Ivezic: Not in each. So it's convolutional network. So when you convolve.
+
+472
+01:01:37.490 --> 01:01:41.239
+Zeljko Ivezic: you'll be like exactly. And then next step will reduce it.
+
+473
+01:01:42.510 --> 01:01:44.530
+Zeljko Ivezic: So after you run kernel.
+
+474
+01:01:44.610 --> 01:01:50.739
+Zeljko Ivezic: If you remember, we talked about strides, and we used strides of one
+
+475
+01:01:51.340 --> 01:01:53.500
+Zeljko Ivezic: in the codes that we ran.
+
+476
+01:01:54.500 --> 01:01:58.169
+Zeljko Ivezic: There was input for strides. Where is it?
+
+477
+01:02:08.150 --> 01:02:11.969
+Zeljko Ivezic: No, I was lying actually, strikes were 2 by 2.
+
+478
+01:02:12.420 --> 01:02:17.489
+Zeljko Ivezic: So the after the first convolution layer you get 4 times smaller image.
+
+479
+01:02:18.170 --> 01:02:24.530
+Zeljko Ivezic: and then you also do, Max, pulling out of it. and so if you looked carefully, we would find out
+
+480
+01:02:25.780 --> 01:02:29.790
+Zeljko Ivezic: Max pulling 2D. So it's 3 by 3.
+
+481
+01:02:30.040 --> 01:02:31.790
+Zeljko Ivezic: So we have
+
+482
+01:02:32.490 --> 01:02:38.890
+Zeljko Ivezic: 250, roughly speaking pixels after convolution, and we reduce by 10.
+
+483
+01:02:38.900 --> 01:02:44.169
+Zeljko Ivezic: So we have about 25 x's that are then later propagated
+
+484
+01:02:44.550 --> 01:02:48.920
+Zeljko Ivezic: to give you information. But that's for each kernel. So it's number of kernels.
+
+485
+01:02:49.470 --> 01:02:57.950
+Zeljko Ivezic: and I forget now their colonel's upset. So it's of the order 10 or so, and then times this 25. Yeah.
+
+486
+01:02:58.800 --> 01:03:00.410
+Zeljko Ivezic: So we're in for the student.
+
+487
+01:03:03.010 --> 01:03:06.200
+Do you want to stay in between the number of names?
+
+488
+01:03:07.130 --> 01:03:11.229
+Zeljko Ivezic: Correct? Yeah. If you followed that rule of thumb that been reduced earlier.
+
+489
+01:03:12.180 --> 01:03:16.660
+Zeljko Ivezic: But this one is fixed to 50. Yeah. but that's a good calculation that you're doing.
+
+490
+01:03:18.800 --> 01:03:27.970
+Zeljko Ivezic: So. You could argue, based on that rule of thumb that this network is an overkill for this simple example that I put together.
+
+491
+01:03:29.110 --> 01:03:35.649
+Zeljko Ivezic: But if you had more complicated images, larger images, more classes, then you would do it with resonance.
+
+492
+01:03:36.760 --> 01:03:43.389
+Zeljko Ivezic: You could have hundreds of different labels, different types of sub images that this network can classify.
+
+493
+01:03:43.510 --> 01:03:49.359
+Zeljko Ivezic: I had only 3 because it was pedagogical introduction, but in reality you can have many different ones.
+
+494
+01:03:53.440 --> 01:03:57.809
+Zeljko Ivezic: Yes, these 11.
+
+495
+01:03:58.480 --> 01:04:00.470
+Zeljko Ivezic: Can you repeat again?
+
+496
+01:04:00.740 --> 01:04:01.420
+Big
+
+497
+01:04:03.070 --> 01:04:07.330
+Zeljko Ivezic:  So that's in so for zoom people.
+
+498
+01:04:08.520 --> 01:04:12.660
+Zeljko Ivezic: how do we do occlusion maps? So
+
+499
+01:04:17.020 --> 01:04:19.110
+Zeljko Ivezic: so you take part of an image.
+
+500
+01:04:19.230 --> 01:04:25.299
+Zeljko Ivezic: Now we'll go to the code and then calculate the probability of that part of image belonging to a class.
+
+501
+01:04:25.960 --> 01:04:36.480
+Zeljko Ivezic: and then. if the probability decreases, occlusion means, remove it. So if you remove part of that image called occluded part.
+
+502
+01:04:36.830 --> 01:04:43.789
+Zeljko Ivezic: then, if it was contributing to classification. Then probability will go down. Because I stole information.
+
+503
+01:04:44.290 --> 01:04:45.720
+And you are feeding.
+
+504
+01:04:47.470 --> 01:04:49.970
+Zeljko Ivezic: Right? Yeah, yeah, that's basically
+
+505
+01:04:51.540 --> 01:05:04.080
+Zeljko Ivezic: almost identical. Almost identical. Yeah. In feature, importance. You have discrete sets of features, and you can ask this for each feature here. It's parts of image. But
+
+506
+01:05:04.480 --> 01:05:07.360
+Zeljko Ivezic: exactly so, it's in same spirit
+
+507
+01:05:09.440 --> 01:05:12.910
+Zeljko Ivezic: was the question in the back. I'm not sure. Did you have a question?
+
+508
+01:05:14.280 --> 01:05:16.860
+Zeljko Ivezic: Oh, okay, okay.
+
+509
+01:05:21.000 --> 01:05:22.440
+Zeljko Ivezic: Questions on Zoom.
+
+510
+01:05:29.010 --> 01:05:33.700
+Zeljko Ivezic: Well, then, I would like to tell you, and that I really enjoyed this
+
+511
+01:05:33.780 --> 01:05:34.940
+Zeljko Ivezic: Sirius.
+
+512
+01:05:36.410 --> 01:05:37.300
+and
+
+513
+01:05:38.320 --> 01:05:39.860
+Zeljko Ivezic: as I promised.
+
+514
+01:05:40.900 --> 01:05:53.109
+Zeljko Ivezic: I did prepare grotesque for those who would apply something to their data. But since you didn't deliver. I will deliver my grottoes anyway. So let's share this view, Griyotti. I have.
+
+515
+01:05:54.590 --> 01:05:57.530
+Zeljko Ivezic: and thank you again for coming. It was really my pleasure.
+
+516
+01:06:06.160 --> 01:06:14.969
+Zeljko Ivezic: So if you will have questions, if you will go back to this and try to do something with your own data set and you get stuck, or you have any other questions
+
+517
+01:06:15.030 --> 01:06:19.409
+Zeljko Ivezic: feel free to email me. It's easy to find my email. And you have it from
+
+518
+01:06:19.430 --> 01:06:24.939
+Zeljko Ivezic: this class. And I would be happy to answer if I don't know the answer.
+
+519
+01:06:25.350 --> 01:06:26.719
+Zeljko Ivezic: So thank you again.
+
+520
+01:06:27.560 --> 01:06:31.410
+Zeljko Ivezic: I'm disconnecting. You guys on zoom, you don't get gratty.
+
+521
+01:06:33.150 --> 01:06:35.090
+lovro: Bye. Bye.
+
